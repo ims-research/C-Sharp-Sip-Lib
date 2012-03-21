@@ -32,9 +32,8 @@ namespace SIPLibDriver
             string myHost = System.Net.Dns.GetHostName();
             System.Net.IPHostEntry myIPs = System.Net.Dns.GetHostEntry(myHost);
             TransportInfo sip_transport = new TransportInfo(IPAddress.Parse(listen_ip), listen_port, System.Net.Sockets.ProtocolType.Udp);
-            SIPApp app = new SIPApp();
-            SIPStack my_stack = new SIPStack(app, sip_transport);
-            
+            SIPApp app = new SIPApp(sip_transport);
+            SIPStack my_stack = new SIPStack(app);
 
             my_stack.uri.user = "alice";
             if (proxy_ip != null)

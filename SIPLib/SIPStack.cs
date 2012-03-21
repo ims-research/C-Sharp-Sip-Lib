@@ -31,12 +31,13 @@ namespace SIPLib
             
         }
 
-        public SIPStack(SIPApp app, TransportInfo transport)
+        public SIPStack(SIPApp app)
         {
             Init();
-            this.transport = transport;
-            this.transport.Received_Data_Event += new EventHandler<RawEventArgs>(transport_Received_Data_Event);
+            this.transport = app.transport;
             this.app = app;
+            this.app.Received_Data_Event += new EventHandler<RawEventArgs>(transport_Received_Data_Event);
+            
             app.stack = this;
         }
 

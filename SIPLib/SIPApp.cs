@@ -10,6 +10,11 @@ namespace SIPLib
     public class SIPApp
     {
         public SIPStack stack { get; set; }
+        private byte[] temp_buffer { get; set; }
+        public TransportInfo transport { get; set; }
+
+        public event EventHandler<RawEventArgs> Received_Data_Event;
+        public event EventHandler<RawEventArgs> Sent_Data_Event;
 
         public void send(string data, string ip,int port,SIPStack stack)
         {
@@ -18,6 +23,54 @@ namespace SIPLib
             EndPoint destEP = (EndPoint)dest;
             byte[] send_data = ASCIIEncoding.ASCII.GetBytes(data);
             stack.transport.socket.BeginSendTo(send_data, 0, send_data.Length, SocketFlags.None, destEP, new AsyncCallback(this.SendDataCB), destEP);
+        }
+        
+        public SIPApp(TransportInfo transport)
+        {
+            this.temp_buffer = new byte[4096];
+            if (transport.type == ProtocolType.Tcp)
+            {
+                transport.socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            }
+            else
+            {
+                transport.socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+            }
+            IPEndPoint localEP = new IPEndPoint(transport.host, transport.port);
+            transport.socket.Bind(localEP);
+
+            IPEndPoint sender = new IPEndPoint(IPAddress.Any, 0);
+            EndPoint sendEP = (EndPoint)sender;
+            transport.socket.BeginReceiveFrom(temp_buffer, 0, temp_buffer.Length, SocketFlags.None, ref sendEP, new AsyncCallback(ReceiveDataCB), sendEP);
+            this.transport = transport;
+        }    
+
+        public void ReceiveDataCB(IAsyncResult asyncResult)
+        {
+            try
+            {
+                IPEndPoint sender = new IPEndPoint(IPAddress.Any, 0);
+                EndPoint sendEP = (EndPoint)sender;
+                int bytesRead = transport.socket.EndReceiveFrom(asyncResult, ref sendEP);
+                string data = ASCIIEncoding.ASCII.GetString(temp_buffer, 0, bytesRead);
+                string remote_host = ((IPEndPoint)sendEP).Address.ToString();
+                string remote_port = ((IPEndPoint)sendEP).Port.ToString();
+                //IPAddress address = ((IPEndPoint)sendEP).Address;
+                if (this.Received_Data_Event != null)
+                {
+                    this.Received_Data_Event(this, new RawEventArgs(data,new string[] {remote_host,remote_port}));
+                }
+                //if (data.Contains("SIP/2.0"))
+                //{
+                //    Message message = new Message(data);
+                //    process_Recv_Message(message);
+                //}
+                this.transport.socket.BeginReceiveFrom(this.temp_buffer, 0, this.temp_buffer.Length, SocketFlags.None, ref sendEP, new AsyncCallback(this.ReceiveDataCB), sendEP);
+            }
+            catch (Exception ex)
+            {
+                System.Console.WriteLine(ex.Message);
+            }
         }
 
         private void SendDataCB(IAsyncResult asyncResult)
