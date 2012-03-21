@@ -1,0 +1,17 @@
+c:\users\dksaarth\documents\visual studio 2010\Projects\SIPLib\SIPLib\bin\Debug\SIPLib.dll
+c:\users\dksaarth\documents\visual studio 2010\Projects\SIPLib\SIPLib\bin\Debug\SIPLib.pdb
+c:\users\dksaarth\documents\visual studio 2010\Projects\SIPLib\SIPLib\obj\Debug\ResolveAssemblyReference.cache
+c:\users\dksaarth\documents\visual studio 2010\Projects\SIPLib\SIPLib\obj\Debug\SIPLib.dll
+c:\users\dksaarth\documents\visual studio 2010\Projects\SIPLib\SIPLib\obj\Debug\SIPLib.pdb
+C:\PhD related\Software\SIPLib\SIPLib\obj\Debug\ResolveAssemblyReference.cache
+C:\PhD related\Software\SIPLib\SIPLib\obj\Debug\SIPLib.dll
+D:\Dropbox\PhD related\Software\SIPLib\SIPLib\bin\Debug\SIPLib.dll
+D:\Dropbox\PhD related\Software\SIPLib\SIPLib\bin\Debug\SIPLib.pdb
+D:\Dropbox\PhD related\Software\SIPLib\SIPLib\obj\Debug\ResolveAssemblyReference.cache
+D:\Dropbox\PhD related\Software\SIPLib\SIPLib\obj\Debug\SIPLib.dll
+D:\Dropbox\PhD related\Software\SIPLib\SIPLib\obj\Debug\SIPLib.pdb
+F:\Dropbox\Dropbox\PhD related\Software\SIPLib\SIPLib\bin\Debug\SIPLib.dll
+F:\Dropbox\Dropbox\PhD related\Software\SIPLib\SIPLib\bin\Debug\SIPLib.pdb
+F:\Dropbox\Dropbox\PhD related\Software\SIPLib\SIPLib\obj\Debug\ResolveAssemblyReference.cache
+F:\Dropbox\Dropbox\PhD related\Software\SIPLib\SIPLib\obj\Debug\SIPLib.dll
+F:\Dropbox\Dropbox\PhD related\Software\SIPLib\SIPLib\obj\Debug\SIPLib.pdb
