@@ -42,3 +42,4 @@ Thumbs.db
 *.aps
 *.suo
 *.cache
+*FileListAbsolute*.txt

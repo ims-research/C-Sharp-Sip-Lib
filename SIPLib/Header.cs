@@ -9,7 +9,7 @@ namespace SIPLib
     {
         static string[] _address = { "contact", "from", "record-route", "refer-to", "referred-by", "route", "to" };
         static string[] _comma = { "authorization", "proxy-authenticate", "proxy-authorization", "www-authenticate" };
-        static string[] _unstructured = { "call-id", "cseq", "date", "expires", "max-forwards", "organization", "server", "subject", "timestamp", "user-agent" };
+        static string[] _unstructured = { "call-id", "cseq", "date", "expires", "max-forwards", "organization", "server", "subject", "timestamp", "user-agent","service-route" };
         static Dictionary<string, string> _short = new Dictionary<string, string> { {"u","allow-events"},{"i","call-id"},{"m","contact"},
             {"e","content-encoding"},{"l","content-length"},{"c",  "content-type"},{"o",  "event"},{"f", "from"},{"s",  "subject"},{"k","supported"},{"t","to"},{"v",  "via"}};
         static Dictionary<string, string> _exceptions = new Dictionary<string, string> { { "call-id", "Call-ID" }, { "cseq", "CSeq" }, { "www-authenticate", "WWW-Authenticate" } };

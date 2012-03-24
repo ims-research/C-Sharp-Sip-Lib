@@ -18,6 +18,7 @@ namespace SIPLib
         public string proxy_ip { get; set; }
         public int proxy_port { get; set; }
         private SIPURI _uri =null;
+        private List<Header> service_route { get; set; }
         public SIPURI uri
         {
             get
@@ -50,18 +51,17 @@ namespace SIPLib
         {
             this.closing = true;
 
-            foreach (Dialog d in this.dialogs.Values)
-            {
-                d.close();
-                // TODO: Check this ? d.del ?
-            }
+            //foreach (Dialog d in this.dialogs.Values)
+            //{
+            //    d.close();
+            //    // TODO: Check this ? d.del ?
+            //}
 
-            
-            foreach (Transaction t in this.transactions.Values)
-            {
-                t.close();
-                // ToDO: Check this? t.del ?
-            }
+            //foreach (Transaction t in this.transactions.Values)
+            //{
+            //    t.close();
+            //    // ToDO: Check this? t.del ?
+            //}
 
             this.dialogs = new Dictionary<string, Dialog>();
             this.transactions = new Dictionary<string, Transaction>();
@@ -123,6 +123,13 @@ namespace SIPLib
             if (data is Message)
             {
                 Message m = (Message)data;
+                if (this.service_route != null)
+                {
+                     if (!(Utils.isRequest(m) && m.method.ToLower().Contains("register")))
+                     {
+                         m.headers.Add("Route", this.service_route);
+                     }
+                }
                 if (m.method.Length > 0)
                 {
                     // TODO: Multicast handling of Maddr
@@ -147,6 +154,11 @@ namespace SIPLib
         public void received(string data, string[] src)
         {
             if (data.Length > 2)
+            {
+                if (data.Contains("trying"))
+                {
+                    Console.WriteLine("Here");
+                }
                 try
                 {
                     Message m = new Message(data);
@@ -180,8 +192,9 @@ namespace SIPLib
                     }
                 }
                 catch (Exception ex)
-            {
-                Debug.Assert(false, String.Format("Error in received message \n{0}\n", data));
+                {
+                    Debug.Assert(false, String.Format("Error in received message \n{0}\n", data));
+                }
             }
             else
             {
@@ -340,6 +353,15 @@ namespace SIPLib
  
         private void receivedResponse(Message r, SIPURI uri)
         {
+            if (r.headers.ContainsKey("Service-Route") && r.is2xx() && r.first("CSeq").method.Contains("REGISTER"))
+            {
+                this.service_route = r.headers["Service-Route"];
+                foreach (Header h in this.service_route)
+                         {
+                             h.name = "Route";
+                         }
+            }
+
             if (!r.headers.ContainsKey("Via"))
             {
                 Debug.Assert(false, String.Format("No Via header in received response \n{0}\n", r.ToString()));

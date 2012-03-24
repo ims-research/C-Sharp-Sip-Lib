@@ -155,15 +155,23 @@ namespace SIPLib
             {
                 m = this.protocol + " " + this.response_code.ToString() + " " + this.response_text + "\r\n";
             }
+            string content_length = "";
             foreach (List<Header> headers in this.headers.Values)
             {
+                string current = "";
                 foreach (Header h in headers)
                 {
-                    m = m + h.repr() +",";
+                    current = current + h.repr() + ",";
                 }
-                m = m.Remove(m.Length - 1);
-                m = m + "\r\n";
+                current = current.Remove(current.Length - 1);
+                current = current + "\r\n";
+                if (current.ToLower().Contains("content-length"))
+                {
+                    content_length = current;
+                }
+                else m = m + current;
             }
+            m = m + content_length;
             m = m + "\r\n";
             if (this.body.Length > 0)
             {
