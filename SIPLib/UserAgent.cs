@@ -125,11 +125,10 @@ namespace SIPLib
             this.server = false;
             if (this.remoteParty == null)
             {
-                Debug.Assert(false, String.Format("No remoteParty for UAC\n{0}"));
+                Debug.Assert(false, String.Format("No remoteParty for UAC\n"));
             }
             if (this.localParty == null)
             {
-
                 this.localParty = new Address("\"Anonymous\" <sip:anonymous@anonymous.invalid>");
             }
             SIPURI uri;

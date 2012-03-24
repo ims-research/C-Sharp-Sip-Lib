@@ -12,18 +12,10 @@ namespace SIPLib
         public SIPStack stack { get; set; }
         private byte[] temp_buffer { get; set; }
         public TransportInfo transport { get; set; }
+        private UserAgent ua { get; set; }
 
         public event EventHandler<RawEventArgs> Received_Data_Event;
         public event EventHandler<RawEventArgs> Sent_Data_Event;
-
-        public void send(string data, string ip,int port,SIPStack stack)
-        {
-            IPAddress[] addresses = System.Net.Dns.GetHostAddresses(ip);
-            IPEndPoint dest = new IPEndPoint(addresses[0], port);
-            EndPoint destEP = (EndPoint)dest;
-            byte[] send_data = ASCIIEncoding.ASCII.GetBytes(data);
-            stack.transport.socket.BeginSendTo(send_data, 0, send_data.Length, SocketFlags.None, destEP, new AsyncCallback(this.SendDataCB), destEP);
-        }
         
         public SIPApp(TransportInfo transport)
         {
@@ -43,7 +35,15 @@ namespace SIPLib
             EndPoint sendEP = (EndPoint)sender;
             transport.socket.BeginReceiveFrom(temp_buffer, 0, temp_buffer.Length, SocketFlags.None, ref sendEP, new AsyncCallback(ReceiveDataCB), sendEP);
             this.transport = transport;
-        }    
+        }
+
+        public void Register(string uri)
+        {
+            this.ua = new UserAgent(this.stack, null, false);
+            Message register_msg = this.ua.createRegister(new SIPURI(uri));
+            register_msg.insertHeader(new Header("3600", "Expires"));
+            this.ua.sendRequest(register_msg);
+        }
 
         public void ReceiveDataCB(IAsyncResult asyncResult)
         {
@@ -73,6 +73,15 @@ namespace SIPLib
             }
         }
 
+        public void send(string data, string ip, int port, SIPStack stack)
+        {
+            IPAddress[] addresses = System.Net.Dns.GetHostAddresses(ip);
+            IPEndPoint dest = new IPEndPoint(addresses[0], port);
+            EndPoint destEP = (EndPoint)dest;
+            byte[] send_data = ASCIIEncoding.ASCII.GetBytes(data);
+            stack.transport.socket.BeginSendTo(send_data, 0, send_data.Length, SocketFlags.None, destEP, new AsyncCallback(this.SendDataCB), destEP);
+        }
+
         private void SendDataCB(IAsyncResult asyncResult)
         {
             try
@@ -84,7 +93,7 @@ namespace SIPLib
                 throw new NotImplementedException();
             }
         }
-
+        
         public UserAgent createServer(Message request, SIPURI uri, SIPStack stack)
         {
             if (request.method == "INVITE")
@@ -100,20 +109,23 @@ namespace SIPLib
             Console.WriteLine("UserAgent: " + ua.ToString());
             Console.WriteLine("Message: " + message.ToString());
             //TODO: Allow App to modify message before it gets sent?;
-            //throw new NotImplementedException();
         }
+
         public void cancelled(UserAgent ua, Message request, SIPStack stack)
         {
             throw new NotImplementedException();
         }
+        
         public void dialogCreated(Dialog dialog, UserAgent ua, SIPStack stack)
         {
             throw new NotImplementedException();
         }
+        
         public string[] authenticate(UserAgent ua, SIPStack stack)
         {
             return new string[] {"username","password"};
         }
+        
         public Timer createTimer(SIPApp app, SIPStack stack)
         {
             return new Timer(app);
@@ -168,5 +180,19 @@ namespace SIPLib
             Console.WriteLine("Response: " + response.ToString());
         }
 
+        public void Invite(string uri)
+        {
+            if (!uri.Contains("<sip:"))
+            {
+                uri = "<sip:"+uri+">";
+            }
+            if (!(this.ua == null))
+            {
+                //UserAgent client_ua = new UserAgent(this.stack, null, false);
+                this.ua.remoteParty = new Address(uri);
+                Message invite = this.ua.createRequest("INVITE");
+                this.ua.sendRequest(invite);
+            }
+        }
     }
 }

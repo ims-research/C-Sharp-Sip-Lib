@@ -146,41 +146,46 @@ namespace SIPLib
 
         public void received(string data, string[] src)
         {
-            try
-            {
-                Message m = new Message(data);
-                SIPURI uri = new SIPURI("sip" + ":" + src[0] + ":" + src[1]);
-                if (m.method != null)
+            if (data.Length > 2)
+                try
                 {
-                    if (!m.headers.ContainsKey("Via"))
+                    Message m = new Message(data);
+                    SIPURI uri = new SIPURI("sip" + ":" + src[0] + ":" + src[1]);
+                    if (m.method != null)
                     {
-                        Debug.Assert(false, String.Format("No Via header in request \n{0}\n", m.ToString()));
+                        if (!m.headers.ContainsKey("Via"))
+                        {
+                            Debug.Assert(false, String.Format("No Via header in request \n{0}\n", m.ToString()));
+                        }
+                        Header via = m.headers["Via"].First();
+                        if (via.viaUri.host != src[0] || !src[1].ToString().Equals(via.viaUri.port))
+                        {
+                            via.attributes.Add("received", src[0]);
+                            via.viaUri.host = src[0];
+                        }
+                        if (via.attributes.ContainsKey("rport"))
+                        {
+                            via.attributes["rport"] = src[1];
+                        }
+                        via.viaUri.port = Convert.ToInt32(src[1]);
+                        this.receivedRequest(m, uri);
                     }
-                    Header via = m.headers["Via"].First();
-                    if (via.viaUri.host != src[0] || !src[1].ToString().Equals(via.viaUri.port))
+                    else if (m.response_code > 0)
                     {
-                        via.attributes.Add("received", src[0]);
-                        via.viaUri.host = src[0];
+                        this.receivedResponse(m, uri);
                     }
-                    if (via.attributes.ContainsKey("rport"))
+                    else
                     {
-                        via.attributes["rport"] = src[1];
+                        Debug.Assert(false, String.Format("Received invalid message \n{0}\n", m.ToString()));
                     }
-                    via.viaUri.port = Convert.ToInt32(src[1]);
-                    this.receivedRequest(m, uri);
                 }
-                else if (m.response_code > 0)
-                {
-                    this.receivedResponse(m, uri);
-                }
-                else
-                {
-                    Debug.Assert(false, String.Format("Received invalid message \n{0}\n", m.ToString()));
-                }
-            }
-            catch (Exception ex)
+                catch (Exception ex)
             {
                 Debug.Assert(false, String.Format("Error in received message \n{0}\n", data));
+            }
+            else
+            {
+                //Console.WriteLine("Error, null message received");
             }
 
         }

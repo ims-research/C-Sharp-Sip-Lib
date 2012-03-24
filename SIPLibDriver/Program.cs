@@ -10,31 +10,9 @@ namespace SIPLibDriver
     class Program
     {
 
-        public SIPStack stack;
-        public SIPApp app;
-        public UserAgent client_ua;
-
-        public void Received_Data_Event(object sender, RawEventArgs e)
+        public static SIPStack Create_Stack(SIPApp app,string proxy_ip = null, int proxy_port = -1)
         {
-            this.stack.received(e.data, e.src);
-        }  
-     
-        private void Register(string uri)
-        {
-            this.client_ua = new UserAgent(this.stack, null, false);
-            Message register_msg = this.client_ua.createRegister(new SIPURI(uri));
-            register_msg.insertHeader(new Header("3600","Expires"));
-            this.client_ua.sendRequest(register_msg);
-        }
-
-        public static SIPStack Create_Stack(string listen_ip, int listen_port, string proxy_ip = null, int proxy_port = -1)
-        {
-            string myHost = System.Net.Dns.GetHostName();
-            System.Net.IPHostEntry myIPs = System.Net.Dns.GetHostEntry(myHost);
-            TransportInfo sip_transport = new TransportInfo(IPAddress.Parse(listen_ip), listen_port, System.Net.Sockets.ProtocolType.Udp);
-            SIPApp app = new SIPApp(sip_transport);
             SIPStack my_stack = new SIPStack(app);
-
             my_stack.uri.user = "alice";
             if (proxy_ip != null)
             {
@@ -48,17 +26,22 @@ namespace SIPLibDriver
                     my_stack.proxy_port = proxy_port;
                 }
             }
-            
             return my_stack;
-        }      
+        }
+
+        public static TransportInfo createTransport(string listen_ip, int listen_port)
+        {
+            return new TransportInfo(IPAddress.Parse(listen_ip), listen_port, System.Net.Sockets.ProtocolType.Udp);
+        }
 
         static void Main(string[] args)
         {
-            Program wrapper = new Program();
-            wrapper.stack = Create_Stack(Utils.get_local_ip(), 5060, "192.168.0.7", 4060);
-            wrapper.app = wrapper.stack.app;
-            wrapper.Register("sip:alice@open-ims.test");
+            TransportInfo local_transport = createTransport(Utils.get_local_ip(), 5060);
+            SIPApp app = new SIPApp(local_transport);
+            SIPStack stack = Create_Stack(app,"192.168.0.7", 4060);
+            app.Register("sip:alice@open-ims.test");
             Console.ReadKey();
+            app.Invite("bob@open-ims.test");
 
             //System.Console.WriteLine("TEST");
             //Dictionary<string,string> context = new Dictionary<string,string>();
