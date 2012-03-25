@@ -117,9 +117,9 @@ namespace SIPLib
                             this.headers.Add(name, createdHeaders);
                         }
                     }
-                    catch (Exception)
+                    catch (Exception exp)
                     {
-                        Debug.Assert(false, String.Format("Error parsing header {0}\n", h));
+                        Debug.Assert(false, String.Format("Error parsing header {0}\n with error\n{1}",h,exp.Message));
                         break;
                     }
                 }
@@ -133,7 +133,7 @@ namespace SIPLib
             {
                 this.body = body;
             }
-            Debug.Assert(body.Length == bodylength, String.Format("Invalid content-length {0} != {1}\n", body.Length, bodylength));
+            Debug.Assert(Math.Abs(body.Length - bodylength)<3, String.Format("Invalid content-length {0} != {1}\n", body.Length, bodylength));
             string[] mandatoryHeaders = { "To", "From", "CSeq", "Call-ID" };
             foreach (string s in mandatoryHeaders)
             {

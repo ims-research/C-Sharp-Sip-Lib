@@ -42,6 +42,7 @@ namespace SIPLibDriver
             app.Register("sip:alice@open-ims.test");
             Console.ReadKey();
             app.Invite("bob@open-ims.test");
+            Console.ReadKey();
 
             //System.Console.WriteLine("TEST");
             //Dictionary<string,string> context = new Dictionary<string,string>();

@@ -127,7 +127,28 @@ namespace SIPLib
                 {
                      if (!(Utils.isRequest(m) && m.method.ToLower().Contains("register")))
                      {
-                         m.headers.Add("Route", this.service_route);
+                         if (m.headers.ContainsKey("Route"))
+                         {
+                             bool found = false;
+                             foreach (Header message_header in m.headers["Route"])
+                             {
+                                 foreach (Header route_header in this.service_route)
+                                 {
+                                     if (message_header.ToString().ToLower().CompareTo(route_header.ToString().ToLower()) == 0)
+                                     {
+                                         found = true;
+                                     }
+                                 }
+                             }
+                             if (!found)
+                             {
+                                 m.headers["Route"].AddRange(this.service_route);
+                             }
+                         }
+                         else
+                         {
+                             m.headers.Add("Route", this.service_route);
+                         }
                      }
                 }
                 if (m.method.Length > 0)
@@ -155,9 +176,9 @@ namespace SIPLib
         {
             if (data.Length > 2)
             {
-                if (data.Contains("trying"))
+                if (data.Contains("Busy Here"))
                 {
-                    Console.WriteLine("Here");
+                    Console.Out.Write("HERE");
                 }
                 try
                 {
@@ -193,7 +214,7 @@ namespace SIPLib
                 }
                 catch (Exception ex)
                 {
-                    Debug.Assert(false, String.Format("Error in received message \n{0}\n", data));
+                    Debug.Assert(false, String.Format("Error in received message \n{0}\n with error message {1}", data,ex.Message));
                 }
             }
             else

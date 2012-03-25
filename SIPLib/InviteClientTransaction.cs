@@ -22,7 +22,7 @@ namespace SIPLib
             this.stack.send(this.request, this.remote, this.transport);
         }
 
-        public void receivedResponse(Message response)
+        public override void receivedResponse(Message response)
         {
             if (response.is1xx())
             {
@@ -124,7 +124,7 @@ namespace SIPLib
             m.headers["Via"].Add(this.request.first("Via"));
 
             m.headers["CSeq"] = new List<Header>();
-            m.headers["CSeq"].Add(new Header(this.request.first("CSeq").number + "ACK","CSeq"));
+            m.headers["CSeq"].Add(new Header(this.request.first("CSeq").number + " ACK","CSeq"));
 
             if (this.request.headers.ContainsKey("Route"))
             {

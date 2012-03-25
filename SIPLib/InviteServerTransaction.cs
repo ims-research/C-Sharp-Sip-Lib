@@ -12,14 +12,14 @@ namespace SIPLib
             this.server = true;
         }
 
-        public void start()
+        public  void start()
         {
             this.state = "proceeding";
             this.sendResponse(this.createResponse(100, "Trying"));
             this.app.receivedRequest(this, this.request,this.stack);
         }
 
-        public void receivedRequest(Message request)
+        public override void receivedRequest(Message request)
         {
             if (this.request.method == request.method)
             {
@@ -73,7 +73,7 @@ namespace SIPLib
             }
         }
 
-        public void error(string error)
+        public  void error(string error)
         {
             if (this.state == "proceeding" || this.state == "confirmed")
             {
@@ -82,7 +82,7 @@ namespace SIPLib
             }
         }
 
-        public void sendResponse(Message response)
+        public override void sendResponse(Message response)
         {
             this.lastResponse = response;
             if (response.is1xx())
