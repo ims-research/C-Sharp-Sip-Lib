@@ -17,19 +17,19 @@ namespace SIPLib
         public string[] serverMethods = { "INVITE", "BYE", "MESSAGE", "SUBSCRIBE", "NOTIFY" };
         public string proxy_ip { get; set; }
         public int proxy_port { get; set; }
-        private SIPURI _uri =null;
+        private SIPURI _uri = null;
         private List<Header> service_route { get; set; }
         public SIPURI uri
         {
             get
             {
-                return new SIPURI("sip" + ":" +transport.host + ":" + transport.port.ToString());
+                return new SIPURI("sip" + ":" + transport.host + ":" + transport.port.ToString());
             }
             set
             {
                 _uri = value;
             }
-            
+
         }
 
         public SIPStack(SIPApp app)
@@ -38,7 +38,7 @@ namespace SIPLib
             this.transport = app.transport;
             this.app = app;
             this.app.Received_Data_Event += new EventHandler<RawEventArgs>(transport_Received_Data_Event);
-            
+
             app.stack = this;
         }
 
@@ -125,31 +125,31 @@ namespace SIPLib
                 Message m = (Message)data;
                 if (this.service_route != null)
                 {
-                     if (!(Utils.isRequest(m) && m.method.ToLower().Contains("register")))
-                     {
-                         if (m.headers.ContainsKey("Route"))
-                         {
-                             bool found = false;
-                             foreach (Header message_header in m.headers["Route"])
-                             {
-                                 foreach (Header route_header in this.service_route)
-                                 {
-                                     if (message_header.ToString().ToLower().CompareTo(route_header.ToString().ToLower()) == 0)
-                                     {
-                                         found = true;
-                                     }
-                                 }
-                             }
-                             if (!found)
-                             {
-                                 m.headers["Route"].AddRange(this.service_route);
-                             }
-                         }
-                         else
-                         {
-                             m.headers.Add("Route", this.service_route);
-                         }
-                     }
+                    if (!(Utils.isRequest(m) && m.method.ToLower().Contains("register")))
+                    {
+                        if (m.headers.ContainsKey("Route"))
+                        {
+                            bool found = false;
+                            foreach (Header message_header in m.headers["Route"])
+                            {
+                                foreach (Header route_header in this.service_route)
+                                {
+                                    if (message_header.ToString().ToLower().CompareTo(route_header.ToString().ToLower()) == 0)
+                                    {
+                                        found = true;
+                                    }
+                                }
+                            }
+                            if (!found)
+                            {
+                                m.headers["Route"].AddRange(this.service_route);
+                            }
+                        }
+                        else
+                        {
+                            m.headers.Add("Route", this.service_route);
+                        }
+                    }
                 }
                 if (m.method.Length > 0)
                 {
@@ -176,9 +176,9 @@ namespace SIPLib
         {
             if (data.Length > 2)
             {
-                if (data.Contains("Busy Here"))
+                if (data.Contains("Dialo"))
                 {
-                    Console.Out.Write("HERE");
+                    Console.WriteLine("200 OK");
                 }
                 try
                 {
@@ -355,7 +355,7 @@ namespace SIPLib
         {
             foreach (Transaction t in this.transactions.Values)
             {
-                if ((t != orig) && (Transaction.equals(t,r,orig)))
+                if ((t != orig) && (Transaction.equals(t, r, orig)))
                 {
                     return t;
                 }
@@ -363,24 +363,24 @@ namespace SIPLib
             return null;
         }
 
-        public UserAgent createServer(Message request, SIPURI uri){ return this.app.createServer(request, uri, this);}
-        public void sending(UserAgent ua,Message message){ this.app.sending(ua, message, this);}
-        public void receivedRequest(UserAgent ua,Message request){ this.app.receivedRequest(ua, request, this);}
-        public void receivedResponse(UserAgent ua,Message response){ this.app.receivedResponse(ua, response, this);}
-        public void cancelled(UserAgent ua, Message request){ this.app.cancelled(ua, request, this);}
-        public void dialogCreated(Dialog dialog,UserAgent ua){ this.app.dialogCreated(dialog, ua, this);}
-        public string[] authenticate(UserAgent ua, Header header){ return this.app.authenticate(ua, header, this);}
-        public Timer createTimer(SIPApp obj){ return this.app.createTimer(obj, this);}
- 
+        public UserAgent createServer(Message request, SIPURI uri) { return this.app.createServer(request, uri, this); }
+        public void sending(UserAgent ua, Message message) { this.app.sending(ua, message, this); }
+        public void receivedRequest(UserAgent ua, Message request) { this.app.receivedRequest(ua, request, this); }
+        public void receivedResponse(UserAgent ua, Message response) { this.app.receivedResponse(ua, response, this); }
+        public void cancelled(UserAgent ua, Message request) { this.app.cancelled(ua, request, this); }
+        public void dialogCreated(Dialog dialog, UserAgent ua) { this.app.dialogCreated(dialog, ua, this); }
+        public string[] authenticate(UserAgent ua, Header header) { return this.app.authenticate(ua, header, this); }
+        public Timer createTimer(SIPApp obj) { return this.app.createTimer(obj, this); }
+
         private void receivedResponse(Message r, SIPURI uri)
         {
             if (r.headers.ContainsKey("Service-Route") && r.is2xx() && r.first("CSeq").method.Contains("REGISTER"))
             {
                 this.service_route = r.headers["Service-Route"];
                 foreach (Header h in this.service_route)
-                         {
-                             h.name = "Route";
-                         }
+                {
+                    h.name = "Route";
+                }
             }
 
             if (!r.headers.ContainsKey("Via"))
@@ -405,11 +405,11 @@ namespace SIPLib
                     {
                         d.receivedResponse(null, r);
                     }
-            }
-            else
-            {
-                t.receivedResponse(r);
-            }
+                }
+                else
+                {
+                    t.receivedResponse(r);
+                }
             }
             else
             {

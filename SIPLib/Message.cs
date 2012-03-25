@@ -106,6 +106,8 @@ namespace SIPLib
                 {
                     try
                     {
+                        if (!h.StartsWith("Warning:"))
+                        {
                         List<Header> createdHeaders = Header.createHeaders(h);
                         string name = createdHeaders[0].name;
                         if (this.headers.ContainsKey(name))
@@ -115,6 +117,7 @@ namespace SIPLib
                         else
                         {
                             this.headers.Add(name, createdHeaders);
+                        }
                         }
                     }
                     catch (Exception exp)

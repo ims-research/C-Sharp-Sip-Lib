@@ -153,7 +153,22 @@ namespace SIPLib
                 UserAgent ua = new UserAgent(this.stack, null, false);
                 ua.authenticate(response, transaction);
             }
+            else if (response.response_code == 180)
+            {
+               // Display "Ringing"
 
+            }
+            else if (response.response_code == 200)
+            {
+                //Display Success
+            }
+
+        }
+
+        public void receivedResponse(UserAgent ua, Message response, SIPStack stack)
+        {
+            /*Any special handling for multiple stack implementations?*/
+            // Received Response... ? TODO
         }
 
         public void timeout(Transaction transaction)
@@ -171,13 +186,6 @@ namespace SIPLib
             Console.WriteLine("App Received Request:");
             Console.WriteLine("UserAgent: " + ua.ToString());
             Console.WriteLine("Request: " + request.ToString());
-        }
-
-        public void receivedResponse(UserAgent ua, Message response, SIPStack stack)
-        {
-            Console.WriteLine("App Received Response:");
-            Console.WriteLine("UserAgent: " + ua.ToString());
-            Console.WriteLine("Response: " + response.ToString());
         }
 
         public void Invite(string uri)

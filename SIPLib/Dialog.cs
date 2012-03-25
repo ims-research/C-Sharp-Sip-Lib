@@ -99,7 +99,7 @@ namespace SIPLib
         public static string extractID(Message m)
         {
             string temp = m.first("Call-ID").value.ToString() + "|";
-            if (m.method.Length > 0)
+            if (m.method != null && m.method.Length > 0)
             {
                 temp = temp + m.first("To").attributes["tag"] + "|";
                 temp = temp + m.first("From").attributes["tag"];

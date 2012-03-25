@@ -198,7 +198,7 @@ namespace SIPLib
                 {
                     List<Header> temp = new List<Header>();
                     temp.Add(h);
-                    header_dict.Add(h.name,temp);
+                    header_dict.Add(h.name, temp);
                 }
             }
             this.request = Message.createRequest(method, uri, header_dict, content);
@@ -216,7 +216,7 @@ namespace SIPLib
                 this.localParty = new Address(this.remoteParty.ToString());
             }
             Message m = this.createRequest("REGISTER");
-            m.insertHeader(new Header("","Authorization"));
+            m.insertHeader(new Header("", "Authorization"));
             return m;
         }
 
@@ -269,6 +269,7 @@ namespace SIPLib
             if ((this.remoteCandidates == null) || (this.remoteCandidates.Count == 0))
             {
                 this.error(null, "Cannot Resolve DNS target");
+                return;
             }
             target = this.remoteCandidates.First();
             this.remoteCandidates.RemoveAt(0);
@@ -311,7 +312,7 @@ namespace SIPLib
             SIPURI target = this.remoteCandidates.First();
             this.remoteCandidates.RemoveAt(0);
             this.request.headers["Via"][0].attributes["branch"] += "A";
-            transaction = Transaction.createClient(this.stack, this.app, this.request, this.stack.transport, target.host+":"+target.port);
+            transaction = Transaction.createClient(this.stack, this.app, this.request, this.stack.transport, target.host + ":" + target.port);
 
         }
 
@@ -334,6 +335,7 @@ namespace SIPLib
                 }
             }
         }
+
         public void receivedResponse(Transaction transaction, Message response)
         {
             if ((transaction != null) && transaction != this.transaction)
@@ -365,22 +367,26 @@ namespace SIPLib
                     this.stack.receivedResponse(this, response);
                 }
             }
-            if (canCreateDialog(this.request, response))
+            else
             {
-                Dialog dialog = Dialog.createClient(this.stack, this.request, response, transaction);
-                this.stack.dialogCreated(dialog, this);
-                this.stack.receivedResponse(dialog, response);
-                if ((this.autoack) && (this.request.method == "INVITE"))
+                if (canCreateDialog(this.request, response))
                 {
-                    dialog.sendRequest(dialog.createRequest("ACK"));
+                    Dialog dialog = Dialog.createClient(this.stack, this.request, response, transaction);
+                    this.stack.dialogCreated(dialog, this);
+                    this.stack.receivedResponse(dialog, response);
+                    if ((this.autoack) && (this.request.method == "INVITE"))
+                    {
+                        dialog.sendRequest(dialog.createRequest("ACK"));
+                    }
                 }
                 else
                 {
                     this.stack.receivedResponse(this, response);
                 }
             }
-
         }
+
+
         public static bool canCreateDialog(Message request, Message response)
         {
             return ((response.is2xx()) && ((request.method == "INVITE") || (request.method == "SUBSCRIBE")));
@@ -526,7 +532,7 @@ namespace SIPLib
             {
                 if (this.transaction.state == "proceeding")
                 {
-                    Transaction transaction = Transaction.createClient(this.stack, this.app, this.cancelRequest, this.transaction.transport,this.transaction.remote);
+                    Transaction transaction = Transaction.createClient(this.stack, this.app, this.cancelRequest, this.transaction.transport, this.transaction.remote);
                 }
                 this.cancelRequest = null;
             }
@@ -564,8 +570,8 @@ namespace SIPLib
                     }
                 }
                 catch (Exception e)
-                    {
-                    }
+                {
+                }
             }
             if (!present && a.attributes.ContainsKey("realm"))
             {
@@ -586,14 +592,14 @@ namespace SIPLib
                     {
                         request.insertHeader(new Header(value, "Proxy-Authorization"), false);
                     }
-                    
+
                     resend = true;
                 }
 
             }
             if (resend)
             {
-                this.localSeq = request.first("CSeq").number+ 1;
+                this.localSeq = request.first("CSeq").number + 1;
                 request.insertHeader(new Header(this.localSeq.ToString() + " " + request.method, "CSeq"));
                 //TODO FIX?
                 //request.headers["Via"][0].attributes["branch"] = Transaction.createBranch(request, false);

@@ -19,7 +19,16 @@ namespace SIPLib
 
         public static bool isIPv4(string input)
         {
-            IPAddress[] addresses = System.Net.Dns.GetHostAddresses(input);
+            IPAddress[] addresses;
+            try
+            {
+                addresses = System.Net.Dns.GetHostAddresses(input);
+            }
+            catch (Exception ex)
+            {
+                Console.Out.WriteLine("Error resolving domain name");
+                return false;
+            }
             IPAddress address;
             if (IPAddress.TryParse(addresses[0].ToString(), out address))
             {
