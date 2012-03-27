@@ -11,7 +11,7 @@ namespace SIPLib
         public int T2 { get; set; }
         public int T4 { get; set; }
 
-        public Timer(SIPApp app, int T1 = 500, int T2 = 4000, int T4 = 5000)
+        public Timer(UserAgent app, int T1 = 500, int T2 = 4000, int T4 = 5000)
         {
             this.T1 = T1;
             this.T2 = T2;

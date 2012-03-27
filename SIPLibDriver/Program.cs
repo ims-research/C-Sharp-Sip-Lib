@@ -36,13 +36,14 @@ namespace SIPLibDriver
 
         static void Main(string[] args)
         {
-            TransportInfo local_transport = createTransport(Utils.get_local_ip(), 5060);
+            //TransportInfo local_transport = createTransport(Utils.get_local_ip(), 5060);
+            TransportInfo local_transport = createTransport("192.168.0.5", 5060);
             SIPApp app = new SIPApp(local_transport);
             SIPStack stack = Create_Stack(app,"192.168.0.7", 4060);
             app.Register("sip:alice@open-ims.test");
             Console.ReadKey();
-            app.Invite("bob@open-ims.test");
-            Console.ReadKey();
+            //app.Invite("bob@open-ims.test");
+            //Console.ReadKey();
 
             //System.Console.WriteLine("TEST");
             //Dictionary<string,string> context = new Dictionary<string,string>();

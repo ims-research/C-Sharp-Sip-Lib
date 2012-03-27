@@ -8,7 +8,7 @@ namespace SIPLib
 {
     public class InviteClientTransaction : Transaction
     {
-        public InviteClientTransaction(SIPApp app ) : base(app)
+        public InviteClientTransaction(UserAgent app ) : base(app)
         {
             this.server = false;
         }

@@ -34,12 +34,12 @@ namespace SIPLib
         public bool autoack { get; set; }
         public Dictionary<string, string> auth { get; set; }
 
-        public SIPApp app { get; set; }
+        public UserAgent app { get; set; }
 
         public UserAgent(SIPStack stack, Message request = null, bool server = false)
         {
             this.stack = stack;
-            this.app = stack.app;
+            //this.app = stack.app;
             this.request = request;
             if (server == true)
             {
@@ -275,7 +275,7 @@ namespace SIPLib
             this.remoteCandidates.RemoveAt(0);
             if (this.request.method != "ACK")
             {
-                this.transaction = Transaction.createClient(this.stack, this.app, this.request, this.stack.transport, target.host + ":" + target.port);
+                this.transaction = Transaction.createClient(this.stack, this, this.request, this.stack.transport, target.host + ":" + target.port);
             }
             else
             {
@@ -604,11 +604,16 @@ namespace SIPLib
                 //TODO FIX?
                 //request.headers["Via"][0].attributes["branch"] = Transaction.createBranch(request, false);
                 this.request = request;
-                this.transaction = Transaction.createClient(this.stack, this.app, this.request, transaction.transport, transaction.remote);
+                this.transaction = Transaction.createClient(this.stack, this, this.request, transaction.transport, transaction.remote);
                 return true;
             }
             else return false;
 
+        }
+
+        internal void receivedRequest(Transaction t, Message message, SIPStack sIPStack)
+        {
+            this.receivedRequest(t, message);
         }
     }
 

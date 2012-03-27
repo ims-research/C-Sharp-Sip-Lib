@@ -7,7 +7,7 @@ namespace SIPLib
 {
     class ClientTransaction : Transaction
     {
-        public ClientTransaction(SIPApp app) : base(app)
+        public ClientTransaction(UserAgent app) : base(app)
         {
             this.server = false;
         }

@@ -11,7 +11,7 @@ namespace SIPLib
         public string branch { get; set; }
         public string id { get; set; }
         public SIPStack stack { get; set; }
-        public SIPApp app { get; set; }
+        public UserAgent app { get; set; }
         public Message request { get; set; }
         public TransportInfo transport { get; set; }
         public string tag { get; set; }
@@ -46,7 +46,7 @@ namespace SIPLib
             }
         }
 
-        protected Transaction(SIPApp app)
+        protected Transaction(UserAgent app)
         {
             this.timers = new Dictionary<string, Timer>();
             this.timer = new Timer(this.app);
@@ -104,7 +104,7 @@ namespace SIPLib
             }
         }
 
-        public static Transaction createServer(SIPStack stack, SIPApp app, Message request, TransportInfo transport, string tag)
+        public static Transaction createServer(SIPStack stack, UserAgent app, Message request, TransportInfo transport, string tag)
         {
             Transaction t = null;
             if (request.method == "INVITE")
@@ -142,7 +142,7 @@ namespace SIPLib
             return t;
         }
 
-        public static Transaction createClient(SIPStack stack, SIPApp app, Message request, TransportInfo transport, string remote)
+        public static Transaction createClient(SIPStack stack, UserAgent app, Message request, TransportInfo transport, string remote)
         {
             Transaction t;
             if (request.method == "INVITE")

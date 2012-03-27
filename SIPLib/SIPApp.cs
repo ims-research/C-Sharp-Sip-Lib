@@ -126,7 +126,7 @@ namespace SIPLib
             return new string[] {"username","password"};
         }
         
-        public Timer createTimer(SIPApp app, SIPStack stack)
+        public Timer createTimer(UserAgent app, SIPStack stack)
         {
             return new Timer(app);
         }

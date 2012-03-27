@@ -176,7 +176,7 @@ namespace SIPLib
         {
             if (data.Length > 2)
             {
-                if (data.Contains("Dialo"))
+                if (data.Contains("200 OK"))
                 {
                     Console.WriteLine("200 OK");
                 }
@@ -238,7 +238,7 @@ namespace SIPLib
             }
             if (t == null)
             {
-                app = null; // Huh ?
+                UserAgent app = null; // Huh ?
                 if ((m.method != "CANCEL") && (m.headers["To"][0].attributes.ContainsKey("tag")))
                 {
                     //In dialog request
@@ -247,7 +247,17 @@ namespace SIPLib
                     {
                         if (m.method != "ACK")
                         {
-                            this.send(Message.createResponse(481, "Dialog does not exist", null, null, m));
+                            //Updated from latest code TODO
+                            UserAgent u = this.createServer(m, uri);
+                            if (u != null)
+                            {
+                                app = u;
+                            }
+                            else
+                            {
+                                this.send(Message.createResponse(481, "Dialog does not exist", null, null, m));
+                                return;
+                            }
                         }
                         else
                         {
@@ -255,14 +265,20 @@ namespace SIPLib
                             {
                                 t = this.findTransaction(Transaction.createId(branch, "INVITE"));
                             }
-                            if (t != null)
+                            if (t != null && t.state != "terminated")
                             {
                                 t.receivedRequest(m);
+                                return;
                             }
                             else
                             {
                                 Debug.Assert(false, String.Format("No existing transaction for ACK \n{0}\n", m.ToString()));
-                                return;
+                                UserAgent u = this.createServer(m, uri);
+                                if (u != null)
+                                {
+                                    app = u;
+                                }
+                                else return;
                             }
                         }
                     }
@@ -279,7 +295,7 @@ namespace SIPLib
                     if (u != null)
                     {
                         //TODO error.....
-                        //app = u;
+                        app = u;
                     }
                     else if (m.method == "OPTIONS")
                     {
@@ -370,7 +386,7 @@ namespace SIPLib
         public void cancelled(UserAgent ua, Message request) { this.app.cancelled(ua, request, this); }
         public void dialogCreated(Dialog dialog, UserAgent ua) { this.app.dialogCreated(dialog, ua, this); }
         public string[] authenticate(UserAgent ua, Header header) { return this.app.authenticate(ua, header, this); }
-        public Timer createTimer(SIPApp obj) { return this.app.createTimer(obj, this); }
+        public Timer createTimer(UserAgent obj) { return this.app.createTimer(obj, this); }
 
         private void receivedResponse(Message r, SIPURI uri)
         {
