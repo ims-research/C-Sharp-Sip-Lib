@@ -3,6 +3,7 @@
 *.com
 *.class
 *.dll
+!log4net.dll
 *.exe
 *.o
 *.so

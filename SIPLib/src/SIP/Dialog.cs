@@ -120,7 +120,7 @@ namespace SIPLib
             }
             if (this.routeSet !=null && this.routeSet.Count > 0 && !this.routeSet[0].value.ToString().Contains("lr"))
             {
-                request.uri = ((Address)(this.routeSet[0].value)).uri.dup();
+                request.uri = new SIPURI((string)(this.routeSet[0].value));
                 request.uri.parameters.Remove("lr");
             }
             return request;

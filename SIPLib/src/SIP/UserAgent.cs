@@ -173,6 +173,8 @@ namespace SIPLib
             {
                 headers.Add(h);
             }
+            // Check this TODO
+            //
             if (this.routeSet.Count != 0)
             {
                 foreach (Header x in this.routeSet)
@@ -183,7 +185,7 @@ namespace SIPLib
             }
 
             //app adds other headers such as Supported, Require and Proxy-Require
-            if (contentType.Length > 0)
+            if (contentType != null && contentType.Length > 0)
             {
                 headers.Add(new Header(contentType, "Content-Type"));
             }
@@ -312,7 +314,7 @@ namespace SIPLib
             SIPURI target = this.remoteCandidates.First();
             this.remoteCandidates.RemoveAt(0);
             this.request.headers["Via"][0].attributes["branch"] += "A";
-            transaction = Transaction.createClient(this.stack, this.app, this.request, this.stack.transport, target.host + ":" + target.port);
+            transaction = Transaction.createClient(this.stack, this, this.request, this.stack.transport, target.host + ":" + target.port);
 
         }
 
@@ -352,7 +354,7 @@ namespace SIPLib
             {
                 if (this.cancelRequest != null)
                 {
-                    Transaction cancel = Transaction.createClient(this.stack, this.app, this.cancelRequest, transaction.transport, transaction.remote);
+                    Transaction cancel = Transaction.createClient(this.stack, this, this.cancelRequest, transaction.transport, transaction.remote);
                     this.cancelRequest = null;
                 }
                 else
@@ -376,7 +378,18 @@ namespace SIPLib
                     this.stack.receivedResponse(dialog, response);
                     if ((this.autoack) && (this.request.method == "INVITE"))
                     {
-                        dialog.sendRequest(dialog.createRequest("ACK"));
+                        Message ack = dialog.createRequest("ACK");
+                        Header route = new Header("<sip:mo@pcscf.open-ims.test:4060;lr>", "Route");
+                        ack.insertHeader(route, false);
+                        route = new Header("<sip:mo@scscf.open-ims.test:6060;lr>", "Route");
+                        ack.insertHeader(route, true);
+                        route = new Header("<sip:mt@scscf.open-ims.test:6060;lr>", "Route");
+                        ack.insertHeader(route, true);
+                        route = new Header("<sip:mt@pcscf.open-ims.test:4060;lr>", "Route");
+                        ack.insertHeader(route, true);
+                        //ack.headers["Route"].Reverse();
+                        ack.insertHeader(new Header("\"Alice\"  <sip:alice@open-ims.test>","P-Preferred-Id entity"));
+                        dialog.sendRequest(ack);
                     }
                 }
                 else
@@ -417,16 +430,17 @@ namespace SIPLib
                     transaction.sendResponse(transaction.createResponse(482, "Loop Detected - found another transaction"));
                 }
             }
-            if (request.headers.ContainsKey("Require"))
-            {
-                if ((request.method != "CANCEL") && (request.method != "ACK"))
-                {
-                    Message response = transaction.createResponse(420, "Bad extension");
-                    response.insertHeader(new Header(request.headers["Require"][0].value.ToString(), "Unsupported"));
-                    transaction.sendResponse(response);
-                    return;
-                }
-            }
+            // TODO Fix support of Require Header
+            //if (request.headers.ContainsKey("Require"))
+            //{
+            //    if ((request.method != "CANCEL") && (request.method != "ACK"))
+            //    {
+            //        Message response = transaction.createResponse(420, "Bad extension");
+            //        response.insertHeader(new Header(request.headers["Require"][0].value.ToString(), "Unsupported"));
+            //        transaction.sendResponse(response);
+            //        return;
+            //    }
+            //}
             if (this.transaction != null)
             {
                 this.transaction = transaction;
@@ -449,7 +463,7 @@ namespace SIPLib
             this.stack.receivedRequest(this, request);
         }
 
-        public void sendResponse(object response, string response_text = "", string content = "", string contentType = "")
+        public void sendResponse(object response, string response_text = "", string content = "", string contentType = "", bool createDialog=true)
         {
             Message response_message = null;
             if (this.request == null)
@@ -465,7 +479,7 @@ namespace SIPLib
             {
                 response_message = (Message)(response);
             }
-            if (createDialog() && UserAgent.canCreateDialog(this.request, response_message))
+            if (createDialog && UserAgent.canCreateDialog(this.request, response_message))
             {
                 if (this.request.headers.ContainsKey("Record-Route"))
                 {
@@ -532,16 +546,11 @@ namespace SIPLib
             {
                 if (this.transaction.state == "proceeding")
                 {
-                    Transaction transaction = Transaction.createClient(this.stack, this.app, this.cancelRequest, this.transaction.transport, this.transaction.remote);
+                    Transaction transaction = Transaction.createClient(this.stack, this, this.cancelRequest, this.transaction.transport, this.transaction.remote);
                 }
                 this.cancelRequest = null;
             }
 
-        }
-
-        private bool createDialog()
-        {
-            throw new NotImplementedException();
         }
 
         public bool authenticate(Message response, Transaction transaction)

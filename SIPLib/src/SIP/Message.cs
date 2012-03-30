@@ -164,7 +164,7 @@ namespace SIPLib
                 string current = "";
                 foreach (Header h in headers)
                 {
-                    current = current + h.repr() + ",";
+                    current = current + h.repr() + "\n";
                 }
                 current = current.Remove(current.Length - 1);
                 current = current + "\r\n";
@@ -315,7 +315,7 @@ namespace SIPLib
                 m.headers["CSeq"] = original_request.headers["CSeq"];
                 m.headers["Call-ID"] = original_request.headers["Call-ID"];
                 m.headers["Via"] = original_request.headers["Via"];
-                if (response_code == 100)
+                if (response_code == 100 && m.headers.ContainsKey("Timestamp"))
                 {
                     m.headers["Timestamp"] = original_request.headers["Timestamp"];
                 }

@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Net;
-using System.Web;
 using System.Security.Cryptography;
+using log4net;
 
 namespace SIPLib
 {
     public static class Utils
     {
 
+        private static ILog _log = LogManager.GetLogger(typeof(SIPStack));
         public enum SipMethods
         {
             REGISTER, INVITE, ACK, BYE, CANCEL, MESSAGE, OPTIONS, PRACK,
@@ -26,7 +27,8 @@ namespace SIPLib
             }
             catch (Exception ex)
             {
-                Console.Out.WriteLine("Error resolving domain name");
+                _log.Error("Error resolving domain name, check DNS server and local network properties");
+                _log.Error(ex.Message);
                 return false;
             }
             IPAddress address;
@@ -106,6 +108,7 @@ namespace SIPLib
 
     public static bool isRequest(Message message)
     {
+        if (message.method == null) return false;
         return isRequest(message.method);
     }
 

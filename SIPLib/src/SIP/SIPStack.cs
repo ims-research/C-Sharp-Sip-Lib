@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Diagnostics;
+using log4net;
 namespace SIPLib
 {
     public class SIPStack
@@ -19,6 +20,8 @@ namespace SIPLib
         public int proxy_port { get; set; }
         private SIPURI _uri = null;
         private List<Header> service_route { get; set; }
+        private static ILog _log = LogManager.GetLogger(typeof(SIPStack));
+
         public SIPURI uri
         {
             get
@@ -125,7 +128,7 @@ namespace SIPLib
                 Message m = (Message)data;
                 if (this.service_route != null)
                 {
-                    if (!(Utils.isRequest(m) && m.method.ToLower().Contains("register")))
+                    if (!(Utils.isRequest(m) && (m.method.ToLower().Contains("register")||m.method.ToLower().Contains("ack"))))
                     {
                         if (m.headers.ContainsKey("Route"))
                         {
@@ -151,7 +154,7 @@ namespace SIPLib
                         }
                     }
                 }
-                if (m.method.Length > 0)
+                if (m.method != null && m.method.Length > 0)
                 {
                     // TODO: Multicast handling of Maddr
                 }
@@ -176,10 +179,6 @@ namespace SIPLib
         {
             if (data.Length > 2)
             {
-                if (data.Contains("200 OK"))
-                {
-                    Console.WriteLine("200 OK");
-                }
                 try
                 {
                     Message m = new Message(data);
@@ -301,8 +300,18 @@ namespace SIPLib
                     {
                         //Handle OPTIONS
                         Message reply = Message.createResponse(200, "OK", null, null, m);
-                        reply.insertHeader(new Header("INVITE,ACK,CANCEL,BYE,OPTION", "Allow"));
+                        reply.insertHeader(new Header("INVITE,ACK,CANCEL,BYE,OPTION,MESSAGE", "Allow"));
                         this.send(m);
+                        return;
+                    }
+                    else if (m.method == "MESSAGE")
+                    {
+                        //Handle MESSAGE
+                        UserAgent ua = new UserAgent(this);
+                        ua.request = m;
+                        Message reply = ua.createResponse(200, "OK");
+                        this.send(reply);
+                        this.app.receivedRequest(ua, m, this);
                         return;
                     }
                     else if (m.method != "ACK")
@@ -407,7 +416,7 @@ namespace SIPLib
             string branch = r.headers["Via"][0].attributes["branch"];
             string method = r.headers["CSeq"][0].method;
             Transaction t = this.findTransaction(Transaction.createId(branch, method));
-            if (t != null)
+            if (t == null)
             {
                 if ((method == "INVITE") && (r.is2xx()))
                 {
@@ -424,12 +433,12 @@ namespace SIPLib
                 }
                 else
                 {
-                    t.receivedResponse(r);
+                    Debug.Assert(false, String.Format("No Transaction for response \n{0}\n", r.ToString()));
                 }
             }
             else
             {
-                Debug.Assert(false, String.Format("No Transaction for response \n{0}\n", r.ToString()));
+                t.receivedResponse(r); 
                 return;
             }
         }
