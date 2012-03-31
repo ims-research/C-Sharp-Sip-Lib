@@ -18,6 +18,7 @@ namespace SIPLib
         public UserAgent messageUA { get; set; }
         public event EventHandler<RawEventArgs> Received_Data_Event;
         public event EventHandler<RawEventArgs> Sent_Data_Event;
+
         private static ILog _log = LogManager.GetLogger(typeof(SIPApp));
 
         public SIPApp(TransportInfo transport)
@@ -59,16 +60,10 @@ namespace SIPLib
                 string data = ASCIIEncoding.ASCII.GetString(temp_buffer, 0, bytesRead);
                 string remote_host = ((IPEndPoint)sendEP).Address.ToString();
                 string remote_port = ((IPEndPoint)sendEP).Port.ToString();
-                //IPAddress address = ((IPEndPoint)sendEP).Address;
                 if (this.Received_Data_Event != null)
                 {
                     this.Received_Data_Event(this, new RawEventArgs(data, new string[] { remote_host, remote_port }));
                 }
-                //if (data.Contains("SIP/2.0"))
-                //{
-                //    Message message = new Message(data);
-                //    process_Recv_Message(message);
-                //}
                 this.transport.socket.BeginReceiveFrom(this.temp_buffer, 0, this.temp_buffer.Length, SocketFlags.None, ref sendEP, new AsyncCallback(this.ReceiveDataCB), sendEP);
             }
             catch (Exception ex)
@@ -132,11 +127,6 @@ namespace SIPLib
             _log.Info("New dialog created");
         }
 
-        public string[] authenticate(UserAgent ua, SIPStack stack)
-        {
-            return new string[] { "username", "password" };
-        }
-
         public Timer createTimer(UserAgent app, SIPStack stack)
         {
             return new Timer(app);
@@ -144,7 +134,10 @@ namespace SIPLib
 
         public string[] authenticate(UserAgent ua, Header header, SIPStack stack)
         {
-            return new string[] { "alice@open-ims.test", "alice" }; // TODO FIX PROPERLY
+            string username = "alice";
+            string realm = "open-ims.test";
+            string password = "alice";
+            return new string[] { username + "@" + realm, password };
         }
 
         public void receivedResponse(UserAgent ua, Message response, SIPStack stack)
@@ -205,7 +198,7 @@ namespace SIPLib
                     }
                 case "MESSAGE":
                     {
-                        _log.Info("MESSAGE: "+request.body);
+                        _log.Info("MESSAGE: " + request.body);
                         //Address from = (Address) request.first("From").value;
                         //this.Message(from.uri.ToString(), request.body);
                         break;
@@ -243,10 +236,33 @@ namespace SIPLib
                 this.messageUA = new UserAgent(this.stack);
                 this.messageUA.localParty = this.registerUA.localParty;
                 this.messageUA.remoteParty = new Address(uri);
-                Message m = this.messageUA.createRequest("MESSAGE",message);
+                Message m = this.messageUA.createRequest("MESSAGE", message);
                 m.insertHeader(new Header("text/plain", "Content-Type"));
                 this.messageUA.sendRequest(m);
             }
+        }
+
+        public void endCurrentCall()
+        {
+            if (isRegistered())
+            {
+                if (this.callUA != null)
+                {
+                    Dialog d = (Dialog) this.callUA;
+                    Message bye = d.createRequest("BYE");
+                    d.sendRequest(bye);
+                }
+                else
+                {
+                    _log.Error("Call UA does not exist, not sending CANCEL message");
+                }
+
+            }
+            else
+            {
+                _log.Error("Not registered, not sending CANCEL message");
+            }
+
         }
 
         public void Invite(string uri)

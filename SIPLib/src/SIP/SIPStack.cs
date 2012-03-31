@@ -95,7 +95,7 @@ namespace SIPLib
             string destination_host = "";
             int destination_port = 0;
             string final_data;
-            if (this.proxy_ip != null && this.proxy_port != null)
+            if (this.proxy_ip != null && this.proxy_port != 0)
             {
                 destination_host = proxy_ip;
                 destination_port = Convert.ToInt32(proxy_port);
@@ -128,7 +128,8 @@ namespace SIPLib
                 Message m = (Message)data;
                 if (this.service_route != null)
                 {
-                    if (!(Utils.isRequest(m) && (m.method.ToLower().Contains("register")||m.method.ToLower().Contains("ack"))))
+                    //if (!(Utils.isRequest(m) && (m.method.ToLower().Contains("register")||m.method.ToLower().Contains("ack"))))
+                    if (!(Utils.isRequest(m) && (m.method.ToLower().Contains("register"))))
                     {
                         if (m.headers.ContainsKey("Route"))
                         {
@@ -179,6 +180,10 @@ namespace SIPLib
         {
             if (data.Length > 2)
             {
+                //if (data.Contains("200 OK") || data.Contains("Unauth"))
+                //{
+                //    Console.Write("200 OK");
+                //}
                 try
                 {
                     Message m = new Message(data);
@@ -407,6 +412,15 @@ namespace SIPLib
                     h.name = "Route";
                 }
             }
+            else if (r.headers.ContainsKey("Record-Route") && r.is2xx())
+            {
+                this.service_route = r.headers["Record-Route"];
+                foreach (Header h in this.service_route)
+                {
+                    h.name = "Route";
+                }
+            }
+
 
             if (!r.headers.ContainsKey("Via"))
             {

@@ -35,7 +35,7 @@ namespace SIPLib
             this._id = "";
             if (transaction != null)
             {
-                //transaction.app = this;
+                transaction.app = this;
             }
 
         }

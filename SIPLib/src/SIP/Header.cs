@@ -249,7 +249,17 @@ namespace SIPLib
             //        headers.Add(new Header(part.Trim(),name));
             //    }
             //}
-            headers.Add(new Header(value.Trim(), name));
+            if (name == "Record-Route")
+            {
+                foreach (string part in value.Split(','))
+                {
+                    headers.Add(new Header(part.Trim(), name));
+                }
+            }
+            else
+            {
+                headers.Add(new Header(value.Trim(), name));
+            }
             return headers;
         }
     }

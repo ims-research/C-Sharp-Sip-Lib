@@ -42,19 +42,11 @@ namespace SIPLibDriver
             SIPStack stack = Create_Stack(app,"192.168.0.7", 4060);
             app.Register("sip:alice@open-ims.test");
             Console.ReadKey();
-            //app.Invite("bob@open-ims.test");
-            //Console.ReadKey();
-            app.Message("bob@open-ims.test", "Hello, this is alice saying howzit to bob");
+            app.Invite("bob@open-ims.test");
             Console.ReadKey();
-
-            //System.Console.WriteLine("TEST");
-            //Dictionary<string,string> context = new Dictionary<string,string>();
-            //context.Add("cnonce","0a4f113b");
-            //context.Add("nc","0");
-            //string challenge = "Digest realm=\"open-ims.test\", nonce=\"f6b39889303acbce66517e52cb2b977b\", algorithm=MD5, qop=\"auth\"";
-            //string response = Authenticate.createAuthorization(challenge,"alice@open-ims.test","alice","sip:open-ims.test","REGISTER",null,null);
-            //System.Console.WriteLine("TEST");
-            //Console.ReadKey();
+            app.endCurrentCall();
+            //app.Message("bob@open-ims.test", "Hello, this is alice saying howzit to bob");
+            Console.ReadKey();
         }
     }
 }

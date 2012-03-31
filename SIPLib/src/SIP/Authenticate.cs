@@ -123,8 +123,6 @@ namespace SIPLib
                         cr[s] = ch[s];
                     }
                 }
-                //TODO Fix nonce
-                //cr["nonce"] = "f6b39889303acbce66517e52cb2b977b";
                 if (uri != null)
                 {
                     cr["uri"] = uri;
