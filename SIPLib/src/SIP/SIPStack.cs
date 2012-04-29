@@ -47,7 +47,7 @@ namespace SIPLib
 
         void transport_Received_Data_Event(object sender, RawEventArgs e)
         {
-            this.received(e.data,e.src);
+            this.received(e.data, e.src);
         }
 
         ~SIPStack()  // destructor
@@ -122,7 +122,6 @@ namespace SIPLib
                 destination_port = Convert.ToInt32(parts[1]);
             }
 
-
             if (data is Message)
             {
                 Message m = (Message)data;
@@ -134,26 +133,34 @@ namespace SIPLib
                         if (m.headers.ContainsKey("Route"))
                         {
                             bool found = false;
-                            foreach (Header message_header in m.headers["Route"])
+                            foreach (Header route_header in this.service_route)
                             {
-                                foreach (Header route_header in this.service_route)
+                                foreach (Header message_header in m.headers["Route"])
                                 {
                                     if (message_header.ToString().ToLower().CompareTo(route_header.ToString().ToLower()) == 0)
                                     {
                                         found = true;
                                     }
                                 }
-                            }
-                            if (!found)
-                            {
-                                m.headers["Route"].AddRange(this.service_route);
+                                if (!found)
+                                {
+                                    m.headers["Route"].Add(route_header);
+                                }
                             }
                         }
                         else
                         {
-                            m.headers.Add("Route", this.service_route);
+                            m.headers.Add("Route",this.service_route);
                         }
                     }
+                }
+                if (!m.headers.ContainsKey("Route"))
+                {
+                    m.insertHeader(new Header("<sip:orig@scscf.open-ims.test:6060;lr>", "Route"));
+                }
+                if (m.headers["Route"].First().ToString().ToLower().Contains("mt@pcscf"))
+                {
+                    m.headers["Route"].Reverse();
                 }
                 if (m.method != null && m.method.Length > 0)
                 {
@@ -180,10 +187,6 @@ namespace SIPLib
         {
             if (data.Length > 2)
             {
-                //if (data.Contains("200 OK") || data.Contains("Unauth"))
-                //{
-                //    Console.Write("200 OK");
-                //}
                 try
                 {
                     Message m = new Message(data);
@@ -218,7 +221,7 @@ namespace SIPLib
                 }
                 catch (Exception ex)
                 {
-                    Debug.Assert(false, String.Format("Error in received message \n{0}\n with error message {1}", data,ex.Message));
+                    Debug.Assert(false, String.Format("Error in received message \n{0}\n with error message {1}", data, ex.Message));
                 }
             }
             else
@@ -452,7 +455,7 @@ namespace SIPLib
             }
             else
             {
-                t.receivedResponse(r); 
+                t.receivedResponse(r);
                 return;
             }
         }

@@ -599,11 +599,11 @@ namespace SIPLib
                 {
                     if (a.name == "WWW-Authenticate")
                     {
-                        request.insertHeader(new Header(value, "Authorization"), false);
+                        request.insertHeader(new Header(value, "Authorization"), "replace");
                     }
                     else
                     {
-                        request.insertHeader(new Header(value, "Proxy-Authorization"), false);
+                        request.insertHeader(new Header(value, "Proxy-Authorization"), "replace");
                     }
 
                     resend = true;

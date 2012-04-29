@@ -161,18 +161,21 @@ namespace SIPLib
             string content_length = "";
             foreach (List<Header> headers in this.headers.Values)
             {
-                string current = "";
-                foreach (Header h in headers)
+                if (headers.Count > 0)
                 {
-                    current = current + h.repr() + "\n";
+                    string current = "";
+                    foreach (Header h in headers)
+                    {
+                        current = current + h.repr() + "\n";
+                    }
+                    current = current.Remove(current.Length - 1);
+                    current = current + "\r\n";
+                    if (current.ToLower().Contains("content-length"))
+                    {
+                        content_length = current;
+                    }
+                    else m = m + current;
                 }
-                current = current.Remove(current.Length - 1);
-                current = current + "\r\n";
-                if (current.ToLower().Contains("content-length"))
-                {
-                    content_length = current;
-                }
-                else m = m + current;
             }
             m = m + content_length;
             m = m + "\r\n";
@@ -192,22 +195,33 @@ namespace SIPLib
             return new Message(this.ToString());
         }
 
-        public void insertHeader(Header header, bool append = false)
+        public void insertHeader(Header header, string method = "replace")
         {
             string name = header.name;
             if (this.headers.ContainsKey(name))
             {
-                if (append)
+                switch (method)
                 {
-                    this.headers[name].Add(header);
+                    case "append":
+                        {
+                            this.headers[name].Add(header);
+                            break;
+                        }
+                    case "replace":
+                        {
+                            List<Header> headers = new List<Header>();
+                            headers.Add(header);
+                            this.headers[name] = headers;
+                            break;
+                        }
+                    case "insert":
+                        {
+                            this.headers[name].Insert(0, header);
+                            break;
+                        }
+                    default:
+                        break;
                 }
-                else
-                {
-                    List<Header> headers = new List<Header>();
-                    headers.Add(header);
-                    this.headers[name] = headers;
-                }
-
             }
             else
             {
@@ -260,7 +274,7 @@ namespace SIPLib
                 {
                     foreach (Header h in header)
                     {
-                        m.insertHeader(h, true);
+                        m.insertHeader(h,"append");
                     }
                 }
             }

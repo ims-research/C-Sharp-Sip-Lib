@@ -3503,3 +3503,3085 @@ Content-Length:0
 
 
 2012-03-31 01:24:18,693 INFO  SIPApp - Response code of 400 is unhandled 
+2012-03-31 11:17:02,019 INFO  SIPApp - Sending request with method REGISTER
+2012-03-31 11:17:02,033 DEBUG SIPApp - 
+
+REGISTER sip:open-ims.test SIP/2.0
+To:<sip:alice@open-ims.test>
+From:<sip:alice@open-ims.test>;tag=3307866571101314585
+CSeq: 1 REGISTER
+Call-ID:2144644467@192.168.0.5
+Max-Forwards:70
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl
+Contact:<sip:alice@192.168.0.5:5060>
+Authorization:
+Expires:3600
+Content-Length:0
+
+
+2012-03-31 11:17:02,147 INFO  SIPApp - Received response with code 200 OK - SAR succesful and registrar saved
+2012-03-31 11:17:02,148 DEBUG SIPApp - 
+
+SIP/2.0 200 OK - SAR succesful and registrar saved
+To:<sip:alice@open-ims.test>;tag=5da1a9072b0c9fc6a146e3457e5b9eba-71cc
+From:<sip:alice@open-ims.test>;tag=3307866571101314585
+CSeq: 2 REGISTER
+Call-ID:2144644467@192.168.0.5
+Via:SIP/2.0/UDP 192.168.0.5:5060;rport=5060;branch=z9hG4bKfHx8fEZhbHNl
+P-Associated-Uri:<sip:alice@open-ims.test>
+Contact:<sip:alice@192.168.0.5:5060>;expires=3600
+Path:<sip:term@pcscf.open-ims.test:4060
+Route:<sip:orig@scscf.open-ims.test:6060;lr>
+Allow:INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, SUBSCRIBE, NOTIFY, PUBLISH, MESSAGE, INFO
+P-Charging-Function-Addresses:ccf=pri_ccf_address
+Server:Sip EXpress router (2.1.0-dev1 OpenIMSCore (i386/linux))
+Content-Length:0
+
+
+2012-03-31 11:17:27,726 INFO  SIPApp - Sending request with method INVITE
+2012-03-31 11:17:27,727 DEBUG SIPApp - 
+
+INVITE sip:bob@open-ims.test SIP/2.0
+To:<sip:bob@open-ims.test>
+From:<sip:alice@open-ims.test>;tag=330786657819526508
+CSeq: 1 INVITE
+Call-ID:1447476831@192.168.0.5
+Max-Forwards:70
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl
+Contact:<sip:alice@192.168.0.5:5060>
+Content-Length:0
+
+
+2012-03-31 11:17:27,734 INFO  SIPApp - Received response with code 100 trying -- your call is important to us
+2012-03-31 11:17:27,735 DEBUG SIPApp - 
+
+SIP/2.0 100 trying -- your call is important to us
+To:<sip:bob@open-ims.test>
+From:<sip:alice@open-ims.test>;tag=330786657819526508
+CSeq: 1 INVITE
+Call-ID:1447476831@192.168.0.5
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl;rport=5060
+Server:Sip EXpress router (2.1.0-dev1 OpenIMSCore (i386/linux))
+Content-Length:0
+
+
+2012-03-31 11:17:27,735 INFO  SIPApp - Response code of 100 is unhandled 
+2012-03-31 11:17:27,783 INFO  SIPApp - Received response with code 180 Ringing
+2012-03-31 11:17:27,785 DEBUG SIPApp - 
+
+SIP/2.0 180 Ringing
+Record-Route:<sip:mt@pcscf.open-ims.test:4060;lr>
+Record-Route:<sip:mt@scscf.open-ims.test:6060;lr>
+Record-Route:<sip:mo@scscf.open-ims.test:6060;lr>
+Record-Route:<sip:mo@pcscf.open-ims.test:4060;lr>
+From:<sip:alice@open-ims.test>;tag=330786657819526508
+To:<sip:bob@open-ims.test>;tag=350098838
+Contact:<sip:bob@192.168.0.5:62799;transport=udp>
+Call-ID:1447476831@192.168.0.5
+CSeq: 1 INVITE
+Via:SIP/2.0/UDP 192.168.0.5:5060;rport=5060;branch=z9hG4bKfHx8fEZhbHNl
+Allow:ACK, BYE, CANCEL, INVITE, MESSAGE, NOTIFY, OPTIONS, PRACK, REFER, UPDATE
+P-Asserted-Identity:<sip:bob@open-ims.test>
+Content-Length:0
+
+
+2012-03-31 11:17:32,330 INFO  SIPApp - New dialog created
+2012-03-31 11:17:32,330 INFO  SIPApp - Received response with code 200 OK
+2012-03-31 11:17:32,331 DEBUG SIPApp - 
+
+SIP/2.0 200 OK
+Route:<sip:mt@pcscf.open-ims.test:4060;lr>
+Route:<sip:mt@scscf.open-ims.test:6060;lr>
+Route:<sip:mo@scscf.open-ims.test:6060;lr>
+Route:<sip:mo@pcscf.open-ims.test:4060;lr>
+From:<sip:alice@open-ims.test>;tag=330786657819526508
+To:<sip:bob@open-ims.test>;tag=350098838
+Contact:<sip:bob@192.168.0.5:62799;transport=udp>
+Call-ID:1447476831@192.168.0.5
+CSeq: 1 INVITE
+Content-Type:application/sdp
+Via:SIP/2.0/UDP 192.168.0.5:5060;rport=5060;branch=z9hG4bKfHx8fEZhbHNl
+Allow:ACK, BYE, CANCEL, INVITE, MESSAGE, NOTIFY, OPTIONS, PRACK, REFER, UPDATE
+P-Asserted-Identity:<sip:bob@open-ims.test>
+Content-Length:290
+
+v=0
+o=doubango 1983 678901 IN IP4 192.168.0.5
+s=-
+c=IN IP4 192.168.0.5
+t=0 0
+m=audio 3080 RTP/AVP 3 8 0 97 101
+a=ptime:20
+a=rtpmap:3 GSM/8000/1
+a=rtpmap:8 PCMA/8000/1
+a=rtpmap:0 PCMU/8000/1
+a=rtpmap:97 SPEEX/8000/1
+a=rtpmap:101 telephone-event/8000/1
+a=fmtp:101 0-15
+a=sendrecv
+2012-03-31 11:17:32,333 INFO  SIPApp - Sending request with method ACK
+2012-03-31 11:17:32,333 DEBUG SIPApp - 
+
+ACK sip:bob@open-ims.test SIP/2.0
+To:<sip:bob@open-ims.test>;tag=350098838
+From:<sip:alice@open-ims.test>;tag=330786657819526508
+CSeq: 1 ACK
+Call-ID:1447476831@192.168.0.5
+Max-Forwards:70
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl
+Contact:<sip:alice@192.168.0.5:5060>
+Content-Length:0
+
+
+2012-03-31 11:20:03,834 INFO  SIPApp - Received request with method INVITE
+2012-03-31 11:20:03,834 DEBUG SIPApp - 
+
+INVITE sip:alice@192.168.0.5:5060 SIP/2.0
+Record-Route:<sip:mt@pcscf.open-ims.test:4060;lr>
+Record-Route:<sip:mt@scscf.open-ims.test:6060;lr>
+Record-Route:<sip:mo@scscf.open-ims.test:6060;lr>
+Record-Route:<sip:mo@pcscf.open-ims.test:4060;lr>
+Via:SIP/2.0/UDP 192.168.0.7:4060;branch=z9hG4bKf61f.195fb105.0;received=192.168.0.7
+Via:SIP/2.0/UDP 192.168.0.7:6060;received=192.168.0.7;rport=6060;branch=z9hG4bKf61f.a817b7f5.0
+Via:SIP/2.0/UDP 192.168.0.7:6060;branch=z9hG4bKf61f.9817b7f5.0
+Via:SIP/2.0/UDP 192.168.0.7:4060;branch=z9hG4bKf61f.095fb105.0
+Via:SIP/2.0/UDP 192.168.0.5:62799;branch=z9hG4bK350236138;rport=62799
+From:<sip:bob@open-ims.test>;tag=350255798
+To:<sip:alice@open-ims.test>
+Contact:<sip:bob@192.168.0.5:62799;transport=udp>;language="en,fr";+g.3gpp.icsi-ref="urn%3Aurn-7%3A3gpp-service.ims.icsi.mmtel"
+Call-ID:57366742-1747-4018-ebdd-fb8c643e8cba
+CSeq: 17535 INVITE
+Content-Type:application/sdp
+Max-Forwards:13
+Accept-Contact:*;+g.3gpp.icsi-ref="urn%3Aurn-7%3A3gpp-service.ims.icsi.mmtel"
+P-Preferred-Service:urn:urn-7:3gpp-service.ims.icsi.mmtel
+Allow:INVITE, ACK, CANCEL, BYE, MESSAGE, OPTIONS, NOTIFY, PRACK, UPDATE, REFER
+Privacy:none
+P-Access-Network-Info:ADSL;utran-cell-id-3gpp=00000000
+User-Agent:IM-client/OMA1.0 Boghe/v2.0.97.687
+Supported:100rel
+P-Asserted-Identity:<sip:bob@open-ims.test>
+P-Charging-Vector:icid-value="P-CSCFabcd4f76cc8a00000109";icid-generated-at=192.168.0.7;orig-ioi="open-ims.test"
+P-Called-Party-Id:<sip:alice@open-ims.test>
+Content-Length:291
+
+v=0
+o=doubango 1983 678901 IN IP4 192.168.0.5
+s=-
+c=IN IP4 192.168.0.5
+t=0 0
+m=audio 30814 RTP/AVP 3 8 0 97 101
+a=ptime:20
+a=rtpmap:3 GSM/8000/1
+a=rtpmap:8 PCMA/8000/1
+a=rtpmap:0 PCMU/8000/1
+a=rtpmap:97 SPEEX/8000/1
+a=rtpmap:101 telephone-event/8000/1
+a=fmtp:101 0-15
+a=sendrecv
+2012-03-31 11:20:03,834 INFO  SIPApp - Generating 200 OK response for INVITE
+2012-03-31 11:20:03,838 INFO  SIPApp - New dialog created
+2012-03-31 11:20:03,838 INFO  SIPApp - Sending response with code 200
+2012-03-31 11:20:03,839 DEBUG SIPApp - 
+
+SIP/2.0 200 OK
+To:<sip:alice@open-ims.test>;tag=3307866571755458491
+From:<sip:bob@open-ims.test>;tag=350255798
+CSeq: 17535 INVITE
+Call-ID:57366742-1747-4018-ebdd-fb8c643e8cba
+Via:SIP/2.0/UDP 192.168.0.7:4060;branch=z9hG4bKf61f.195fb105.0;received=192.168.0.7
+Via:SIP/2.0/UDP 192.168.0.7:6060;received=192.168.0.7;rport=6060;branch=z9hG4bKf61f.a817b7f5.0
+Via:SIP/2.0/UDP 192.168.0.7:6060;branch=z9hG4bKf61f.9817b7f5.0
+Via:SIP/2.0/UDP 192.168.0.7:4060;branch=z9hG4bKf61f.095fb105.0
+Via:SIP/2.0/UDP 192.168.0.5:62799;branch=z9hG4bK350236138;rport=62799
+Record-Route:<sip:mt@pcscf.open-ims.test:4060;lr>
+Record-Route:<sip:mt@scscf.open-ims.test:6060;lr>
+Record-Route:<sip:mo@scscf.open-ims.test:6060;lr>
+Record-Route:<sip:mo@pcscf.open-ims.test:4060;lr>
+Content-Length:0
+
+
+2012-03-31 11:25:49,853 INFO  SIPApp - Sending request with method BYE
+2012-03-31 11:25:49,853 DEBUG SIPApp - 
+
+BYE sip:bob@open-ims.test SIP/2.0
+To:<sip:bob@open-ims.test>;tag=350255798
+From:<sip:alice@open-ims.test>;tag=3307866571755458491
+CSeq: 1 BYE
+Call-ID:57366742-1747-4018-ebdd-fb8c643e8cba
+Max-Forwards:70
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl
+Contact:<sip:alice@192.168.0.5:5060>
+Record-Route:<sip:mt@pcscf.open-ims.test:4060;lr>
+Record-Route:<sip:mt@scscf.open-ims.test:6060;lr>
+Record-Route:<sip:mo@scscf.open-ims.test:6060;lr>
+Record-Route:<sip:mo@pcscf.open-ims.test:4060;lr>
+Content-Length:0
+
+
+2012-03-31 11:25:49,873 INFO  SIPApp - Received response with code 481 Dialog/Transaction Does Not Exist
+2012-03-31 11:25:49,873 DEBUG SIPApp - 
+
+SIP/2.0 481 Dialog/Transaction Does Not Exist
+From:<sip:alice@open-ims.test>;tag=3307866571755458491
+To:<sip:bob@open-ims.test>;tag=350255798
+Call-ID:57366742-1747-4018-ebdd-fb8c643e8cba
+CSeq: 1 BYE
+Via:SIP/2.0/UDP 192.168.0.5:5060;rport=5060;branch=z9hG4bKfHx8fEZhbHNl
+Content-Length:0
+
+
+2012-03-31 11:25:49,873 INFO  SIPApp - Response code of 481 is unhandled 
+2012-03-31 11:26:07,353 INFO  SIPApp - Sending request with method REGISTER
+2012-03-31 11:26:07,369 DEBUG SIPApp - 
+
+REGISTER sip:open-ims.test SIP/2.0
+To:<sip:alice@open-ims.test>
+From:<sip:alice@open-ims.test>;tag=19711693191619797428
+CSeq: 1 REGISTER
+Call-ID:1833229789@192.168.0.5
+Max-Forwards:70
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl
+Contact:<sip:alice@192.168.0.5:5060>
+Authorization:
+Expires:3600
+Content-Length:0
+
+
+2012-03-31 11:26:07,479 INFO  SIPApp - Received response with code 200 OK - SAR succesful and registrar saved
+2012-03-31 11:26:07,480 DEBUG SIPApp - 
+
+SIP/2.0 200 OK - SAR succesful and registrar saved
+To:<sip:alice@open-ims.test>;tag=5da1a9072b0c9fc6a146e3457e5b9eba-372f
+From:<sip:alice@open-ims.test>;tag=19711693191619797428
+CSeq: 2 REGISTER
+Call-ID:1833229789@192.168.0.5
+Via:SIP/2.0/UDP 192.168.0.5:5060;rport=5060;branch=z9hG4bKfHx8fEZhbHNl
+P-Associated-Uri:<sip:alice@open-ims.test>
+Contact:<sip:alice@192.168.0.5:5060>;expires=3600
+Path:<sip:term@pcscf.open-ims.test:4060
+Route:<sip:orig@scscf.open-ims.test:6060;lr>
+Allow:INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, SUBSCRIBE, NOTIFY, PUBLISH, MESSAGE, INFO
+P-Charging-Function-Addresses:ccf=pri_ccf_address
+Server:Sip EXpress router (2.1.0-dev1 OpenIMSCore (i386/linux))
+Content-Length:0
+
+
+2012-03-31 11:26:08,543 INFO  SIPApp - Sending request with method INVITE
+2012-03-31 11:26:08,544 DEBUG SIPApp - 
+
+INVITE sip:bob@open-ims.test SIP/2.0
+To:<sip:bob@open-ims.test>
+From:<sip:alice@open-ims.test>;tag=19711693191172277659
+CSeq: 1 INVITE
+Call-ID:1915222631@192.168.0.5
+Max-Forwards:70
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl
+Contact:<sip:alice@192.168.0.5:5060>
+Content-Length:0
+
+
+2012-03-31 11:26:08,549 INFO  SIPApp - Received response with code 100 trying -- your call is important to us
+2012-03-31 11:26:08,549 DEBUG SIPApp - 
+
+SIP/2.0 100 trying -- your call is important to us
+To:<sip:bob@open-ims.test>
+From:<sip:alice@open-ims.test>;tag=19711693191172277659
+CSeq: 1 INVITE
+Call-ID:1915222631@192.168.0.5
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl;rport=5060
+Server:Sip EXpress router (2.1.0-dev1 OpenIMSCore (i386/linux))
+Content-Length:0
+
+
+2012-03-31 11:26:08,549 INFO  SIPApp - Response code of 100 is unhandled 
+2012-03-31 11:26:08,595 INFO  SIPApp - Received response with code 180 Ringing
+2012-03-31 11:26:08,597 DEBUG SIPApp - 
+
+SIP/2.0 180 Ringing
+Record-Route:<sip:mt@pcscf.open-ims.test:4060;lr>
+Record-Route:<sip:mt@scscf.open-ims.test:6060;lr>
+Record-Route:<sip:mo@scscf.open-ims.test:6060;lr>
+Record-Route:<sip:mo@pcscf.open-ims.test:4060;lr>
+From:<sip:alice@open-ims.test>;tag=19711693191172277659
+To:<sip:bob@open-ims.test>;tag=350608924
+Contact:<sip:bob@192.168.0.5:62799;transport=udp>
+Call-ID:1915222631@192.168.0.5
+CSeq: 1 INVITE
+Via:SIP/2.0/UDP 192.168.0.5:5060;rport=5060;branch=z9hG4bKfHx8fEZhbHNl
+Allow:ACK, BYE, CANCEL, INVITE, MESSAGE, NOTIFY, OPTIONS, PRACK, REFER, UPDATE
+P-Asserted-Identity:<sip:bob@open-ims.test>
+Content-Length:0
+
+
+2012-03-31 11:26:10,031 INFO  SIPApp - New dialog created
+2012-03-31 11:26:10,032 INFO  SIPApp - Received response with code 200 OK
+2012-03-31 11:26:10,032 DEBUG SIPApp - 
+
+SIP/2.0 200 OK
+Route:<sip:mt@pcscf.open-ims.test:4060;lr>
+Route:<sip:mt@scscf.open-ims.test:6060;lr>
+Route:<sip:mo@scscf.open-ims.test:6060;lr>
+Route:<sip:mo@pcscf.open-ims.test:4060;lr>
+From:<sip:alice@open-ims.test>;tag=19711693191172277659
+To:<sip:bob@open-ims.test>;tag=350608924
+Contact:<sip:bob@192.168.0.5:62799;transport=udp>
+Call-ID:1915222631@192.168.0.5
+CSeq: 1 INVITE
+Content-Type:application/sdp
+Via:SIP/2.0/UDP 192.168.0.5:5060;rport=5060;branch=z9hG4bKfHx8fEZhbHNl
+Allow:ACK, BYE, CANCEL, INVITE, MESSAGE, NOTIFY, OPTIONS, PRACK, REFER, UPDATE
+P-Asserted-Identity:<sip:bob@open-ims.test>
+Content-Length:291
+
+v=0
+o=doubango 1983 678901 IN IP4 192.168.0.5
+s=-
+c=IN IP4 192.168.0.5
+t=0 0
+m=audio 30644 RTP/AVP 3 8 0 97 101
+a=ptime:20
+a=rtpmap:3 GSM/8000/1
+a=rtpmap:8 PCMA/8000/1
+a=rtpmap:0 PCMU/8000/1
+a=rtpmap:97 SPEEX/8000/1
+a=rtpmap:101 telephone-event/8000/1
+a=fmtp:101 0-15
+a=sendrecv
+2012-03-31 11:26:10,035 INFO  SIPApp - Sending request with method ACK
+2012-03-31 11:26:10,035 DEBUG SIPApp - 
+
+ACK sip:bob@open-ims.test SIP/2.0
+To:<sip:bob@open-ims.test>;tag=350608924
+From:<sip:alice@open-ims.test>;tag=19711693191172277659
+CSeq: 1 ACK
+Call-ID:1915222631@192.168.0.5
+Max-Forwards:70
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl
+Contact:<sip:alice@192.168.0.5:5060>
+Content-Length:0
+
+
+2012-03-31 12:10:08,338 INFO  SIPApp - Sending request with method REGISTER
+2012-03-31 12:10:08,354 DEBUG SIPApp - 
+
+REGISTER sip:open-ims.test SIP/2.0
+To:<sip:alice@open-ims.test>
+From:<sip:alice@open-ims.test>;tag=818495479818495479
+CSeq: 1 REGISTER
+Call-ID:1306265905@192.168.0.5
+Max-Forwards:70
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl
+Contact:<sip:alice@192.168.0.5:5060>
+Authorization:
+Expires:3600
+Content-Length:0
+
+
+2012-03-31 12:10:08,467 INFO  SIPApp - Received response with code 200 OK - SAR succesful and registrar saved
+2012-03-31 12:10:08,468 DEBUG SIPApp - 
+
+SIP/2.0 200 OK - SAR succesful and registrar saved
+To:<sip:alice@open-ims.test>;tag=5da1a9072b0c9fc6a146e3457e5b9eba-f54f
+From:<sip:alice@open-ims.test>;tag=818495479818495479
+CSeq: 2 REGISTER
+Call-ID:1306265905@192.168.0.5
+Via:SIP/2.0/UDP 192.168.0.5:5060;rport=5060;branch=z9hG4bKfHx8fEZhbHNl
+P-Associated-Uri:<sip:alice@open-ims.test>
+Contact:<sip:alice@192.168.0.5:5060>;expires=3600
+Path:<sip:term@pcscf.open-ims.test:4060
+Route:<sip:orig@scscf.open-ims.test:6060;lr>
+Allow:INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, SUBSCRIBE, NOTIFY, PUBLISH, MESSAGE, INFO
+P-Charging-Function-Addresses:ccf=pri_ccf_address
+Server:Sip EXpress router (2.1.0-dev1 OpenIMSCore (i386/linux))
+Content-Length:0
+
+
+2012-03-31 12:47:22,343 INFO  SIPApp - Sending request with method REGISTER
+2012-03-31 12:47:22,358 DEBUG SIPApp - 
+
+REGISTER sip:open-ims.test SIP/2.0
+To:<sip:alice@open-ims.test>
+From:<sip:alice@open-ims.test>;tag=2073962910697007191
+CSeq: 1 REGISTER
+Call-ID:1975078944@192.168.0.5
+Max-Forwards:70
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl
+Contact:<sip:alice@192.168.0.5:5060>
+Authorization:
+Expires:3600
+Content-Length:0
+
+
+2012-03-31 12:47:22,454 INFO  SIPApp - Received response with code 200 OK - SAR succesful and registrar saved
+2012-03-31 12:47:22,455 DEBUG SIPApp - 
+
+SIP/2.0 200 OK - SAR succesful and registrar saved
+To:<sip:alice@open-ims.test>;tag=5da1a9072b0c9fc6a146e3457e5b9eba-d45a
+From:<sip:alice@open-ims.test>;tag=2073962910697007191
+CSeq: 2 REGISTER
+Call-ID:1975078944@192.168.0.5
+Via:SIP/2.0/UDP 192.168.0.5:5060;rport=5060;branch=z9hG4bKfHx8fEZhbHNl
+P-Associated-Uri:<sip:alice@open-ims.test>
+Contact:<sip:alice@192.168.0.5:5060>;expires=3600
+Path:<sip:term@pcscf.open-ims.test:4060
+Route:<sip:orig@scscf.open-ims.test:6060;lr>
+Allow:INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, SUBSCRIBE, NOTIFY, PUBLISH, MESSAGE, INFO
+P-Charging-Function-Addresses:ccf=pri_ccf_address
+Server:Sip EXpress router (2.1.0-dev1 OpenIMSCore (i386/linux))
+Content-Length:0
+
+
+2012-03-31 12:47:25,755 INFO  SIPApp - Sending request with method INVITE
+2012-03-31 12:47:25,755 DEBUG SIPApp - 
+
+INVITE sip:bob@open-ims.test SIP/2.0
+To:<sip:bob@open-ims.test>
+From:<sip:alice@open-ims.test>;tag=2073962910267635037
+CSeq: 1 INVITE
+Call-ID:347066435@192.168.0.5
+Max-Forwards:70
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl
+Contact:<sip:alice@192.168.0.5:5060>
+Content-Length:0
+
+
+2012-03-31 12:47:25,762 INFO  SIPApp - Received response with code 100 trying -- your call is important to us
+2012-03-31 12:47:25,763 DEBUG SIPApp - 
+
+SIP/2.0 100 trying -- your call is important to us
+To:<sip:bob@open-ims.test>
+From:<sip:alice@open-ims.test>;tag=2073962910267635037
+CSeq: 1 INVITE
+Call-ID:347066435@192.168.0.5
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl;rport=5060
+Server:Sip EXpress router (2.1.0-dev1 OpenIMSCore (i386/linux))
+Content-Length:0
+
+
+2012-03-31 12:47:25,763 INFO  SIPApp - Response code of 100 is unhandled 
+2012-03-31 12:48:44,388 INFO  SIPApp - Sending request with method REGISTER
+2012-03-31 12:48:44,403 DEBUG SIPApp - 
+
+REGISTER sip:open-ims.test SIP/2.0
+To:<sip:alice@open-ims.test>
+From:<sip:alice@open-ims.test>;tag=13309473501330947350
+CSeq: 1 REGISTER
+Call-ID:2085682056@192.168.0.5
+Max-Forwards:70
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl
+Contact:<sip:alice@192.168.0.5:5060>
+Authorization:
+Expires:3600
+Content-Length:0
+
+
+2012-03-31 12:48:44,500 INFO  SIPApp - Received response with code 200 OK - SAR succesful and registrar saved
+2012-03-31 12:48:44,501 DEBUG SIPApp - 
+
+SIP/2.0 200 OK - SAR succesful and registrar saved
+To:<sip:alice@open-ims.test>;tag=5da1a9072b0c9fc6a146e3457e5b9eba-fbcf
+From:<sip:alice@open-ims.test>;tag=13309473501330947350
+CSeq: 2 REGISTER
+Call-ID:2085682056@192.168.0.5
+Via:SIP/2.0/UDP 192.168.0.5:5060;rport=5060;branch=z9hG4bKfHx8fEZhbHNl
+P-Associated-Uri:<sip:alice@open-ims.test>
+Contact:<sip:alice@192.168.0.5:5060>;expires=3600
+Path:<sip:term@pcscf.open-ims.test:4060
+Route:<sip:orig@scscf.open-ims.test:6060;lr>
+Allow:INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, SUBSCRIBE, NOTIFY, PUBLISH, MESSAGE, INFO
+P-Charging-Function-Addresses:ccf=pri_ccf_address
+Server:Sip EXpress router (2.1.0-dev1 OpenIMSCore (i386/linux))
+Content-Length:0
+
+
+2012-03-31 12:48:46,390 INFO  SIPApp - Sending request with method INVITE
+2012-03-31 12:48:46,391 DEBUG SIPApp - 
+
+INVITE sip:bob@open-ims.test SIP/2.0
+To:<sip:bob@open-ims.test>
+From:<sip:alice@open-ims.test>;tag=13309473502007226218
+CSeq: 1 INVITE
+Call-ID:41124359@192.168.0.5
+Max-Forwards:70
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl
+Contact:<sip:alice@192.168.0.5:5060>
+Content-Length:0
+
+
+2012-03-31 12:48:46,396 INFO  SIPApp - Received response with code 100 trying -- your call is important to us
+2012-03-31 12:48:46,396 DEBUG SIPApp - 
+
+SIP/2.0 100 trying -- your call is important to us
+To:<sip:bob@open-ims.test>
+From:<sip:alice@open-ims.test>;tag=13309473502007226218
+CSeq: 1 INVITE
+Call-ID:41124359@192.168.0.5
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl;rport=5060
+Server:Sip EXpress router (2.1.0-dev1 OpenIMSCore (i386/linux))
+Content-Length:0
+
+
+2012-03-31 12:48:46,397 INFO  SIPApp - Response code of 100 is unhandled 
+2012-03-31 12:48:54,043 ERROR SIPApp - Error ending current call
+System.InvalidCastException: Unable to cast object of type 'SIPLib.UserAgent' to type 'SIPLib.Dialog'.
+   at SIPLib.SIPApp.endCurrentCall() in F:\Dropbox\Dropbox\PhD related\Software\SIPLib\SIPLib\src\SIPApp.cs:line 253
+2012-03-31 12:49:22,539 INFO  SIPApp - Sending request with method REGISTER
+2012-03-31 12:49:22,554 DEBUG SIPApp - 
+
+REGISTER sip:open-ims.test SIP/2.0
+To:<sip:alice@open-ims.test>
+From:<sip:alice@open-ims.test>;tag=2074693526697737807
+CSeq: 1 REGISTER
+Call-ID:1168517818@192.168.0.5
+Max-Forwards:70
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl
+Contact:<sip:alice@192.168.0.5:5060>
+Authorization:
+Expires:3600
+Content-Length:0
+
+
+2012-03-31 12:49:22,658 INFO  SIPApp - Received response with code 200 OK - SAR succesful and registrar saved
+2012-03-31 12:49:22,659 DEBUG SIPApp - 
+
+SIP/2.0 200 OK - SAR succesful and registrar saved
+To:<sip:alice@open-ims.test>;tag=5da1a9072b0c9fc6a146e3457e5b9eba-22ad
+From:<sip:alice@open-ims.test>;tag=2074693526697737807
+CSeq: 2 REGISTER
+Call-ID:1168517818@192.168.0.5
+Via:SIP/2.0/UDP 192.168.0.5:5060;rport=5060;branch=z9hG4bKfHx8fEZhbHNl
+P-Associated-Uri:<sip:alice@open-ims.test>
+Contact:<sip:alice@192.168.0.5:5060>;expires=3600
+Path:<sip:term@pcscf.open-ims.test:4060
+Route:<sip:orig@scscf.open-ims.test:6060;lr>
+Allow:INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, SUBSCRIBE, NOTIFY, PUBLISH, MESSAGE, INFO
+P-Charging-Function-Addresses:ccf=pri_ccf_address
+Server:Sip EXpress router (2.1.0-dev1 OpenIMSCore (i386/linux))
+Content-Length:0
+
+
+2012-03-31 12:49:24,064 INFO  SIPApp - Sending request with method INVITE
+2012-03-31 12:49:24,064 DEBUG SIPApp - 
+
+INVITE sip:bob@open-ims.test SIP/2.0
+To:<sip:bob@open-ims.test>
+From:<sip:alice@open-ims.test>;tag=2074693526662283142
+CSeq: 1 INVITE
+Call-ID:1758966957@192.168.0.5
+Max-Forwards:70
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl
+Contact:<sip:alice@192.168.0.5:5060>
+Content-Length:0
+
+
+2012-03-31 12:49:24,069 INFO  SIPApp - Received response with code 100 trying -- your call is important to us
+2012-03-31 12:49:24,069 DEBUG SIPApp - 
+
+SIP/2.0 100 trying -- your call is important to us
+To:<sip:bob@open-ims.test>
+From:<sip:alice@open-ims.test>;tag=2074693526662283142
+CSeq: 1 INVITE
+Call-ID:1758966957@192.168.0.5
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl;rport=5060
+Server:Sip EXpress router (2.1.0-dev1 OpenIMSCore (i386/linux))
+Content-Length:0
+
+
+2012-03-31 12:49:24,070 INFO  SIPApp - Response code of 100 is unhandled 
+2012-03-31 12:49:27,834 INFO  SIPApp - Received response with code 408 Request Timeout
+2012-03-31 12:49:27,835 DEBUG SIPApp - 
+
+SIP/2.0 408 Request Timeout
+To:<sip:bob@open-ims.test>;tag=31aa72a18e2187165cc453c80cee4fcd-a37e
+From:<sip:alice@open-ims.test>;tag=13309473502007226218
+CSeq: 1 INVITE
+Call-ID:41124359@192.168.0.5
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl;rport=5060
+Server:Sip EXpress router (2.1.0-dev1 OpenIMSCore (i386/linux))
+Content-Length:0
+
+
+2012-03-31 12:49:27,835 INFO  SIPApp - Response code of 408 is unhandled 
+2012-03-31 12:49:51,576 INFO  SIPApp - Sending request with method REGISTER
+2012-03-31 12:49:51,590 DEBUG SIPApp - 
+
+REGISTER sip:open-ims.test SIP/2.0
+To:<sip:alice@open-ims.test>
+From:<sip:alice@open-ims.test>;tag=18343927941834392794
+CSeq: 1 REGISTER
+Call-ID:1019450538@192.168.0.5
+Max-Forwards:70
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl
+Contact:<sip:alice@192.168.0.5:5060>
+Authorization:
+Expires:3600
+Content-Length:0
+
+
+2012-03-31 12:49:51,695 INFO  SIPApp - Received response with code 200 OK - SAR succesful and registrar saved
+2012-03-31 12:49:51,696 DEBUG SIPApp - 
+
+SIP/2.0 200 OK - SAR succesful and registrar saved
+To:<sip:alice@open-ims.test>;tag=5da1a9072b0c9fc6a146e3457e5b9eba-6959
+From:<sip:alice@open-ims.test>;tag=18343927941834392794
+CSeq: 2 REGISTER
+Call-ID:1019450538@192.168.0.5
+Via:SIP/2.0/UDP 192.168.0.5:5060;rport=5060;branch=z9hG4bKfHx8fEZhbHNl
+P-Associated-Uri:<sip:alice@open-ims.test>
+Contact:<sip:alice@192.168.0.5:5060>;expires=3600
+Path:<sip:term@pcscf.open-ims.test:4060
+Route:<sip:orig@scscf.open-ims.test:6060;lr>
+Allow:INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, SUBSCRIBE, NOTIFY, PUBLISH, MESSAGE, INFO
+P-Charging-Function-Addresses:ccf=pri_ccf_address
+Server:Sip EXpress router (2.1.0-dev1 OpenIMSCore (i386/linux))
+Content-Length:0
+
+
+2012-03-31 12:50:32,211 INFO  SIPApp - Sending request with method INVITE
+2012-03-31 12:50:32,212 DEBUG SIPApp - 
+
+INVITE sip:bob@open-ims.test SIP/2.0
+To:<sip:bob@open-ims.test>
+From:<sip:alice@open-ims.test>;tag=18343927941914983715
+CSeq: 1 INVITE
+Call-ID:694157382@192.168.0.5
+Max-Forwards:70
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl
+Contact:<sip:alice@192.168.0.5:5060>
+Content-Length:0
+
+
+2012-03-31 12:50:32,221 INFO  SIPApp - Received response with code 100 trying -- your call is important to us
+2012-03-31 12:50:32,221 DEBUG SIPApp - 
+
+SIP/2.0 100 trying -- your call is important to us
+To:<sip:bob@open-ims.test>
+From:<sip:alice@open-ims.test>;tag=18343927941914983715
+CSeq: 1 INVITE
+Call-ID:694157382@192.168.0.5
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl;rport=5060
+Server:Sip EXpress router (2.1.0-dev1 OpenIMSCore (i386/linux))
+Content-Length:0
+
+
+2012-03-31 12:50:32,221 INFO  SIPApp - Response code of 100 is unhandled 
+2012-03-31 12:51:01,457 INFO  SIPApp - Sending request with method REGISTER
+2012-03-31 12:51:01,472 DEBUG SIPApp - 
+
+REGISTER sip:open-ims.test SIP/2.0
+To:<sip:alice@open-ims.test>
+From:<sip:alice@open-ims.test>;tag=5973956931367923621
+CSeq: 1 REGISTER
+Call-ID:1103346003@192.168.0.5
+Max-Forwards:70
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl
+Contact:<sip:alice@192.168.0.5:5060>
+Authorization:
+Expires:3600
+Content-Length:0
+
+
+2012-03-31 12:51:01,578 INFO  SIPApp - Received response with code 200 OK - SAR succesful and registrar saved
+2012-03-31 12:51:01,578 DEBUG SIPApp - 
+
+SIP/2.0 200 OK - SAR succesful and registrar saved
+To:<sip:alice@open-ims.test>;tag=5da1a9072b0c9fc6a146e3457e5b9eba-73b0
+From:<sip:alice@open-ims.test>;tag=5973956931367923621
+CSeq: 2 REGISTER
+Call-ID:1103346003@192.168.0.5
+Via:SIP/2.0/UDP 192.168.0.5:5060;rport=5060;branch=z9hG4bKfHx8fEZhbHNl
+P-Associated-Uri:<sip:alice@open-ims.test>
+Contact:<sip:alice@192.168.0.5:5060>;expires=3600
+Path:<sip:term@pcscf.open-ims.test:4060
+Route:<sip:orig@scscf.open-ims.test:6060;lr>
+Allow:INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, SUBSCRIBE, NOTIFY, PUBLISH, MESSAGE, INFO
+P-Charging-Function-Addresses:ccf=pri_ccf_address
+Server:Sip EXpress router (2.1.0-dev1 OpenIMSCore (i386/linux))
+Content-Length:0
+
+
+2012-03-31 12:51:10,110 INFO  SIPApp - Sending request with method INVITE
+2012-03-31 12:51:10,111 DEBUG SIPApp - 
+
+INVITE sip:bob@open-ims.test SIP/2.0
+To:<sip:bob@open-ims.test>
+From:<sip:alice@open-ims.test>;tag=5973956931356649251
+CSeq: 1 INVITE
+Call-ID:1527077469@192.168.0.5
+Max-Forwards:70
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl
+Contact:<sip:alice@192.168.0.5:5060>
+Content-Length:0
+
+
+2012-03-31 12:51:10,119 INFO  SIPApp - Received response with code 100 trying -- your call is important to us
+2012-03-31 12:51:10,120 DEBUG SIPApp - 
+
+SIP/2.0 100 trying -- your call is important to us
+To:<sip:bob@open-ims.test>
+From:<sip:alice@open-ims.test>;tag=5973956931356649251
+CSeq: 1 INVITE
+Call-ID:1527077469@192.168.0.5
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl;rport=5060
+Server:Sip EXpress router (2.1.0-dev1 OpenIMSCore (i386/linux))
+Content-Length:0
+
+
+2012-03-31 12:51:10,120 INFO  SIPApp - Response code of 100 is unhandled 
+2012-03-31 12:51:13,658 INFO  SIPApp - Received response with code 408 Request Timeout
+2012-03-31 12:51:13,659 DEBUG SIPApp - 
+
+SIP/2.0 408 Request Timeout
+To:<sip:bob@open-ims.test>;tag=31aa72a18e2187165cc453c80cee4fcd-a37e
+From:<sip:alice@open-ims.test>;tag=18343927941914983715
+CSeq: 1 INVITE
+Call-ID:694157382@192.168.0.5
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl;rport=5060
+Server:Sip EXpress router (2.1.0-dev1 OpenIMSCore (i386/linux))
+Content-Length:0
+
+
+2012-03-31 12:51:13,659 INFO  SIPApp - Response code of 408 is unhandled 
+2012-03-31 12:52:14,445 INFO  SIPApp - Sending request with method REGISTER
+2012-03-31 12:52:14,459 DEBUG SIPApp - 
+
+REGISTER sip:open-ims.test SIP/2.0
+To:<sip:alice@open-ims.test>
+From:<sip:alice@open-ims.test>;tag=143697290960017190
+CSeq: 1 REGISTER
+Call-ID:40671776@192.168.0.5
+Max-Forwards:70
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl
+Contact:<sip:alice@192.168.0.5:5060>
+Authorization:
+Expires:3600
+Content-Length:0
+
+
+2012-03-31 12:52:14,560 INFO  SIPApp - Received response with code 200 OK - SAR succesful and registrar saved
+2012-03-31 12:52:14,561 DEBUG SIPApp - 
+
+SIP/2.0 200 OK - SAR succesful and registrar saved
+To:<sip:alice@open-ims.test>;tag=5da1a9072b0c9fc6a146e3457e5b9eba-3ee3
+From:<sip:alice@open-ims.test>;tag=143697290960017190
+CSeq: 2 REGISTER
+Call-ID:40671776@192.168.0.5
+Via:SIP/2.0/UDP 192.168.0.5:5060;rport=5060;branch=z9hG4bKfHx8fEZhbHNl
+P-Associated-Uri:<sip:alice@open-ims.test>
+Contact:<sip:alice@192.168.0.5:5060>;expires=3600
+Path:<sip:term@pcscf.open-ims.test:4060
+Route:<sip:orig@scscf.open-ims.test:6060;lr>
+Allow:INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, SUBSCRIBE, NOTIFY, PUBLISH, MESSAGE, INFO
+P-Charging-Function-Addresses:ccf=pri_ccf_address
+Server:Sip EXpress router (2.1.0-dev1 OpenIMSCore (i386/linux))
+Content-Length:0
+
+
+2012-03-31 12:52:15,246 INFO  SIPApp - Sending request with method INVITE
+2012-03-31 12:52:15,246 DEBUG SIPApp - 
+
+INVITE sip:bob@open-ims.test SIP/2.0
+To:<sip:bob@open-ims.test>
+From:<sip:alice@open-ims.test>;tag=14369729091183815827
+CSeq: 1 INVITE
+Call-ID:2021833929@192.168.0.5
+Max-Forwards:70
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl
+Contact:<sip:alice@192.168.0.5:5060>
+Content-Length:0
+
+
+2012-03-31 12:52:15,251 INFO  SIPApp - Received response with code 100 trying -- your call is important to us
+2012-03-31 12:52:15,251 DEBUG SIPApp - 
+
+SIP/2.0 100 trying -- your call is important to us
+To:<sip:bob@open-ims.test>
+From:<sip:alice@open-ims.test>;tag=14369729091183815827
+CSeq: 1 INVITE
+Call-ID:2021833929@192.168.0.5
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl;rport=5060
+Server:Sip EXpress router (2.1.0-dev1 OpenIMSCore (i386/linux))
+Content-Length:0
+
+
+2012-03-31 12:52:15,251 INFO  SIPApp - Response code of 100 is unhandled 
+2012-03-31 12:52:45,182 INFO  SIPApp - Received response with code 408 Request Timeout
+2012-03-31 12:52:45,182 DEBUG SIPApp - 
+
+SIP/2.0 408 Request Timeout
+To:<sip:bob@open-ims.test>;tag=31aa72a18e2187165cc453c80cee4fcd-a37e
+From:<sip:alice@open-ims.test>;tag=14369729091183815827
+CSeq: 1 INVITE
+Call-ID:2021833929@192.168.0.5
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl;rport=5060
+Server:Sip EXpress router (2.1.0-dev1 OpenIMSCore (i386/linux))
+Content-Length:0
+
+
+2012-03-31 12:52:45,182 INFO  SIPApp - Response code of 408 is unhandled 
+2012-03-31 12:54:28,726 INFO  SIPApp - Sending request with method REGISTER
+2012-03-31 12:54:28,740 DEBUG SIPApp - 
+
+REGISTER sip:open-ims.test SIP/2.0
+To:<sip:alice@open-ims.test>
+From:<sip:alice@open-ims.test>;tag=160811858160811858
+CSeq: 1 REGISTER
+Call-ID:67476020@192.168.0.5
+Max-Forwards:70
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl
+Contact:<sip:alice@192.168.0.5:5060>
+Authorization:
+Expires:3600
+Content-Length:0
+
+
+2012-03-31 12:54:28,846 INFO  SIPApp - Received response with code 200 OK - SAR succesful and registrar saved
+2012-03-31 12:54:28,846 DEBUG SIPApp - 
+
+SIP/2.0 200 OK - SAR succesful and registrar saved
+To:<sip:alice@open-ims.test>;tag=5da1a9072b0c9fc6a146e3457e5b9eba-ed8e
+From:<sip:alice@open-ims.test>;tag=160811858160811858
+CSeq: 2 REGISTER
+Call-ID:67476020@192.168.0.5
+Via:SIP/2.0/UDP 192.168.0.5:5060;rport=5060;branch=z9hG4bKfHx8fEZhbHNl
+P-Associated-Uri:<sip:alice@open-ims.test>
+Contact:<sip:alice@192.168.0.5:5060>;expires=3600
+Path:<sip:term@pcscf.open-ims.test:4060
+Route:<sip:orig@scscf.open-ims.test:6060;lr>
+Allow:INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, SUBSCRIBE, NOTIFY, PUBLISH, MESSAGE, INFO
+P-Charging-Function-Addresses:ccf=pri_ccf_address
+Server:Sip EXpress router (2.1.0-dev1 OpenIMSCore (i386/linux))
+Content-Length:0
+
+
+2012-03-31 12:54:34,874 INFO  SIPApp - Sending request with method INVITE
+2012-03-31 12:54:34,875 DEBUG SIPApp - 
+
+INVITE sip:bob@open-ims.test SIP/2.0
+To:<sip:bob@open-ims.test>
+From:<sip:alice@open-ims.test>;tag=160811858206264952
+CSeq: 1 INVITE
+Call-ID:521364068@192.168.0.5
+Max-Forwards:70
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl
+Contact:<sip:alice@192.168.0.5:5060>
+Content-Length:0
+
+
+2012-03-31 12:54:34,879 INFO  SIPApp - Received response with code 100 trying -- your call is important to us
+2012-03-31 12:54:34,880 DEBUG SIPApp - 
+
+SIP/2.0 100 trying -- your call is important to us
+To:<sip:bob@open-ims.test>
+From:<sip:alice@open-ims.test>;tag=160811858206264952
+CSeq: 1 INVITE
+Call-ID:521364068@192.168.0.5
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl;rport=5060
+Server:Sip EXpress router (2.1.0-dev1 OpenIMSCore (i386/linux))
+Content-Length:0
+
+
+2012-03-31 12:54:34,880 INFO  SIPApp - Response code of 100 is unhandled 
+2012-03-31 12:55:04,809 INFO  SIPApp - Received response with code 408 Request Timeout
+2012-03-31 12:55:04,809 DEBUG SIPApp - 
+
+SIP/2.0 408 Request Timeout
+To:<sip:bob@open-ims.test>;tag=31aa72a18e2187165cc453c80cee4fcd-a37e
+From:<sip:alice@open-ims.test>;tag=160811858206264952
+CSeq: 1 INVITE
+Call-ID:521364068@192.168.0.5
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl;rport=5060
+Server:Sip EXpress router (2.1.0-dev1 OpenIMSCore (i386/linux))
+Content-Length:0
+
+
+2012-03-31 12:55:04,809 INFO  SIPApp - Response code of 408 is unhandled 
+2012-03-31 12:57:01,298 INFO  SIPApp - Sending request with method REGISTER
+2012-03-31 12:57:01,313 DEBUG SIPApp - 
+
+REGISTER sip:open-ims.test SIP/2.0
+To:<sip:alice@open-ims.test>
+From:<sip:alice@open-ims.test>;tag=21102127342110212734
+CSeq: 1 REGISTER
+Call-ID:1323898045@192.168.0.5
+Max-Forwards:70
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl
+Contact:<sip:alice@192.168.0.5:5060>
+Authorization:
+Expires:3600
+Content-Length:0
+
+
+2012-03-31 12:57:01,412 INFO  SIPApp - Received response with code 200 OK - SAR succesful and registrar saved
+2012-03-31 12:57:01,414 DEBUG SIPApp - 
+
+SIP/2.0 200 OK - SAR succesful and registrar saved
+To:<sip:alice@open-ims.test>;tag=5da1a9072b0c9fc6a146e3457e5b9eba-eef8
+From:<sip:alice@open-ims.test>;tag=21102127342110212734
+CSeq: 2 REGISTER
+Call-ID:1323898045@192.168.0.5
+Via:SIP/2.0/UDP 192.168.0.5:5060;rport=5060;branch=z9hG4bKfHx8fEZhbHNl
+P-Associated-Uri:<sip:alice@open-ims.test>
+Contact:<sip:alice@192.168.0.5:5060>;expires=3600
+Path:<sip:term@pcscf.open-ims.test:4060
+Route:<sip:orig@scscf.open-ims.test:6060;lr>
+Allow:INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, SUBSCRIBE, NOTIFY, PUBLISH, MESSAGE, INFO
+P-Charging-Function-Addresses:ccf=pri_ccf_address
+Server:Sip EXpress router (2.1.0-dev1 OpenIMSCore (i386/linux))
+Content-Length:0
+
+
+2012-03-31 12:57:04,695 INFO  SIPApp - Sending request with method INVITE
+2012-03-31 12:57:04,695 DEBUG SIPApp - 
+
+INVITE sip:bob@open-ims.test SIP/2.0
+To:<sip:bob@open-ims.test>
+From:<sip:alice@open-ims.test>;tag=21102127342032212471
+CSeq: 1 INVITE
+Call-ID:303865151@192.168.0.5
+Max-Forwards:70
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl
+Contact:<sip:alice@192.168.0.5:5060>
+Content-Length:0
+
+
+2012-03-31 12:57:04,703 INFO  SIPApp - Received response with code 100 trying -- your call is important to us
+2012-03-31 12:57:04,703 DEBUG SIPApp - 
+
+SIP/2.0 100 trying -- your call is important to us
+To:<sip:bob@open-ims.test>
+From:<sip:alice@open-ims.test>;tag=21102127342032212471
+CSeq: 1 INVITE
+Call-ID:303865151@192.168.0.5
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl;rport=5060
+Server:Sip EXpress router (2.1.0-dev1 OpenIMSCore (i386/linux))
+Content-Length:0
+
+
+2012-03-31 12:57:04,703 INFO  SIPApp - Response code of 100 is unhandled 
+2012-03-31 12:57:04,744 INFO  SIPApp - Received response with code 180 Ringing
+2012-03-31 12:57:04,745 DEBUG SIPApp - 
+
+SIP/2.0 180 Ringing
+Record-Route:<sip:mt@pcscf.open-ims.test:4060;lr>
+Record-Route:<sip:mt@scscf.open-ims.test:6060;lr>
+Record-Route:<sip:mo@scscf.open-ims.test:6060;lr>
+Record-Route:<sip:mo@pcscf.open-ims.test:4060;lr>
+From:<sip:alice@open-ims.test>;tag=21102127342032212471
+To:<sip:bob@open-ims.test>;tag=356067042
+Contact:<sip:bob@192.168.0.5:64711;transport=udp>
+Call-ID:303865151@192.168.0.5
+CSeq: 1 INVITE
+Via:SIP/2.0/UDP 192.168.0.5:5060;rport=5060;branch=z9hG4bKfHx8fEZhbHNl
+Allow:ACK, BYE, CANCEL, INVITE, MESSAGE, NOTIFY, OPTIONS, PRACK, REFER, UPDATE
+P-Asserted-Identity:<sip:bob@open-ims.test>
+Content-Length:0
+
+
+2012-03-31 12:57:13,386 INFO  SIPApp - New dialog created
+2012-03-31 12:57:13,386 INFO  SIPApp - Received response with code 200 OK
+2012-03-31 12:57:13,386 DEBUG SIPApp - 
+
+SIP/2.0 200 OK
+Route:<sip:mt@pcscf.open-ims.test:4060;lr>
+Route:<sip:mt@scscf.open-ims.test:6060;lr>
+Route:<sip:mo@scscf.open-ims.test:6060;lr>
+Route:<sip:mo@pcscf.open-ims.test:4060;lr>
+From:<sip:alice@open-ims.test>;tag=21102127342032212471
+To:<sip:bob@open-ims.test>;tag=356067042
+Contact:<sip:bob@192.168.0.5:64711;transport=udp>
+Call-ID:303865151@192.168.0.5
+CSeq: 1 INVITE
+Content-Type:application/sdp
+Via:SIP/2.0/UDP 192.168.0.5:5060;rport=5060;branch=z9hG4bKfHx8fEZhbHNl
+Allow:ACK, BYE, CANCEL, INVITE, MESSAGE, NOTIFY, OPTIONS, PRACK, REFER, UPDATE
+P-Asserted-Identity:<sip:bob@open-ims.test>
+Content-Length:290
+
+v=0
+o=doubango 1983 678901 IN IP4 192.168.0.5
+s=-
+c=IN IP4 192.168.0.5
+t=0 0
+m=audio 6728 RTP/AVP 3 8 0 97 101
+a=ptime:20
+a=rtpmap:3 GSM/8000/1
+a=rtpmap:8 PCMA/8000/1
+a=rtpmap:0 PCMU/8000/1
+a=rtpmap:97 SPEEX/8000/1
+a=rtpmap:101 telephone-event/8000/1
+a=fmtp:101 0-15
+a=sendrecv
+2012-03-31 12:57:13,389 INFO  SIPApp - Sending request with method ACK
+2012-03-31 12:57:13,389 DEBUG SIPApp - 
+
+ACK sip:bob@open-ims.test SIP/2.0
+To:<sip:bob@open-ims.test>;tag=356067042
+From:<sip:alice@open-ims.test>;tag=21102127342032212471
+CSeq: 1 ACK
+Call-ID:303865151@192.168.0.5
+Max-Forwards:70
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl
+Contact:<sip:alice@192.168.0.5:5060>
+Content-Length:0
+
+
+2012-03-31 13:01:10,143 INFO  SIPApp - Sending request with method REGISTER
+2012-03-31 13:01:10,157 DEBUG SIPApp - 
+
+REGISTER sip:open-ims.test SIP/2.0
+To:<sip:alice@open-ims.test>
+From:<sip:alice@open-ims.test>;tag=15688468841217474993
+CSeq: 1 REGISTER
+Call-ID:53758658@192.168.0.5
+Max-Forwards:70
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl
+Contact:<sip:alice@192.168.0.5:5060>
+Authorization:
+Expires:3600
+Content-Length:0
+
+
+2012-03-31 13:01:38,736 INFO  SIPApp - Sending request with method REGISTER
+2012-03-31 13:01:38,751 DEBUG SIPApp - 
+
+REGISTER sip:open-ims.test SIP/2.0
+To:<sip:alice@open-ims.test>
+From:<sip:alice@open-ims.test>;tag=1035968656684596765
+CSeq: 1 REGISTER
+Call-ID:709535713@192.168.0.5
+Max-Forwards:70
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl
+Contact:<sip:alice@192.168.0.5:5060>
+Authorization:
+Expires:3600
+Content-Length:0
+
+
+2012-03-31 13:01:47,286 INFO  SIPApp - Sending request with method REGISTER
+2012-03-31 13:01:47,301 DEBUG SIPApp - 
+
+REGISTER sip:open-ims.test SIP/2.0
+To:<sip:alice@open-ims.test>
+From:<sip:alice@open-ims.test>;tag=14955537851144181894
+CSeq: 1 REGISTER
+Call-ID:1645327004@192.168.0.5
+Max-Forwards:70
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl
+Contact:<sip:alice@192.168.0.5:5060>
+Authorization:
+Expires:3600
+Content-Length:0
+
+
+2012-03-31 13:02:23,691 INFO  SIPApp - Sending request with method REGISTER
+2012-03-31 13:02:23,705 DEBUG SIPApp - 
+
+REGISTER sip:open-ims.test SIP/2.0
+To:<sip:alice@open-ims.test>
+From:<sip:alice@open-ims.test>;tag=4340303411204558269
+CSeq: 1 REGISTER
+Call-ID:296420486@192.168.0.5
+Max-Forwards:70
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl
+Contact:<sip:alice@192.168.0.5:5060>
+Authorization:
+Expires:3600
+Content-Length:0
+
+
+2012-03-31 13:03:23,010 INFO  SIPApp - Sending request with method REGISTER
+2012-03-31 13:03:23,024 DEBUG SIPApp - 
+
+REGISTER sip:open-ims.test SIP/2.0
+To:<sip:alice@open-ims.test>
+From:<sip:alice@open-ims.test>;tag=6278089271398336855
+CSeq: 1 REGISTER
+Call-ID:822653841@192.168.0.5
+Max-Forwards:70
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl
+Contact:<sip:alice@192.168.0.5:5060>
+Authorization:
+Expires:3600
+Content-Length:0
+
+
+2012-03-31 13:04:28,585 INFO  SIPApp - Sending request with method REGISTER
+2012-03-31 13:04:28,599 DEBUG SIPApp - 
+
+REGISTER sip:open-ims.test SIP/2.0
+To:<sip:alice@open-ims.test>
+From:<sip:alice@open-ims.test>;tag=1098924890747552999
+CSeq: 1 REGISTER
+Call-ID:1409340809@192.168.0.5
+Max-Forwards:70
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl
+Contact:<sip:alice@192.168.0.5:5060>
+Authorization:
+Expires:3600
+Content-Length:0
+
+
+2012-03-31 13:04:30,446 ERROR SIPApp - Object reference not set to an instance of an object.
+2012-03-31 13:05:25,406 INFO  SIPApp - Sending request with method REGISTER
+2012-03-31 13:05:25,420 DEBUG SIPApp - 
+
+REGISTER sip:open-ims.test SIP/2.0
+To:<sip:alice@open-ims.test>
+From:<sip:alice@open-ims.test>;tag=227531121998059049
+CSeq: 1 REGISTER
+Call-ID:504731317@192.168.0.5
+Max-Forwards:70
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl
+Contact:<sip:alice@192.168.0.5:5060>
+Authorization:
+Expires:3600
+Content-Length:0
+
+
+2012-03-31 13:05:25,527 ERROR SIPApp - Error in ReceiveDataCB
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at SIPLib.SIPStack.receivedResponse(Message r, SIPURI uri) in F:\Dropbox\Dropbox\PhD related\Software\SIPLib\SIPLib\src\SIP\SIPStack.cs:line 405
+   at SIPLib.SIPStack.received(String data, String[] src) in F:\Dropbox\Dropbox\PhD related\Software\SIPLib\SIPLib\src\SIP\SIPStack.cs:line 206
+   at SIPLib.SIPStack.transport_Received_Data_Event(Object sender, RawEventArgs e) in F:\Dropbox\Dropbox\PhD related\Software\SIPLib\SIPLib\src\SIP\SIPStack.cs:line 50
+   at SIPLib.SIPApp.ReceiveDataCB(IAsyncResult asyncResult) in F:\Dropbox\Dropbox\PhD related\Software\SIPLib\SIPLib\src\SIPApp.cs:line 65
+2012-03-31 13:05:51,038 INFO  SIPApp - Sending request with method REGISTER
+2012-03-31 13:05:51,052 DEBUG SIPApp - 
+
+REGISTER sip:open-ims.test SIP/2.0
+To:<sip:alice@open-ims.test>
+From:<sip:alice@open-ims.test>;tag=8357585801606286508
+CSeq: 1 REGISTER
+Call-ID:1820252850@192.168.0.5
+Max-Forwards:70
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl
+Contact:<sip:alice@192.168.0.5:5060>
+Authorization:
+Expires:3600
+Content-Length:0
+
+
+2012-03-31 13:06:32,443 INFO  SIPApp - Sending request with method REGISTER
+2012-03-31 13:06:32,457 DEBUG SIPApp - 
+
+REGISTER sip:open-ims.test SIP/2.0
+To:<sip:alice@open-ims.test>
+From:<sip:alice@open-ims.test>;tag=15532079551553207955
+CSeq: 1 REGISTER
+Call-ID:2047289036@192.168.0.5
+Max-Forwards:70
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl
+Contact:<sip:alice@192.168.0.5:5060>
+Authorization:
+Expires:3600
+Content-Length:0
+
+
+2012-03-31 13:06:52,305 INFO  SIPApp - Sending request with method REGISTER
+2012-03-31 13:06:52,321 DEBUG SIPApp - 
+
+REGISTER sip:open-ims.test SIP/2.0
+To:<sip:alice@open-ims.test>
+From:<sip:alice@open-ims.test>;tag=44834792396976032
+CSeq: 1 REGISTER
+Call-ID:556138324@192.168.0.5
+Max-Forwards:70
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl
+Contact:<sip:alice@192.168.0.5:5060>
+Authorization:
+Expires:3600
+Content-Length:0
+
+
+2012-03-31 13:08:34,253 INFO  SIPApp - Sending request with method REGISTER
+2012-03-31 13:08:34,268 DEBUG SIPApp - 
+
+REGISTER sip:open-ims.test SIP/2.0
+To:<sip:alice@open-ims.test>
+From:<sip:alice@open-ims.test>;tag=15862680521586268052
+CSeq: 1 REGISTER
+Call-ID:1735293071@192.168.0.5
+Max-Forwards:70
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl
+Contact:<sip:alice@192.168.0.5:5060>
+Authorization:
+Expires:3600
+Content-Length:0
+
+
+2012-03-31 13:09:00,457 INFO  SIPApp - Sending request with method REGISTER
+2012-03-31 13:09:00,471 DEBUG SIPApp - 
+
+REGISTER sip:open-ims.test SIP/2.0
+To:<sip:alice@open-ims.test>
+From:<sip:alice@open-ims.test>;tag=990629680990629680
+CSeq: 1 REGISTER
+Call-ID:1553035705@192.168.0.5
+Max-Forwards:70
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl
+Contact:<sip:alice@192.168.0.5:5060>
+Authorization:
+Expires:3600
+Content-Length:0
+
+
+2012-03-31 13:09:06,698 INFO  SIPApp - Sending request with method REGISTER
+2012-03-31 13:09:06,713 DEBUG SIPApp - 
+
+REGISTER sip:open-ims.test SIP/2.0
+To:<sip:alice@open-ims.test>
+From:<sip:alice@open-ims.test>;tag=848811020848811020
+CSeq: 1 REGISTER
+Call-ID:1407379968@192.168.0.5
+Max-Forwards:70
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl
+Contact:<sip:alice@192.168.0.5:5060>
+Authorization:
+Expires:3600
+Content-Length:0
+
+
+2012-03-31 13:09:29,877 INFO  SIPApp - Sending request with method REGISTER
+2012-03-31 13:09:29,891 DEBUG SIPApp - 
+
+REGISTER sip:open-ims.test SIP/2.0
+To:<sip:alice@open-ims.test>
+From:<sip:alice@open-ims.test>;tag=1932921980555966261
+CSeq: 1 REGISTER
+Call-ID:2128279687@192.168.0.5
+Max-Forwards:70
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl
+Contact:<sip:alice@192.168.0.5:5060>
+Authorization:
+Expires:3600
+Content-Length:0
+
+
+2012-03-31 13:10:32,353 INFO  SIPApp - Sending request with method INVITE
+2012-03-31 13:10:32,353 DEBUG SIPApp - 
+
+INVITE sip:bob@open-ims.test SIP/2.0
+To:<sip:bob@open-ims.test>
+From:<sip:alice@open-ims.test>;tag=1932921980140191872
+CSeq: 1 INVITE
+Call-ID:1248826254@192.168.0.5
+Max-Forwards:70
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl
+Contact:<sip:alice@192.168.0.5:5060>
+Content-Length:0
+
+
+2012-03-31 13:10:36,693 INFO  SIPApp - Sending request with method REGISTER
+2012-03-31 13:10:36,708 DEBUG SIPApp - 
+
+REGISTER sip:open-ims.test SIP/2.0
+To:<sip:alice@open-ims.test>
+From:<sip:alice@open-ims.test>;tag=228190564228190564
+CSeq: 1 REGISTER
+Call-ID:967848590@192.168.0.5
+Max-Forwards:70
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl
+Contact:<sip:alice@192.168.0.5:5060>
+Authorization:
+Expires:3600
+Content-Length:0
+
+
+2012-03-31 13:10:38,577 INFO  SIPApp - Received response with code 200 OK - SAR succesful and registrar saved
+2012-03-31 13:10:38,578 DEBUG SIPApp - 
+
+SIP/2.0 200 OK - SAR succesful and registrar saved
+To:<sip:alice@open-ims.test>;tag=5da1a9072b0c9fc6a146e3457e5b9eba-860b
+From:<sip:alice@open-ims.test>;tag=228190564228190564
+CSeq: 2 REGISTER
+Call-ID:967848590@192.168.0.5
+Via:SIP/2.0/UDP 192.168.0.5:5060;rport=5060;branch=z9hG4bKfHx8fEZhbHNl
+P-Associated-Uri:<sip:alice@open-ims.test>
+Contact:<sip:alice@192.168.0.5:5060>;expires=3600
+Path:<sip:term@pcscf.open-ims.test:4060
+Route:<sip:orig@scscf.open-ims.test:6060;lr>
+Allow:INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, SUBSCRIBE, NOTIFY, PUBLISH, MESSAGE, INFO
+P-Charging-Function-Addresses:ccf=pri_ccf_address
+Server:Sip EXpress router (2.1.0-dev1 OpenIMSCore (i386/linux))
+Content-Length:0
+
+
+2012-03-31 13:10:47,108 INFO  SIPApp - Sending request with method INVITE
+2012-03-31 13:10:47,108 DEBUG SIPApp - 
+
+INVITE sip:bob@open-ims.test SIP/2.0
+To:<sip:bob@open-ims.test>
+From:<sip:alice@open-ims.test>;tag=2281905641415758023
+CSeq: 1 INVITE
+Call-ID:1391401145@192.168.0.5
+Max-Forwards:70
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl
+Contact:<sip:alice@192.168.0.5:5060>
+Content-Length:0
+
+
+2012-03-31 13:10:47,116 INFO  SIPApp - Received response with code 100 trying -- your call is important to us
+2012-03-31 13:10:47,116 DEBUG SIPApp - 
+
+SIP/2.0 100 trying -- your call is important to us
+To:<sip:bob@open-ims.test>
+From:<sip:alice@open-ims.test>;tag=2281905641415758023
+CSeq: 1 INVITE
+Call-ID:1391401145@192.168.0.5
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl;rport=5060
+Server:Sip EXpress router (2.1.0-dev1 OpenIMSCore (i386/linux))
+Content-Length:0
+
+
+2012-03-31 13:10:47,116 INFO  SIPApp - Response code of 100 is unhandled 
+2012-03-31 13:10:47,172 INFO  SIPApp - Received response with code 180 Ringing
+2012-03-31 13:10:47,173 DEBUG SIPApp - 
+
+SIP/2.0 180 Ringing
+Record-Route:<sip:mt@pcscf.open-ims.test:4060;lr>
+Record-Route:<sip:mt@scscf.open-ims.test:6060;lr>
+Record-Route:<sip:mo@scscf.open-ims.test:6060;lr>
+Record-Route:<sip:mo@pcscf.open-ims.test:4060;lr>
+From:<sip:alice@open-ims.test>;tag=2281905641415758023
+To:<sip:bob@open-ims.test>;tag=356884868
+Contact:<sip:bob@192.168.0.5:64711;transport=udp>
+Call-ID:1391401145@192.168.0.5
+CSeq: 1 INVITE
+Via:SIP/2.0/UDP 192.168.0.5:5060;rport=5060;branch=z9hG4bKfHx8fEZhbHNl
+Allow:ACK, BYE, CANCEL, INVITE, MESSAGE, NOTIFY, OPTIONS, PRACK, REFER, UPDATE
+P-Asserted-Identity:<sip:bob@open-ims.test>
+Content-Length:0
+
+
+2012-03-31 13:10:50,508 INFO  SIPApp - New dialog created
+2012-03-31 13:10:50,509 INFO  SIPApp - Received response with code 200 OK
+2012-03-31 13:10:50,509 DEBUG SIPApp - 
+
+SIP/2.0 200 OK
+Route:<sip:mt@pcscf.open-ims.test:4060;lr>
+Route:<sip:mt@scscf.open-ims.test:6060;lr>
+Route:<sip:mo@scscf.open-ims.test:6060;lr>
+Route:<sip:mo@pcscf.open-ims.test:4060;lr>
+From:<sip:alice@open-ims.test>;tag=2281905641415758023
+To:<sip:bob@open-ims.test>;tag=356884868
+Contact:<sip:bob@192.168.0.5:64711;transport=udp>
+Call-ID:1391401145@192.168.0.5
+CSeq: 1 INVITE
+Content-Type:application/sdp
+Via:SIP/2.0/UDP 192.168.0.5:5060;rport=5060;branch=z9hG4bKfHx8fEZhbHNl
+Allow:ACK, BYE, CANCEL, INVITE, MESSAGE, NOTIFY, OPTIONS, PRACK, REFER, UPDATE
+P-Asserted-Identity:<sip:bob@open-ims.test>
+Content-Length:290
+
+v=0
+o=doubango 1983 678901 IN IP4 192.168.0.5
+s=-
+c=IN IP4 192.168.0.5
+t=0 0
+m=audio 6460 RTP/AVP 3 8 0 97 101
+a=ptime:20
+a=rtpmap:3 GSM/8000/1
+a=rtpmap:8 PCMA/8000/1
+a=rtpmap:0 PCMU/8000/1
+a=rtpmap:97 SPEEX/8000/1
+a=rtpmap:101 telephone-event/8000/1
+a=fmtp:101 0-15
+a=sendrecv
+2012-03-31 13:10:50,511 INFO  SIPApp - Sending request with method ACK
+2012-03-31 13:10:50,511 DEBUG SIPApp - 
+
+ACK sip:bob@open-ims.test SIP/2.0
+To:<sip:bob@open-ims.test>;tag=356884868
+From:<sip:alice@open-ims.test>;tag=2281905641415758023
+CSeq: 1 ACK
+Call-ID:1391401145@192.168.0.5
+Max-Forwards:70
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl
+Contact:<sip:alice@192.168.0.5:5060>
+Content-Length:0
+
+
+2012-03-31 13:11:45,083 INFO  SIPApp - Sending request with method REGISTER
+2012-03-31 13:11:45,097 DEBUG SIPApp - 
+
+REGISTER sip:open-ims.test SIP/2.0
+To:<sip:alice@open-ims.test>
+From:<sip:alice@open-ims.test>;tag=986860021635488130
+CSeq: 1 REGISTER
+Call-ID:519875637@192.168.0.5
+Max-Forwards:70
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl
+Contact:<sip:alice@192.168.0.5:5060>
+Authorization:
+Expires:3600
+Content-Length:0
+
+
+2012-03-31 13:11:45,201 INFO  SIPApp - Received response with code 200 OK - SAR succesful and registrar saved
+2012-03-31 13:11:45,201 DEBUG SIPApp - 
+
+SIP/2.0 200 OK - SAR succesful and registrar saved
+To:<sip:alice@open-ims.test>;tag=5da1a9072b0c9fc6a146e3457e5b9eba-b214
+From:<sip:alice@open-ims.test>;tag=986860021635488130
+CSeq: 2 REGISTER
+Call-ID:519875637@192.168.0.5
+Via:SIP/2.0/UDP 192.168.0.5:5060;rport=5060;branch=z9hG4bKfHx8fEZhbHNl
+P-Associated-Uri:<sip:alice@open-ims.test>
+Contact:<sip:alice@192.168.0.5:5060>;expires=3600
+Path:<sip:term@pcscf.open-ims.test:4060
+Route:<sip:orig@scscf.open-ims.test:6060;lr>
+Allow:INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, SUBSCRIBE, NOTIFY, PUBLISH, MESSAGE, INFO
+P-Charging-Function-Addresses:ccf=pri_ccf_address
+Server:Sip EXpress router (2.1.0-dev1 OpenIMSCore (i386/linux))
+Content-Length:0
+
+
+2012-03-31 13:12:39,838 INFO  SIPApp - Sending request with method INVITE
+2012-03-31 13:12:39,838 DEBUG SIPApp - 
+
+INVITE sip:bob@open-ims.test SIP/2.0
+To:<sip:bob@open-ims.test>
+From:<sip:alice@open-ims.test>;tag=9868600212005827068
+CSeq: 1 INVITE
+Call-ID:1397493331@192.168.0.5
+Max-Forwards:70
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl
+Contact:<sip:alice@192.168.0.5:5060>
+Content-Length:0
+
+
+2012-03-31 13:12:39,846 INFO  SIPApp - Received response with code 100 trying -- your call is important to us
+2012-03-31 13:12:39,846 DEBUG SIPApp - 
+
+SIP/2.0 100 trying -- your call is important to us
+To:<sip:bob@open-ims.test>
+From:<sip:alice@open-ims.test>;tag=9868600212005827068
+CSeq: 1 INVITE
+Call-ID:1397493331@192.168.0.5
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl;rport=5060
+Server:Sip EXpress router (2.1.0-dev1 OpenIMSCore (i386/linux))
+Content-Length:0
+
+
+2012-03-31 13:12:39,846 INFO  SIPApp - Response code of 100 is unhandled 
+2012-03-31 13:12:39,885 INFO  SIPApp - Received response with code 180 Ringing
+2012-03-31 13:12:39,885 DEBUG SIPApp - 
+
+SIP/2.0 180 Ringing
+Record-Route:<sip:mt@pcscf.open-ims.test:4060;lr>
+Record-Route:<sip:mt@scscf.open-ims.test:6060;lr>
+Record-Route:<sip:mo@scscf.open-ims.test:6060;lr>
+Record-Route:<sip:mo@pcscf.open-ims.test:4060;lr>
+From:<sip:alice@open-ims.test>;tag=9868600212005827068
+To:<sip:bob@open-ims.test>;tag=357038701
+Contact:<sip:bob@192.168.0.5:64711;transport=udp>
+Call-ID:1397493331@192.168.0.5
+CSeq: 1 INVITE
+Via:SIP/2.0/UDP 192.168.0.5:5060;rport=5060;branch=z9hG4bKfHx8fEZhbHNl
+Allow:ACK, BYE, CANCEL, INVITE, MESSAGE, NOTIFY, OPTIONS, PRACK, REFER, UPDATE
+P-Asserted-Identity:<sip:bob@open-ims.test>
+Content-Length:0
+
+
+2012-03-31 13:13:12,079 INFO  SIPApp - New dialog created
+2012-03-31 13:13:12,080 INFO  SIPApp - Received response with code 200 OK
+2012-03-31 13:13:12,080 DEBUG SIPApp - 
+
+SIP/2.0 200 OK
+Route:<sip:mt@pcscf.open-ims.test:4060;lr>
+Route:<sip:mt@scscf.open-ims.test:6060;lr>
+Route:<sip:mo@scscf.open-ims.test:6060;lr>
+Route:<sip:mo@pcscf.open-ims.test:4060;lr>
+From:<sip:alice@open-ims.test>;tag=9868600212005827068
+To:<sip:bob@open-ims.test>;tag=357038701
+Contact:<sip:bob@192.168.0.5:64711;transport=udp>
+Call-ID:1397493331@192.168.0.5
+CSeq: 1 INVITE
+Content-Type:application/sdp
+Via:SIP/2.0/UDP 192.168.0.5:5060;rport=5060;branch=z9hG4bKfHx8fEZhbHNl
+Allow:ACK, BYE, CANCEL, INVITE, MESSAGE, NOTIFY, OPTIONS, PRACK, REFER, UPDATE
+P-Asserted-Identity:<sip:bob@open-ims.test>
+Content-Length:291
+
+v=0
+o=doubango 1983 678901 IN IP4 192.168.0.5
+s=-
+c=IN IP4 192.168.0.5
+t=0 0
+m=audio 20742 RTP/AVP 3 8 0 97 101
+a=ptime:20
+a=rtpmap:3 GSM/8000/1
+a=rtpmap:8 PCMA/8000/1
+a=rtpmap:0 PCMU/8000/1
+a=rtpmap:97 SPEEX/8000/1
+a=rtpmap:101 telephone-event/8000/1
+a=fmtp:101 0-15
+a=sendrecv
+2012-03-31 13:13:12,082 INFO  SIPApp - Sending request with method ACK
+2012-03-31 13:13:12,083 DEBUG SIPApp - 
+
+ACK sip:bob@open-ims.test SIP/2.0
+To:<sip:bob@open-ims.test>;tag=357038701
+From:<sip:alice@open-ims.test>;tag=9868600212005827068
+CSeq: 1 ACK
+Call-ID:1397493331@192.168.0.5
+Max-Forwards:70
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl
+Contact:<sip:alice@192.168.0.5:5060>
+Content-Length:0
+
+
+2012-03-31 13:14:14,613 INFO  SIPApp - Sending request with method REGISTER
+2012-03-31 13:14:14,627 DEBUG SIPApp - 
+
+REGISTER sip:open-ims.test SIP/2.0
+To:<sip:alice@open-ims.test>
+From:<sip:alice@open-ims.test>;tag=21171546912117154691
+CSeq: 1 REGISTER
+Call-ID:1393711757@192.168.0.5
+Max-Forwards:70
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl
+Contact:<sip:alice@192.168.0.5:5060>
+Authorization:
+Expires:3600
+Content-Length:0
+
+
+2012-03-31 13:14:14,719 INFO  SIPApp - Received response with code 200 OK - SAR succesful and registrar saved
+2012-03-31 13:14:14,719 DEBUG SIPApp - 
+
+SIP/2.0 200 OK - SAR succesful and registrar saved
+To:<sip:alice@open-ims.test>;tag=5da1a9072b0c9fc6a146e3457e5b9eba-d2c5
+From:<sip:alice@open-ims.test>;tag=21171546912117154691
+CSeq: 2 REGISTER
+Call-ID:1393711757@192.168.0.5
+Via:SIP/2.0/UDP 192.168.0.5:5060;rport=5060;branch=z9hG4bKfHx8fEZhbHNl
+P-Associated-Uri:<sip:alice@open-ims.test>
+Contact:<sip:alice@192.168.0.5:5060>;expires=3600
+Path:<sip:term@pcscf.open-ims.test:4060
+Route:<sip:orig@scscf.open-ims.test:6060;lr>
+Allow:INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, SUBSCRIBE, NOTIFY, PUBLISH, MESSAGE, INFO
+P-Charging-Function-Addresses:ccf=pri_ccf_address
+Server:Sip EXpress router (2.1.0-dev1 OpenIMSCore (i386/linux))
+Content-Length:0
+
+
+2012-03-31 13:14:37,902 INFO  SIPApp - Sending request with method REGISTER
+2012-03-31 13:14:37,918 DEBUG SIPApp - 
+
+REGISTER sip:open-ims.test SIP/2.0
+To:<sip:alice@open-ims.test>
+From:<sip:alice@open-ims.test>;tag=9342943961704822324
+CSeq: 1 REGISTER
+Call-ID:2077308219@192.168.0.5
+Max-Forwards:70
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl
+Contact:<sip:alice@192.168.0.5:5060>
+Authorization:
+Expires:3600
+Content-Length:0
+
+
+2012-03-31 13:14:38,027 INFO  SIPApp - Received response with code 200 OK - SAR succesful and registrar saved
+2012-03-31 13:14:38,028 DEBUG SIPApp - 
+
+SIP/2.0 200 OK - SAR succesful and registrar saved
+To:<sip:alice@open-ims.test>;tag=5da1a9072b0c9fc6a146e3457e5b9eba-4560
+From:<sip:alice@open-ims.test>;tag=9342943961704822324
+CSeq: 2 REGISTER
+Call-ID:2077308219@192.168.0.5
+Via:SIP/2.0/UDP 192.168.0.5:5060;rport=5060;branch=z9hG4bKfHx8fEZhbHNl
+P-Associated-Uri:<sip:alice@open-ims.test>
+Contact:<sip:alice@192.168.0.5:5060>;expires=3600
+Path:<sip:term@pcscf.open-ims.test:4060
+Route:<sip:orig@scscf.open-ims.test:6060;lr>
+Allow:INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, SUBSCRIBE, NOTIFY, PUBLISH, MESSAGE, INFO
+P-Charging-Function-Addresses:ccf=pri_ccf_address
+Server:Sip EXpress router (2.1.0-dev1 OpenIMSCore (i386/linux))
+Content-Length:0
+
+
+2012-03-31 13:14:45,633 INFO  SIPApp - Sending request with method INVITE
+2012-03-31 13:14:45,634 DEBUG SIPApp - 
+
+INVITE sip:bob@open-ims.test SIP/2.0
+To:<sip:bob@open-ims.test>
+From:<sip:alice@open-ims.test>;tag=934294396337865034
+CSeq: 1 INVITE
+Call-ID:1413707615@192.168.0.5
+Max-Forwards:70
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl
+Contact:<sip:alice@192.168.0.5:5060>
+Content-Length:0
+
+
+2012-03-31 13:14:45,642 INFO  SIPApp - Received response with code 100 trying -- your call is important to us
+2012-03-31 13:14:45,642 DEBUG SIPApp - 
+
+SIP/2.0 100 trying -- your call is important to us
+To:<sip:bob@open-ims.test>
+From:<sip:alice@open-ims.test>;tag=934294396337865034
+CSeq: 1 INVITE
+Call-ID:1413707615@192.168.0.5
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl;rport=5060
+Server:Sip EXpress router (2.1.0-dev1 OpenIMSCore (i386/linux))
+Content-Length:0
+
+
+2012-03-31 13:14:45,642 INFO  SIPApp - Response code of 100 is unhandled 
+2012-03-31 13:14:45,694 INFO  SIPApp - Received response with code 180 Ringing
+2012-03-31 13:14:45,695 DEBUG SIPApp - 
+
+SIP/2.0 180 Ringing
+Record-Route:<sip:mt@pcscf.open-ims.test:4060;lr>
+Record-Route:<sip:mt@scscf.open-ims.test:6060;lr>
+Record-Route:<sip:mo@scscf.open-ims.test:6060;lr>
+Record-Route:<sip:mo@pcscf.open-ims.test:4060;lr>
+From:<sip:alice@open-ims.test>;tag=934294396337865034
+To:<sip:bob@open-ims.test>;tag=357121531
+Contact:<sip:bob@192.168.0.5:64711;transport=udp>
+Call-ID:1413707615@192.168.0.5
+CSeq: 1 INVITE
+Via:SIP/2.0/UDP 192.168.0.5:5060;rport=5060;branch=z9hG4bKfHx8fEZhbHNl
+Allow:ACK, BYE, CANCEL, INVITE, MESSAGE, NOTIFY, OPTIONS, PRACK, REFER, UPDATE
+P-Asserted-Identity:<sip:bob@open-ims.test>
+Content-Length:0
+
+
+2012-03-31 13:14:52,606 INFO  SIPApp - New dialog created
+2012-03-31 13:14:52,606 INFO  SIPApp - Received response with code 200 OK
+2012-03-31 13:14:52,607 DEBUG SIPApp - 
+
+SIP/2.0 200 OK
+Record-Route:<sip:mt@pcscf.open-ims.test:4060;lr>
+Route:<sip:mt@scscf.open-ims.test:6060;lr>
+Route:<sip:mo@scscf.open-ims.test:6060;lr>
+Route:<sip:mo@pcscf.open-ims.test:4060;lr>
+From:<sip:alice@open-ims.test>;tag=934294396337865034
+To:<sip:bob@open-ims.test>;tag=357121531
+Contact:<sip:bob@192.168.0.5:64711;transport=udp>
+Call-ID:1413707615@192.168.0.5
+CSeq: 1 INVITE
+Content-Type:application/sdp
+Via:SIP/2.0/UDP 192.168.0.5:5060;rport=5060;branch=z9hG4bKfHx8fEZhbHNl
+Allow:ACK, BYE, CANCEL, INVITE, MESSAGE, NOTIFY, OPTIONS, PRACK, REFER, UPDATE
+P-Asserted-Identity:<sip:bob@open-ims.test>
+Content-Length:291
+
+v=0
+o=doubango 1983 678901 IN IP4 192.168.0.5
+s=-
+c=IN IP4 192.168.0.5
+t=0 0
+m=audio 27322 RTP/AVP 3 8 0 97 101
+a=ptime:20
+a=rtpmap:3 GSM/8000/1
+a=rtpmap:8 PCMA/8000/1
+a=rtpmap:0 PCMU/8000/1
+a=rtpmap:97 SPEEX/8000/1
+a=rtpmap:101 telephone-event/8000/1
+a=fmtp:101 0-15
+a=sendrecv
+2012-03-31 13:14:52,609 INFO  SIPApp - Sending request with method ACK
+2012-03-31 13:14:52,610 DEBUG SIPApp - 
+
+ACK sip:bob@open-ims.test SIP/2.0
+To:<sip:bob@open-ims.test>;tag=357121531
+From:<sip:alice@open-ims.test>;tag=934294396337865034
+CSeq: 1 ACK
+Call-ID:1413707615@192.168.0.5
+Max-Forwards:70
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl
+Contact:<sip:alice@192.168.0.5:5060>
+Content-Length:0
+
+
+2012-03-31 13:17:04,404 INFO  SIPApp - Sending request with method REGISTER
+2012-03-31 13:17:04,418 DEBUG SIPApp - 
+
+REGISTER sip:open-ims.test SIP/2.0
+To:<sip:alice@open-ims.test>
+From:<sip:alice@open-ims.test>;tag=13417988511341798851
+CSeq: 1 REGISTER
+Call-ID:1681298153@192.168.0.5
+Max-Forwards:70
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl
+Contact:<sip:alice@192.168.0.5:5060>
+Authorization:
+Expires:3600
+Content-Length:0
+
+
+2012-03-31 13:17:04,532 INFO  SIPApp - Received response with code 200 OK - SAR succesful and registrar saved
+2012-03-31 13:17:04,533 DEBUG SIPApp - 
+
+SIP/2.0 200 OK - SAR succesful and registrar saved
+To:<sip:alice@open-ims.test>;tag=5da1a9072b0c9fc6a146e3457e5b9eba-f0ea
+From:<sip:alice@open-ims.test>;tag=13417988511341798851
+CSeq: 2 REGISTER
+Call-ID:1681298153@192.168.0.5
+Via:SIP/2.0/UDP 192.168.0.5:5060;rport=5060;branch=z9hG4bKfHx8fEZhbHNl
+P-Associated-Uri:<sip:alice@open-ims.test>
+Contact:<sip:alice@192.168.0.5:5060>;expires=3600
+Path:<sip:term@pcscf.open-ims.test:4060
+Route:<sip:orig@scscf.open-ims.test:6060;lr>
+Allow:INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, SUBSCRIBE, NOTIFY, PUBLISH, MESSAGE, INFO
+P-Charging-Function-Addresses:ccf=pri_ccf_address
+Server:Sip EXpress router (2.1.0-dev1 OpenIMSCore (i386/linux))
+Content-Length:0
+
+
+2012-03-31 13:18:52,232 INFO  SIPApp - Sending request with method REGISTER
+2012-03-31 13:18:52,246 DEBUG SIPApp - 
+
+REGISTER sip:open-ims.test SIP/2.0
+To:<sip:alice@open-ims.test>
+From:<sip:alice@open-ims.test>;tag=736151251384779360
+CSeq: 1 REGISTER
+Call-ID:1784376551@192.168.0.5
+Max-Forwards:70
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl
+Contact:<sip:alice@192.168.0.5:5060>
+Authorization:
+Expires:3600
+Content-Length:0
+
+
+2012-03-31 13:18:52,356 INFO  SIPApp - Received response with code 200 OK - SAR succesful and registrar saved
+2012-03-31 13:18:52,356 DEBUG SIPApp - 
+
+SIP/2.0 200 OK - SAR succesful and registrar saved
+To:<sip:alice@open-ims.test>;tag=5da1a9072b0c9fc6a146e3457e5b9eba-c466
+From:<sip:alice@open-ims.test>;tag=736151251384779360
+CSeq: 2 REGISTER
+Call-ID:1784376551@192.168.0.5
+Via:SIP/2.0/UDP 192.168.0.5:5060;rport=5060;branch=z9hG4bKfHx8fEZhbHNl
+P-Associated-Uri:<sip:alice@open-ims.test>
+Contact:<sip:alice@192.168.0.5:5060>;expires=3600
+Path:<sip:term@pcscf.open-ims.test:4060
+Service-Route:<sip:orig@scscf.open-ims.test:6060;lr>
+Allow:INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, SUBSCRIBE, NOTIFY, PUBLISH, MESSAGE, INFO
+P-Charging-Function-Addresses:ccf=pri_ccf_address
+Server:Sip EXpress router (2.1.0-dev1 OpenIMSCore (i386/linux))
+Content-Length:0
+
+
+2012-03-31 13:18:55,065 INFO  SIPApp - Sending request with method INVITE
+2012-03-31 13:18:55,066 DEBUG SIPApp - 
+
+INVITE sip:bob@open-ims.test SIP/2.0
+To:<sip:bob@open-ims.test>
+From:<sip:alice@open-ims.test>;tag=736151251133689209
+CSeq: 1 INVITE
+Call-ID:1234672275@192.168.0.5
+Max-Forwards:70
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl
+Contact:<sip:alice@192.168.0.5:5060>
+Content-Length:0
+
+
+2012-03-31 13:19:07,440 INFO  SIPApp - Sending request with method REGISTER
+2012-03-31 13:19:07,454 DEBUG SIPApp - 
+
+REGISTER sip:open-ims.test SIP/2.0
+To:<sip:alice@open-ims.test>
+From:<sip:alice@open-ims.test>;tag=9273391791697867107
+CSeq: 1 REGISTER
+Call-ID:1563558420@192.168.0.5
+Max-Forwards:70
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl
+Contact:<sip:alice@192.168.0.5:5060>
+Authorization:
+Expires:3600
+Content-Length:0
+
+
+2012-03-31 13:19:07,559 INFO  SIPApp - Received response with code 200 OK - SAR succesful and registrar saved
+2012-03-31 13:19:07,559 DEBUG SIPApp - 
+
+SIP/2.0 200 OK - SAR succesful and registrar saved
+To:<sip:alice@open-ims.test>;tag=5da1a9072b0c9fc6a146e3457e5b9eba-ed41
+From:<sip:alice@open-ims.test>;tag=9273391791697867107
+CSeq: 2 REGISTER
+Call-ID:1563558420@192.168.0.5
+Via:SIP/2.0/UDP 192.168.0.5:5060;rport=5060;branch=z9hG4bKfHx8fEZhbHNl
+P-Associated-Uri:<sip:alice@open-ims.test>
+Contact:<sip:alice@192.168.0.5:5060>;expires=3600
+Path:<sip:term@pcscf.open-ims.test:4060
+Service-Route:<sip:orig@scscf.open-ims.test:6060;lr>
+Allow:INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, SUBSCRIBE, NOTIFY, PUBLISH, MESSAGE, INFO
+P-Charging-Function-Addresses:ccf=pri_ccf_address
+Server:Sip EXpress router (2.1.0-dev1 OpenIMSCore (i386/linux))
+Content-Length:0
+
+
+2012-03-31 13:19:10,810 INFO  SIPApp - Sending request with method INVITE
+2012-03-31 13:19:10,810 DEBUG SIPApp - 
+
+INVITE sip:bob@open-ims.test SIP/2.0
+To:<sip:bob@open-ims.test>
+From:<sip:alice@open-ims.test>;tag=92733917978810988
+CSeq: 1 INVITE
+Call-ID:391430961@192.168.0.5
+Max-Forwards:70
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl
+Contact:<sip:alice@192.168.0.5:5060>
+Content-Length:0
+
+
+2012-03-31 13:19:48,717 INFO  SIPApp - Sending request with method REGISTER
+2012-03-31 13:19:48,731 DEBUG SIPApp - 
+
+REGISTER sip:open-ims.test SIP/2.0
+To:<sip:alice@open-ims.test>
+From:<sip:alice@open-ims.test>;tag=2232203062019332062
+CSeq: 1 REGISTER
+Call-ID:991676830@192.168.0.5
+Max-Forwards:70
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl
+Contact:<sip:alice@192.168.0.5:5060>
+Authorization:
+Expires:3600
+Content-Length:0
+
+
+2012-03-31 13:19:48,825 INFO  SIPApp - Received response with code 200 OK - SAR succesful and registrar saved
+2012-03-31 13:19:48,825 DEBUG SIPApp - 
+
+SIP/2.0 200 OK - SAR succesful and registrar saved
+To:<sip:alice@open-ims.test>;tag=5da1a9072b0c9fc6a146e3457e5b9eba-210a
+From:<sip:alice@open-ims.test>;tag=2232203062019332062
+CSeq: 2 REGISTER
+Call-ID:991676830@192.168.0.5
+Via:SIP/2.0/UDP 192.168.0.5:5060;rport=5060;branch=z9hG4bKfHx8fEZhbHNl
+P-Associated-Uri:<sip:alice@open-ims.test>
+Contact:<sip:alice@192.168.0.5:5060>;expires=3600
+Path:<sip:term@pcscf.open-ims.test:4060
+Service-Route:<sip:orig@scscf.open-ims.test:6060;lr>
+Allow:INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, SUBSCRIBE, NOTIFY, PUBLISH, MESSAGE, INFO
+P-Charging-Function-Addresses:ccf=pri_ccf_address
+Server:Sip EXpress router (2.1.0-dev1 OpenIMSCore (i386/linux))
+Content-Length:0
+
+
+2012-03-31 13:19:51,298 INFO  SIPApp - Sending request with method INVITE
+2012-03-31 13:19:51,298 DEBUG SIPApp - 
+
+INVITE sip:bob@open-ims.test SIP/2.0
+To:<sip:bob@open-ims.test>
+From:<sip:alice@open-ims.test>;tag=223220306817533162
+CSeq: 1 INVITE
+Call-ID:18350632@192.168.0.5
+Max-Forwards:70
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl
+Contact:<sip:alice@192.168.0.5:5060>
+Content-Length:0
+
+
+2012-03-31 13:19:51,303 INFO  SIPApp - Received response with code 400 Bad Request - Not following indicated Service-Routes
+2012-03-31 13:19:51,304 DEBUG SIPApp - 
+
+SIP/2.0 400 Bad Request - Not following indicated Service-Routes
+To:<sip:bob@open-ims.test>;tag=a38e4d3bfbccbf551e3a9a5999b3d343.a37e
+From:<sip:alice@open-ims.test>;tag=223220306817533162
+CSeq: 1 INVITE
+Call-ID:18350632@192.168.0.5
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl;rport=5060
+Server:Sip EXpress router (2.1.0-dev1 OpenIMSCore (i386/linux))
+Content-Length:0
+
+
+2012-03-31 13:19:51,304 INFO  SIPApp - Response code of 400 is unhandled 
+2012-03-31 13:30:05,418 INFO  SIPApp - Sending request with method REGISTER
+2012-03-31 13:30:05,432 DEBUG SIPApp - 
+
+REGISTER sip:open-ims.test SIP/2.0
+To:<sip:alice@open-ims.test>
+From:<sip:alice@open-ims.test>;tag=7784229561548950884
+CSeq: 1 REGISTER
+Call-ID:1296026035@192.168.0.5
+Max-Forwards:70
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl
+Contact:<sip:alice@192.168.0.5:5060>
+Authorization:
+Expires:3600
+Content-Length:0
+
+
+2012-03-31 13:30:05,534 INFO  SIPApp - Received response with code 200 OK - SAR succesful and registrar saved
+2012-03-31 13:30:05,535 DEBUG SIPApp - 
+
+SIP/2.0 200 OK - SAR succesful and registrar saved
+To:<sip:alice@open-ims.test>;tag=5da1a9072b0c9fc6a146e3457e5b9eba-7b0e
+From:<sip:alice@open-ims.test>;tag=7784229561548950884
+CSeq: 2 REGISTER
+Call-ID:1296026035@192.168.0.5
+Via:SIP/2.0/UDP 192.168.0.5:5060;rport=5060;branch=z9hG4bKfHx8fEZhbHNl
+P-Associated-Uri:<sip:alice@open-ims.test>
+Contact:<sip:alice@192.168.0.5:5060>;expires=3600
+Path:<sip:term@pcscf.open-ims.test:4060
+Service-Route:<sip:orig@scscf.open-ims.test:6060;lr>
+Allow:INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, SUBSCRIBE, NOTIFY, PUBLISH, MESSAGE, INFO
+P-Charging-Function-Addresses:ccf=pri_ccf_address
+Server:Sip EXpress router (2.1.0-dev1 OpenIMSCore (i386/linux))
+Content-Length:0
+
+
+2012-03-31 14:45:27,349 INFO  SIPApp - Sending request with method REGISTER
+2012-03-31 14:45:27,365 DEBUG SIPApp - 
+
+REGISTER sip:open-ims.test SIP/2.0
+To:<sip:alice@open-ims.test>
+From:<sip:alice@open-ims.test>;tag=16434703721643470372
+CSeq: 1 REGISTER
+Call-ID:1489743185@192.168.0.5
+Max-Forwards:70
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl
+Contact:<sip:alice@192.168.0.5:5060>
+Authorization:
+Expires:3600
+Content-Length:0
+
+
+2012-03-31 14:45:29,861 ERROR SIPStack - Error resolving domain name, check DNS server and local network properties
+2012-03-31 14:45:29,862 ERROR SIPStack - No such host is known
+2012-03-31 14:45:29,866 INFO  SIPApp - Received response with code 503 Service unavailable - Cannot Resolve DNS target
+2012-03-31 14:45:29,866 DEBUG SIPApp - 
+
+SIP/2.0 503 Service unavailable - Cannot Resolve DNS target
+To:<sip:alice@open-ims.test>
+From:<sip:alice@open-ims.test>;tag=16434703721643470372
+CSeq: 1 REGISTER
+Call-ID:1489743185@192.168.0.5
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl
+Content-Length:0
+
+
+2012-03-31 14:45:29,866 INFO  SIPApp - Response code of 503 is unhandled 
+2012-03-31 14:45:43,693 INFO  SIPApp - Sending request with method INVITE
+2012-03-31 14:45:43,694 DEBUG SIPApp - 
+
+INVITE sip:bob@open-ims.test SIP/2.0
+To:<sip:bob@open-ims.test>
+From:<sip:alice@open-ims.test>;tag=1643470372197454566
+CSeq: 1 INVITE
+Call-ID:115768447@192.168.0.5
+Max-Forwards:70
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl
+Contact:<sip:alice@192.168.0.5:5060>
+Content-Length:0
+
+
+2012-03-31 14:45:45,955 ERROR SIPStack - Error resolving domain name, check DNS server and local network properties
+2012-03-31 14:45:45,955 ERROR SIPStack - No such host is known
+2012-03-31 14:45:45,955 INFO  SIPApp - Received response with code 503 Service unavailable - Cannot Resolve DNS target
+2012-03-31 14:45:45,956 DEBUG SIPApp - 
+
+SIP/2.0 503 Service unavailable - Cannot Resolve DNS target
+To:<sip:bob@open-ims.test>
+From:<sip:alice@open-ims.test>;tag=1643470372197454566
+CSeq: 1 INVITE
+Call-ID:115768447@192.168.0.5
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl
+Content-Length:0
+
+
+2012-03-31 14:45:45,956 INFO  SIPApp - Response code of 503 is unhandled 
+2012-03-31 14:46:10,515 INFO  SIPApp - Sending request with method REGISTER
+2012-03-31 14:46:10,530 DEBUG SIPApp - 
+
+REGISTER sip:open-ims.test SIP/2.0
+To:<sip:alice@open-ims.test>
+From:<sip:alice@open-ims.test>;tag=545434010545434010
+CSeq: 1 REGISTER
+Call-ID:232666978@192.168.0.5
+Max-Forwards:70
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl
+Contact:<sip:alice@192.168.0.5:5060>
+Authorization:
+Expires:3600
+Content-Length:0
+
+
+2012-03-31 14:46:10,664 INFO  SIPApp - Received response with code 200 OK - SAR succesful and registrar saved
+2012-03-31 14:46:10,664 DEBUG SIPApp - 
+
+SIP/2.0 200 OK - SAR succesful and registrar saved
+To:<sip:alice@open-ims.test>;tag=5da1a9072b0c9fc6a146e3457e5b9eba-e07d
+From:<sip:alice@open-ims.test>;tag=545434010545434010
+CSeq: 2 REGISTER
+Call-ID:232666978@192.168.0.5
+Via:SIP/2.0/UDP 192.168.0.5:5060;rport=5060;branch=z9hG4bKfHx8fEZhbHNl
+P-Associated-Uri:<sip:alice@open-ims.test>
+Contact:<sip:alice@192.168.0.5:5060>;expires=3600
+Path:<sip:term@pcscf.open-ims.test:4060
+Route:<sip:orig@scscf.open-ims.test:6060;lr>
+Allow:INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, SUBSCRIBE, NOTIFY, PUBLISH, MESSAGE, INFO
+P-Charging-Function-Addresses:ccf=pri_ccf_address
+Server:Sip EXpress router (2.1.0-dev1 OpenIMSCore (i386/linux))
+Content-Length:0
+
+
+2012-03-31 14:46:13,763 INFO  SIPApp - Sending request with method INVITE
+2012-03-31 14:46:13,764 DEBUG SIPApp - 
+
+INVITE sip:bob@open-ims.test SIP/2.0
+To:<sip:bob@open-ims.test>
+From:<sip:alice@open-ims.test>;tag=5454340101544721037
+CSeq: 1 INVITE
+Call-ID:1869422845@192.168.0.5
+Max-Forwards:70
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl
+Contact:<sip:alice@192.168.0.5:5060>
+Content-Length:0
+
+
+2012-03-31 14:46:13,775 INFO  SIPApp - Received response with code 100 trying -- your call is important to us
+2012-03-31 14:46:13,775 DEBUG SIPApp - 
+
+SIP/2.0 100 trying -- your call is important to us
+To:<sip:bob@open-ims.test>
+From:<sip:alice@open-ims.test>;tag=5454340101544721037
+CSeq: 1 INVITE
+Call-ID:1869422845@192.168.0.5
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl;rport=5060
+Server:Sip EXpress router (2.1.0-dev1 OpenIMSCore (i386/linux))
+Content-Length:0
+
+
+2012-03-31 14:46:13,775 INFO  SIPApp - Response code of 100 is unhandled 
+2012-03-31 14:46:13,825 INFO  SIPApp - Received response with code 180 Ringing
+2012-03-31 14:46:13,825 DEBUG SIPApp - 
+
+SIP/2.0 180 Ringing
+Record-Route:<sip:mt@pcscf.open-ims.test:4060;lr>
+Record-Route:<sip:mt@scscf.open-ims.test:6060;lr>
+Record-Route:<sip:mo@scscf.open-ims.test:6060;lr>
+Record-Route:<sip:mo@pcscf.open-ims.test:4060;lr>
+From:<sip:alice@open-ims.test>;tag=5454340101544721037
+To:<sip:bob@open-ims.test>;tag=362640870
+Contact:<sip:bob@192.168.0.5:64711;transport=udp>
+Call-ID:1869422845@192.168.0.5
+CSeq: 1 INVITE
+Via:SIP/2.0/UDP 192.168.0.5:5060;rport=5060;branch=z9hG4bKfHx8fEZhbHNl
+Allow:ACK, BYE, CANCEL, INVITE, MESSAGE, NOTIFY, OPTIONS, PRACK, REFER, UPDATE
+P-Asserted-Identity:<sip:bob@open-ims.test>
+Content-Length:0
+
+
+2012-03-31 14:46:15,493 INFO  SIPApp - New dialog created
+2012-03-31 14:46:15,494 INFO  SIPApp - Received response with code 200 OK
+2012-03-31 14:46:15,494 DEBUG SIPApp - 
+
+SIP/2.0 200 OK
+Record-Route:<sip:mt@pcscf.open-ims.test:4060;lr>
+Route:<sip:mt@scscf.open-ims.test:6060;lr>
+Route:<sip:mo@scscf.open-ims.test:6060;lr>
+Route:<sip:mo@pcscf.open-ims.test:4060;lr>
+From:<sip:alice@open-ims.test>;tag=5454340101544721037
+To:<sip:bob@open-ims.test>;tag=362640870
+Contact:<sip:bob@192.168.0.5:64711;transport=udp>
+Call-ID:1869422845@192.168.0.5
+CSeq: 1 INVITE
+Content-Type:application/sdp
+Via:SIP/2.0/UDP 192.168.0.5:5060;rport=5060;branch=z9hG4bKfHx8fEZhbHNl
+Allow:ACK, BYE, CANCEL, INVITE, MESSAGE, NOTIFY, OPTIONS, PRACK, REFER, UPDATE
+P-Asserted-Identity:<sip:bob@open-ims.test>
+Content-Length:291
+
+v=0
+o=doubango 1983 678901 IN IP4 192.168.0.5
+s=-
+c=IN IP4 192.168.0.5
+t=0 0
+m=audio 16164 RTP/AVP 3 8 0 97 101
+a=ptime:20
+a=rtpmap:3 GSM/8000/1
+a=rtpmap:8 PCMA/8000/1
+a=rtpmap:0 PCMU/8000/1
+a=rtpmap:97 SPEEX/8000/1
+a=rtpmap:101 telephone-event/8000/1
+a=fmtp:101 0-15
+a=sendrecv
+2012-03-31 14:46:15,496 INFO  SIPApp - Sending request with method ACK
+2012-03-31 14:46:15,497 DEBUG SIPApp - 
+
+ACK sip:bob@open-ims.test SIP/2.0
+To:<sip:bob@open-ims.test>;tag=362640870
+From:<sip:alice@open-ims.test>;tag=5454340101544721037
+CSeq: 1 ACK
+Call-ID:1869422845@192.168.0.5
+Max-Forwards:70
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl
+Contact:<sip:alice@192.168.0.5:5060>
+Content-Length:0
+
+
+2012-03-31 15:08:17,212 INFO  SIPApp - Sending request with method REGISTER
+2012-03-31 15:08:17,225 DEBUG SIPApp - 
+
+REGISTER sip:open-ims.test SIP/2.0
+To:<sip:alice@open-ims.test>
+From:<sip:alice@open-ims.test>;tag=657550162657550162
+CSeq: 1 REGISTER
+Call-ID:260291444@192.168.0.5
+Max-Forwards:70
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl
+Contact:<sip:alice@192.168.0.5:5060>
+Authorization:
+Expires:3600
+Content-Length:0
+
+
+2012-03-31 15:08:17,324 INFO  SIPApp - Received response with code 200 OK - SAR succesful and registrar saved
+2012-03-31 15:08:17,325 DEBUG SIPApp - 
+
+SIP/2.0 200 OK - SAR succesful and registrar saved
+To:<sip:alice@open-ims.test>;tag=5da1a9072b0c9fc6a146e3457e5b9eba-e572
+From:<sip:alice@open-ims.test>;tag=657550162657550162
+CSeq: 2 REGISTER
+Call-ID:260291444@192.168.0.5
+Via:SIP/2.0/UDP 192.168.0.5:5060;rport=5060;branch=z9hG4bKfHx8fEZhbHNl
+P-Associated-Uri:<sip:alice@open-ims.test>
+Contact:<sip:alice@192.168.0.5:5060>;expires=3600
+Path:<sip:term@pcscf.open-ims.test:4060
+Route:<sip:orig@scscf.open-ims.test:6060;lr>
+Allow:INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, SUBSCRIBE, NOTIFY, PUBLISH, MESSAGE, INFO
+P-Charging-Function-Addresses:ccf=pri_ccf_address
+Server:Sip EXpress router (2.1.0-dev1 OpenIMSCore (i386/linux))
+Content-Length:0
+
+
+2012-03-31 15:08:19,545 INFO  SIPApp - Sending request with method INVITE
+2012-03-31 15:08:19,545 DEBUG SIPApp - 
+
+INVITE sip:bob@open-ims.test SIP/2.0
+To:<sip:bob@open-ims.test>
+From:<sip:alice@open-ims.test>;tag=6575501622097266025
+CSeq: 1 INVITE
+Call-ID:1594602188@192.168.0.5
+Max-Forwards:70
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl
+Contact:<sip:alice@192.168.0.5:5060>
+Content-Length:0
+
+
+2012-03-31 15:08:19,551 INFO  SIPApp - Received response with code 100 trying -- your call is important to us
+2012-03-31 15:08:19,551 DEBUG SIPApp - 
+
+SIP/2.0 100 trying -- your call is important to us
+To:<sip:bob@open-ims.test>
+From:<sip:alice@open-ims.test>;tag=6575501622097266025
+CSeq: 1 INVITE
+Call-ID:1594602188@192.168.0.5
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl;rport=5060
+Server:Sip EXpress router (2.1.0-dev1 OpenIMSCore (i386/linux))
+Content-Length:0
+
+
+2012-03-31 15:08:19,551 INFO  SIPApp - Response code of 100 is unhandled 
+2012-03-31 15:08:19,598 INFO  SIPApp - Received response with code 180 Ringing
+2012-03-31 15:08:19,602 DEBUG SIPApp - 
+
+SIP/2.0 180 Ringing
+Record-Route:<sip:mt@pcscf.open-ims.test:4060;lr>
+Record-Route:<sip:mt@scscf.open-ims.test:6060;lr>
+Record-Route:<sip:mo@scscf.open-ims.test:6060;lr>
+Record-Route:<sip:mo@pcscf.open-ims.test:4060;lr>
+From:<sip:alice@open-ims.test>;tag=6575501622097266025
+To:<sip:bob@open-ims.test>;tag=363948648
+Contact:<sip:bob@192.168.0.5:64711;transport=udp>
+Call-ID:1594602188@192.168.0.5
+CSeq: 1 INVITE
+Via:SIP/2.0/UDP 192.168.0.5:5060;rport=5060;branch=z9hG4bKfHx8fEZhbHNl
+Allow:ACK, BYE, CANCEL, INVITE, MESSAGE, NOTIFY, OPTIONS, PRACK, REFER, UPDATE
+P-Asserted-Identity:<sip:bob@open-ims.test>
+Content-Length:0
+
+
+2012-03-31 15:08:23,245 INFO  SIPApp - New dialog created
+2012-03-31 15:08:23,245 INFO  SIPApp - Received response with code 200 OK
+2012-03-31 15:08:23,245 DEBUG SIPApp - 
+
+SIP/2.0 200 OK
+Route:<sip:mt@pcscf.open-ims.test:4060;lr>
+Route:<sip:mt@scscf.open-ims.test:6060;lr>
+Route:<sip:mo@scscf.open-ims.test:6060;lr>
+Route:<sip:mo@pcscf.open-ims.test:4060;lr>
+From:<sip:alice@open-ims.test>;tag=6575501622097266025
+To:<sip:bob@open-ims.test>;tag=363948648
+Contact:<sip:bob@192.168.0.5:64711;transport=udp>
+Call-ID:1594602188@192.168.0.5
+CSeq: 1 INVITE
+Content-Type:application/sdp
+Via:SIP/2.0/UDP 192.168.0.5:5060;rport=5060;branch=z9hG4bKfHx8fEZhbHNl
+Allow:ACK, BYE, CANCEL, INVITE, MESSAGE, NOTIFY, OPTIONS, PRACK, REFER, UPDATE
+P-Asserted-Identity:<sip:bob@open-ims.test>
+Content-Length:291
+
+v=0
+o=doubango 1983 678901 IN IP4 192.168.0.5
+s=-
+c=IN IP4 192.168.0.5
+t=0 0
+m=audio 13882 RTP/AVP 3 8 0 97 101
+a=ptime:20
+a=rtpmap:3 GSM/8000/1
+a=rtpmap:8 PCMA/8000/1
+a=rtpmap:0 PCMU/8000/1
+a=rtpmap:97 SPEEX/8000/1
+a=rtpmap:101 telephone-event/8000/1
+a=fmtp:101 0-15
+a=sendrecv
+2012-03-31 15:08:23,247 INFO  SIPApp - Sending request with method ACK
+2012-03-31 15:08:23,248 DEBUG SIPApp - 
+
+ACK sip:bob@open-ims.test SIP/2.0
+To:<sip:bob@open-ims.test>;tag=363948648
+From:<sip:alice@open-ims.test>;tag=6575501622097266025
+CSeq: 1 ACK
+Call-ID:1594602188@192.168.0.5
+Max-Forwards:70
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl
+Contact:<sip:alice@192.168.0.5:5060>
+Content-Length:0
+
+
+2012-03-31 15:12:28,634 INFO  SIPApp - Sending request with method REGISTER
+2012-03-31 15:12:28,650 DEBUG SIPApp - 
+
+REGISTER sip:open-ims.test SIP/2.0
+To:<sip:alice@open-ims.test>
+From:<sip:alice@open-ims.test>;tag=1668296850291341131
+CSeq: 1 REGISTER
+Call-ID:1694954261@192.168.0.5
+Max-Forwards:70
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl
+Contact:<sip:alice@192.168.0.5:5060>
+Authorization:
+Expires:3600
+Content-Length:0
+
+
+2012-03-31 15:12:28,762 INFO  SIPApp - Received response with code 200 OK - SAR succesful and registrar saved
+2012-03-31 15:12:28,763 DEBUG SIPApp - 
+
+SIP/2.0 200 OK - SAR succesful and registrar saved
+To:<sip:alice@open-ims.test>;tag=5da1a9072b0c9fc6a146e3457e5b9eba-e06b
+From:<sip:alice@open-ims.test>;tag=1668296850291341131
+CSeq: 2 REGISTER
+Call-ID:1694954261@192.168.0.5
+Via:SIP/2.0/UDP 192.168.0.5:5060;rport=5060;branch=z9hG4bKfHx8fEZhbHNl
+P-Associated-Uri:<sip:alice@open-ims.test>
+Contact:<sip:alice@192.168.0.5:5060>;expires=3600
+Path:<sip:term@pcscf.open-ims.test:4060
+Route:<sip:orig@scscf.open-ims.test:6060;lr>
+Allow:INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, SUBSCRIBE, NOTIFY, PUBLISH, MESSAGE, INFO
+P-Charging-Function-Addresses:ccf=pri_ccf_address
+Server:Sip EXpress router (2.1.0-dev1 OpenIMSCore (i386/linux))
+Content-Length:0
+
+
+2012-03-31 15:13:12,771 INFO  SIPApp - Sending request with method REGISTER
+2012-03-31 15:13:12,785 DEBUG SIPApp - 
+
+REGISTER sip:open-ims.test SIP/2.0
+To:<sip:alice@open-ims.test>
+From:<sip:alice@open-ims.test>;tag=17386716541738671654
+CSeq: 1 REGISTER
+Call-ID:1362372107@192.168.0.5
+Max-Forwards:70
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl
+Contact:<sip:alice@192.168.0.5:5060>
+Authorization:
+Expires:3600
+Content-Length:0
+
+
+2012-03-31 15:13:12,891 INFO  SIPApp - Received response with code 200 OK - SAR succesful and registrar saved
+2012-03-31 15:13:12,892 DEBUG SIPApp - 
+
+SIP/2.0 200 OK - SAR succesful and registrar saved
+To:<sip:alice@open-ims.test>;tag=5da1a9072b0c9fc6a146e3457e5b9eba-63bf
+From:<sip:alice@open-ims.test>;tag=17386716541738671654
+CSeq: 2 REGISTER
+Call-ID:1362372107@192.168.0.5
+Via:SIP/2.0/UDP 192.168.0.5:5060;rport=5060;branch=z9hG4bKfHx8fEZhbHNl
+P-Associated-Uri:<sip:alice@open-ims.test>
+Contact:<sip:alice@192.168.0.5:5060>;expires=3600
+Path:<sip:term@pcscf.open-ims.test:4060
+Route:<sip:orig@scscf.open-ims.test:6060;lr>
+Allow:INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, SUBSCRIBE, NOTIFY, PUBLISH, MESSAGE, INFO
+P-Charging-Function-Addresses:ccf=pri_ccf_address
+Server:Sip EXpress router (2.1.0-dev1 OpenIMSCore (i386/linux))
+Content-Length:0
+
+
+2012-03-31 15:13:19,809 INFO  SIPApp - Sending request with method INVITE
+2012-03-31 15:13:19,809 DEBUG SIPApp - 
+
+INVITE sip:bob@open-ims.test SIP/2.0
+To:<sip:bob@open-ims.test>
+From:<sip:alice@open-ims.test>;tag=17386716541695067803
+CSeq: 1 INVITE
+Call-ID:2005797125@192.168.0.5
+Max-Forwards:70
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl
+Contact:<sip:alice@192.168.0.5:5060>
+Content-Length:0
+
+
+2012-03-31 15:14:35,977 INFO  SIPApp - Received response with code 100 trying -- your call is important to us
+2012-03-31 15:14:35,978 DEBUG SIPApp - 
+
+SIP/2.0 100 trying -- your call is important to us
+To:<sip:bob@open-ims.test>
+From:<sip:alice@open-ims.test>;tag=17386716541695067803
+CSeq: 1 INVITE
+Call-ID:2005797125@192.168.0.5
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl;rport=5060
+Server:Sip EXpress router (2.1.0-dev1 OpenIMSCore (i386/linux))
+Content-Length:0
+
+
+2012-03-31 15:14:35,978 INFO  SIPApp - Response code of 100 is unhandled 
+2012-03-31 15:14:36,028 INFO  SIPApp - Received response with code 180 Ringing
+2012-03-31 15:14:36,029 DEBUG SIPApp - 
+
+SIP/2.0 180 Ringing
+Record-Route:<sip:mt@pcscf.open-ims.test:4060;lr>
+Record-Route:<sip:mt@scscf.open-ims.test:6060;lr>
+Record-Route:<sip:mo@scscf.open-ims.test:6060;lr>
+Record-Route:<sip:mo@pcscf.open-ims.test:4060;lr>
+From:<sip:alice@open-ims.test>;tag=17386716541695067803
+To:<sip:bob@open-ims.test>;tag=364318996
+Contact:<sip:bob@192.168.0.5:64711;transport=udp>
+Call-ID:2005797125@192.168.0.5
+CSeq: 1 INVITE
+Via:SIP/2.0/UDP 192.168.0.5:5060;rport=5060;branch=z9hG4bKfHx8fEZhbHNl
+Allow:ACK, BYE, CANCEL, INVITE, MESSAGE, NOTIFY, OPTIONS, PRACK, REFER, UPDATE
+P-Asserted-Identity:<sip:bob@open-ims.test>
+Content-Length:0
+
+
+2012-03-31 15:14:46,705 INFO  SIPApp - New dialog created
+2012-03-31 15:14:46,705 INFO  SIPApp - Received response with code 200 OK
+2012-03-31 15:14:46,706 DEBUG SIPApp - 
+
+SIP/2.0 200 OK
+Route:<sip:mt@pcscf.open-ims.test:4060;lr>
+Route:<sip:mt@scscf.open-ims.test:6060;lr>
+Route:<sip:mo@scscf.open-ims.test:6060;lr>
+Route:<sip:mo@pcscf.open-ims.test:4060;lr>
+From:<sip:alice@open-ims.test>;tag=17386716541695067803
+To:<sip:bob@open-ims.test>;tag=364318996
+Contact:<sip:bob@192.168.0.5:64711;transport=udp>
+Call-ID:2005797125@192.168.0.5
+CSeq: 1 INVITE
+Content-Type:application/sdp
+Via:SIP/2.0/UDP 192.168.0.5:5060;rport=5060;branch=z9hG4bKfHx8fEZhbHNl
+Allow:ACK, BYE, CANCEL, INVITE, MESSAGE, NOTIFY, OPTIONS, PRACK, REFER, UPDATE
+P-Asserted-Identity:<sip:bob@open-ims.test>
+Content-Length:290
+
+v=0
+o=doubango 1983 678901 IN IP4 192.168.0.5
+s=-
+c=IN IP4 192.168.0.5
+t=0 0
+m=audio 1312 RTP/AVP 3 8 0 97 101
+a=ptime:20
+a=rtpmap:3 GSM/8000/1
+a=rtpmap:8 PCMA/8000/1
+a=rtpmap:0 PCMU/8000/1
+a=rtpmap:97 SPEEX/8000/1
+a=rtpmap:101 telephone-event/8000/1
+a=fmtp:101 0-15
+a=sendrecv
+2012-03-31 15:14:46,708 INFO  SIPApp - Sending request with method ACK
+2012-03-31 15:14:46,708 DEBUG SIPApp - 
+
+ACK sip:bob@open-ims.test SIP/2.0
+To:<sip:bob@open-ims.test>;tag=364318996
+From:<sip:alice@open-ims.test>;tag=17386716541695067803
+CSeq: 1 ACK
+Call-ID:2005797125@192.168.0.5
+Max-Forwards:70
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl
+Contact:<sip:alice@192.168.0.5:5060>
+Content-Length:0
+
+
+2012-03-31 15:17:01,068 INFO  SIPApp - Sending request with method REGISTER
+2012-03-31 15:17:01,083 DEBUG SIPApp - 
+
+REGISTER sip:open-ims.test SIP/2.0
+To:<sip:alice@open-ims.test>
+From:<sip:alice@open-ims.test>;tag=7075077001478035628
+CSeq: 1 REGISTER
+Call-ID:1626613248@192.168.0.5
+Max-Forwards:70
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl
+Contact:<sip:alice@192.168.0.5:5060>
+Authorization:
+Expires:3600
+Content-Length:0
+
+
+2012-03-31 15:17:01,197 INFO  SIPApp - Received response with code 200 OK - SAR succesful and registrar saved
+2012-03-31 15:17:01,198 DEBUG SIPApp - 
+
+SIP/2.0 200 OK - SAR succesful and registrar saved
+To:<sip:alice@open-ims.test>;tag=5da1a9072b0c9fc6a146e3457e5b9eba-6e66
+From:<sip:alice@open-ims.test>;tag=7075077001478035628
+CSeq: 2 REGISTER
+Call-ID:1626613248@192.168.0.5
+Via:SIP/2.0/UDP 192.168.0.5:5060;rport=5060;branch=z9hG4bKfHx8fEZhbHNl
+P-Associated-Uri:<sip:alice@open-ims.test>
+Contact:<sip:alice@192.168.0.5:5060>;expires=3600
+Path:<sip:term@pcscf.open-ims.test:4060
+Route:<sip:orig@scscf.open-ims.test:6060;lr>
+Allow:INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, SUBSCRIBE, NOTIFY, PUBLISH, MESSAGE, INFO
+P-Charging-Function-Addresses:ccf=pri_ccf_address
+Server:Sip EXpress router (2.1.0-dev1 OpenIMSCore (i386/linux))
+Content-Length:0
+
+
+2012-03-31 15:17:07,314 INFO  SIPApp - Sending request with method INVITE
+2012-03-31 15:17:07,314 DEBUG SIPApp - 
+
+INVITE sip:bob@open-ims.test SIP/2.0
+To:<sip:bob@open-ims.test>
+From:<sip:alice@open-ims.test>;tag=7075077001755373005
+CSeq: 1 INVITE
+Call-ID:644984215@192.168.0.5
+Max-Forwards:70
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl
+Contact:<sip:alice@192.168.0.5:5060>
+Content-Length:0
+
+
+2012-03-31 15:17:07,320 INFO  SIPApp - Received response with code 100 trying -- your call is important to us
+2012-03-31 15:17:07,320 DEBUG SIPApp - 
+
+SIP/2.0 100 trying -- your call is important to us
+To:<sip:bob@open-ims.test>
+From:<sip:alice@open-ims.test>;tag=7075077001755373005
+CSeq: 1 INVITE
+Call-ID:644984215@192.168.0.5
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl;rport=5060
+Server:Sip EXpress router (2.1.0-dev1 OpenIMSCore (i386/linux))
+Content-Length:0
+
+
+2012-03-31 15:17:07,320 INFO  SIPApp - Response code of 100 is unhandled 
+2012-03-31 15:17:07,379 INFO  SIPApp - Received response with code 180 Ringing
+2012-03-31 15:17:07,379 DEBUG SIPApp - 
+
+SIP/2.0 180 Ringing
+Record-Route:<sip:mt@pcscf.open-ims.test:4060;lr>
+Record-Route:<sip:mt@scscf.open-ims.test:6060;lr>
+Record-Route:<sip:mo@scscf.open-ims.test:6060;lr>
+Record-Route:<sip:mo@pcscf.open-ims.test:4060;lr>
+From:<sip:alice@open-ims.test>;tag=7075077001755373005
+To:<sip:bob@open-ims.test>;tag=364508955
+Contact:<sip:bob@192.168.0.5:64711;transport=udp>
+Call-ID:644984215@192.168.0.5
+CSeq: 1 INVITE
+Via:SIP/2.0/UDP 192.168.0.5:5060;rport=5060;branch=z9hG4bKfHx8fEZhbHNl
+Allow:ACK, BYE, CANCEL, INVITE, MESSAGE, NOTIFY, OPTIONS, PRACK, REFER, UPDATE
+P-Asserted-Identity:<sip:bob@open-ims.test>
+Content-Length:0
+
+
+2012-03-31 15:17:10,905 INFO  SIPApp - New dialog created
+2012-03-31 15:17:10,905 INFO  SIPApp - Received response with code 200 OK
+2012-03-31 15:17:10,906 DEBUG SIPApp - 
+
+SIP/2.0 200 OK
+Route:<sip:mt@pcscf.open-ims.test:4060;lr>
+Route:<sip:mt@scscf.open-ims.test:6060;lr>
+Route:<sip:mo@scscf.open-ims.test:6060;lr>
+Route:<sip:mo@pcscf.open-ims.test:4060;lr>
+From:<sip:alice@open-ims.test>;tag=7075077001755373005
+To:<sip:bob@open-ims.test>;tag=364508955
+Contact:<sip:bob@192.168.0.5:64711;transport=udp>
+Call-ID:644984215@192.168.0.5
+CSeq: 1 INVITE
+Content-Type:application/sdp
+Via:SIP/2.0/UDP 192.168.0.5:5060;rport=5060;branch=z9hG4bKfHx8fEZhbHNl
+Allow:ACK, BYE, CANCEL, INVITE, MESSAGE, NOTIFY, OPTIONS, PRACK, REFER, UPDATE
+P-Asserted-Identity:<sip:bob@open-ims.test>
+Content-Length:290
+
+v=0
+o=doubango 1983 678901 IN IP4 192.168.0.5
+s=-
+c=IN IP4 192.168.0.5
+t=0 0
+m=audio 7752 RTP/AVP 3 8 0 97 101
+a=ptime:20
+a=rtpmap:3 GSM/8000/1
+a=rtpmap:8 PCMA/8000/1
+a=rtpmap:0 PCMU/8000/1
+a=rtpmap:97 SPEEX/8000/1
+a=rtpmap:101 telephone-event/8000/1
+a=fmtp:101 0-15
+a=sendrecv
+2012-03-31 15:17:10,908 INFO  SIPApp - Sending request with method ACK
+2012-03-31 15:17:10,909 DEBUG SIPApp - 
+
+ACK sip:bob@open-ims.test SIP/2.0
+To:<sip:bob@open-ims.test>;tag=364508955
+From:<sip:alice@open-ims.test>;tag=7075077001755373005
+CSeq: 1 ACK
+Call-ID:644984215@192.168.0.5
+Max-Forwards:70
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl
+Contact:<sip:alice@192.168.0.5:5060>
+Content-Length:0
+
+
+2012-03-31 15:24:05,511 INFO  SIPApp - Sending request with method REGISTER
+2012-03-31 15:24:05,526 DEBUG SIPApp - 
+
+REGISTER sip:open-ims.test SIP/2.0
+To:<sip:alice@open-ims.test>
+From:<sip:alice@open-ims.test>;tag=15230295381171657647
+CSeq: 1 REGISTER
+Call-ID:1509358205@192.168.0.5
+Max-Forwards:70
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl
+Contact:<sip:alice@192.168.0.5:5060>
+Authorization:
+Expires:3600
+Content-Length:0
+
+
+2012-03-31 15:24:05,623 INFO  SIPApp - Received response with code 200 OK - SAR succesful and registrar saved
+2012-03-31 15:24:05,624 DEBUG SIPApp - 
+
+SIP/2.0 200 OK - SAR succesful and registrar saved
+To:<sip:alice@open-ims.test>;tag=5da1a9072b0c9fc6a146e3457e5b9eba-6b98
+From:<sip:alice@open-ims.test>;tag=15230295381171657647
+CSeq: 2 REGISTER
+Call-ID:1509358205@192.168.0.5
+Via:SIP/2.0/UDP 192.168.0.5:5060;rport=5060;branch=z9hG4bKfHx8fEZhbHNl
+P-Associated-Uri:<sip:alice@open-ims.test>
+Contact:<sip:alice@192.168.0.5:5060>;expires=3600
+Path:<sip:term@pcscf.open-ims.test:4060
+Route:<sip:orig@scscf.open-ims.test:6060;lr>
+Allow:INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, SUBSCRIBE, NOTIFY, PUBLISH, MESSAGE, INFO
+P-Charging-Function-Addresses:ccf=pri_ccf_address
+Server:Sip EXpress router (2.1.0-dev1 OpenIMSCore (i386/linux))
+Content-Length:0
+
+
+2012-03-31 15:24:20,875 INFO  SIPApp - Received request with method INVITE
+2012-03-31 15:24:20,875 DEBUG SIPApp - 
+
+INVITE sip:alice@192.168.0.5:5060 SIP/2.0
+Record-Route:<sip:mt@pcscf.open-ims.test:4060;lr>
+Record-Route:<sip:mt@scscf.open-ims.test:6060;lr>
+Record-Route:<sip:mo@scscf.open-ims.test:6060;lr>
+Record-Route:<sip:mo@pcscf.open-ims.test:4060;lr>
+Via:SIP/2.0/UDP 192.168.0.7:4060;branch=z9hG4bK9dcb.611715c1.0;received=192.168.0.7
+Via:SIP/2.0/UDP 192.168.0.7:6060;received=192.168.0.7;rport=6060;branch=z9hG4bK9dcb.dc54b251.0
+Via:SIP/2.0/UDP 192.168.0.7:6060;branch=z9hG4bK9dcb.cc54b251.0
+Via:SIP/2.0/UDP 192.168.0.7:4060;branch=z9hG4bK9dcb.511715c1.0
+Via:SIP/2.0/UDP 192.168.0.5:64711;branch=z9hG4bK364906697;rport=64711
+From:<sip:bob@open-ims.test>;tag=364927730
+To:<sip:alice@open-ims.test>
+Contact:<sip:bob@192.168.0.5:64711;transport=udp>;language="en,fr";+g.3gpp.icsi-ref="urn%3Aurn-7%3A3gpp-service.ims.icsi.mmtel"
+Call-ID:b8a8b5ef-4516-91de-6c12-a62210338dab
+CSeq: 22582 INVITE
+Content-Type:application/sdp
+Max-Forwards:13
+Accept-Contact:*;+g.3gpp.icsi-ref="urn%3Aurn-7%3A3gpp-service.ims.icsi.mmtel"
+P-Preferred-Service:urn:urn-7:3gpp-service.ims.icsi.mmtel
+Allow:INVITE, ACK, CANCEL, BYE, MESSAGE, OPTIONS, NOTIFY, PRACK, UPDATE, REFER
+Privacy:none
+P-Access-Network-Info:ADSL;utran-cell-id-3gpp=00000000
+User-Agent:IM-client/OMA1.0 Boghe/v2.0.97.687
+Supported:100rel
+P-Asserted-Identity:<sip:bob@open-ims.test>
+P-Charging-Vector:icid-value="P-CSCFabcd4f7705d800000164";icid-generated-at=192.168.0.7;orig-ioi="open-ims.test"
+P-Called-Party-Id:<sip:alice@open-ims.test>
+Content-Length:291
+
+v=0
+o=doubango 1983 678901 IN IP4 192.168.0.5
+s=-
+c=IN IP4 192.168.0.5
+t=0 0
+m=audio 11286 RTP/AVP 3 8 0 97 101
+a=ptime:20
+a=rtpmap:3 GSM/8000/1
+a=rtpmap:8 PCMA/8000/1
+a=rtpmap:0 PCMU/8000/1
+a=rtpmap:97 SPEEX/8000/1
+a=rtpmap:101 telephone-event/8000/1
+a=fmtp:101 0-15
+a=sendrecv
+2012-03-31 15:24:20,876 INFO  SIPApp - Generating 200 OK response for INVITE
+2012-03-31 15:24:20,881 INFO  SIPApp - New dialog created
+2012-03-31 15:24:20,882 INFO  SIPApp - Sending response with code 200
+2012-03-31 15:24:20,882 DEBUG SIPApp - 
+
+SIP/2.0 200 OK
+To:<sip:alice@open-ims.test>;tag=15230295381056086213
+From:<sip:bob@open-ims.test>;tag=364927730
+CSeq: 22582 INVITE
+Call-ID:b8a8b5ef-4516-91de-6c12-a62210338dab
+Via:SIP/2.0/UDP 192.168.0.7:4060;branch=z9hG4bK9dcb.611715c1.0;received=192.168.0.7
+Via:SIP/2.0/UDP 192.168.0.7:6060;received=192.168.0.7;rport=6060;branch=z9hG4bK9dcb.dc54b251.0
+Via:SIP/2.0/UDP 192.168.0.7:6060;branch=z9hG4bK9dcb.cc54b251.0
+Via:SIP/2.0/UDP 192.168.0.7:4060;branch=z9hG4bK9dcb.511715c1.0
+Via:SIP/2.0/UDP 192.168.0.5:64711;branch=z9hG4bK364906697;rport=64711
+Record-Route:<sip:mt@pcscf.open-ims.test:4060;lr>
+Record-Route:<sip:mt@scscf.open-ims.test:6060;lr>
+Record-Route:<sip:mo@scscf.open-ims.test:6060;lr>
+Record-Route:<sip:mo@pcscf.open-ims.test:4060;lr>
+Content-Length:0
+
+
+2012-03-31 15:26:12,270 INFO  SIPApp - Sending request with method INVITE
+2012-03-31 15:26:12,271 DEBUG SIPApp - 
+
+INVITE sip:bob@open-ims.test SIP/2.0
+To:<sip:bob@open-ims.test>
+From:<sip:alice@open-ims.test>;tag=15230295381442634707
+CSeq: 1 INVITE
+Call-ID:2111877057@192.168.0.5
+Max-Forwards:70
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl
+Contact:<sip:alice@192.168.0.5:5060>
+Content-Length:0
+
+
+2012-03-31 15:26:12,277 INFO  SIPApp - Received response with code 100 trying -- your call is important to us
+2012-03-31 15:26:12,278 DEBUG SIPApp - 
+
+SIP/2.0 100 trying -- your call is important to us
+To:<sip:bob@open-ims.test>
+From:<sip:alice@open-ims.test>;tag=15230295381442634707
+CSeq: 1 INVITE
+Call-ID:2111877057@192.168.0.5
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl;rport=5060
+Server:Sip EXpress router (2.1.0-dev1 OpenIMSCore (i386/linux))
+Content-Length:0
+
+
+2012-03-31 15:26:12,278 INFO  SIPApp - Response code of 100 is unhandled 
+2012-03-31 15:26:12,341 INFO  SIPApp - Received response with code 180 Ringing
+2012-03-31 15:26:12,342 DEBUG SIPApp - 
+
+SIP/2.0 180 Ringing
+Record-Route:<sip:mt@pcscf.open-ims.test:4060;lr>
+Record-Route:<sip:mt@scscf.open-ims.test:6060;lr>
+Record-Route:<sip:mo@scscf.open-ims.test:6060;lr>
+Record-Route:<sip:mo@pcscf.open-ims.test:4060;lr>
+From:<sip:alice@open-ims.test>;tag=15230295381442634707
+To:<sip:bob@open-ims.test>;tag=365031394
+Contact:<sip:bob@192.168.0.5:64711;transport=udp>
+Call-ID:2111877057@192.168.0.5
+CSeq: 1 INVITE
+Via:SIP/2.0/UDP 192.168.0.5:5060;rport=5060;branch=z9hG4bKfHx8fEZhbHNl
+Allow:ACK, BYE, CANCEL, INVITE, MESSAGE, NOTIFY, OPTIONS, PRACK, REFER, UPDATE
+P-Asserted-Identity:<sip:bob@open-ims.test>
+Content-Length:0
+
+
+2012-03-31 15:26:14,223 INFO  SIPApp - New dialog created
+2012-03-31 15:26:14,224 INFO  SIPApp - Received response with code 200 OK
+2012-03-31 15:26:14,224 DEBUG SIPApp - 
+
+SIP/2.0 200 OK
+Route:<sip:mt@pcscf.open-ims.test:4060;lr>
+Route:<sip:mt@scscf.open-ims.test:6060;lr>
+Route:<sip:mo@scscf.open-ims.test:6060;lr>
+Route:<sip:mo@pcscf.open-ims.test:4060;lr>
+From:<sip:alice@open-ims.test>;tag=15230295381442634707
+To:<sip:bob@open-ims.test>;tag=365031394
+Contact:<sip:bob@192.168.0.5:64711;transport=udp>
+Call-ID:2111877057@192.168.0.5
+CSeq: 1 INVITE
+Content-Type:application/sdp
+Via:SIP/2.0/UDP 192.168.0.5:5060;rport=5060;branch=z9hG4bKfHx8fEZhbHNl
+Allow:ACK, BYE, CANCEL, INVITE, MESSAGE, NOTIFY, OPTIONS, PRACK, REFER, UPDATE
+P-Asserted-Identity:<sip:bob@open-ims.test>
+Content-Length:291
+
+v=0
+o=doubango 1983 678901 IN IP4 192.168.0.5
+s=-
+c=IN IP4 192.168.0.5
+t=0 0
+m=audio 20978 RTP/AVP 3 8 0 97 101
+a=ptime:20
+a=rtpmap:3 GSM/8000/1
+a=rtpmap:8 PCMA/8000/1
+a=rtpmap:0 PCMU/8000/1
+a=rtpmap:97 SPEEX/8000/1
+a=rtpmap:101 telephone-event/8000/1
+a=fmtp:101 0-15
+a=sendrecv
+2012-03-31 15:26:14,226 INFO  SIPApp - Sending request with method ACK
+2012-03-31 15:26:14,227 DEBUG SIPApp - 
+
+ACK sip:bob@open-ims.test SIP/2.0
+To:<sip:bob@open-ims.test>;tag=365031394
+From:<sip:alice@open-ims.test>;tag=15230295381442634707
+CSeq: 1 ACK
+Call-ID:2111877057@192.168.0.5
+Max-Forwards:70
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl
+Contact:<sip:alice@192.168.0.5:5060>
+Content-Length:0
+
+
+2012-03-31 15:27:02,897 INFO  SIPApp - Sending request with method BYE
+2012-03-31 15:27:02,898 DEBUG SIPApp - 
+
+BYE sip:bob@open-ims.test SIP/2.0
+To:<sip:bob@open-ims.test>;tag=365031394
+From:<sip:alice@open-ims.test>;tag=15230295381442634707
+CSeq: 2 BYE
+Call-ID:2111877057@192.168.0.5
+Max-Forwards:70
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl
+Contact:<sip:alice@192.168.0.5:5060>
+Content-Length:0
+
+
+2012-03-31 15:27:02,901 INFO  SIPApp - Received response with code 400 Bad Request - Not following indicated dialog routes
+2012-03-31 15:27:02,902 DEBUG SIPApp - 
+
+SIP/2.0 400 Bad Request - Not following indicated dialog routes
+To:<sip:bob@open-ims.test>;tag=365031394
+From:<sip:alice@open-ims.test>;tag=15230295381442634707
+CSeq: 2 BYE
+Call-ID:2111877057@192.168.0.5
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl;rport=5060
+Server:Sip EXpress router (2.1.0-dev1 OpenIMSCore (i386/linux))
+Content-Length:0
+
+
+2012-03-31 15:27:02,902 INFO  SIPApp - Response code of 400 is unhandled 
+2012-03-31 15:27:43,727 INFO  SIPApp - Sending request with method REGISTER
+2012-03-31 15:27:43,742 DEBUG SIPApp - 
+
+REGISTER sip:open-ims.test SIP/2.0
+To:<sip:alice@open-ims.test>
+From:<sip:alice@open-ims.test>;tag=4868911571257419085
+CSeq: 1 REGISTER
+Call-ID:1617202251@192.168.0.5
+Max-Forwards:70
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl
+Contact:<sip:alice@192.168.0.5:5060>
+Authorization:
+Expires:3600
+Content-Length:0
+
+
+2012-03-31 15:27:43,847 INFO  SIPApp - Received response with code 200 OK - SAR succesful and registrar saved
+2012-03-31 15:27:43,848 DEBUG SIPApp - 
+
+SIP/2.0 200 OK - SAR succesful and registrar saved
+To:<sip:alice@open-ims.test>;tag=5da1a9072b0c9fc6a146e3457e5b9eba-f7e6
+From:<sip:alice@open-ims.test>;tag=4868911571257419085
+CSeq: 2 REGISTER
+Call-ID:1617202251@192.168.0.5
+Via:SIP/2.0/UDP 192.168.0.5:5060;rport=5060;branch=z9hG4bKfHx8fEZhbHNl
+P-Associated-Uri:<sip:alice@open-ims.test>
+Contact:<sip:alice@192.168.0.5:5060>;expires=3600
+Path:<sip:term@pcscf.open-ims.test:4060
+Route:<sip:orig@scscf.open-ims.test:6060;lr>
+Allow:INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, SUBSCRIBE, NOTIFY, PUBLISH, MESSAGE, INFO
+P-Charging-Function-Addresses:ccf=pri_ccf_address
+Server:Sip EXpress router (2.1.0-dev1 OpenIMSCore (i386/linux))
+Content-Length:0
+
+
+2012-03-31 15:27:49,389 INFO  SIPApp - Sending request with method INVITE
+2012-03-31 15:27:49,389 DEBUG SIPApp - 
+
+INVITE sip:bob@open-ims.test SIP/2.0
+To:<sip:bob@open-ims.test>
+From:<sip:alice@open-ims.test>;tag=4868911571968094365
+CSeq: 1 INVITE
+Call-ID:687797096@192.168.0.5
+Max-Forwards:70
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl
+Contact:<sip:alice@192.168.0.5:5060>
+Content-Length:0
+
+
+2012-03-31 15:27:49,406 INFO  SIPApp - Received response with code 100 trying -- your call is important to us
+2012-03-31 15:27:49,406 DEBUG SIPApp - 
+
+SIP/2.0 100 trying -- your call is important to us
+To:<sip:bob@open-ims.test>
+From:<sip:alice@open-ims.test>;tag=4868911571968094365
+CSeq: 1 INVITE
+Call-ID:687797096@192.168.0.5
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl;rport=5060
+Server:Sip EXpress router (2.1.0-dev1 OpenIMSCore (i386/linux))
+Content-Length:0
+
+
+2012-03-31 15:27:49,406 INFO  SIPApp - Response code of 100 is unhandled 
+2012-03-31 15:27:49,473 INFO  SIPApp - Received response with code 180 Ringing
+2012-03-31 15:27:49,474 DEBUG SIPApp - 
+
+SIP/2.0 180 Ringing
+Record-Route:<sip:mt@pcscf.open-ims.test:4060;lr>
+Record-Route:<sip:mt@scscf.open-ims.test:6060;lr>
+Record-Route:<sip:mo@scscf.open-ims.test:6060;lr>
+Record-Route:<sip:mo@pcscf.open-ims.test:4060;lr>
+From:<sip:alice@open-ims.test>;tag=4868911571968094365
+To:<sip:bob@open-ims.test>;tag=365102840
+Contact:<sip:bob@192.168.0.5:64711;transport=udp>
+Call-ID:687797096@192.168.0.5
+CSeq: 1 INVITE
+Via:SIP/2.0/UDP 192.168.0.5:5060;rport=5060;branch=z9hG4bKfHx8fEZhbHNl
+Allow:ACK, BYE, CANCEL, INVITE, MESSAGE, NOTIFY, OPTIONS, PRACK, REFER, UPDATE
+P-Asserted-Identity:<sip:bob@open-ims.test>
+Content-Length:0
+
+
+2012-03-31 15:28:01,072 INFO  SIPApp - New dialog created
+2012-03-31 15:28:01,073 INFO  SIPApp - Received response with code 200 OK
+2012-03-31 15:28:01,073 DEBUG SIPApp - 
+
+SIP/2.0 200 OK
+Route:<sip:mt@pcscf.open-ims.test:4060;lr>
+Route:<sip:mt@scscf.open-ims.test:6060;lr>
+Route:<sip:mo@scscf.open-ims.test:6060;lr>
+Route:<sip:mo@pcscf.open-ims.test:4060;lr>
+From:<sip:alice@open-ims.test>;tag=4868911571968094365
+To:<sip:bob@open-ims.test>;tag=365102840
+Contact:<sip:bob@192.168.0.5:64711;transport=udp>
+Call-ID:687797096@192.168.0.5
+CSeq: 1 INVITE
+Content-Type:application/sdp
+Via:SIP/2.0/UDP 192.168.0.5:5060;rport=5060;branch=z9hG4bKfHx8fEZhbHNl
+Allow:ACK, BYE, CANCEL, INVITE, MESSAGE, NOTIFY, OPTIONS, PRACK, REFER, UPDATE
+P-Asserted-Identity:<sip:bob@open-ims.test>
+Content-Length:291
+
+v=0
+o=doubango 1983 678901 IN IP4 192.168.0.5
+s=-
+c=IN IP4 192.168.0.5
+t=0 0
+m=audio 25650 RTP/AVP 3 8 0 97 101
+a=ptime:20
+a=rtpmap:3 GSM/8000/1
+a=rtpmap:8 PCMA/8000/1
+a=rtpmap:0 PCMU/8000/1
+a=rtpmap:97 SPEEX/8000/1
+a=rtpmap:101 telephone-event/8000/1
+a=fmtp:101 0-15
+a=sendrecv
+2012-03-31 15:28:01,075 INFO  SIPApp - Sending request with method ACK
+2012-03-31 15:28:01,076 DEBUG SIPApp - 
+
+ACK sip:bob@open-ims.test SIP/2.0
+To:<sip:bob@open-ims.test>;tag=365102840
+From:<sip:alice@open-ims.test>;tag=4868911571968094365
+CSeq: 1 ACK
+Call-ID:687797096@192.168.0.5
+Max-Forwards:70
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl
+Contact:<sip:alice@192.168.0.5:5060>
+Content-Length:0
+
+
+2012-03-31 15:28:56,482 INFO  SIPApp - Sending request with method BYE
+2012-03-31 15:28:56,482 DEBUG SIPApp - 
+
+BYE sip:bob@open-ims.test SIP/2.0
+To:<sip:bob@open-ims.test>;tag=365102840
+From:<sip:alice@open-ims.test>;tag=4868911571968094365
+CSeq: 2 BYE
+Call-ID:687797096@192.168.0.5
+Max-Forwards:70
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl
+Contact:<sip:alice@192.168.0.5:5060>
+Content-Length:0
+
+
+2012-03-31 15:28:56,525 INFO  SIPApp - Received response with code 403 Forbidden - Originating subsequent requests outside dialog not allowed
+2012-03-31 15:28:56,525 DEBUG SIPApp - 
+
+SIP/2.0 403 Forbidden - Originating subsequent requests outside dialog not allowed
+To:<sip:bob@open-ims.test>;tag=365102840
+From:<sip:alice@open-ims.test>;tag=4868911571968094365
+CSeq: 2 BYE
+Call-ID:687797096@192.168.0.5
+Via:SIP/2.0/UDP 192.168.0.5:5060;rport=5060;branch=z9hG4bKfHx8fEZhbHNl
+Server:Sip EXpress router (2.1.0-dev1 OpenIMSCore (i386/linux))
+Content-Length:0
+
+
+2012-03-31 15:28:56,525 INFO  SIPApp - Response code of 403 is unhandled 
+2012-03-31 15:29:14,290 INFO  SIPApp - Sending request with method REGISTER
+2012-03-31 15:29:14,304 DEBUG SIPApp - 
+
+REGISTER sip:open-ims.test SIP/2.0
+To:<sip:alice@open-ims.test>
+From:<sip:alice@open-ims.test>;tag=1161260408809888517
+CSeq: 1 REGISTER
+Call-ID:965634964@192.168.0.5
+Max-Forwards:70
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl
+Contact:<sip:alice@192.168.0.5:5060>
+Authorization:
+Expires:3600
+Content-Length:0
+
+
+2012-03-31 15:29:14,409 INFO  SIPApp - Received response with code 200 OK - SAR succesful and registrar saved
+2012-03-31 15:29:14,409 DEBUG SIPApp - 
+
+SIP/2.0 200 OK - SAR succesful and registrar saved
+To:<sip:alice@open-ims.test>;tag=5da1a9072b0c9fc6a146e3457e5b9eba-bd8c
+From:<sip:alice@open-ims.test>;tag=1161260408809888517
+CSeq: 2 REGISTER
+Call-ID:965634964@192.168.0.5
+Via:SIP/2.0/UDP 192.168.0.5:5060;rport=5060;branch=z9hG4bKfHx8fEZhbHNl
+P-Associated-Uri:<sip:alice@open-ims.test>
+Contact:<sip:alice@192.168.0.5:5060>;expires=3600
+Path:<sip:term@pcscf.open-ims.test:4060
+Route:<sip:orig@scscf.open-ims.test:6060;lr>
+Allow:INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, SUBSCRIBE, NOTIFY, PUBLISH, MESSAGE, INFO
+P-Charging-Function-Addresses:ccf=pri_ccf_address
+Server:Sip EXpress router (2.1.0-dev1 OpenIMSCore (i386/linux))
+Content-Length:0
+
+
+2012-03-31 15:29:15,891 INFO  SIPApp - Sending request with method INVITE
+2012-03-31 15:29:15,891 DEBUG SIPApp - 
+
+INVITE sip:bob@open-ims.test SIP/2.0
+To:<sip:bob@open-ims.test>
+From:<sip:alice@open-ims.test>;tag=1161260408587162098
+CSeq: 1 INVITE
+Call-ID:2091026604@192.168.0.5
+Max-Forwards:70
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl
+Contact:<sip:alice@192.168.0.5:5060>
+Content-Length:0
+
+
+2012-03-31 15:29:15,906 INFO  SIPApp - Received response with code 100 trying -- your call is important to us
+2012-03-31 15:29:15,907 DEBUG SIPApp - 
+
+SIP/2.0 100 trying -- your call is important to us
+To:<sip:bob@open-ims.test>
+From:<sip:alice@open-ims.test>;tag=1161260408587162098
+CSeq: 1 INVITE
+Call-ID:2091026604@192.168.0.5
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl;rport=5060
+Server:Sip EXpress router (2.1.0-dev1 OpenIMSCore (i386/linux))
+Content-Length:0
+
+
+2012-03-31 15:29:15,907 INFO  SIPApp - Response code of 100 is unhandled 
+2012-03-31 15:29:15,961 INFO  SIPApp - Received response with code 180 Ringing
+2012-03-31 15:29:15,963 DEBUG SIPApp - 
+
+SIP/2.0 180 Ringing
+Record-Route:<sip:mt@pcscf.open-ims.test:4060;lr>
+Record-Route:<sip:mt@scscf.open-ims.test:6060;lr>
+Record-Route:<sip:mo@scscf.open-ims.test:6060;lr>
+Record-Route:<sip:mo@pcscf.open-ims.test:4060;lr>
+From:<sip:alice@open-ims.test>;tag=1161260408587162098
+To:<sip:bob@open-ims.test>;tag=365202829
+Contact:<sip:bob@192.168.0.5:64711;transport=udp>
+Call-ID:2091026604@192.168.0.5
+CSeq: 1 INVITE
+Via:SIP/2.0/UDP 192.168.0.5:5060;rport=5060;branch=z9hG4bKfHx8fEZhbHNl
+Allow:ACK, BYE, CANCEL, INVITE, MESSAGE, NOTIFY, OPTIONS, PRACK, REFER, UPDATE
+P-Asserted-Identity:<sip:bob@open-ims.test>
+Content-Length:0
+
+
+2012-03-31 15:29:20,612 INFO  SIPApp - New dialog created
+2012-03-31 15:29:20,613 INFO  SIPApp - Received response with code 200 OK
+2012-03-31 15:29:20,613 DEBUG SIPApp - 
+
+SIP/2.0 200 OK
+Route:<sip:mt@pcscf.open-ims.test:4060;lr>
+Route:<sip:mt@scscf.open-ims.test:6060;lr>
+Route:<sip:mo@scscf.open-ims.test:6060;lr>
+Route:<sip:mo@pcscf.open-ims.test:4060;lr>
+From:<sip:alice@open-ims.test>;tag=1161260408587162098
+To:<sip:bob@open-ims.test>;tag=365202829
+Contact:<sip:bob@192.168.0.5:64711;transport=udp>
+Call-ID:2091026604@192.168.0.5
+CSeq: 1 INVITE
+Content-Type:application/sdp
+Via:SIP/2.0/UDP 192.168.0.5:5060;rport=5060;branch=z9hG4bKfHx8fEZhbHNl
+Allow:ACK, BYE, CANCEL, INVITE, MESSAGE, NOTIFY, OPTIONS, PRACK, REFER, UPDATE
+P-Asserted-Identity:<sip:bob@open-ims.test>
+Content-Length:291
+
+v=0
+o=doubango 1983 678901 IN IP4 192.168.0.5
+s=-
+c=IN IP4 192.168.0.5
+t=0 0
+m=audio 32138 RTP/AVP 3 8 0 97 101
+a=ptime:20
+a=rtpmap:3 GSM/8000/1
+a=rtpmap:8 PCMA/8000/1
+a=rtpmap:0 PCMU/8000/1
+a=rtpmap:97 SPEEX/8000/1
+a=rtpmap:101 telephone-event/8000/1
+a=fmtp:101 0-15
+a=sendrecv
+2012-03-31 15:29:20,615 INFO  SIPApp - Sending request with method ACK
+2012-03-31 15:29:20,615 DEBUG SIPApp - 
+
+ACK sip:bob@open-ims.test SIP/2.0
+To:<sip:bob@open-ims.test>;tag=365202829
+From:<sip:alice@open-ims.test>;tag=1161260408587162098
+CSeq: 1 ACK
+Call-ID:2091026604@192.168.0.5
+Max-Forwards:70
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl
+Contact:<sip:alice@192.168.0.5:5060>
+Content-Length:0
+
+
+2012-03-31 15:29:29,834 INFO  SIPApp - Sending request with method BYE
+2012-03-31 15:29:29,834 DEBUG SIPApp - 
+
+BYE sip:bob@open-ims.test SIP/2.0
+To:<sip:bob@open-ims.test>;tag=365202829
+From:<sip:alice@open-ims.test>;tag=1161260408587162098
+CSeq: 2 BYE
+Call-ID:2091026604@192.168.0.5
+Max-Forwards:70
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl
+Contact:<sip:alice@192.168.0.5:5060>
+Content-Length:0
+
+
+2012-03-31 15:29:29,881 INFO  SIPApp - Received response with code 403 Forbidden - Originating subsequent requests outside dialog not allowed
+2012-03-31 15:29:29,881 DEBUG SIPApp - 
+
+SIP/2.0 403 Forbidden - Originating subsequent requests outside dialog not allowed
+To:<sip:bob@open-ims.test>;tag=365202829
+From:<sip:alice@open-ims.test>;tag=1161260408587162098
+CSeq: 2 BYE
+Call-ID:2091026604@192.168.0.5
+Via:SIP/2.0/UDP 192.168.0.5:5060;rport=5060;branch=z9hG4bKfHx8fEZhbHNl
+Server:Sip EXpress router (2.1.0-dev1 OpenIMSCore (i386/linux))
+Content-Length:0
+
+
+2012-03-31 15:29:29,882 INFO  SIPApp - Response code of 403 is unhandled 

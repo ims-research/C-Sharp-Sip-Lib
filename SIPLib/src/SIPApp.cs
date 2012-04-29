@@ -52,8 +52,6 @@ namespace SIPLib
 
         public void ReceiveDataCB(IAsyncResult asyncResult)
         {
-            try
-            {
                 IPEndPoint sender = new IPEndPoint(IPAddress.Any, 0);
                 EndPoint sendEP = (EndPoint)sender;
                 int bytesRead = transport.socket.EndReceiveFrom(asyncResult, ref sendEP);
@@ -65,11 +63,6 @@ namespace SIPLib
                     this.Received_Data_Event(this, new RawEventArgs(data, new string[] { remote_host, remote_port }));
                 }
                 this.transport.socket.BeginReceiveFrom(this.temp_buffer, 0, this.temp_buffer.Length, SocketFlags.None, ref sendEP, new AsyncCallback(this.ReceiveDataCB), sendEP);
-            }
-            catch (Exception ex)
-            {
-                _log.Error(ex.Message);
-            }
         }
 
         public void send(string data, string ip, int port, SIPStack stack)
@@ -142,7 +135,7 @@ namespace SIPLib
 
         public void receivedResponse(UserAgent ua, Message response, SIPStack stack)
         {
-            _log.Info("Received response with code " + response.response_code);
+            _log.Info("Received response with code " + response.response_code + " " + response.response_text);
             _log.Debug("\n\n" + response.ToString());
             switch (response.response_code)
             {
@@ -248,9 +241,17 @@ namespace SIPLib
             {
                 if (this.callUA != null)
                 {
-                    Dialog d = (Dialog) this.callUA;
-                    Message bye = d.createRequest("BYE");
-                    d.sendRequest(bye);
+                    try
+                    {
+                        Dialog d = (Dialog)this.callUA;
+                        Message bye = d.createRequest("BYE");
+                        d.sendRequest(bye);
+                    }
+                    catch (InvalidCastException E)
+                    {
+                        _log.Error("Error ending current call, Dialog Does not Exist ?",E);
+                    }
+                    
                 }
                 else
                 {
