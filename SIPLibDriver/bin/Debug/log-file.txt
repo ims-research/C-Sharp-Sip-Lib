@@ -6585,3 +6585,38 @@ Content-Length:0
 
 
 2012-03-31 15:29:29,882 INFO  SIPApp - Response code of 403 is unhandled 
+2012-04-30 17:51:53,083 INFO  SIPApp - Sending request with method REGISTER
+2012-04-30 17:51:53,103 DEBUG SIPApp - 
+
+REGISTER sip:open-ims.test SIP/2.0
+To:<sip:alice@open-ims.test>
+From:<sip:alice@open-ims.test>;tag=18155323531253499403
+CSeq: 1 REGISTER
+Call-ID:993218619@192.168.0.5
+Max-Forwards:70
+Via:SIP/2.0/UDP 192.168.0.5:5060;branch=z9hG4bKfHx8fEZhbHNl
+Contact:<sip:alice@192.168.0.5:5060>
+Authorization:
+Expires:3600
+Content-Length:0
+
+
+2012-04-30 17:51:53,684 INFO  SIPApp - Received response with code 200 OK - SAR succesful and registrar saved
+2012-04-30 17:51:53,684 DEBUG SIPApp - 
+
+SIP/2.0 200 OK - SAR succesful and registrar saved
+To:<sip:alice@open-ims.test>;tag=5da1a9072b0c9fc6a146e3457e5b9eba-e71c
+From:<sip:alice@open-ims.test>;tag=18155323531253499403
+CSeq: 2 REGISTER
+Call-ID:993218619@192.168.0.5
+Via:SIP/2.0/UDP 192.168.0.5:5060;rport=5060;branch=z9hG4bKfHx8fEZhbHNl
+P-Associated-Uri:<sip:alice@open-ims.test>
+Contact:<sip:alice@192.168.0.5:5060>;expires=3600
+Path:<sip:term@pcscf.open-ims.test:4060
+Route:<sip:orig@scscf.open-ims.test:6060;lr>
+Allow:INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, SUBSCRIBE, NOTIFY, PUBLISH, MESSAGE, INFO
+P-Charging-Function-Addresses:ccf=pri_ccf_address
+Server:Sip EXpress router (2.1.0-dev1 OpenIMSCore (i386/linux))
+Content-Length:0
+
+

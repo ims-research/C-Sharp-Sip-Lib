@@ -46,8 +46,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="src\SIP\Address.cs" />
+    <Compile Include="src\SIP\Enums.cs" />
     <Compile Include="src\SIP\Events.cs" />
-    <Compile Include="src\SIPApp.cs" />
     <Compile Include="src\SIP\Authenticate.cs" />
     <Compile Include="src\SIP\ClientTransaction.cs" />
     <Compile Include="src\SIP\Dialog.cs" />
@@ -61,6 +61,7 @@
     <Compile Include="src\SIP\SDP-Originator.cs" />
     <Compile Include="src\SIP\SDP.cs" />
     <Compile Include="src\SIP\ServerTransaction.cs" />
+    <Compile Include="SIPApp.cs" />
     <Compile Include="src\SIP\SIPURI.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="src\SIP\SIPStack.cs" />

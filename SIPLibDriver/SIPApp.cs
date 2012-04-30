@@ -5,19 +5,20 @@ using System.Text;
 using System.Net;
 using System.Net.Sockets;
 using log4net;
+using SIPLib;
 
-namespace SIPLib
+namespace SIPLibDriver
 {
-    public class SIPApp
+    public class SIPApp : SIPLib.SIPApp
     {
-        public SIPStack stack { get; set; }
+        public override SIPStack stack { get; set; }
         private byte[] temp_buffer { get; set; }
-        public TransportInfo transport { get; set; }
+        public override TransportInfo transport { get; set; }
         private UserAgent registerUA { get; set; }
         private UserAgent callUA { get; set; }
         public UserAgent messageUA { get; set; }
-        public event EventHandler<RawEventArgs> Received_Data_Event;
-        public event EventHandler<RawEventArgs> Sent_Data_Event;
+        public override event EventHandler<RawEventArgs> Received_Data_Event;
+        public override event EventHandler<RawEventArgs> Sent_Data_Event;
 
         private static ILog _log = LogManager.GetLogger(typeof(SIPApp));
 
@@ -65,7 +66,7 @@ namespace SIPLib
                 this.transport.socket.BeginReceiveFrom(this.temp_buffer, 0, this.temp_buffer.Length, SocketFlags.None, ref sendEP, new AsyncCallback(this.ReceiveDataCB), sendEP);
         }
 
-        public void send(string data, string ip, int port, SIPStack stack)
+        public override void send(string data, string ip, int port, SIPStack stack)
         {
             IPAddress[] addresses = System.Net.Dns.GetHostAddresses(ip);
             IPEndPoint dest = new IPEndPoint(addresses[0], port);
@@ -86,7 +87,7 @@ namespace SIPLib
             }
         }
 
-        public UserAgent createServer(Message request, SIPURI uri, SIPStack stack)
+        public override UserAgent createServer(Message request, SIPURI uri, SIPStack stack)
         {
             if (request.method == "INVITE")
             {
@@ -95,7 +96,7 @@ namespace SIPLib
             else return null;
         }
 
-        public void sending(UserAgent ua, Message message, SIPStack stack)
+        public override void sending(UserAgent ua, Message message, SIPStack stack)
         {
             if (Utils.isRequest(message))
             {
@@ -109,23 +110,23 @@ namespace SIPLib
             //TODO: Allow App to modify message before it gets sent?;
         }
 
-        public void cancelled(UserAgent ua, Message request, SIPStack stack)
+        public override void cancelled(UserAgent ua, Message request, SIPStack stack)
         {
             throw new NotImplementedException();
         }
 
-        public void dialogCreated(Dialog dialog, UserAgent ua, SIPStack stack)
+        public override void dialogCreated(Dialog dialog, UserAgent ua, SIPStack stack)
         {
             this.callUA = dialog;
             _log.Info("New dialog created");
         }
 
-        public Timer createTimer(UserAgent app, SIPStack stack)
+        public override Timer createTimer(UserAgent app, SIPStack stack)
         {
             return new Timer(app);
         }
 
-        public string[] authenticate(UserAgent ua, Header header, SIPStack stack)
+        public override string[] authenticate(UserAgent ua, Header header, SIPStack stack)
         {
             string username = "alice";
             string realm = "open-ims.test";
@@ -133,7 +134,7 @@ namespace SIPLib
             return new string[] { username + "@" + realm, password };
         }
 
-        public void receivedResponse(UserAgent ua, Message response, SIPStack stack)
+        public override void receivedResponse(UserAgent ua, Message response, SIPStack stack)
         {
             _log.Info("Received response with code " + response.response_code + " " + response.response_text);
             _log.Debug("\n\n" + response.ToString());
@@ -164,7 +165,7 @@ namespace SIPLib
             }
         }
 
-        public void receivedRequest(UserAgent ua, Message request, SIPStack stack)
+        public override void receivedRequest(UserAgent ua, Message request, SIPStack stack)
         {
             _log.Info("Received request with method " + request.method.ToUpper());
             _log.Debug("\n\n" + request.ToString());
