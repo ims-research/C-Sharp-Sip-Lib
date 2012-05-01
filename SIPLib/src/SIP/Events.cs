@@ -13,11 +13,19 @@ namespace SIPLib
     public class SipMessageEventArgs : EventArgs
     {
         public Message message;
+        public UserAgent ua;
 
         public SipMessageEventArgs(Message transferred_message)
         {
             this.message = transferred_message;
         }
+
+        public SipMessageEventArgs(Message transferred_message,UserAgent ua)
+        {
+            this.message = transferred_message;
+            this.ua = ua;
+        }
+
     }
 
     public class StackErrorEventArgs : EventArgs

@@ -46,7 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="src\SIP\Address.cs" />
-    <Compile Include="src\SIP\Enums.cs" />
+    <Compile Include="src\SIP\Types.cs" />
     <Compile Include="src\SIP\Events.cs" />
     <Compile Include="src\SIP\Authenticate.cs" />
     <Compile Include="src\SIP\ClientTransaction.cs" />

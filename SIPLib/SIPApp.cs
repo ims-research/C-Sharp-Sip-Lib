@@ -23,13 +23,12 @@ namespace SIPLib
 
         public abstract Timer createTimer(UserAgent obj, SIPStack sIPStack);
 
-        public abstract event EventHandler<RawEventArgs> Received_Data_Event;
-        public abstract event EventHandler<RawEventArgs> Sent_Data_Event;
-
         public abstract void send(string final_data, string destination_host, int destination_port, SIPStack sIPStack);
 
         public abstract TransportInfo transport { get; set; }
 
         public abstract SIPStack stack { get; set; }
+
+        public virtual event EventHandler<RawEventArgs> Received_Data_Event;
     }
 }

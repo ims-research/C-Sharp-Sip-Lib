@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Diagnostics;
+using SIPLib.src.SIP;
+
 namespace SIPLib
 {
     public class Message
@@ -14,6 +16,7 @@ namespace SIPLib
 
         public int response_code { get; set; }
         public string response_text { get; set; }
+        public StatusCodes status_code_type = StatusCodes.Unknown;
         public string protocol { get; set; }
         public string method { get; set; }
         public string _body = "";
@@ -88,6 +91,7 @@ namespace SIPLib
                 this.response_code = temp_response_code;
                 this.response_text = parts[2];
                 this.protocol = parts[0];
+                this.status_code_type = Types.GetStatusType(response_code);
             }
             else
             {

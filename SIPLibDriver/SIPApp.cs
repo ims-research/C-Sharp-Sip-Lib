@@ -18,7 +18,7 @@ namespace SIPLibDriver
         private UserAgent callUA { get; set; }
         public UserAgent messageUA { get; set; }
         public override event EventHandler<RawEventArgs> Received_Data_Event;
-        public override event EventHandler<RawEventArgs> Sent_Data_Event;
+        public event EventHandler<RawEventArgs> Sent_Data_Event;
 
         private static ILog _log = LogManager.GetLogger(typeof(SIPApp));
 
