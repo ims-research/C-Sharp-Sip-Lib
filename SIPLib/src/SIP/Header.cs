@@ -107,6 +107,8 @@ namespace SIPLib
             else if (!(_comma.Contains(name.ToLower())) && !(_unstructured.Contains(name.ToLower())))
             {
                 this.header_type = "standard";
+                if (!value.Contains(";lr>"))
+                {
                 if (value.Contains(';'))
                 {
                     index = value.IndexOf(';');
@@ -122,6 +124,7 @@ namespace SIPLib
                             this.attributes.Add(parm_name, parm_value);
                         }
                     }
+                }
                 }
                 else
                 {

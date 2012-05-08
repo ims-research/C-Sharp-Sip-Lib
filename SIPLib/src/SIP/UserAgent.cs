@@ -495,7 +495,7 @@ namespace SIPLib
                     Address contact = new Address(this.contact.ToString());
                     if (contact.uri.user.Length == 0)
                     {
-                        contact.uri.user = ((SIPURI)this.request.headers["To"][0].value).user;
+                        contact.uri.user = ((Address)this.request.first("To").value).uri.user;
                         response_message.insertHeader(new Header(contact.ToString(), "Contact"));
                     }
 

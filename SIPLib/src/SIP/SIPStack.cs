@@ -18,8 +18,9 @@ namespace SIPLib
         public Dictionary<string, Dialog> dialogs { get; set; }
         public Dictionary<string, Transaction> transactions { get; set; }
         public string[] serverMethods = { "INVITE", "BYE", "MESSAGE", "SUBSCRIBE", "NOTIFY" };
-        public string proxy_ip { get; set; }
+        public string proxy_host { get; set; }
         public int proxy_port { get; set; }
+
         private SIPURI _uri = null;
         private List<Header> service_route { get; set; }
         private static ILog _log = LogManager.GetLogger(typeof(SIPStack));
@@ -49,7 +50,14 @@ namespace SIPLib
 
         void transport_Received_Data_Event(object sender, RawEventArgs e)
         {
-            this.received(e.data, e.src);
+            try
+            {
+                this.received(e.data, e.src);
+            }
+            catch (Exception ex)
+            {
+                Debug.Assert(false, String.Format("Error receiving data",ex));
+            }
         }
 
         ~SIPStack()  // destructor
@@ -97,9 +105,9 @@ namespace SIPLib
             string destination_host = "";
             int destination_port = 0;
             string final_data;
-            if (this.proxy_ip != null && this.proxy_port != 0)
+            if (this.proxy_host != null && this.proxy_port != 0)
             {
-                destination_host = proxy_ip;
+                destination_host = proxy_host;
                 destination_port = Convert.ToInt32(proxy_port);
             }
             else if (dest is SIPURI)
@@ -129,7 +137,6 @@ namespace SIPLib
                 Message m = (Message)data;
                 if (this.service_route != null)
                 {
-                    //if (!(Utils.isRequest(m) && (m.method.ToLower().Contains("register")||m.method.ToLower().Contains("ack"))))
                     if (!(Utils.isRequest(m) && (m.method.ToLower().Contains("register"))))
                     {
                         if (m.headers.ContainsKey("Route"))
@@ -156,13 +163,26 @@ namespace SIPLib
                         }
                     }
                 }
-                if (!m.headers.ContainsKey("Route"))
+                if (m.headers.ContainsKey("Route"))
                 {
-                    m.insertHeader(new Header("<sip:orig@scscf.open-ims.test:6060;lr>", "Route"));
+                    bool found = false;
+                    foreach (Header h in m.headers["Route"])
+                    {
+                        if (h.ToString().Contains(proxy_host))
+                        {
+                            found = true;
+                        }
+                        
+                    }
+                    if (!found)
+                    {
+                        m.insertHeader(new Header("<sip:" + proxy_host + ":" + proxy_port + ">", "Route"), "insert");
+                    }
+                    
                 }
-                if (m.headers["Route"].First().ToString().ToLower().Contains("mt@pcscf"))
+                else
                 {
-                    m.headers["Route"].Reverse();
+                    m.insertHeader(new Header("<sip:"+proxy_host+":"+proxy_port+">", "Route"));
                 }
                 if (m.method != null && m.method.Length > 0)
                 {
@@ -176,6 +196,22 @@ namespace SIPLib
                         destination_port = m.headers["Via"][0].viaUri.port;
                     }
                 }
+                ////TODO FIX HACK
+                //string route_list = "";
+                //if (m.headers.ContainsKey("Route"))
+                //{
+                //foreach (Header h in m.headers["Route"])
+                //{
+                //    route_list = route_list + h.value.ToString() + ",";
+                //}
+                //route_list = route_list.Remove(route_list.Length - 1);
+                //Header temp = new Header(route_list, "Temp");
+                //temp.value = route_list;
+                //temp.name = "Route";
+                //m.headers.Remove("Route");
+                //m.insertHeader(temp);
+                //}
+                
                 final_data = m.ToString();
             }
             else
@@ -184,6 +220,35 @@ namespace SIPLib
             }
             this.app.send(final_data, destination_host, destination_port, this);
         }
+
+        //private string mergeRoutes(string message_text)
+        //{
+        //    string route = "Route: ";
+        //    StringBuilder sb = new StringBuilder();
+        //    int index = -1;
+        //    foreach (string line in message_text.Split(new string[] { "\r\n" }, StringSplitOptions.None))
+        //    {
+        //        if (line.StartsWith("Route:"))
+        //        {
+        //            route = route + line.Remove(0, 6) + ",";
+        //        }
+        //        else if (line.StartsWith("Content-Length"))
+        //        {
+        //            route = route.Remove(route.Length - 1);
+        //            sb.Append(route + "\r\n");
+        //            sb.Append(line + "\r\n");
+        //            sb.Append("\r\n");
+        //            index = message_text.IndexOf(line) + line.Length;
+        //            break;
+        //        }
+        //        else
+        //        {
+        //            sb.Append(line + "\r\n");
+        //        }
+        //    }
+        //    sb.Append(message_text.Substring(index));
+        //    return sb.ToString();
+        //}
 
         public void received(string data, string[] src)
         {
