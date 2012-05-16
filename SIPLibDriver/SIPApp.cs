@@ -46,9 +46,9 @@ namespace SIPLibDriver
         public void Register(string uri)
         {
             this.registerUA = new UserAgent(this.stack, null, false);
-            Message register_msg = this.registerUA.createRegister(new SIPURI(uri));
-            register_msg.insertHeader(new Header("3600", "Expires"));
-            this.registerUA.sendRequest(register_msg);
+            Message register_msg = this.registerUA.CreateRegister(new SIPURI(uri));
+            register_msg.InsertHeader(new Header("3600", "Expires"));
+            this.registerUA.SendRequest(register_msg);
         }
 
         public void ReceiveDataCB(IAsyncResult asyncResult)
@@ -66,7 +66,7 @@ namespace SIPLibDriver
                 this.transport.socket.BeginReceiveFrom(this.temp_buffer, 0, this.temp_buffer.Length, SocketFlags.None, ref sendEP, new AsyncCallback(this.ReceiveDataCB), sendEP);
         }
 
-        public override void send(string data, string ip, int port, SIPStack stack)
+        public override void Send(string data, string ip, int port, SIPStack stack)
         {
             IPAddress[] addresses = System.Net.Dns.GetHostAddresses(ip);
             IPEndPoint dest = new IPEndPoint(addresses[0], port);
@@ -87,7 +87,7 @@ namespace SIPLibDriver
             }
         }
 
-        public override UserAgent createServer(Message request, SIPURI uri, SIPStack stack)
+        public override UserAgent CreateServer(Message request, SIPURI uri, SIPStack stack)
         {
             if (request.method == "INVITE")
             {
@@ -96,9 +96,9 @@ namespace SIPLibDriver
             else return null;
         }
 
-        public override void sending(UserAgent ua, Message message, SIPStack stack)
+        public override void Sending(UserAgent ua, Message message, SIPStack stack)
         {
-            if (Utils.isRequest(message))
+            if (Utils.IsRequest(message))
             {
                 _log.Info("Sending request with method " + message.method);
             }
@@ -110,23 +110,23 @@ namespace SIPLibDriver
             //TODO: Allow App to modify message before it gets sent?;
         }
 
-        public override void cancelled(UserAgent ua, Message request, SIPStack stack)
+        public override void Cancelled(UserAgent ua, Message request, SIPStack stack)
         {
             throw new NotImplementedException();
         }
 
-        public override void dialogCreated(Dialog dialog, UserAgent ua, SIPStack stack)
+        public override void DialogCreated(Dialog dialog, UserAgent ua, SIPStack stack)
         {
             this.callUA = dialog;
             _log.Info("New dialog created");
         }
 
-        public override Timer createTimer(UserAgent app, SIPStack stack)
+        public override Timer CreateTimer(UserAgent app, SIPStack stack)
         {
             return new Timer(app);
         }
 
-        public override string[] authenticate(UserAgent ua, Header header, SIPStack stack)
+        public override string[] Authenticate(UserAgent ua, Header header, SIPStack stack)
         {
             string username = "alice";
             string realm = "open-ims.test";
@@ -134,7 +134,7 @@ namespace SIPLibDriver
             return new string[] { username + "@" + realm, password };
         }
 
-        public override void receivedResponse(UserAgent ua, Message response, SIPStack stack)
+        public override void ReceivedResponse(UserAgent ua, Message response, SIPStack stack)
         {
             _log.Info("Received response with code " + response.response_code + " " + response.response_text);
             _log.Debug("\n\n" + response.ToString());
@@ -165,7 +165,7 @@ namespace SIPLibDriver
             }
         }
 
-        public override void receivedRequest(UserAgent ua, Message request, SIPStack stack)
+        public override void ReceivedRequest(UserAgent ua, Message request, SIPStack stack)
         {
             _log.Info("Received request with method " + request.method.ToUpper());
             _log.Debug("\n\n" + request.ToString());
@@ -174,8 +174,8 @@ namespace SIPLibDriver
                 case "INVITE":
                     {
                         _log.Info("Generating 200 OK response for INVITE");
-                        Message m = ua.createResponse(200, "OK");
-                        ua.sendResponse(m);
+                        Message m = ua.CreateResponse(200, "OK");
+                        ua.SendResponse(m);
                         break;
                     }
                 case "CANCEL":
@@ -212,41 +212,41 @@ namespace SIPLibDriver
         }
 
 
-        public void timeout(Transaction transaction)
+        public void Timeout(Transaction transaction)
         {
             throw new NotImplementedException();
         }
 
-        public void error(Transaction transaction, string error)
+        public void Error(Transaction transaction, string error)
         {
             throw new NotImplementedException();
         }
 
         public void Message(string uri, string message)
         {
-            uri = checkURI(uri);
-            if (isRegistered())
+            uri = CheckURI(uri);
+            if (IsRegistered())
             {
                 this.messageUA = new UserAgent(this.stack);
                 this.messageUA.localParty = this.registerUA.localParty;
                 this.messageUA.remoteParty = new Address(uri);
-                Message m = this.messageUA.createRequest("MESSAGE", message);
-                m.insertHeader(new Header("text/plain", "Content-Type"));
-                this.messageUA.sendRequest(m);
+                Message m = this.messageUA.CreateRequest("MESSAGE", message);
+                m.InsertHeader(new Header("text/plain", "Content-Type"));
+                this.messageUA.SendRequest(m);
             }
         }
 
-        public void endCurrentCall()
+        public void EndCurrentCall()
         {
-            if (isRegistered())
+            if (IsRegistered())
             {
                 if (this.callUA != null)
                 {
                     try
                     {
                         Dialog d = (Dialog)this.callUA;
-                        Message bye = d.createRequest("BYE");
-                        d.sendRequest(bye);
+                        Message bye = d.CreateRequest("BYE");
+                        d.SendRequest(bye);
                     }
                     catch (InvalidCastException E)
                     {
@@ -269,14 +269,14 @@ namespace SIPLibDriver
 
         public void Invite(string uri)
         {
-            uri = checkURI(uri);
-            if (isRegistered())
+            uri = CheckURI(uri);
+            if (IsRegistered())
             {
                 this.callUA = new UserAgent(this.stack, null, false);
                 this.callUA.localParty = this.registerUA.localParty;
                 this.callUA.remoteParty = new Address(uri);
-                Message invite = this.callUA.createRequest("INVITE");
-                this.callUA.sendRequest(invite);
+                Message invite = this.callUA.CreateRequest("INVITE");
+                this.callUA.SendRequest(invite);
             }
             else
             {
@@ -284,7 +284,7 @@ namespace SIPLibDriver
             }
         }
 
-        private string checkURI(string uri)
+        private string CheckURI(string uri)
         {
             if (!uri.Contains("<sip:") && !uri.Contains("sip:"))
             {
@@ -293,7 +293,7 @@ namespace SIPLibDriver
             return uri;
         }
 
-        private bool isRegistered()
+        private bool IsRegistered()
         {
             if (this.registerUA == null || this.registerUA.localParty == null)
                 return false;

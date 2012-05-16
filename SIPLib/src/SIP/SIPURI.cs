@@ -151,12 +151,12 @@ namespace SIPLib
             return sb.ToString();
         }
 
-        public SIPURI dup()
+        public SIPURI Dup()
         {
             return new SIPURI(this.ToString());
         }
 
-        public string hash()
+        public string Hash()
         {
             MD5 m = MD5.Create();
             string hash = GetMd5Hash(m, this.ToString().ToLower());
@@ -183,12 +183,12 @@ namespace SIPLib
             return sBuilder.ToString();
         }
 
-        public bool compare(SIPURI other)
+        public bool Compare(SIPURI other)
         {
             return ((this.ToString().ToLower()) == (other.ToString().ToLower()));
         }
 
-        public string hostPort()
+        public string HostPort()
         {
             return this.host + ":" + port.ToString();
         }

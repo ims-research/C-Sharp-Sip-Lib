@@ -69,11 +69,11 @@ namespace SIPLib
             return I();
         }
 
-        public void start(int delay = 0)
+        public void Start(int delay = 0)
         {
 
         }
-        public void stop(int delay = 0)
+        public void Stop(int delay = 0)
         {
 
         }

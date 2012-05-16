@@ -13,35 +13,35 @@ namespace SIPLib
             this.server = false;
         }
 
-        public void start()
+        public void Start()
         {
             this.state = "calling";
             if (!this.transport.reliable)
-                this.startTimer("A", this.timer.A());
-            this.startTimer("B", this.timer.B());
-            this.stack.send(this.request, this.remote, this.transport);
+                this.StartTimer("A", this.timer.A());
+            this.StartTimer("B", this.timer.B());
+            this.stack.Send(this.request, this.remote, this.transport);
         }
 
-        public override void receivedResponse(Message response)
+        public override void ReceivedResponse(Message response)
         {
-            if (response.is1xx())
+            if (response.Is1xx())
             {
                 if (this.state == "calling")
                 {
                     this.state = "proceeding";
-                    this.app.receivedResponse(this, response);
+                    this.app.ReceivedResponse(this, response);
                 }
                 else if (this.state == "proceeding")
                 {
-                    this.app.receivedResponse(this, response);
+                    this.app.ReceivedResponse(this, response);
                 }
             }
-            else if (response.is2xx())
+            else if (response.Is2xx())
             {
                 if (this.state == "calling" || this.state == "proceeding")
                 {
                     this.state = "terminated";
-                    this.app.receivedResponse(this, response);
+                    this.app.ReceivedResponse(this, response);
                 }
             }
             else
@@ -49,37 +49,37 @@ namespace SIPLib
                 if (this.state == "calling" || this.state == "proceeding")
                 {
                     this.state = "completed";
-                    this.stack.send(this.createAck(response), this.remote, this.transport);
-                    this.app.receivedResponse(this, response);
+                    this.stack.Send(this.CreateAck(response), this.remote, this.transport);
+                    this.app.ReceivedResponse(this, response);
                     if (!this.transport.reliable)
                     {
-                        this.startTimer("D",this.timer.D());
+                        this.StartTimer("D",this.timer.D());
                     }
                     else
                     {
-                        this.timeout("D",0);
+                        this.Timeout("D",0);
                     }
                 }
                 else if (this.state == "completed")
                 {
-                    this.stack.send(this.createAck(response),this.remote,this.transport);
+                    this.stack.Send(this.CreateAck(response),this.remote,this.transport);
                 }
             }
         }
 
-        public void timeout(string name, int timeout)
+        public void Timeout(string name, int timeout)
         {
             if (this.state == "calling")
             {
                 if (name == "A")
                 {
-                    this.startTimer("A", 2 * timeout);
-                    this.stack.send(this.request, this.remote, this.transport);
+                    this.StartTimer("A", 2 * timeout);
+                    this.stack.Send(this.request, this.remote, this.transport);
                 }
                 else if (name == "B")
                 {
                     this.state = "terminated";
-                    this.app.timeout(this);
+                    this.app.Timeout(this);
                 }
             }
             else if (this.state == "completed")
@@ -91,23 +91,23 @@ namespace SIPLib
             }
         }
 
-        public void error(string error)
+        public void Error(string error)
         {
             if (this.state == "calling" || this.state == "completed")
             {
                 this.state = "terminated";
-                this.app.error(this,error);
+                this.app.Error(this,error);
             }
         }
 
-        public Message createAck(Message response)
+        public Message CreateAck(Message response)
         {
             if (this.request == null)
             {
                 Debug.Assert(false, String.Format("Error creating Ack message when request is null"));
                 return null;
             }
-            Message m = Message.createRequest("ACK", this.request.uri);
+            Message m = Message.CreateRequest("ACK", this.request.uri);
             m.headers["Call-ID"] = this.request.headers["Call-ID"];
             m.headers["From"] = this.request.headers["From"];
 
@@ -121,10 +121,10 @@ namespace SIPLib
             }
 
             m.headers["Via"] = new List<Header>();
-            m.headers["Via"].Add(this.request.first("Via"));
+            m.headers["Via"].Add(this.request.First("Via"));
 
             m.headers["CSeq"] = new List<Header>();
-            m.headers["CSeq"].Add(new Header(this.request.first("CSeq").number + " ACK","CSeq"));
+            m.headers["CSeq"].Add(new Header(this.request.First("CSeq").number + " ACK","CSeq"));
 
             if (this.request.headers.ContainsKey("Route"))
             {

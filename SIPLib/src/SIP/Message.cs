@@ -112,7 +112,7 @@ namespace SIPLib
                     {
                         if (!h.StartsWith("Warning:"))
                         {
-                        List<Header> createdHeaders = Header.createHeaders(h);
+                        List<Header> createdHeaders = Header.CreateHeaders(h);
                         string name = createdHeaders[0].name;
                         if (this.headers.ContainsKey(name))
                         {
@@ -134,7 +134,7 @@ namespace SIPLib
             int bodylength = 0;
             if (this.headers.ContainsKey("Content-Length"))
             {
-                bodylength = Convert.ToInt32(this.first("Content-Length").value);
+                bodylength = Convert.ToInt32(this.First("Content-Length").value);
             }
             if (body.Length > 0)
             {
@@ -170,7 +170,7 @@ namespace SIPLib
                     string current = "";
                     foreach (Header h in headers)
                     {
-                        current = current + h.repr() + "\n";
+                        current = current + h.Repr() + "\n";
                     }
                     current = current.Remove(current.Length - 1);
                     current = current + "\r\n";
@@ -190,16 +190,16 @@ namespace SIPLib
             return m;
         }
 
-        public Header first(string name)
+        public Header First(string name)
         {
             return this.headers[name][0];
         }
-        public Message dup()
+        public Message Dup()
         {
             return new Message(this.ToString());
         }
 
-        public void insertHeader(Header header, string method = "replace")
+        public void InsertHeader(Header header, string method = "replace")
         {
             string name = header.name;
             if (this.headers.ContainsKey(name))
@@ -235,42 +235,42 @@ namespace SIPLib
             }
         }
 
-        public bool is1xx()
+        public bool Is1xx()
         {
             return (this.response_code / 100 == 1);
         }
 
-        public bool is2xx()
+        public bool Is2xx()
         {
             return (this.response_code / 100 == 2);
         }
-        public bool is3xx()
+        public bool Is3xx()
         {
             return (this.response_code / 100 == 3);
         }
-        public bool is4xx()
+        public bool Is4xx()
         {
             return (this.response_code / 100 == 4);
         }
-        public bool is5xx()
+        public bool Is5xx()
         {
             return (this.response_code / 100 == 5);
         }
-        public bool is6xx()
+        public bool Is6xx()
         {
             return (this.response_code / 100 == 6);
         }
-        public bool is7xx()
+        public bool Is7xx()
         {
             return (this.response_code / 100 == 7);
         }
 
-        public bool isFinal()
+        public bool IsFinal()
         {
             return (this.response_code >= 200);
         }
 
-        public static Message populateMessage(Message m, Dictionary<string, List<Header>> headers = null, string content = "")
+        public static Message PopulateMessage(Message m, Dictionary<string, List<Header>> headers = null, string content = "")
         {
             if (headers != null)
             {
@@ -278,7 +278,7 @@ namespace SIPLib
                 {
                     foreach (Header h in header)
                     {
-                        m.insertHeader(h,"append");
+                        m.InsertHeader(h,"append");
                     }
                 }
             }
@@ -303,16 +303,16 @@ namespace SIPLib
             return m;
         }
 
-        public static Message createRequest(string method, SIPURI uri, Dictionary<string, List<Header>> headers = null, string content = "")
+        public static Message CreateRequest(string method, SIPURI uri, Dictionary<string, List<Header>> headers = null, string content = "")
         {
             Message m = new Message();
             m.method = method;
             m.uri = uri;
             m.protocol = "SIP/2.0";
-            m = Message.populateMessage(m, headers, content);
+            m = Message.PopulateMessage(m, headers, content);
             if (m.headers.ContainsKey("CSeq"))
             {
-                Header cseq = new Header(m.first("CSeq").number.ToString() + " " + method, "CSeq");
+                Header cseq = new Header(m.First("CSeq").number.ToString() + " " + method, "CSeq");
                 List<Header> cseq_headers = new List<Header>();
                 cseq_headers.Add(cseq);
                 m.headers["CSeq"] = cseq_headers;
@@ -320,7 +320,7 @@ namespace SIPLib
             return m;
         }
 
-        public static Message createResponse(int response_code, string response_text, Dictionary<string, List<Header>> headers = null, string content = "", Message original_request = null)
+        public static Message CreateResponse(int response_code, string response_text, Dictionary<string, List<Header>> headers = null, string content = "", Message original_request = null)
         {
             Message m = new Message();
             m.response_code = response_code;
@@ -338,7 +338,7 @@ namespace SIPLib
                     m.headers["Timestamp"] = original_request.headers["Timestamp"];
                 }
             }
-            return Message.populateMessage(m, headers, content);
+            return Message.PopulateMessage(m, headers, content);
         }
 
     }

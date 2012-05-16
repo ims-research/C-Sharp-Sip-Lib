@@ -45,6 +45,7 @@ Thumbs.db
 *.suo
 *.cache
 *FileListAbsolute*.txt
+*_ReSharper*
 
 # Build Folders (you can keep bin if you'd like, to store dlls and pdbs)
 bin
