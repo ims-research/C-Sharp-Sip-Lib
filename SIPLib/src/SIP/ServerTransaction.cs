@@ -12,19 +12,19 @@ namespace SIPLib
             this.server = true;
         }
 
-        public void start()
+        public void Start()
         {
             this.state = "trying";
-            this.app.receivedRequest(this, this.request,this.stack);
+            this.app.ReceivedRequest(this, this.request,this.stack);
         }
 
-        public override void receivedRequest(Message request)
+        public override void ReceivedRequest(Message request)
         {
             if (this.request.method == request.method)
             {
                 if (this.state == "proceeding" || this.state == "completed")
                 {
-                    this.stack.send(this.lastResponse, this.remote, this.transport);
+                    this.stack.Send(this.lastResponse, this.remote, this.transport);
                 }
                 else if (this.state == "trying")
                 {
@@ -33,7 +33,7 @@ namespace SIPLib
             }
         }
 
-        public void timeout(string name, int timeout)
+        public void Timeout(string name, int timeout)
         {
             if (this.state == "completed")
             {
@@ -44,39 +44,39 @@ namespace SIPLib
             }
         }
 
-        public void error(string error)
+        public void Error(string error)
         {
             if (this.state == "completed")
             {
                 this.state = "terminated";
-                this.app.error(this,error);
+                this.app.Error(this,error);
             }
         }
 
-        public override void sendResponse(Message response)
+        public override void SendResponse(Message response)
         {
             this.lastResponse = response;
-            if (response.is1xx())
+            if (response.Is1xx())
             {
                 if (this.state == "trying" || this.state == "proceeding")
                 {
                     this.state = "proceeding";
-                    this.stack.send(response, this.remote, this.transport);
+                    this.stack.Send(response, this.remote, this.transport);
                 }
             }
-            else if (response.isFinal())
+            else if (response.IsFinal())
             {
                 if (this.state == "trying" || this.state == "proceeding")
                 {
                     this.state = "completed";
-                    this.stack.send(response, this.remote, this.transport);
+                    this.stack.Send(response, this.remote, this.transport);
                     if (!this.transport.reliable)
                     {
-                        this.startTimer("J", this.timer.J());
+                        this.StartTimer("J", this.timer.J());
                     }
                     else
                     {
-                        this.timeout("J", 0);
+                        this.Timeout("J", 0);
                     }
                 }
             }

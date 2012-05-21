@@ -13,7 +13,7 @@ namespace SIPLib
         public string tag { get; set; }
         public TransportInfo transport { get; set; }
         public SIPApp app { get; set; }
-        private Random random = new Random();
+        private Random _random = new Random();
         public bool closing = false;
         public Dictionary<string, Dialog> dialogs { get; set; }
         public Dictionary<string, Transaction> transactions { get; set; }
@@ -43,16 +43,16 @@ namespace SIPLib
             Init();
             this.transport = app.transport;
             this.app = app;
-            this.app.Received_Data_Event += new EventHandler<RawEventArgs>(transport_Received_Data_Event);
+            this.app.Received_Data_Event += new EventHandler<RawEventArgs>(Transport_Received_Data_Event);
 
             app.stack = this;
         }
 
-        void transport_Received_Data_Event(object sender, RawEventArgs e)
+        void Transport_Received_Data_Event(object sender, RawEventArgs e)
         {
             try
             {
-                this.received(e.data, e.src);
+                this.Received(e.data, e.src);
             }
             catch (Exception ex)
             {
@@ -84,22 +84,22 @@ namespace SIPLib
         private void Init()
         {
             //this.tag = Guid.NewGuid().ToString().Replace("-", "").Substring(0, 8);
-            this.tag = random.Next(0, 2147483647).ToString();
+            this.tag = _random.Next(0, 2147483647).ToString();
             this.dialogs = new Dictionary<string, Dialog>();
             this.transactions = new Dictionary<string, Transaction>();
         }
 
-        public string newCallId()
+        public string NewCallId()
         {
-            return random.Next(0, 2147483647).ToString() + "@" + (this.transport.host);
+            return _random.Next(0, 2147483647).ToString() + "@" + (this.transport.host);
         }
 
-        public Header createVia()
+        public Header CreateVia()
         {
             return new Header("SIP/2.0/" + this.transport.type.ToString().ToUpper() + " " + this.transport.host + ':' + this.transport.port.ToString() + ";rport", "Via");
         }
 
-        public void send(object data, object dest = null, TransportInfo transport = null)
+        public void Send(object data, object dest = null, TransportInfo transport = null)
         {
             //send(string data, string ip,int port,Stack stack)
             string destination_host = "";
@@ -137,7 +137,7 @@ namespace SIPLib
                 Message m = (Message)data;
                 if (this.service_route != null)
                 {
-                    if (!(Utils.isRequest(m) && (m.method.ToLower().Contains("register"))))
+                    if (!(Utils.IsRequest(m) && (m.method.ToLower().Contains("register"))))
                     {
                         if (m.headers.ContainsKey("Route"))
                         {
@@ -176,13 +176,13 @@ namespace SIPLib
                     }
                     if (!found)
                     {
-                        m.insertHeader(new Header("<sip:" + proxy_host + ":" + proxy_port + ">", "Route"), "insert");
+                        m.InsertHeader(new Header("<sip:" + proxy_host + ":" + proxy_port + ">", "Route"), "insert");
                     }
                     
                 }
                 else
                 {
-                    m.insertHeader(new Header("<sip:"+proxy_host+":"+proxy_port+">", "Route"));
+                    m.InsertHeader(new Header("<sip:"+proxy_host+":"+proxy_port+">", "Route"));
                 }
                 if (m.method != null && m.method.Length > 0)
                 {
@@ -218,7 +218,7 @@ namespace SIPLib
             {
                 final_data = (string)data;
             }
-            this.app.send(final_data, destination_host, destination_port, this);
+            this.app.Send(final_data, destination_host, destination_port, this);
         }
 
         //private string mergeRoutes(string message_text)
@@ -250,7 +250,7 @@ namespace SIPLib
         //    return sb.ToString();
         //}
 
-        public void received(string data, string[] src)
+        public void Received(string data, string[] src)
         {
             if (data.Length > 2)
             {
@@ -275,11 +275,11 @@ namespace SIPLib
                             via.attributes["rport"] = src[1];
                         }
                         via.viaUri.port = Convert.ToInt32(src[1]);
-                        this.receivedRequest(m, uri);
+                        this.ReceivedRequest(m, uri);
                     }
                     else if (m.response_code > 0)
                     {
-                        this.receivedResponse(m, uri);
+                        this.ReceivedResponse(m, uri);
                     }
                     else
                     {
@@ -298,7 +298,7 @@ namespace SIPLib
 
         }
 
-        private void receivedRequest(Message m, SIPURI uri)
+        private void ReceivedRequest(Message m, SIPURI uri)
         {
             string branch = m.headers["Via"][0].attributes["branch"];
             Transaction t = null;
@@ -308,7 +308,7 @@ namespace SIPLib
             }
             else
             {
-                t = this.findTransaction(Transaction.createId(branch, m.method));
+                t = this.FindTransaction(Transaction.CreateId(branch, m.method));
             }
             if (t == null)
             {
@@ -316,20 +316,20 @@ namespace SIPLib
                 if ((m.method != "CANCEL") && (m.headers["To"][0].attributes.ContainsKey("tag")))
                 {
                     //In dialog request
-                    Dialog d = this.findDialog(m);
+                    Dialog d = this.FindDialog(m);
                     if (d == null)
                     {
                         if (m.method != "ACK")
                         {
                             //Updated from latest code TODO
-                            UserAgent u = this.createServer(m, uri);
+                            UserAgent u = this.CreateServer(m, uri);
                             if (u != null)
                             {
                                 app = u;
                             }
                             else
                             {
-                                this.send(Message.createResponse(481, "Dialog does not exist", null, null, m));
+                                this.Send(Message.CreateResponse(481, "Dialog does not exist", null, null, m));
                                 return;
                             }
                         }
@@ -337,17 +337,17 @@ namespace SIPLib
                         {
                             if ((t == null) && (branch != "0"))
                             {
-                                t = this.findTransaction(Transaction.createId(branch, "INVITE"));
+                                t = this.FindTransaction(Transaction.CreateId(branch, "INVITE"));
                             }
                             if (t != null && t.state != "terminated")
                             {
-                                t.receivedRequest(m);
+                                t.ReceivedRequest(m);
                                 return;
                             }
                             else
                             {
                                 Debug.Assert(false, String.Format("No existing transaction for ACK \n{0}\n", m.ToString()));
-                                UserAgent u = this.createServer(m, uri);
+                                UserAgent u = this.CreateServer(m, uri);
                                 if (u != null)
                                 {
                                     app = u;
@@ -365,7 +365,7 @@ namespace SIPLib
                 else if (!(m.method == "CANCEL"))
                 {
                     //Out of dialog request
-                    UserAgent u = this.createServer(m, uri);
+                    UserAgent u = this.CreateServer(m, uri);
                     if (u != null)
                     {
                         //TODO error.....
@@ -374,9 +374,9 @@ namespace SIPLib
                     else if (m.method == "OPTIONS")
                     {
                         //Handle OPTIONS
-                        Message reply = Message.createResponse(200, "OK", null, null, m);
-                        reply.insertHeader(new Header("INVITE,ACK,CANCEL,BYE,OPTION,MESSAGE", "Allow"));
-                        this.send(m);
+                        Message reply = Message.CreateResponse(200, "OK", null, null, m);
+                        reply.InsertHeader(new Header("INVITE,ACK,CANCEL,BYE,OPTION,MESSAGE", "Allow"));
+                        this.Send(m);
                         return;
                     }
                     else if (m.method == "MESSAGE")
@@ -384,24 +384,29 @@ namespace SIPLib
                         //Handle MESSAGE
                         UserAgent ua = new UserAgent(this);
                         ua.request = m;
+<<<<<<< HEAD
                         Message reply = ua.createResponse(200, "OK");
                         this.send(reply);
+=======
+                        Message reply = ua.CreateResponse(200, "OK");
+                        this.Send(reply);
+>>>>>>> 856a6d9b5ee669eb178a3822dfcf9cc460520780
                         this.app.ReceivedRequest(ua, m, this);
                         return;
                     }
                     else if (m.method != "ACK")
                     {
-                        this.send(Message.createResponse(405, "Method not allowed", null, null, m));
+                        this.Send(Message.CreateResponse(405, "Method not allowed", null, null, m));
                         return;
                     }
                 }
                 else
                 {
                     //Cancel Request
-                    Transaction o = this.findTransaction(Transaction.createId(m.headers["Via"][0].attributes["branch"], "INVITE"));
+                    Transaction o = this.FindTransaction(Transaction.CreateId(m.headers["Via"][0].attributes["branch"], "INVITE"));
                     if (o == null)
                     {
-                        this.send(Message.createResponse(481, "Original transaction does not exist", null, null, m));
+                        this.Send(Message.CreateResponse(481, "Original transaction does not exist", null, null, m));
                         return;
                     }
                     else
@@ -411,25 +416,25 @@ namespace SIPLib
                 }
                 if (app != null)
                 {
-                    t = Transaction.createServer(this, app, m, this.transport, this.tag);
+                    t = Transaction.CreateServer(this, app, m, this.transport, this.tag);
                 }
                 else if (m.method != "ACK")
                 {
-                    this.send(Message.createResponse(404, "Not found", null, null, m));
+                    this.Send(Message.CreateResponse(404, "Not found", null, null, m));
                 }
             }
             else
             {
-                t.receivedRequest(m);
+                t.ReceivedRequest(m);
             }
         }
 
-        private Dialog findDialog(object m)
+        private Dialog FindDialog(object m)
         {
             string id = "";
             if (m is Message)
             {
-                id = Dialog.extractID((Message)m);
+                id = Dialog.ExtractID((Message)m);
             }
             else
             {
@@ -442,7 +447,7 @@ namespace SIPLib
             else return null;
         }
 
-        public Transaction findTransaction(string id)
+        public Transaction FindTransaction(string id)
         {
             if (this.transactions.ContainsKey(id))
             {
@@ -451,11 +456,11 @@ namespace SIPLib
             else return null;
         }
 
-        public Transaction findOtherTransactions(Message r, Transaction orig)
+        public Transaction FindOtherTransactions(Message r, Transaction orig)
         {
             foreach (Transaction t in this.transactions.Values)
             {
-                if ((t != orig) && (Transaction.equals(t, r, orig)))
+                if ((t != orig) && (Transaction.Equals(t, r, orig)))
                 {
                     return t;
                 }
@@ -463,6 +468,7 @@ namespace SIPLib
             return null;
         }
 
+<<<<<<< HEAD
         public UserAgent createServer(Message request, SIPURI uri) { return this.app.createServer(request, uri, this); }
         public void sending(UserAgent ua, Message message) { this.app.Sending(ua, message, this); }
         public void receivedRequest(UserAgent ua, Message request) { this.app.ReceivedRequest(ua, request, this); }
@@ -471,10 +477,20 @@ namespace SIPLib
         public void dialogCreated(Dialog dialog, UserAgent ua) { this.app.DialogCreated(dialog, ua, this); }
         public string[] authenticate(UserAgent ua, Header header) { return this.app.Authenticate(ua, header, this); }
         public Timer createTimer(UserAgent obj) { return this.app.createTimer(obj, this); }
+=======
+        public UserAgent CreateServer(Message request, SIPURI uri) { return this.app.CreateServer(request, uri, this); }
+        public void Sending(UserAgent ua, Message message) { this.app.Sending(ua, message, this); }
+        public void ReceivedRequest(UserAgent ua, Message request) { this.app.ReceivedRequest(ua, request, this); }
+        public void ReceivedResponse(UserAgent ua, Message response) { this.app.ReceivedResponse(ua, response, this); }
+        public void Cancelled(UserAgent ua, Message request) { this.app.Cancelled(ua, request, this); }
+        public void DialogCreated(Dialog dialog, UserAgent ua) { this.app.DialogCreated(dialog, ua, this); }
+        public string[] Authenticate(UserAgent ua, Header header) { return this.app.Authenticate(ua, header, this); }
+        public Timer CreateTimer(UserAgent obj) { return this.app.CreateTimer(obj, this); }
+>>>>>>> 856a6d9b5ee669eb178a3822dfcf9cc460520780
 
-        private void receivedResponse(Message r, SIPURI uri)
+        private void ReceivedResponse(Message r, SIPURI uri)
         {
-            if (r.headers.ContainsKey("Service-Route") && r.is2xx() && r.first("CSeq").method.Contains("REGISTER"))
+            if (r.headers.ContainsKey("Service-Route") && r.Is2xx() && r.First("CSeq").method.Contains("REGISTER"))
             {
                 this.service_route = r.headers["Service-Route"];
                 foreach (Header h in this.service_route)
@@ -482,7 +498,7 @@ namespace SIPLib
                     h.name = "Route";
                 }
             }
-            else if (r.headers.ContainsKey("Record-Route") && r.is2xx())
+            else if (r.headers.ContainsKey("Record-Route") && r.Is2xx())
             {
                 this.service_route = r.headers["Record-Route"];
                 foreach (Header h in this.service_route)
@@ -499,12 +515,12 @@ namespace SIPLib
             }
             string branch = r.headers["Via"][0].attributes["branch"];
             string method = r.headers["CSeq"][0].method;
-            Transaction t = this.findTransaction(Transaction.createId(branch, method));
+            Transaction t = this.FindTransaction(Transaction.CreateId(branch, method));
             if (t == null)
             {
-                if ((method == "INVITE") && (r.is2xx()))
+                if ((method == "INVITE") && (r.Is2xx()))
                 {
-                    Dialog d = this.findDialog(r);
+                    Dialog d = this.FindDialog(r);
                     if (d == null)
                     {
                         Debug.Assert(false, String.Format("No transaction or dialog for 2xx of INVITE \n{0}\n", r.ToString()));
@@ -512,7 +528,7 @@ namespace SIPLib
                     }
                     else
                     {
-                        d.receivedResponse(null, r);
+                        d.ReceivedResponse(null, r);
                     }
                 }
                 else
@@ -522,12 +538,12 @@ namespace SIPLib
             }
             else
             {
-                t.receivedResponse(r);
+                t.ReceivedResponse(r);
                 return;
             }
         }
 
-        internal Timer createTimer(Transaction transaction)
+        internal Timer CreateTimer(Transaction transaction)
         {
             //TODO implement Timers;
             return new Timer(transaction.app);

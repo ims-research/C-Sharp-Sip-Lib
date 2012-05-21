@@ -186,7 +186,7 @@ namespace SIPLib
             return sb.ToString();
         }
 
-        public static SDP createOffer(List<SDPMedia> streams, Dictionary<string, string> parameters, SDP previous = null)
+        public static SDP CreateOffer(List<SDPMedia> streams, Dictionary<string, string> parameters, SDP previous = null)
         {
             SDP s = new SDP();
             s.Other["v"] = "0";
@@ -208,7 +208,7 @@ namespace SIPLib
             return s;
         }
 
-        public static SDP createAnswer(List<SDPMedia> streams, SDP offer, Dictionary<string, string> parameters = null)
+        public static SDP CreateAnswer(List<SDPMedia> streams, SDP offer, Dictionary<string, string> parameters = null)
         {
             SDP s = new SDP();
             s.Other["v"] = "0";

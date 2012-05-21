@@ -12,20 +12,20 @@ namespace SIPLib
             this.server = true;
         }
 
-        public  void start()
+        public  void Start()
         {
             this.state = "proceeding";
-            this.sendResponse(this.createResponse(100, "Trying"));
-            this.app.receivedRequest(this, this.request,this.stack);
+            this.SendResponse(this.CreateResponse(100, "Trying"));
+            this.app.ReceivedRequest(this, this.request,this.stack);
         }
 
-        public override void receivedRequest(Message request)
+        public override void ReceivedRequest(Message request)
         {
             if (this.request.method == request.method)
             {
                 if (this.state == "proceeding" || this.state == "completed")
                 {
-                    this.stack.send(this.lastResponse, this.remote, this.transport);
+                    this.stack.Send(this.lastResponse, this.remote, this.transport);
                 }
             }
             else if (request.method == "ACK")
@@ -35,11 +35,11 @@ namespace SIPLib
                     this.state = "confirmed";
                     if (!this.transport.reliable)
                     {
-                        this.startTimer("I", this.timer.I());
+                        this.StartTimer("I", this.timer.I());
                     }
                     else
                     {
-                        this.timeout("I", 0);
+                        this.Timeout("I", 0);
                     }
                 }
                 else if (this.state == "confirmed")
@@ -49,19 +49,19 @@ namespace SIPLib
             }
         }
 
-        public void timeout(string name, int timeout)
+        public void Timeout(string name, int timeout)
         {
             if (this.state == "completed")
             {
                 if (name == "G")
                 {
-                    this.startTimer("G", Math.Min(2 * timeout, this.timer.T2));
-                    this.stack.send(this.lastResponse, this.remote, this.transport);
+                    this.StartTimer("G", Math.Min(2 * timeout, this.timer.T2));
+                    this.stack.Send(this.lastResponse, this.remote, this.transport);
                 }
                 else if (name == "H")
                 {
                     this.state = "terminated";
-                    this.app.timeout(this);
+                    this.app.Timeout(this);
                 }
             }
             else if (this.state == "confirmed")
@@ -73,31 +73,31 @@ namespace SIPLib
             }
         }
 
-        public  void error(string error)
+        public  void Error(string error)
         {
             if (this.state == "proceeding" || this.state == "confirmed")
             {
                 this.state = "terminated";
-                this.app.error(this,error);
+                this.app.Error(this,error);
             }
         }
 
-        public override void sendResponse(Message response)
+        public override void SendResponse(Message response)
         {
             this.lastResponse = response;
-            if (response.is1xx())
+            if (response.Is1xx())
             {
                 if (this.state == "proceeding")
                 {
-                    this.stack.send(response, this.remote, this.transport);
+                    this.stack.Send(response, this.remote, this.transport);
                 }
             }
-            else if (response.is2xx())
+            else if (response.Is2xx())
             {
                 if (this.state == "proceeding")
                 {
                     this.state = "terminated";
-                    this.stack.send(response, this.remote, this.transport);
+                    this.stack.Send(response, this.remote, this.transport);
                 }
             }
             else
@@ -107,10 +107,10 @@ namespace SIPLib
                     this.state = "completed";
                     if (!this.transport.reliable)
                     {
-                        this.startTimer("G", this.timer.G());
+                        this.StartTimer("G", this.timer.G());
                     }
-                    this.startTimer("H", this.timer.H());
-                    this.stack.send(response, this.remote, this.transport);
+                    this.StartTimer("H", this.timer.H());
+                    this.stack.Send(response, this.remote, this.transport);
                 }
             }
         }

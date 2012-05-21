@@ -18,7 +18,7 @@ namespace SIPLib
             SUBSCRIBE, NOTIFY, PUBLISH, INFO, REFER, UPDATE
         }
 
-        public static bool isIPv4(string input)
+        public static bool IsIPv4(string input)
         {
             IPAddress[] addresses;
             try
@@ -96,23 +96,23 @@ namespace SIPLib
         return timeSpan.TotalSeconds;
         }
 
-	public static string quote(string input)
+	public static string Quote(string input)
 	{
 		return "\"" + input.Trim('"') + "\"";
 	}
 
-	public static string unquote(string input)
+	public static string Unquote(string input)
 	{
 		return input.Trim('"');	
 	}
 
-    public static bool isRequest(Message message)
+    public static bool IsRequest(Message message)
     {
         if (message.method == null) return false;
-        return isRequest(message.method);
+        return IsRequest(message.method);
     }
 
-    public static bool isRequest(string request_line)
+    public static bool IsRequest(string request_line)
     {
         foreach (string method in Enum.GetNames(typeof(SipMethods)))
         {
@@ -122,7 +122,7 @@ namespace SIPLib
         return false;
     }
 
-    public static string get_local_ip()
+    public static string Get_local_ip()
     {
         string strHostName = "";
         strHostName = Dns.GetHostName();

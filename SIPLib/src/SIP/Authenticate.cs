@@ -9,13 +9,13 @@ namespace SIPLib
 {
     public class Authenticate
     {
-        static Random random = new Random();
-        public static string createAuthenticate(string authMethod = "Digest", Dictionary<string, string> parameters = null)
+        static Random Random = new Random();
+        public static string CreateAuthenticate(string authMethod = "Digest", Dictionary<string, string> parameters = null)
         {
             authMethod = authMethod.ToLower();
             if (authMethod.Equals("basic"))
             {
-                return "Basic realm=" + Utils.quote(parameters.ContainsKey("realm") ? parameters["realm"] : "0");
+                return "Basic realm=" + Utils.Quote(parameters.ContainsKey("realm") ? parameters["realm"] : "0");
             }
             else if (authMethod.Equals("digest"))
             {
@@ -77,7 +77,7 @@ namespace SIPLib
                         sb.Append(", ");
                         sb.Append(kvp.Key);
                         sb.Append("=");
-                        sb.Append(Utils.quote(kvp.Value));
+                        sb.Append(Utils.Quote(kvp.Value));
                     }
                 }
                 sb.Replace("Digest , ", "Digest ");
@@ -90,7 +90,7 @@ namespace SIPLib
             }
         }
 
-        public static string createAuthorization(string challenge, string username, string password, string uri = null, string method = null, string entityBody = null, Dictionary<string, string> context = null)
+        public static string CreateAuthorization(string challenge, string username, string password, string uri = null, string method = null, string entityBody = null, Dictionary<string, string> context = null)
         {
             challenge = challenge.Trim();
             string[] values = challenge.Split(" ".ToCharArray(), 2);
@@ -102,7 +102,7 @@ namespace SIPLib
             cr["username"] = username;
             if (authMethod.ToLower() == "basic")
             {
-                return authMethod + " " + basic(cr);
+                return authMethod + " " + Basic(cr);
             }
             else if (authMethod.ToLower() == "digest")
             {
@@ -111,7 +111,7 @@ namespace SIPLib
                     foreach (string pairs in rest.Split(','))
                     {
                         string[] sides = pairs.Trim().Split('=');
-                        ch[sides[0].ToLower().Trim()] = Utils.unquote(sides[1].Trim());
+                        ch[sides[0].ToLower().Trim()] = Utils.Unquote(sides[1].Trim());
                     }
                 }
                 string cnonce = null;
@@ -140,7 +140,7 @@ namespace SIPLib
                     }
                     else
                     {
-                        int random_int = random.Next(0, 2147483647);
+                        int random_int = Random.Next(0, 2147483647);
                         cnonce = H(random_int.ToString());
                         nc = 1;
                     }
@@ -153,7 +153,7 @@ namespace SIPLib
                     cr["cnonce"] = cnonce;
                     cr["nc"] = Convert.ToString(nc,10).PadLeft(8, '0');
                 }
-                cr["response"] = digest(cr);
+                cr["response"] = Digest(cr);
                 Dictionary<string, string> items = new Dictionary<string, string>();
                 foreach (KeyValuePair<string, string> kvp in cr)
                 {
@@ -185,7 +185,7 @@ namespace SIPLib
                         sb.Append(", ");
                         sb.Append(kvp.Key);
                         sb.Append("=");
-                        sb.Append(Utils.quote(kvp.Value));
+                        sb.Append(Utils.Quote(kvp.Value));
                     }
                     else
                     {
@@ -206,7 +206,7 @@ namespace SIPLib
             }
         }
 
-        public static string digest(Dictionary<string, string> cr)
+        public static string Digest(Dictionary<string, string> cr)
         {
             string algorithm, username, realm, password, nonce, cnonce, nc, qop, httpMethod, uri, entityBody;
             algorithm = cr.ContainsKey("algorithm") ? cr["algorithm"] : null;
@@ -248,11 +248,11 @@ namespace SIPLib
             //}
             //else
             //{
-                return Utils.quote(KD(H(A1), nonce + ":" + H(A2)));
+                return Utils.Quote(KD(H(A1), nonce + ":" + H(A2)));
             //}
         }
 
-        public static string basic(Dictionary<string, string> cr)
+        public static string Basic(Dictionary<string, string> cr)
         {
             return Utils.Base64Encode(cr["username"] + ":" + cr["password"]);
         }

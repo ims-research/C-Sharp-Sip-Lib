@@ -19,11 +19,11 @@ namespace SIPLib
 
         public abstract void Sending(UserAgent ua, Message message, SIPStack sIPStack);
 
-        public abstract UserAgent createServer(Message request, SIPURI uri, SIPStack sIPStack);
+        public abstract UserAgent CreateServer(Message request, SIPURI uri, SIPStack sIPStack);
 
-        public abstract Timer createTimer(UserAgent obj, SIPStack sIPStack);
+        public abstract Timer CreateTimer(UserAgent obj, SIPStack sIPStack);
 
-        public abstract void send(string final_data, string destination_host, int destination_port, SIPStack sIPStack);
+        public abstract void Send(string final_data, string destination_host, int destination_port, SIPStack sIPStack);
 
         public abstract TransportInfo transport { get; set; }
 

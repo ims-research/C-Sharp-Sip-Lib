@@ -79,12 +79,12 @@ namespace SIPLib
             return sb.ToString();
         }
 
-        public Address dup()
+        public Address Dup()
         {
             return new Address(this.ToString());
         }
 
-        public string displayable()
+        public string Displayable()
         {
             string name = "";
             if (this.displayName.Length > 0)

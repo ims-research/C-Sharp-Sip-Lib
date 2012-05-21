@@ -233,17 +233,17 @@ namespace SIPLib
             return sb.ToString();
         }
 
-        public string repr()
+        public string Repr()
         {
             return this.name + ":" + this.ToString();
         }
 
-        public Header dup()
+        public Header Dup()
         {
             return new Header(this.ToString(), this.name);
         }
 
-        public static List<Header> createHeaders(string value)
+        public static List<Header> CreateHeaders(string value)
         {
             int index = value.IndexOf(':');
             string name = value.Substring(0, index);

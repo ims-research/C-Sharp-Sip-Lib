@@ -12,50 +12,50 @@ namespace SIPLib
             this.server = false;
         }
 
-        public void start()
+        public void Start()
         {
             this.state = "trying";
             if (!this.transport.reliable)
             {
-                this.startTimer("E", this.timer.E());
+                this.StartTimer("E", this.timer.E());
             }
-            this.startTimer("F", this.timer.F());
-            this.stack.send(this.request,this.remote,this.transport);
+            this.StartTimer("F", this.timer.F());
+            this.stack.Send(this.request,this.remote,this.transport);
         }
 
-        public override void receivedResponse(Message response)
+        public override void ReceivedResponse(Message response)
         {
-            if (response.is1xx())
+            if (response.Is1xx())
             {
                 if (this.state == "trying")
                 {
                     this.state = "proceeding";
-                    this.app.receivedResponse(this,response);
+                    this.app.ReceivedResponse(this,response);
                 }
                 else if (this.state == "proceeding")
                 {
-                    this.app.receivedResponse(this,response);
+                    this.app.ReceivedResponse(this,response);
                 }
             }
-            else if (response.isFinal())
+            else if (response.IsFinal())
             {
                 if (this.state == "trying" || this.state == "proceeding")
                 {
                     this.state = "completed";
-                    this.app.receivedResponse(this,response);
+                    this.app.ReceivedResponse(this,response);
                     if (!this.transport.reliable)
                     {
-                        this.startTimer("K", this.timer.K());
+                        this.StartTimer("K", this.timer.K());
                     }
                     else
                     {
-                        this.timeout("K", 0);
+                        this.Timeout("K", 0);
                     }
                 }
             }
         }
 
-        public void timeout(string name, int timeout)
+        public void Timeout(string name, int timeout)
         {
             if (this.state == "trying" | this.state == "proceeding")
             {
@@ -69,13 +69,13 @@ namespace SIPLib
                     {
                         timeout = this.timer.T2;
                     }
-                    this.startTimer("E", timeout);
-                    this.stack.send(this.request, this.remote, this.transport);
+                    this.StartTimer("E", timeout);
+                    this.stack.Send(this.request, this.remote, this.transport);
                 }
                 else if (name == "F")
                 {
                     this.state = "terminated";
-                    this.app.timeout(this);
+                    this.app.Timeout(this);
                 }
             }
             else if (this.state == "completed")
@@ -87,12 +87,12 @@ namespace SIPLib
             }
         }
 
-        public void error(string error)
+        public void Error(string error)
         {
             if (this.state == "trying" || this.state == "proceeding")
             {
                 this.state = "terminated";
-                this.app.error(this,error);
+                this.app.Error(this,error);
             }
         }
     }

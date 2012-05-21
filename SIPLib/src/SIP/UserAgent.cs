@@ -17,7 +17,7 @@ namespace SIPLib
         public string callId { get; set; }
         public Address remoteParty { get; set; }
         public Address localParty { get; set; }
-        Random random = new Random();
+        Random _random = new Random();
         public string localTag { get; set; }
         public string remoteTag { get; set; }
         public string subject { get; set; }
@@ -57,7 +57,7 @@ namespace SIPLib
             }
             else
             {
-                this.callId = stack.newCallId();
+                this.callId = stack.NewCallId();
             }
 
             if ((request != null) && (request.headers.ContainsKey("From")))
@@ -77,8 +77,8 @@ namespace SIPLib
             {
                 this.localParty = null;
             }
-            this.localTag = stack.tag + random.Next(0, 2147483647).ToString();
-            this.remoteTag = stack.tag + random.Next(0, 2147483647).ToString();
+            this.localTag = stack.tag + _random.Next(0, 2147483647).ToString();
+            this.remoteTag = stack.tag + _random.Next(0, 2147483647).ToString();
 
             if ((request != null) && (request.headers.ContainsKey("Subject")))
             {
@@ -112,7 +112,7 @@ namespace SIPLib
             this.auth = new Dictionary<string, string>();
         }
 
-        public string repr()
+        public string Repr()
         {
             string type = "";
             if (this is Dialog) type = "Dialog";
@@ -120,7 +120,7 @@ namespace SIPLib
             return String.Format("<{0} call-id={1}>", type, this.callId);
         }
 
-        public Message createRequest(string method, string content = "", string contentType = "")
+        public Message CreateRequest(string method, string content = "", string contentType = "")
         {
             this.server = false;
             if (this.remoteParty == null)
@@ -154,6 +154,7 @@ namespace SIPLib
             Header CSeq = new Header(this.localSeq + " " + method, "CSeq");
             Header CallId = new Header(this.callId, "Call-ID");
             Header MaxForwards = new Header(this.maxForwards.ToString(), "Max-Forwards");
+<<<<<<< HEAD
             Header Via = this.stack.createVia();
             Dictionary<string, string> branch_params = new Dictionary<string, string>();
             branch_params.Add("To", To.value.ToString());
@@ -161,9 +162,18 @@ namespace SIPLib
             branch_params.Add("CallId", CallId.value.ToString());
             branch_params.Add("CSeq", CSeq.number.ToString());
             Via.attributes["branch"] = Transaction.createBranch(branch_params, false);
+=======
+            Header Via = this.stack.CreateVia();
+            Dictionary<string, object> branch_params = new Dictionary<string, object>();
+            branch_params.Add("To", To.value);
+            branch_params.Add("From", From.value);
+            branch_params.Add("CallId", CallId.value);
+            branch_params.Add("CSeq", CSeq.number);
+            Via.attributes["branch"] = Transaction.CreateBranch(branch_params, false);
+>>>>>>> 856a6d9b5ee669eb178a3822dfcf9cc460520780
             if (this.localTarget == null)
             {
-                this.localTarget = this.stack.uri.dup();
+                this.localTarget = this.stack.uri.Dup();
                 this.localTarget.user = this.localParty.uri.user;
             }
             Header Contact = new Header(this.localTarget.ToString(), "Contact");
@@ -203,11 +213,11 @@ namespace SIPLib
                     header_dict.Add(h.name, temp);
                 }
             }
-            this.request = Message.createRequest(method, uri, header_dict, content);
+            this.request = Message.CreateRequest(method, uri, header_dict, content);
             return this.request;
         }
 
-        public Message createRegister(SIPURI aor)
+        public Message CreateRegister(SIPURI aor)
         {
             if (aor != null)
             {
@@ -217,12 +227,12 @@ namespace SIPLib
             {
                 this.localParty = new Address(this.remoteParty.ToString());
             }
-            Message m = this.createRequest("REGISTER");
-            m.insertHeader(new Header("", "Authorization"));
+            Message m = this.CreateRequest("REGISTER");
+            m.InsertHeader(new Header("", "Authorization"));
             return m;
         }
 
-        public void sendRequest(Message request)
+        public void SendRequest(Message request)
         {
             if ((this.request == null) && (request.method == "REGISTER"))
             {
@@ -256,36 +266,36 @@ namespace SIPLib
 
             }
             // TODO: remove any Route Header in REGISTER request
-            this.stack.sending(this, request);
-            SIPURI dest = target.dup();
+            this.stack.Sending(this, request);
+            SIPURI dest = target.Dup();
             if (dest.port == 0)
             {
                 dest.port = 5060;
             }
 
-            if (Utils.isIPv4(dest.host))
+            if (Utils.IsIPv4(dest.host))
             {
                 this.remoteCandidates = new List<SIPURI>();
                 this.remoteCandidates.Add(dest);
             }
             if ((this.remoteCandidates == null) || (this.remoteCandidates.Count == 0))
             {
-                this.error(null, "Cannot Resolve DNS target");
+                this.Error(null, "Cannot Resolve DNS target");
                 return;
             }
             target = this.remoteCandidates.First();
             this.remoteCandidates.RemoveAt(0);
             if (this.request.method != "ACK")
             {
-                this.transaction = Transaction.createClient(this.stack, this, this.request, this.stack.transport, target.host + ":" + target.port);
+                this.transaction = Transaction.CreateClient(this.stack, this, this.request, this.stack.transport, target.host + ":" + target.port);
             }
             else
             {
-                this.stack.send(this.request, target.host + ":" + target.port);
+                this.stack.Send(this.request, target.host + ":" + target.port);
             }
         }
 
-        public void timeout(Transaction transaction)
+        public void Timeout(Transaction transaction)
         {
             if ((transaction != null) && (transaction != this.transaction))
             {
@@ -296,16 +306,16 @@ namespace SIPLib
             {
                 if ((this.remoteCandidates != null) && (this.remoteCandidates.Count > 0))
                 {
-                    this.retryNextCandidate();
+                    this.RetryNextCandidate();
                 }
                 else
                 {
-                    this.receivedResponse(null, Message.createResponse(408, "Request Timeoute", null, null, this.request));
+                    this.ReceivedResponse(null, Message.CreateResponse(408, "Request Timeoute", null, null, this.request));
                 }
             }
         }
 
-        private void retryNextCandidate()
+        private void RetryNextCandidate()
         {
             if ((this.remoteCandidates == null) || (this.remoteCandidates.Count == 0))
             {
@@ -314,11 +324,11 @@ namespace SIPLib
             SIPURI target = this.remoteCandidates.First();
             this.remoteCandidates.RemoveAt(0);
             this.request.headers["Via"][0].attributes["branch"] += "A";
-            transaction = Transaction.createClient(this.stack, this, this.request, this.stack.transport, target.host + ":" + target.port);
+            transaction = Transaction.CreateClient(this.stack, this, this.request, this.stack.transport, target.host + ":" + target.port);
 
         }
 
-        public void error(Transaction t, string error)
+        public void Error(Transaction t, string error)
         {
             if ((t != null) && t != this.transaction)
             {
@@ -329,16 +339,16 @@ namespace SIPLib
             {
                 if ((this.remoteCandidates != null) && (this.remoteCandidates.Count > 0))
                 {
-                    this.retryNextCandidate();
+                    this.RetryNextCandidate();
                 }
                 else
                 {
-                    this.receivedResponse(null, Message.createResponse(503, "Service unavailable - " + error, null, null, this.request));
+                    this.ReceivedResponse(null, Message.CreateResponse(503, "Service unavailable - " + error, null, null, this.request));
                 }
             }
         }
 
-        public void receivedResponse(Transaction transaction, Message response)
+        public void ReceivedResponse(Transaction transaction, Message response)
         {
             if ((transaction != null) && transaction != this.transaction)
             {
@@ -350,36 +360,36 @@ namespace SIPLib
                 Debug.Assert(false, String.Format("More than one Via header in resposne"));
                 return;
             }
-            if (response.is1xx())
+            if (response.Is1xx())
             {
                 if (this.cancelRequest != null)
                 {
-                    Transaction cancel = Transaction.createClient(this.stack, this, this.cancelRequest, transaction.transport, transaction.remote);
+                    Transaction cancel = Transaction.CreateClient(this.stack, this, this.cancelRequest, transaction.transport, transaction.remote);
                     this.cancelRequest = null;
                 }
                 else
                 {
-                    this.stack.receivedResponse(this, response);
+                    this.stack.ReceivedResponse(this, response);
                 }
             }
             else if ((response.response_code == 401) || (response.response_code == 407))
             {
-                if (!this.authenticate(response, this.transaction))
+                if (!this.Authenticate(response, this.transaction))
                 {
-                    this.stack.receivedResponse(this, response);
+                    this.stack.ReceivedResponse(this, response);
                 }
             }
             else
             {
-                if (canCreateDialog(this.request, response))
+                if (CanCreateDialog(this.request, response))
                 {
-                    Dialog dialog = Dialog.createClient(this.stack, this.request, response, transaction);
-                    this.stack.dialogCreated(dialog, this);
-                    this.stack.receivedResponse(dialog, response);
+                    Dialog dialog = Dialog.CreateClient(this.stack, this.request, response, transaction);
+                    this.stack.DialogCreated(dialog, this);
+                    this.stack.ReceivedResponse(dialog, response);
                     if ((this.autoack) && (this.request.method == "INVITE"))
                     {
-                        Message ack = dialog.createRequest("ACK");
-                        dialog.sendRequest(ack);
+                        Message ack = dialog.CreateRequest("ACK");
+                        dialog.SendRequest(ack);
 
                         // Do we need this ?
                         /*
@@ -398,22 +408,26 @@ namespace SIPLib
                 }
                 else
                 {
-                    this.stack.receivedResponse(this, response);
+                    this.stack.ReceivedResponse(this, response);
                 }
             }
         }
 
 
-        public static bool canCreateDialog(Message request, Message response)
+        public static bool CanCreateDialog(Message request, Message response)
         {
+<<<<<<< HEAD
             if (request.method.ToLower().Contains("SUBSCRIBE"))
             {
                 System.Console.WriteLine("TEST");
             }
             return ((response.is2xx()) && ((request.method == "INVITE") || (request.method == "SUBSCRIBE")));
+=======
+            return ((response.Is2xx()) && ((request.method == "INVITE") || (request.method == "SUBSCRIBE")));
+>>>>>>> 856a6d9b5ee669eb178a3822dfcf9cc460520780
         }
 
-        public void receivedRequest(Transaction transaction, Message request)
+        public void ReceivedRequest(Transaction transaction, Message request)
         {
             if ((transaction != null) && (this.transaction != null) && (transaction != this.transaction) && (request.method != "CANCEL"))
             {
@@ -428,14 +442,14 @@ namespace SIPLib
             //return;
             if (request.uri.scheme != "sip")
             {
-                transaction.sendResponse(transaction.createResponse(416, "Unsupported URI scheme"));
+                transaction.SendResponse(transaction.CreateResponse(416, "Unsupported URI scheme"));
                 return;
             }
             if (!request.headers["To"][0].ToString().Contains("tag"))
             {
-                if (this.stack.findOtherTransactions(request, transaction) != null)
+                if (this.stack.FindOtherTransactions(request, transaction) != null)
                 {
-                    transaction.sendResponse(transaction.createResponse(482, "Loop Detected - found another transaction"));
+                    transaction.SendResponse(transaction.CreateResponse(482, "Loop Detected - found another transaction"));
                 }
             }
             // TODO Fix support of Require Header
@@ -455,23 +469,23 @@ namespace SIPLib
             }
             if (request.method == "CANCEL")
             {
-                Transaction original = this.stack.findTransaction(Transaction.createId(transaction.branch, "Invite"));
+                Transaction original = this.stack.FindTransaction(Transaction.CreateId(transaction.branch, "Invite"));
                 if (original == null)
                 {
-                    transaction.sendResponse(transaction.createResponse(481, "Cannot find transaction??"));
+                    transaction.SendResponse(transaction.CreateResponse(481, "Cannot find transaction??"));
                     return;
                 }
                 if (original.state == "proceeding" || original.state == "trying")
                 {
-                    original.sendResponse(original.createResponse(487, "Request terminated"));
+                    original.SendResponse(original.CreateResponse(487, "Request terminated"));
                 }
-                transaction.sendResponse(transaction.createResponse(200, "OK"));
+                transaction.SendResponse(transaction.CreateResponse(200, "OK"));
                 // TODO: The To tag must be the same in the two responses
             }
-            this.stack.receivedRequest(this, request);
+            this.stack.ReceivedRequest(this, request);
         }
 
-        public void sendResponse(object response, string response_text = "", string content = "", string contentType = "", bool createDialog=true)
+        public void SendResponse(object response, string response_text = "", string content = "", string contentType = "", bool createDialog=true)
         {
             Message response_message = null;
             if (this.request == null)
@@ -481,13 +495,13 @@ namespace SIPLib
             }
             if (response is int)
             {
-                response_message = this.createResponse((int)(response), response_text, content, contentType);
+                response_message = this.CreateResponse((int)(response), response_text, content, contentType);
             }
             else
             {
                 response_message = (Message)(response);
             }
-            if (createDialog && UserAgent.canCreateDialog(this.request, response_message))
+            if (createDialog && UserAgent.CanCreateDialog(this.request, response_message))
             {
                 if (this.request.headers.ContainsKey("Record-Route"))
                 {
@@ -499,42 +513,42 @@ namespace SIPLib
                     Address contact = new Address(this.contact.ToString());
                     if (contact.uri.user.Length == 0)
                     {
-                        contact.uri.user = ((Address)this.request.first("To").value).uri.user;
-                        response_message.insertHeader(new Header(contact.ToString(), "Contact"));
+                        contact.uri.user = ((Address)this.request.First("To").value).uri.user;
+                        response_message.InsertHeader(new Header(contact.ToString(), "Contact"));
                     }
 
                 }
-                Dialog dialog = Dialog.createServer(this.stack, this.request, response_message, this.transaction);
-                this.stack.dialogCreated(dialog, this);
-                this.stack.sending(dialog, response_message);
+                Dialog dialog = Dialog.CreateServer(this.stack, this.request, response_message, this.transaction);
+                this.stack.DialogCreated(dialog, this);
+                this.stack.Sending(dialog, response_message);
             }
             else
             {
-                this.stack.sending(this, response_message);
+                this.stack.Sending(this, response_message);
             }
             if (this.transaction == null)
             {
-                this.stack.send(response_message, response_message.headers["Via"][0].viaUri.hostPort(), null);
+                this.stack.Send(response_message, response_message.headers["Via"][0].viaUri.HostPort(), null);
             }
             else
             {
-                this.transaction.sendResponse(response_message);
+                this.transaction.SendResponse(response_message);
             }
 
         }
 
 
-        public Message createResponse(int response_code, string response_text, string content = null, string contentType = null)
+        public Message CreateResponse(int response_code, string response_text, string content = null, string contentType = null)
         {
             if (this.request == null)
             {
                 Debug.Assert(false, String.Format("Invalid request in creating a response"));
                 return null;
             }
-            Message response_message = Message.createResponse(response_code, response_text, null, content, this.request);
+            Message response_message = Message.CreateResponse(response_code, response_text, null, content, this.request);
             if (contentType != null)
             {
-                response_message.insertHeader(new Header(contentType, "Content-Type"));
+                response_message.InsertHeader(new Header(contentType, "Content-Type"));
             }
             if (response_message.response_code != 100 && !response_message.headers["To"][0].ToString().Contains("tag"))
             {
@@ -543,25 +557,25 @@ namespace SIPLib
             return response_message;
         }
 
-        public void sendCancel()
+        public void SendCancel()
         {
             if (this.transaction == null)
             {
                 Debug.Assert(false, String.Format("No transaction for sending CANCEL"));
             }
-            this.cancelRequest = this.transaction.createCancel();
+            this.cancelRequest = this.transaction.CreateCancel();
             if (this.transaction.state != "trying" && this.transaction.state != "calling")
             {
                 if (this.transaction.state == "proceeding")
                 {
-                    Transaction transaction = Transaction.createClient(this.stack, this, this.cancelRequest, this.transaction.transport, this.transaction.remote);
+                    Transaction transaction = Transaction.CreateClient(this.stack, this, this.cancelRequest, this.transaction.transport, this.transaction.remote);
                 }
                 this.cancelRequest = null;
             }
 
         }
 
-        public bool authenticate(Message response, Transaction transaction)
+        public bool Authenticate(Message response, Transaction transaction)
         {
             Header a = null;
             if (response.headers.ContainsKey("WWW-Authenticate") || response.headers.ContainsKey("Proxy-Authenticate"))
@@ -592,22 +606,22 @@ namespace SIPLib
             }
             if (!present && a.attributes.ContainsKey("realm"))
             {
-                string[] result = this.stack.authenticate(this, a);
+                string[] result = this.stack.Authenticate(this, a);
                 if (result.Length == 0 || a.attributes.ContainsKey("password") && a.attributes.ContainsKey("hashValue"))
                 {
                     return false;
                 }
                 //string value = createAuthorization(a.value, a.attributes["username"], a.attributes["password"], request.uri.ToString(), this.request.method, this.request.body, this.auth);
-                string value = Authenticate.createAuthorization(a.ToString(), result[0], result[1], request.uri.ToString(), request.method, request.body, this.auth);
+                string value = SIPLib.Authenticate.CreateAuthorization(a.ToString(), result[0], result[1], request.uri.ToString(), request.method, request.body, this.auth);
                 if (value.Length > 0)
                 {
                     if (a.name == "WWW-Authenticate")
                     {
-                        request.insertHeader(new Header(value, "Authorization"), "replace");
+                        request.InsertHeader(new Header(value, "Authorization"), "replace");
                     }
                     else
                     {
-                        request.insertHeader(new Header(value, "Proxy-Authorization"), "replace");
+                        request.InsertHeader(new Header(value, "Proxy-Authorization"), "replace");
                     }
 
                     resend = true;
@@ -616,21 +630,25 @@ namespace SIPLib
             }
             if (resend)
             {
-                this.localSeq = request.first("CSeq").number + 1;
-                request.insertHeader(new Header(this.localSeq.ToString() + " " + request.method, "CSeq"));
+                this.localSeq = request.First("CSeq").number + 1;
+                request.InsertHeader(new Header(this.localSeq.ToString() + " " + request.method, "CSeq"));
                 //TODO FIX?
                 //request.headers["Via"][0].attributes["branch"] = Transaction.createBranch(request, false);
                 this.request = request;
-                this.transaction = Transaction.createClient(this.stack, this, this.request, transaction.transport, transaction.remote);
+                this.transaction = Transaction.CreateClient(this.stack, this, this.request, transaction.transport, transaction.remote);
                 return true;
             }
             else return false;
 
         }
 
+<<<<<<< HEAD
         internal void receivedRequest(Transaction t, Message message, SIPStack sipStack)
+=======
+        internal void ReceivedRequest(Transaction t, Message message, SIPStack sIPStack)
+>>>>>>> 856a6d9b5ee669eb178a3822dfcf9cc460520780
         {
-            this.receivedRequest(t, message);
+            this.ReceivedRequest(t, message);
         }
     }
 
