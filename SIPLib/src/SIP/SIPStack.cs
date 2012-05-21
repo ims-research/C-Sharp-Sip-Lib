@@ -386,7 +386,7 @@ namespace SIPLib
                         ua.request = m;
                         Message reply = ua.createResponse(200, "OK");
                         this.send(reply);
-                        this.app.receivedRequest(ua, m, this);
+                        this.app.ReceivedRequest(ua, m, this);
                         return;
                     }
                     else if (m.method != "ACK")
@@ -464,12 +464,12 @@ namespace SIPLib
         }
 
         public UserAgent createServer(Message request, SIPURI uri) { return this.app.createServer(request, uri, this); }
-        public void sending(UserAgent ua, Message message) { this.app.sending(ua, message, this); }
-        public void receivedRequest(UserAgent ua, Message request) { this.app.receivedRequest(ua, request, this); }
-        public void receivedResponse(UserAgent ua, Message response) { this.app.receivedResponse(ua, response, this); }
-        public void cancelled(UserAgent ua, Message request) { this.app.cancelled(ua, request, this); }
-        public void dialogCreated(Dialog dialog, UserAgent ua) { this.app.dialogCreated(dialog, ua, this); }
-        public string[] authenticate(UserAgent ua, Header header) { return this.app.authenticate(ua, header, this); }
+        public void sending(UserAgent ua, Message message) { this.app.Sending(ua, message, this); }
+        public void receivedRequest(UserAgent ua, Message request) { this.app.ReceivedRequest(ua, request, this); }
+        public void receivedResponse(UserAgent ua, Message response) { this.app.ReceivedResponse(ua, response, this); }
+        public void cancelled(UserAgent ua, Message request) { this.app.Cancelled(ua, request, this); }
+        public void dialogCreated(Dialog dialog, UserAgent ua) { this.app.DialogCreated(dialog, ua, this); }
+        public string[] authenticate(UserAgent ua, Header header) { return this.app.Authenticate(ua, header, this); }
         public Timer createTimer(UserAgent obj) { return this.app.createTimer(obj, this); }
 
         private void receivedResponse(Message r, SIPURI uri)

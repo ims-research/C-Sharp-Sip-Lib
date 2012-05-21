@@ -9,7 +9,7 @@ namespace SIPLib
     {
         static string[] _address = { "contact", "from", "record-route", "refer-to", "referred-by", "route", "to" };
         static string[] _comma = { "authorization", "proxy-authenticate", "proxy-authorization", "www-authenticate" };
-        static string[] _unstructured = { "call-id", "cseq", "date", "expires", "max-forwards", "organization", "server", "subject", "timestamp", "user-agent","service-route" };
+        static string[] _unstructured = { "call-id", "cseq", "date", "expires", "max-forwards", "organization", "server", "subject", "timestamp", "user-agent", "service-route" };
         static Dictionary<string, string> _short = new Dictionary<string, string> { {"u","allow-events"},{"i","call-id"},{"m","contact"},
             {"e","content-encoding"},{"l","content-length"},{"c",  "content-type"},{"o",  "event"},{"f", "from"},{"s",  "subject"},{"k","supported"},{"t","to"},{"v",  "via"}};
         static Dictionary<string, string> _exceptions = new Dictionary<string, string> { { "call-id", "Call-ID" }, { "cseq", "CSeq" }, { "www-authenticate", "WWW-Authenticate" } };
@@ -68,12 +68,12 @@ namespace SIPLib
             }
         }
 
-        public Header(string value,string name)
+        public Header(string value, string name)
         {
             this.number = -1;
             this.attributes = new Dictionary<string, string>();
             this.name = _canon(name.Trim());
-            this.Parse(this.name,value.Trim());
+            this.Parse(this.name, value.Trim());
         }
 
         public void Parse(string name, string value)
@@ -88,7 +88,7 @@ namespace SIPLib
                 int count = addr.Parse(value);
                 this.value = addr;
                 if (count < value.Length)
-                rest = value.Substring(count, value.Length- count);
+                    rest = value.Substring(count, value.Length - count);
                 if (rest.Length > 0)
                 {
                     foreach (string parm in rest.Split(';'))
@@ -109,22 +109,26 @@ namespace SIPLib
                 this.header_type = "standard";
                 if (!value.Contains(";lr>"))
                 {
-                if (value.Contains(';'))
-                {
-                    index = value.IndexOf(';');
-                    this.value = value.Substring(0, index);
-                    string temp_str = value.Substring(index + 1).Trim();
-                    foreach (string parm in temp_str.Split(';'))
+                    if (value.Contains(';'))
                     {
-                        if (parm.Contains('='))
+                        index = value.IndexOf(';');
+                        this.value = value.Substring(0, index);
+                        string temp_str = value.Substring(index + 1).Trim();
+                        foreach (string parm in temp_str.Split(';'))
                         {
-                            index = parm.IndexOf('=');
-                            string parm_name = parm.Substring(0, index);
-                            string parm_value = parm.Substring(index + 1);
-                            this.attributes.Add(parm_name, parm_value);
+                            if (parm.Contains('='))
+                            {
+                                index = parm.IndexOf('=');
+                                string parm_name = parm.Substring(0, index);
+                                string parm_value = parm.Substring(index + 1);
+                                this.attributes.Add(parm_name, parm_value);
+                            }
                         }
                     }
-                }
+                    else
+                    {
+                        this.value = value;
+                    }
                 }
                 else
                 {
@@ -183,7 +187,7 @@ namespace SIPLib
                     int.TryParse(this.attributes["rport"], out temp_port);
                     this.viaUri.port = temp_port;
                 }
-                if ((type != "tcp") && (type !="sctp") && (type != "tls"))
+                if ((type != "tcp") && (type != "sctp") && (type != "tls"))
                 {
                     if (this.attributes.Keys.Contains("maddr"))
                     {
@@ -194,7 +198,7 @@ namespace SIPLib
                         this.viaUri.host = this.attributes["received"];
                     }
                 }
-           }
+            }
 
         }
 
@@ -208,7 +212,7 @@ namespace SIPLib
                 foreach (KeyValuePair<string, string> kvp in this.attributes)
                 {
                     sb.Append(";");
-                    sb.Append(kvp.Key+"="+kvp.Value);
+                    sb.Append(kvp.Key + "=" + kvp.Value);
                 }
             }
             if ((this.header_type == "comma"))
@@ -216,7 +220,7 @@ namespace SIPLib
                 sb.Append(" ");
                 foreach (KeyValuePair<string, string> kvp in this.attributes)
                 {
-                    
+
                     sb.Append(kvp.Key + "=" + kvp.Value);
                     sb.Append(",");
                 }
@@ -236,13 +240,13 @@ namespace SIPLib
 
         public Header dup()
         {
-            return new Header(this.ToString(),this.name);
+            return new Header(this.ToString(), this.name);
         }
 
         public static List<Header> createHeaders(string value)
         {
             int index = value.IndexOf(':');
-            string name = value.Substring(0, index);    
+            string name = value.Substring(0, index);
             value = value.Substring(index + 1);
             List<Header> headers = new List<Header>();
             //if (name == "WWW-Authenticate")

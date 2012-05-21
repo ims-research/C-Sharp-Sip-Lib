@@ -96,7 +96,7 @@ namespace SIPLibDriver
             else return null;
         }
 
-        public override void sending(UserAgent ua, Message message, SIPStack stack)
+        public override void Sending(UserAgent ua, Message message, SIPStack stack)
         {
             if (Utils.isRequest(message))
             {
@@ -110,12 +110,12 @@ namespace SIPLibDriver
             //TODO: Allow App to modify message before it gets sent?;
         }
 
-        public override void cancelled(UserAgent ua, Message request, SIPStack stack)
+        public override void Cancelled(UserAgent ua, Message request, SIPStack stack)
         {
             throw new NotImplementedException();
         }
 
-        public override void dialogCreated(Dialog dialog, UserAgent ua, SIPStack stack)
+        public override void DialogCreated(Dialog dialog, UserAgent ua, SIPStack stack)
         {
             this.callUA = dialog;
             _log.Info("New dialog created");
@@ -126,7 +126,7 @@ namespace SIPLibDriver
             return new Timer(app);
         }
 
-        public override string[] authenticate(UserAgent ua, Header header, SIPStack stack)
+        public override string[] Authenticate(UserAgent ua, Header header, SIPStack stack)
         {
             string username = "alice";
             string realm = "open-ims.test";
@@ -134,7 +134,7 @@ namespace SIPLibDriver
             return new string[] { username + "@" + realm, password };
         }
 
-        public override void receivedResponse(UserAgent ua, Message response, SIPStack stack)
+        public override void ReceivedResponse(UserAgent ua, Message response, SIPStack stack)
         {
             _log.Info("Received response with code " + response.response_code + " " + response.response_text);
             _log.Debug("\n\n" + response.ToString());
@@ -165,7 +165,7 @@ namespace SIPLibDriver
             }
         }
 
-        public override void receivedRequest(UserAgent ua, Message request, SIPStack stack)
+        public override void ReceivedRequest(UserAgent ua, Message request, SIPStack stack)
         {
             _log.Info("Received request with method " + request.method.ToUpper());
             _log.Debug("\n\n" + request.ToString());

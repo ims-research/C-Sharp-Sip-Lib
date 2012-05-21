@@ -91,24 +91,25 @@ namespace SIPLib
             d.remoteTag = response.first("To").attributes["tag"];
             d.localParty = new Address(request.first("From").value.ToString());
             d.remoteParty = new Address(request.first("To").value.ToString());
-            d.remoteTarget = new SIPURI(((Address)(response.first("Contact").value)).uri.ToString());
+            d.remoteTarget = new SIPURI(((Address)(response.first("To").value)).uri.ToString());
             stack.dialogs[d.callId] = d;
             return d;
         }
 
         public static string extractID(Message m)
         {
-            string temp = m.first("Call-ID").value.ToString() + "|";
-            if (m.method != null && m.method.Length > 0)
-            {
-                temp = temp + m.first("To").attributes["tag"] + "|";
-                temp = temp + m.first("From").attributes["tag"];
-            }
-            else
-            {
-                temp = temp + m.first("From").attributes["tag"] + "|";
-                temp = temp + m.first("To").attributes["tag"] + "|";
-            }
+            // TODO fix this and use more than just call id ?
+            string temp = m.first("Call-ID").value.ToString();// +"|";
+            //if (m.method != null && m.method.Length > 0)
+            //{
+            //    temp = temp + m.first("To").attributes["tag"] + "|";
+            //    temp = temp + m.first("From").attributes["tag"];
+            //}
+            //else
+            //{
+            //    temp = temp + m.first("From").attributes["tag"] + "|";
+            //    temp = temp + m.first("To").attributes["tag"] + "|";
+            //}
             return temp;
         }
         public Message createRequest(string method, string content = null, string contentType = null)

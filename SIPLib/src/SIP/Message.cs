@@ -167,12 +167,12 @@ namespace SIPLib
             {
                 if (headers.Count > 0)
                 {
-                    string current = "";
+                    string current = headers[0].name+": ";
                     foreach (Header h in headers)
                     {
-                        current = current + h.repr() + "\n";
+                        current = current + h.ToString() + ", ";
                     }
-                    current = current.Remove(current.Length - 1);
+                    current = current.Remove(current.Length - 2);
                     current = current + "\r\n";
                     if (current.ToLower().Contains("content-length"))
                     {

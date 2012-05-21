@@ -155,11 +155,11 @@ namespace SIPLib
             Header CallId = new Header(this.callId, "Call-ID");
             Header MaxForwards = new Header(this.maxForwards.ToString(), "Max-Forwards");
             Header Via = this.stack.createVia();
-            Dictionary<string, object> branch_params = new Dictionary<string, object>();
-            branch_params.Add("To", To.value);
-            branch_params.Add("From", From.value);
-            branch_params.Add("CallId", CallId.value);
-            branch_params.Add("CSeq", CSeq.number);
+            Dictionary<string, string> branch_params = new Dictionary<string, string>();
+            branch_params.Add("To", To.value.ToString());
+            branch_params.Add("From", From.value.ToString());
+            branch_params.Add("CallId", CallId.value.ToString());
+            branch_params.Add("CSeq", CSeq.number.ToString());
             Via.attributes["branch"] = Transaction.createBranch(branch_params, false);
             if (this.localTarget == null)
             {
@@ -406,6 +406,10 @@ namespace SIPLib
 
         public static bool canCreateDialog(Message request, Message response)
         {
+            if (request.method.ToLower().Contains("SUBSCRIBE"))
+            {
+                System.Console.WriteLine("TEST");
+            }
             return ((response.is2xx()) && ((request.method == "INVITE") || (request.method == "SUBSCRIBE")));
         }
 
@@ -624,7 +628,7 @@ namespace SIPLib
 
         }
 
-        internal void receivedRequest(Transaction t, Message message, SIPStack sIPStack)
+        internal void receivedRequest(Transaction t, Message message, SIPStack sipStack)
         {
             this.receivedRequest(t, message);
         }
