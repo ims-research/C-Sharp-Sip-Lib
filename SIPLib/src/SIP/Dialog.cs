@@ -95,17 +95,18 @@ namespace SIPLib.SIP
 
         public static string ExtractID(Message m)
         {
-            string temp = m.First("Call-ID").Value + "|";
-            if (!string.IsNullOrEmpty(m.method))
-            {
-                temp = temp + m.First("To").Attributes["tag"] + "|";
-                temp = temp + m.First("From").Attributes["tag"];
-            }
-            else
-            {
-                temp = temp + m.First("From").Attributes["tag"] + "|";
-                temp = temp + m.First("To").Attributes["tag"] + "|";
-            }
+            // TODO fix this and use more than just call id ?
+            string temp = m.first("Call-ID").value.ToString();// +"|";
+            //if (m.method != null && m.method.Length > 0)
+            //{
+            //    temp = temp + m.first("To").attributes["tag"] + "|";
+            //    temp = temp + m.first("From").attributes["tag"];
+            //}
+            //else
+            //{
+            //    temp = temp + m.first("From").attributes["tag"] + "|";
+            //    temp = temp + m.first("To").attributes["tag"] + "|";
+            //}
             return temp;
         }
         public Message CreateRequest(string method, string content = null, string contentType = null)

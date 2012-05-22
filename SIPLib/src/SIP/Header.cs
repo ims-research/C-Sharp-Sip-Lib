@@ -60,7 +60,7 @@ namespace SIPLib.SIP
             return input;
         }
 
-        public Header(string value,string name)
+        public Header(string value, string name)
         {
             Number = -1;
             Attributes = new Dictionary<string, string>();
@@ -79,7 +79,7 @@ namespace SIPLib.SIP
                 int count = addr.Parse(value);
                 Value = addr;
                 if (count < value.Length)
-                rest = value.Substring(count, value.Length- count);
+                    rest = value.Substring(count, value.Length - count);
                 if (rest.Length > 0)
                 {
                     foreach (string parm in rest.Split(';'))
@@ -107,15 +107,24 @@ namespace SIPLib.SIP
                     string tempStr = value.Substring(index + 1).Trim();
                     foreach (string parm in tempStr.Split(';'))
                     {
-                        if (parm.Contains('='))
+                        index = value.IndexOf(';');
+                        this.value = value.Substring(0, index);
+                        string temp_str = value.Substring(index + 1).Trim();
+                        foreach (string parm in temp_str.Split(';'))
                         {
-                            index = parm.IndexOf('=');
-                            string parmName = parm.Substring(0, index);
-                            string parmValue = parm.Substring(index + 1);
-                            Attributes.Add(parmName, parmValue);
+                            if (parm.Contains('='))
+                            {
+                                index = parm.IndexOf('=');
+                                string parm_name = parm.Substring(0, index);
+                                string parm_value = parm.Substring(index + 1);
+                                this.attributes.Add(parm_name, parm_value);
+                            }
                         }
                     }
-                }
+                    else
+                    {
+                        this.value = value;
+                    }
                 }
                 else
                 {
@@ -174,7 +183,7 @@ namespace SIPLib.SIP
                     int.TryParse(Attributes["rport"], out tempPort);
                     ViaUri.port = tempPort;
                 }
-                if ((type != "tcp") && (type !="sctp") && (type != "tls"))
+                if ((type != "tcp") && (type != "sctp") && (type != "tls"))
                 {
                     if (Attributes.Keys.Contains("maddr"))
                     {
@@ -185,7 +194,7 @@ namespace SIPLib.SIP
                         ViaUri.host = Attributes["received"];
                     }
                 }
-           }
+            }
 
         }
 
@@ -198,7 +207,7 @@ namespace SIPLib.SIP
                 foreach (KeyValuePair<string, string> kvp in Attributes)
                 {
                     sb.Append(";");
-                    sb.Append(kvp.Key+"="+kvp.Value);
+                    sb.Append(kvp.Key + "=" + kvp.Value);
                 }
             }
             if ((HeaderType == "comma"))
@@ -206,7 +215,7 @@ namespace SIPLib.SIP
                 sb.Append(" ");
                 foreach (KeyValuePair<string, string> kvp in Attributes)
                 {
-                    
+
                     sb.Append(kvp.Key + "=" + kvp.Value);
                     sb.Append(",");
                 }
@@ -232,7 +241,7 @@ namespace SIPLib.SIP
         public static List<Header> CreateHeaders(string value)
         {
             int index = value.IndexOf(':');
-            string name = value.Substring(0, index);    
+            string name = value.Substring(0, index);
             value = value.Substring(index + 1);
             List<Header> headers = new List<Header>();
             //if (name == "WWW-Authenticate")

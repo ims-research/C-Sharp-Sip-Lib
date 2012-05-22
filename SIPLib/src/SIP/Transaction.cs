@@ -89,7 +89,7 @@ namespace SIPLib
             {
                 string hash = Utils.GetMd5Hash(md5Hash, data);
             }
-            data = Utils.Base64Encode(data.Replace('=', '.'));
+            data = Utils.Base64Encode(data).Replace('=', '.');
             return "z9hG4bK" + data;
 
         }
@@ -302,7 +302,7 @@ namespace SIPLib
 
         private void Timeout(Timer timer, int p)
         {
-            throw new NotImplementedException();
+            throw new NotImplementedException("Timeout in Transaction is not implemented");
         }
 
         public void StopTimers()
@@ -316,17 +316,17 @@ namespace SIPLib
 
         public virtual void SendResponse(Message message)
         {
-            throw new NotImplementedException();
+            throw new NotImplementedException("sendResponse in Transaction is not implemented");
         }
 
         public virtual void ReceivedRequest(Message m)
         {
-            throw new NotImplementedException();
+            throw new NotImplementedException("receivedRequest in Transaction is not implemented");
         }
 
         public virtual void ReceivedResponse(Message r)
         {
-            throw new NotImplementedException();
+            throw new NotImplementedException("receivedResponse in Transaction is not implemented");
         }
     }
 }

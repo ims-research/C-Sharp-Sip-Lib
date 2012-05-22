@@ -382,9 +382,18 @@ namespace SIPLib.SIP
                     {
                         //Handle MESSAGE
                         UserAgent ua = new UserAgent(this);
+<<<<<<< HEAD
                         ua.Request = m;
+=======
+                        ua.request = m;
+<<<<<<< HEAD
+                        Message reply = ua.createResponse(200, "OK");
+                        this.send(reply);
+=======
+>>>>>>> d55aace00b1e868c04e4f0ae5e285b9aa122d873
                         Message reply = ua.CreateResponse(200, "OK");
                         this.Send(reply);
+>>>>>>> 856a6d9b5ee669eb178a3822dfcf9cc460520780
                         this.app.ReceivedRequest(ua, m, this);
                         return;
                     }
@@ -462,6 +471,16 @@ namespace SIPLib.SIP
             return null;
         }
 
+<<<<<<< HEAD
+        public UserAgent createServer(Message request, SIPURI uri) { return this.app.createServer(request, uri, this); }
+        public void sending(UserAgent ua, Message message) { this.app.Sending(ua, message, this); }
+        public void receivedRequest(UserAgent ua, Message request) { this.app.ReceivedRequest(ua, request, this); }
+        public void receivedResponse(UserAgent ua, Message response) { this.app.ReceivedResponse(ua, response, this); }
+        public void cancelled(UserAgent ua, Message request) { this.app.Cancelled(ua, request, this); }
+        public void dialogCreated(Dialog dialog, UserAgent ua) { this.app.DialogCreated(dialog, ua, this); }
+        public string[] authenticate(UserAgent ua, Header header) { return this.app.Authenticate(ua, header, this); }
+        public Timer createTimer(UserAgent obj) { return this.app.createTimer(obj, this); }
+=======
         public UserAgent CreateServer(Message request, SIPURI uri) { return this.app.CreateServer(request, uri, this); }
         public void Sending(UserAgent ua, Message message) { this.app.Sending(ua, message, this); }
         public void ReceivedRequest(UserAgent ua, Message request) { this.app.ReceivedRequest(ua, request, this); }
@@ -470,6 +489,7 @@ namespace SIPLib.SIP
         public void DialogCreated(Dialog dialog, UserAgent ua) { this.app.DialogCreated(dialog, ua, this); }
         public string[] Authenticate(UserAgent ua, Header header) { return this.app.Authenticate(ua, header, this); }
         public Timer CreateTimer(UserAgent obj) { return this.app.CreateTimer(obj, this); }
+>>>>>>> 856a6d9b5ee669eb178a3822dfcf9cc460520780
 
         private void ReceivedResponse(Message r, SIPURI uri)
         {
