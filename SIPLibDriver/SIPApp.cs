@@ -1,9 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Net;
 using System.Net.Sockets;
+using SIPLib.SIP;
+using SIPLib.utils;
 using log4net;
 using SIPLib;
 
@@ -11,13 +11,13 @@ namespace SIPLibDriver
 {
     public class SIPApp : SIPLib.SIPApp
     {
-        public override SIPStack stack { get; set; }
-        private byte[] temp_buffer { get; set; }
-        public override TransportInfo transport { get; set; }
-        private UserAgent registerUA { get; set; }
-        private UserAgent callUA { get; set; }
-        public UserAgent messageUA { get; set; }
-        public override event EventHandler<RawEventArgs> Received_Data_Event;
+        public override SIPStack Stack { get; set; }
+        private byte[] TempBuffer { get; set; }
+        public override TransportInfo Transport { get; set; }
+        private UserAgent RegisterUA { get; set; }
+        private UserAgent CallUA { get; set; }
+        public UserAgent MessageUA { get; set; }
+        public override event EventHandler<RawEventArgs> ReceivedDataEvent;
         public event EventHandler<RawEventArgs> Sent_Data_Event;
 
         private static ILog _log = LogManager.GetLogger(typeof(SIPApp));
@@ -25,7 +25,7 @@ namespace SIPLibDriver
         public SIPApp(TransportInfo transport)
         {
             log4net.Config.XmlConfigurator.Configure();
-            this.temp_buffer = new byte[4096];
+            this.TempBuffer = new byte[4096];
             if (transport.type == ProtocolType.Tcp)
             {
                 transport.socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
@@ -39,47 +39,47 @@ namespace SIPLibDriver
 
             IPEndPoint sender = new IPEndPoint(IPAddress.Any, 0);
             EndPoint sendEP = (EndPoint)sender;
-            transport.socket.BeginReceiveFrom(temp_buffer, 0, temp_buffer.Length, SocketFlags.None, ref sendEP, new AsyncCallback(ReceiveDataCB), sendEP);
-            this.transport = transport;
+            transport.socket.BeginReceiveFrom(TempBuffer, 0, TempBuffer.Length, SocketFlags.None, ref sendEP, new AsyncCallback(ReceiveDataCB), sendEP);
+            this.Transport = transport;
         }
 
         public void Register(string uri)
         {
-            this.registerUA = new UserAgent(this.stack, null, false);
-            Message register_msg = this.registerUA.CreateRegister(new SIPURI(uri));
+            this.RegisterUA = new UserAgent(this.Stack, null, false);
+            Message register_msg = this.RegisterUA.CreateRegister(new SIPURI(uri));
             register_msg.InsertHeader(new Header("3600", "Expires"));
-            this.registerUA.SendRequest(register_msg);
+            this.RegisterUA.SendRequest(register_msg);
         }
 
         public void ReceiveDataCB(IAsyncResult asyncResult)
         {
                 IPEndPoint sender = new IPEndPoint(IPAddress.Any, 0);
                 EndPoint sendEP = (EndPoint)sender;
-                int bytesRead = transport.socket.EndReceiveFrom(asyncResult, ref sendEP);
-                string data = ASCIIEncoding.ASCII.GetString(temp_buffer, 0, bytesRead);
+                int bytesRead = Transport.socket.EndReceiveFrom(asyncResult, ref sendEP);
+                string data = ASCIIEncoding.ASCII.GetString(TempBuffer, 0, bytesRead);
                 string remote_host = ((IPEndPoint)sendEP).Address.ToString();
                 string remote_port = ((IPEndPoint)sendEP).Port.ToString();
-                if (this.Received_Data_Event != null)
+                if (this.ReceivedDataEvent != null)
                 {
-                    this.Received_Data_Event(this, new RawEventArgs(data, new string[] { remote_host, remote_port }));
+                    this.ReceivedDataEvent(this, new RawEventArgs(data, new string[] { remote_host, remote_port }));
                 }
-                this.transport.socket.BeginReceiveFrom(this.temp_buffer, 0, this.temp_buffer.Length, SocketFlags.None, ref sendEP, new AsyncCallback(this.ReceiveDataCB), sendEP);
+                this.Transport.socket.BeginReceiveFrom(this.TempBuffer, 0, this.TempBuffer.Length, SocketFlags.None, ref sendEP, new AsyncCallback(this.ReceiveDataCB), sendEP);
         }
 
-        public override void Send(string data, string ip, int port, SIPStack stack)
+        public override void Send(string finalData, string destinationHost, int destinationPort, SIPStack stack)
         {
-            IPAddress[] addresses = System.Net.Dns.GetHostAddresses(ip);
-            IPEndPoint dest = new IPEndPoint(addresses[0], port);
+            IPAddress[] addresses = System.Net.Dns.GetHostAddresses(destinationHost);
+            IPEndPoint dest = new IPEndPoint(addresses[0], destinationPort);
             EndPoint destEP = (EndPoint)dest;
-            byte[] send_data = ASCIIEncoding.ASCII.GetBytes(data);
-            stack.transport.socket.BeginSendTo(send_data, 0, send_data.Length, SocketFlags.None, destEP, new AsyncCallback(this.SendDataCB), destEP);
+            byte[] send_data = ASCIIEncoding.ASCII.GetBytes(finalData);
+            stack.Transport.socket.BeginSendTo(send_data, 0, send_data.Length, SocketFlags.None, destEP, new AsyncCallback(this.SendDataCB), destEP);
         }
 
         private void SendDataCB(IAsyncResult asyncResult)
         {
             try
             {
-                stack.transport.socket.EndSend(asyncResult);
+                Stack.Transport.socket.EndSend(asyncResult);
             }
             catch (Exception ex)
             {
@@ -91,7 +91,7 @@ namespace SIPLibDriver
         {
             if (request.method == "INVITE")
             {
-                return new UserAgent(this.stack, request);
+                return new UserAgent(this.Stack, request);
             }
             else return null;
         }
@@ -117,7 +117,7 @@ namespace SIPLibDriver
 
         public override void DialogCreated(Dialog dialog, UserAgent ua, SIPStack stack)
         {
-            this.callUA = dialog;
+            this.CallUA = dialog;
             _log.Info("New dialog created");
         }
 
@@ -227,12 +227,12 @@ namespace SIPLibDriver
             uri = CheckURI(uri);
             if (IsRegistered())
             {
-                this.messageUA = new UserAgent(this.stack);
-                this.messageUA.localParty = this.registerUA.localParty;
-                this.messageUA.remoteParty = new Address(uri);
-                Message m = this.messageUA.CreateRequest("MESSAGE", message);
+                this.MessageUA = new UserAgent(this.Stack);
+                this.MessageUA.LocalParty = this.RegisterUA.LocalParty;
+                this.MessageUA.RemoteParty = new Address(uri);
+                Message m = this.MessageUA.CreateRequest("MESSAGE", message);
                 m.InsertHeader(new Header("text/plain", "Content-Type"));
-                this.messageUA.SendRequest(m);
+                this.MessageUA.SendRequest(m);
             }
         }
 
@@ -240,11 +240,11 @@ namespace SIPLibDriver
         {
             if (IsRegistered())
             {
-                if (this.callUA != null)
+                if (this.CallUA != null)
                 {
                     try
                     {
-                        Dialog d = (Dialog)this.callUA;
+                        Dialog d = (Dialog)this.CallUA;
                         Message bye = d.CreateRequest("BYE");
                         d.SendRequest(bye);
                     }
@@ -272,11 +272,11 @@ namespace SIPLibDriver
             uri = CheckURI(uri);
             if (IsRegistered())
             {
-                this.callUA = new UserAgent(this.stack, null, false);
-                this.callUA.localParty = this.registerUA.localParty;
-                this.callUA.remoteParty = new Address(uri);
-                Message invite = this.callUA.CreateRequest("INVITE");
-                this.callUA.SendRequest(invite);
+                this.CallUA = new UserAgent(this.Stack, null, false);
+                this.CallUA.LocalParty = this.RegisterUA.LocalParty;
+                this.CallUA.RemoteParty = new Address(uri);
+                Message invite = this.CallUA.CreateRequest("INVITE");
+                this.CallUA.SendRequest(invite);
             }
             else
             {
@@ -295,7 +295,7 @@ namespace SIPLibDriver
 
         private bool IsRegistered()
         {
-            if (this.registerUA == null || this.registerUA.localParty == null)
+            if (this.RegisterUA == null || this.RegisterUA.LocalParty == null)
                 return false;
             else return true;
         }

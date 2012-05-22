@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Diagnostics;
+using SIPLib.SIP;
 
 namespace SIPLib
 {
@@ -124,7 +125,7 @@ namespace SIPLib
             m.headers["Via"].Add(this.request.First("Via"));
 
             m.headers["CSeq"] = new List<Header>();
-            m.headers["CSeq"].Add(new Header(this.request.First("CSeq").number + " ACK","CSeq"));
+            m.headers["CSeq"].Add(new Header(this.request.First("CSeq").Number + " ACK","CSeq"));
 
             if (this.request.headers.ContainsKey("Route"))
             {

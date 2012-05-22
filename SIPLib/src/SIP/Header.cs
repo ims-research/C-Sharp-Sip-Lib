@@ -3,90 +3,81 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Globalization;
-namespace SIPLib
+
+namespace SIPLib.SIP
 {
     public class Header
     {
-        static string[] _address = { "contact", "from", "record-route", "refer-to", "referred-by", "route", "to" };
-        static string[] _comma = { "authorization", "proxy-authenticate", "proxy-authorization", "www-authenticate" };
-        static string[] _unstructured = { "call-id", "cseq", "date", "expires", "max-forwards", "organization", "server", "subject", "timestamp", "user-agent","service-route" };
-        static Dictionary<string, string> _short = new Dictionary<string, string> { {"u","allow-events"},{"i","call-id"},{"m","contact"},
+        static private readonly string[] Address = { "contact", "from", "record-route", "refer-to", "referred-by", "route", "to" };
+        static private readonly string[] Comma = { "authorization", "proxy-authenticate", "proxy-authorization", "www-authenticate" };
+        static private readonly string[] Unstructured = { "call-id", "cseq", "date", "expires", "max-forwards", "organization", "server", "subject", "timestamp", "user-agent", "service-route" };
+        static private readonly Dictionary<string, string> Short = new Dictionary<string, string> { {"u","allow-events"},{"i","call-id"},{"m","contact"},
             {"e","content-encoding"},{"l","content-length"},{"c",  "content-type"},{"o",  "event"},{"f", "from"},{"s",  "subject"},{"k","supported"},{"t","to"},{"v",  "via"}};
-        static Dictionary<string, string> _exceptions = new Dictionary<string, string> { { "call-id", "Call-ID" }, { "cseq", "CSeq" }, { "www-authenticate", "WWW-Authenticate" } };
+        static private readonly Dictionary<string, string> Exceptions = new Dictionary<string, string> { { "call-id", "Call-ID" }, { "cseq", "CSeq" }, { "www-authenticate", "WWW-Authenticate" } };
 
-        public Dictionary<string, string> attributes { get; set; }
-        public string header_type { get; set; }
-        public object value { get; set; }
-        public string authMethod { get; set; }
-        public int number { get; set; }
-        public string method { get; set; }
-        public string name { get; set; }
-        public SIPURI viaUri { get; set; }
+        public Dictionary<string, string> Attributes { get; set; }
+        public string HeaderType { get; set; }
+        public object Value { get; set; }
+        public string AuthMethod { get; set; }
+        public int Number { get; set; }
+        public string Method { get; set; }
+        public string Name { get; set; }
+        public SIPURI ViaUri { get; set; }
 
-        public static string _canon(string input)
+        public static string Canon(string input)
         {
             input = input.ToLower();
-            if ((input.Length == 1) && _short.Keys.Contains(input))
+            if ((input.Length == 1) && Short.Keys.Contains(input))
             {
-                return _canon(_short[input]);
+                return Canon(Short[input]);
             }
-            else if (_exceptions.Keys.Contains(input))
+            if (Exceptions.Keys.Contains(input))
             {
-                return _exceptions[input];
+                return Exceptions[input];
             }
-            else
+            string[] words = input.Split('-');
+            for (int i = 0; i < words.Length; i++)
             {
-                string[] words = input.Split('-');
-                for (int i = 0; i < words.Length; i++)
-                {
-                    words[i] = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(words[i]);
-                }
-                return String.Join("-", words);
+                words[i] = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(words[i]);
             }
+            return String.Join("-", words);
         }
-        public static string _quote(string input)
+        public static string Quote(string input)
         {
             if (input.StartsWith("\"") && input.EndsWith("\""))
             {
                 return input;
             }
-            else
-            {
-                return "\"" + input + "\"";
-            }
-
+            return "\"" + input + "\"";
         }
-        public static string _unquote(string input)
+
+        public static string Unquote(string input)
         {
             if (input.StartsWith("\"") && input.EndsWith("\""))
             {
                 return input.Substring(1, input.Length - 2);
             }
-            else
-            {
-                return input;
-            }
+            return input;
         }
 
         public Header(string value,string name)
         {
-            this.number = -1;
-            this.attributes = new Dictionary<string, string>();
-            this.name = _canon(name.Trim());
-            this.Parse(this.name,value.Trim());
+            Number = -1;
+            Attributes = new Dictionary<string, string>();
+            Name = Canon(name.Trim());
+            Parse(Name,value.Trim());
         }
 
         public void Parse(string name, string value)
         {
             string rest = "";
-            int index = 0;
-            if (_address.Contains(name.ToLower()))
+            int index;
+            if (Address.Contains(name.ToLower()))
             {
-                this.header_type = "address";
-                Address addr = new Address();
-                addr.mustQuote = true;
+                HeaderType = "address";
+                Address addr = new Address {MustQuote = true};
                 int count = addr.Parse(value);
-                this.value = addr;
+                Value = addr;
                 if (count < value.Length)
                 rest = value.Substring(count, value.Length- count);
                 if (rest.Length > 0)
@@ -96,75 +87,75 @@ namespace SIPLib
                         if (parm.Contains('='))
                         {
                             index = parm.IndexOf('=');
-                            string parm_name = parm.Substring(0, index);
-                            string parm_value = parm.Substring(index + 1);
-                            this.attributes.Add(parm_name, parm_value);
+                            string parmName = parm.Substring(0, index);
+                            string parmValue = parm.Substring(index + 1);
+                            Attributes.Add(parmName, parmValue);
                         }
                     }
                 }
 
             }
-            else if (!(_comma.Contains(name.ToLower())) && !(_unstructured.Contains(name.ToLower())))
+            else if (!(Comma.Contains(name.ToLower())) && !(Unstructured.Contains(name.ToLower())))
             {
-                this.header_type = "standard";
+                HeaderType = "standard";
                 if (!value.Contains(";lr>"))
                 {
                 if (value.Contains(';'))
                 {
                     index = value.IndexOf(';');
-                    this.value = value.Substring(0, index);
-                    string temp_str = value.Substring(index + 1).Trim();
-                    foreach (string parm in temp_str.Split(';'))
+                    Value = value.Substring(0, index);
+                    string tempStr = value.Substring(index + 1).Trim();
+                    foreach (string parm in tempStr.Split(';'))
                     {
                         if (parm.Contains('='))
                         {
                             index = parm.IndexOf('=');
-                            string parm_name = parm.Substring(0, index);
-                            string parm_value = parm.Substring(index + 1);
-                            this.attributes.Add(parm_name, parm_value);
+                            string parmName = parm.Substring(0, index);
+                            string parmValue = parm.Substring(index + 1);
+                            Attributes.Add(parmName, parmValue);
                         }
                     }
                 }
                 }
                 else
                 {
-                    this.value = value;
+                    Value = value;
                 }
             }
-            if (_comma.Contains(name.ToLower()))
+            if (Comma.Contains(name.ToLower()))
             {
-                this.header_type = "comma";
+                HeaderType = "comma";
                 if (value.Contains(' '))
                 {
                     index = value.IndexOf(' ');
-                    this.authMethod = value.Substring(0, index).Trim();
-                    this.value = value.Substring(0, index).Trim();
+                    AuthMethod = value.Substring(0, index).Trim();
+                    Value = value.Substring(0, index).Trim();
                     string values = value.Substring(index + 1);
                     foreach (string parm in values.Split(','))
                     {
                         if (parm.Contains('='))
                         {
                             index = parm.IndexOf('=');
-                            string parm_name = parm.Substring(0, index);
-                            string parm_value = parm.Substring(index + 1);
-                            this.attributes.Add(parm_name, parm_value);
+                            string parmName = parm.Substring(0, index);
+                            string parmValue = parm.Substring(index + 1);
+                            Attributes.Add(parmName, parmValue);
                         }
                     }
                 }
             }
             else if (name.ToLower() == "cseq")
             {
-                this.header_type = "unstructured";
+                HeaderType = "unstructured";
                 string[] parts = value.Trim().Split(' ');
-                int temp_number = -1;
-                int.TryParse(parts[0], out temp_number);
-                this.number = temp_number;
-                this.method = parts[1];
+                int tempNumber;
+                int.TryParse(parts[0], out tempNumber);
+                Number = tempNumber;
+                Method = parts[1];
             }
-            if (_unstructured.Contains(name.ToLower()) && !(name.ToLower() == "cseq"))
+            if (Unstructured.Contains(name.ToLower()) && name.ToLower() != "cseq")
             {
-                this.header_type = "unstructured";
-                this.value = value;
+                HeaderType = "unstructured";
+                Value = value;
             }
             if (name.ToLower() == "via")
             {
@@ -172,26 +163,26 @@ namespace SIPLib
                 string proto = parts[0];
                 string addr = parts[1].Split(';')[0];
                 string type = proto.Split('/')[2].ToLower();
-                this.viaUri = new SIPURI("sip:" + addr + ";transport=" + type);
-                if (this.viaUri.port == 0)
+                ViaUri = new SIPURI("sip:" + addr + ";transport=" + type);
+                if (ViaUri.port == 0)
                 {
-                    this.viaUri.port = 5060;
+                    ViaUri.port = 5060;
                 }
-                if (this.attributes.Keys.Contains("rport"))
+                if (Attributes.Keys.Contains("rport"))
                 {
-                    int temp_port = 5060;
-                    int.TryParse(this.attributes["rport"], out temp_port);
-                    this.viaUri.port = temp_port;
+                    int tempPort;
+                    int.TryParse(Attributes["rport"], out tempPort);
+                    ViaUri.port = tempPort;
                 }
                 if ((type != "tcp") && (type !="sctp") && (type != "tls"))
                 {
-                    if (this.attributes.Keys.Contains("maddr"))
+                    if (Attributes.Keys.Contains("maddr"))
                     {
-                        this.viaUri.host = this.attributes["maddr"];
+                        ViaUri.host = Attributes["maddr"];
                     }
-                    else if (this.attributes.Keys.Contains("received"))
+                    else if (Attributes.Keys.Contains("received"))
                     {
-                        this.viaUri.host = this.attributes["received"];
+                        ViaUri.host = Attributes["received"];
                     }
                 }
            }
@@ -200,21 +191,20 @@ namespace SIPLib
 
         public override string ToString()
         {
-            string name = this.name.ToLower();
             StringBuilder sb = new StringBuilder();
-            sb.Append(this.value);
-            if (!(this.header_type == "comma") && !(this.header_type == "unstructured"))
+            sb.Append(Value);
+            if (HeaderType != "comma" && HeaderType != "unstructured")
             {
-                foreach (KeyValuePair<string, string> kvp in this.attributes)
+                foreach (KeyValuePair<string, string> kvp in Attributes)
                 {
                     sb.Append(";");
                     sb.Append(kvp.Key+"="+kvp.Value);
                 }
             }
-            if ((this.header_type == "comma"))
+            if ((HeaderType == "comma"))
             {
                 sb.Append(" ");
-                foreach (KeyValuePair<string, string> kvp in this.attributes)
+                foreach (KeyValuePair<string, string> kvp in Attributes)
                 {
                     
                     sb.Append(kvp.Key + "=" + kvp.Value);
@@ -222,21 +212,21 @@ namespace SIPLib
                 }
                 sb.Remove(sb.Length - 1, 1);
             }
-            if ((this.number > -1))
-                sb.Append(" " + this.number.ToString());
-            if (this.method != null)
-                sb.Append(" " + this.method);
+            if ((Number > -1))
+                sb.Append(" " + Number.ToString());
+            if (Method != null)
+                sb.Append(" " + Method);
             return sb.ToString();
         }
 
         public string Repr()
         {
-            return this.name + ":" + this.ToString();
+            return Name + ":" + ToString();
         }
 
         public Header Dup()
         {
-            return new Header(this.ToString(),this.name);
+            return new Header(ToString(),Name);
         }
 
         public static List<Header> CreateHeaders(string value)
@@ -254,10 +244,7 @@ namespace SIPLib
             //}
             if (name == "Record-Route")
             {
-                foreach (string part in value.Split(','))
-                {
-                    headers.Add(new Header(part.Trim(), name));
-                }
+                headers.AddRange(value.Split(',').Select(part => new Header(part.Trim(), name)));
             }
             else
             {

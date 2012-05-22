@@ -1,45 +1,35 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using SIPLib;
 using System.Net;
+using SIPLib.SIP;
 
 namespace SIPLibDriver
 {
     class Program
     {
 
-        public static SIPStack Create_Stack(SIPApp app,string proxy_ip = null, int proxy_port = -1)
+        public static SIPStack CreateStack(SIPApp app,string proxyIp = null, int proxyPort = -1)
         {
-            SIPStack my_stack = new SIPStack(app);
-            my_stack.uri.user = "alice";
-            if (proxy_ip != null)
+            SIPStack myStack = new SIPStack(app) {uri = {user = "alice"}};
+            if (proxyIp != null)
             {
-                my_stack.proxy_host = "192.168.0.7";
-                if (proxy_port == -1)
-                {
-                    my_stack.proxy_port = 5060;
-                }
-                else
-                {
-                    my_stack.proxy_port = proxy_port;
-                }
+                myStack.proxy_host = "192.168.0.7";
+                myStack.proxy_port = (proxyPort == -1) ? 5060 : proxyPort;
             }
-            return my_stack;
+            return myStack;
         }
 
-        public static TransportInfo CreateTransport(string listen_ip, int listen_port)
+        public static TransportInfo CreateTransport(string listenIp, int listenPort)
         {
-            return new TransportInfo(IPAddress.Parse(listen_ip), listen_port, System.Net.Sockets.ProtocolType.Udp);
+            return new TransportInfo(IPAddress.Parse(listenIp), listenPort, System.Net.Sockets.ProtocolType.Udp);
         }
 
         static void Main(string[] args)
         {
             //TransportInfo local_transport = createTransport(Utils.get_local_ip(), 5060);
-            TransportInfo local_transport = CreateTransport("192.168.0.5", 5060);
-            SIPApp app = new SIPApp(local_transport);
-            SIPStack stack = Create_Stack(app,"192.168.0.7", 4060);
+            TransportInfo localTransport = CreateTransport("192.168.0.5", 5060);
+            SIPApp app = new SIPApp(localTransport);
+            SIPStack stack = CreateStack(app,"192.168.0.7", 4060);
             app.Register("sip:alice@open-ims.test");
             Console.ReadKey();
             app.Invite("bob@open-ims.test");

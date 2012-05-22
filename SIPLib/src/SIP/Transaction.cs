@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Security.Cryptography;
+using SIPLib.SIP;
+using SIPLib.utils;
 
 namespace SIPLib
 {
@@ -68,10 +70,10 @@ namespace SIPLib
             if (request is Message)
             {
                 Message request_message = (Message)(request);
-                To = request_message.First("To").value.ToString();
-                From = request_message.First("From").value.ToString();
-                CallId = request_message.First("Call-ID").value.ToString();
-                CSeq = request_message.First("CSeq").number.ToString();
+                To = request_message.First("To").Value.ToString();
+                From = request_message.First("From").Value.ToString();
+                CallId = request_message.First("Call-ID").Value.ToString();
+                CSeq = request_message.First("CSeq").Number.ToString();
             }
             else if (request is Dictionary<string,string>)
             {
@@ -120,10 +122,10 @@ namespace SIPLib
             t.request = request;
             t.transport = transport;
             t.tag = tag;
-            t.remote = request.First("Via").viaUri.HostPort();
-            if (request.headers.ContainsKey("Via") && request.First("Via").attributes.ContainsKey("branch"))
+            t.remote = request.First("Via").ViaUri.HostPort();
+            if (request.headers.ContainsKey("Via") && request.First("Via").Attributes.ContainsKey("branch"))
             {
-                t.branch = request.First("Via").attributes["branch"];
+                t.branch = request.First("Via").Attributes["branch"];
             }
             else
             {
@@ -159,9 +161,9 @@ namespace SIPLib
             t.transport = transport;
             t.remote = remote;
 
-            if (request.headers.ContainsKey("Via") && request.First("Via").attributes.ContainsKey("branch"))
+            if (request.headers.ContainsKey("Via") && request.First("Via").Attributes.ContainsKey("branch"))
             {
-                t.branch = request.First("Via").attributes["branch"];
+                t.branch = request.First("Via").Attributes["branch"];
             }
             else
             {
@@ -189,19 +191,19 @@ namespace SIPLib
         public static bool Equals(Transaction t1, Message r, Transaction t2)
         {
             Message t = t1.request;
-            Address request_To = (Address)(r.First("To").value);
-            Address t1_To = (Address)(t.First("To").value);
+            Address request_To = (Address)(r.First("To").Value);
+            Address t1_To = (Address)(t.First("To").Value);
 
-            Address request_From = (Address)(r.First("To").value);
-            Address t1_From = (Address)(t.First("To").value);
+            Address request_From = (Address)(r.First("To").Value);
+            Address t1_From = (Address)(t.First("To").Value);
 
-            bool a = (request_To.uri == t1_To.uri);
-            a = a && (request_From.uri == t1_From.uri);
+            bool a = (request_To.Uri == t1_To.Uri);
+            a = a && (request_From.Uri == t1_From.Uri);
 
-            a = a && (r.First("Call-ID").value.ToString() == t.First("Call-ID").value.ToString());
-            a = a && (r.First("CSeq").value.ToString() == t.First("CSeq").value.ToString());
+            a = a && (r.First("Call-ID").Value.ToString() == t.First("Call-ID").Value.ToString());
+            a = a && (r.First("CSeq").Value.ToString() == t.First("CSeq").Value.ToString());
 
-            a = a && (r.First("From").attributes["tag"] == t.First("From").attributes["tag"]);
+            a = a && (r.First("From").Attributes["tag"] == t.First("From").Attributes["tag"]);
             a = a && (t2.server == t1.server);
             return a;
         }
@@ -255,9 +257,9 @@ namespace SIPLib
             if (this.request != null && this.server)
             {
                 m = Message.CreateResponse(response_code,responsetext,null,null,this.request);
-                if (response_code != 100 && !m.headers["To"][0].attributes.ContainsKey("tag"))
+                if (response_code != 100 && !m.headers["To"][0].Attributes.ContainsKey("tag"))
                 {
-                    m.headers["To"][0].attributes.Add("tag", this.tag);
+                    m.headers["To"][0].Attributes.Add("tag", this.tag);
                 }
             }
             return m;

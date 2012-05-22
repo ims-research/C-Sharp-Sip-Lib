@@ -1,17 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Diagnostics;
+using SIPLib.utils;
 using log4net;
-using SIPLib;
 
-namespace SIPLib
+namespace SIPLib.SIP
 {
     public class SIPStack
     {
         public string tag { get; set; }
-        public TransportInfo transport { get; set; }
+        public TransportInfo Transport { get; set; }
         public SIPApp app { get; set; }
         private Random _random = new Random();
         public bool closing = false;
@@ -29,7 +28,7 @@ namespace SIPLib
         {
             get
             {
-                return new SIPURI("sip" + ":" + transport.host + ":" + transport.port.ToString());
+                return new SIPURI("sip" + ":" + Transport.host + ":" + Transport.port.ToString());
             }
             set
             {
@@ -41,18 +40,18 @@ namespace SIPLib
         public SIPStack(SIPApp app)
         {
             Init();
-            this.transport = app.transport;
+            this.Transport = app.Transport;
             this.app = app;
-            this.app.Received_Data_Event += new EventHandler<RawEventArgs>(Transport_Received_Data_Event);
+            this.app.ReceivedDataEvent += new EventHandler<RawEventArgs>(Transport_Received_Data_Event);
 
-            app.stack = this;
+            app.Stack = this;
         }
 
         void Transport_Received_Data_Event(object sender, RawEventArgs e)
         {
             try
             {
-                this.Received(e.data, e.src);
+                this.Received(e.Data, e.Src);
             }
             catch (Exception ex)
             {
@@ -91,12 +90,12 @@ namespace SIPLib
 
         public string NewCallId()
         {
-            return _random.Next(0, 2147483647).ToString() + "@" + (this.transport.host);
+            return _random.Next(0, 2147483647).ToString() + "@" + (this.Transport.host);
         }
 
         public Header CreateVia()
         {
-            return new Header("SIP/2.0/" + this.transport.type.ToString().ToUpper() + " " + this.transport.host + ':' + this.transport.port.ToString() + ";rport", "Via");
+            return new Header("SIP/2.0/" + this.Transport.type.ToString().ToUpper() + " " + this.Transport.host + ':' + this.Transport.port.ToString() + ";rport", "Via");
         }
 
         public void Send(object data, object dest = null, TransportInfo transport = null)
@@ -192,8 +191,8 @@ namespace SIPLib
                 {
                     if (dest == null)
                     {
-                        destination_host = m.headers["Via"][0].viaUri.host;
-                        destination_port = m.headers["Via"][0].viaUri.port;
+                        destination_host = m.headers["Via"][0].ViaUri.host;
+                        destination_port = m.headers["Via"][0].ViaUri.port;
                     }
                 }
                 ////TODO FIX HACK
@@ -265,16 +264,16 @@ namespace SIPLib
                             Debug.Assert(false, String.Format("No Via header in request \n{0}\n", m.ToString()));
                         }
                         Header via = m.headers["Via"].First();
-                        if (via.viaUri.host != src[0] || !src[1].ToString().Equals(via.viaUri.port))
+                        if (via.ViaUri.host != src[0] || !src[1].ToString().Equals(via.ViaUri.port))
                         {
-                            via.attributes.Add("received", src[0]);
-                            via.viaUri.host = src[0];
+                            via.Attributes.Add("received", src[0]);
+                            via.ViaUri.host = src[0];
                         }
-                        if (via.attributes.ContainsKey("rport"))
+                        if (via.Attributes.ContainsKey("rport"))
                         {
-                            via.attributes["rport"] = src[1];
+                            via.Attributes["rport"] = src[1];
                         }
-                        via.viaUri.port = Convert.ToInt32(src[1]);
+                        via.ViaUri.port = Convert.ToInt32(src[1]);
                         this.ReceivedRequest(m, uri);
                     }
                     else if (m.response_code > 0)
@@ -300,7 +299,7 @@ namespace SIPLib
 
         private void ReceivedRequest(Message m, SIPURI uri)
         {
-            string branch = m.headers["Via"][0].attributes["branch"];
+            string branch = m.headers["Via"][0].Attributes["branch"];
             Transaction t = null;
             if (m.method == "ACK" && branch == "0")
             {
@@ -313,7 +312,7 @@ namespace SIPLib
             if (t == null)
             {
                 UserAgent app = null; // Huh ?
-                if ((m.method != "CANCEL") && (m.headers["To"][0].attributes.ContainsKey("tag")))
+                if ((m.method != "CANCEL") && (m.headers["To"][0].Attributes.ContainsKey("tag")))
                 {
                     //In dialog request
                     Dialog d = this.FindDialog(m);
@@ -358,7 +357,7 @@ namespace SIPLib
                     }
                     else
                     {
-                        app = d.app;
+                        app = d.App;
                     }
 
                 }
@@ -383,7 +382,7 @@ namespace SIPLib
                     {
                         //Handle MESSAGE
                         UserAgent ua = new UserAgent(this);
-                        ua.request = m;
+                        ua.Request = m;
                         Message reply = ua.CreateResponse(200, "OK");
                         this.Send(reply);
                         this.app.ReceivedRequest(ua, m, this);
@@ -398,7 +397,7 @@ namespace SIPLib
                 else
                 {
                     //Cancel Request
-                    Transaction o = this.FindTransaction(Transaction.CreateId(m.headers["Via"][0].attributes["branch"], "INVITE"));
+                    Transaction o = this.FindTransaction(Transaction.CreateId(m.headers["Via"][0].Attributes["branch"], "INVITE"));
                     if (o == null)
                     {
                         this.Send(Message.CreateResponse(481, "Original transaction does not exist", null, null, m));
@@ -411,7 +410,7 @@ namespace SIPLib
                 }
                 if (app != null)
                 {
-                    t = Transaction.CreateServer(this, app, m, this.transport, this.tag);
+                    t = Transaction.CreateServer(this, app, m, this.Transport, this.tag);
                 }
                 else if (m.method != "ACK")
                 {
@@ -474,12 +473,12 @@ namespace SIPLib
 
         private void ReceivedResponse(Message r, SIPURI uri)
         {
-            if (r.headers.ContainsKey("Service-Route") && r.Is2xx() && r.First("CSeq").method.Contains("REGISTER"))
+            if (r.headers.ContainsKey("Service-Route") && r.Is2xx() && r.First("CSeq").Method.Contains("REGISTER"))
             {
                 this.service_route = r.headers["Service-Route"];
                 foreach (Header h in this.service_route)
                 {
-                    h.name = "Route";
+                    h.Name = "Route";
                 }
             }
             else if (r.headers.ContainsKey("Record-Route") && r.Is2xx())
@@ -487,7 +486,7 @@ namespace SIPLib
                 this.service_route = r.headers["Record-Route"];
                 foreach (Header h in this.service_route)
                 {
-                    h.name = "Route";
+                    h.Name = "Route";
                 }
             }
 
@@ -497,8 +496,8 @@ namespace SIPLib
                 Debug.Assert(false, String.Format("No Via header in received response \n{0}\n", r.ToString()));
                 return;
             }
-            string branch = r.headers["Via"][0].attributes["branch"];
-            string method = r.headers["CSeq"][0].method;
+            string branch = r.headers["Via"][0].Attributes["branch"];
+            string method = r.headers["CSeq"][0].Method;
             Transaction t = this.FindTransaction(Transaction.CreateId(branch, method));
             if (t == null)
             {

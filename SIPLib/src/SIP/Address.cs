@@ -1,17 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Text;
 using System.Text.RegularExpressions;
 
-namespace SIPLib
+namespace SIPLib.SIP
 {
     public class Address
     {
-        public string displayName { get; set; }
-        public SIPURI uri { get; set; }
-        public bool wildcard { get; set; }
-        public bool mustQuote { get; set; }
+        public string DisplayName { get; set; }
+        public SIPURI Uri { get; set; }
+        public bool Wildcard { get; set; }
+        public bool MustQuote { get; set; }
         public Address()
         {
             Init();
@@ -25,28 +22,28 @@ namespace SIPLib
 
         private void Init()
         {
-            this.displayName = "";
-            this.uri = new SIPURI();
-            this.wildcard = false;
+            DisplayName = "";
+            Uri = new SIPURI();
+            Wildcard = false;
         }
 
         public int Parse(string address)
         {
             if (address.StartsWith("*"))
             {
-                this.wildcard = true;
+                Wildcard = true;
                 return 1;
             }
-            string[] reg_exs = { @"^(?<name>[a-zA-Z0-9\-\._\+\~\ \t]*)<(?<uri>[^>]+)>", @"^(""(?<name>[a-zA-Z0-9\-\._\+\~\ \t]+)"")[\ \t]*<(?<uri>[^>]+)>", @"^[\ \t]*(?<name>)(?<uri>[^;]+)" };
+            string[] regExs = { @"^(?<name>[a-zA-Z0-9\-\._\+\~\ \t]*)<(?<uri>[^>]+)>", @"^(""(?<name>[a-zA-Z0-9\-\._\+\~\ \t]+)"")[\ \t]*<(?<uri>[^>]+)>", @"^[\ \t]*(?<name>)(?<uri>[^;]+)" };
 
-            foreach (string expression in reg_exs)
+            foreach (string expression in regExs)
             {
                 Regex exp = new Regex(expression, RegexOptions.IgnoreCase);
                 MatchCollection mc = exp.Matches(address);
                 foreach (Match m in mc)
                 {
-                    this.displayName = m.Groups["name"].ToString().Trim();
-                    this.uri = new SIPURI(m.Groups["uri"].ToString().Trim());
+                    DisplayName = m.Groups["name"].ToString().Trim();
+                    Uri = new SIPURI(m.Groups["uri"].ToString().Trim());
                     return m.Length;
                 }
             }
@@ -55,23 +52,23 @@ namespace SIPLib
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            if (this.displayName.Length > 0)
+            if (DisplayName.Length > 0)
             {
-                sb.Append("\"" + this.displayName + "\"");
-                if (this.uri.ToString().Length > 0)
+                sb.Append("\"" + DisplayName + "\"");
+                if (Uri.ToString().Length > 0)
                 {
                     sb.Append(" ");
                 }
             }
 
-            if (this.uri.ToString().Length > 0)
+            if (Uri.ToString().Length > 0)
             {
-                if ((this.mustQuote) || (this.displayName.Length > 0))
+                if ((MustQuote) || (DisplayName.Length > 0))
                 {
                     sb.Append("<");
                 }
-                sb.Append(this.uri.ToString());
-                if ((this.mustQuote) || (this.displayName.Length > 0))
+                sb.Append(Uri.ToString());
+                if ((MustQuote) || (DisplayName.Length > 0))
                 {
                     sb.Append(">");
                 }
@@ -81,23 +78,23 @@ namespace SIPLib
 
         public Address Dup()
         {
-            return new Address(this.ToString());
+            return new Address(ToString());
         }
 
         public string Displayable()
         {
             string name = "";
-            if (this.displayName.Length > 0)
+            if (DisplayName.Length > 0)
             {
-                name = this.displayName;
+                name = DisplayName;
             }
-            else if (this.uri.user.Length > 0)
+            else if (Uri.user.Length > 0)
             {
-                name = this.uri.user;
+                name = Uri.user;
             }
-            else if (this.uri.host.Length > 0)
+            else if (Uri.host.Length > 0)
             {
-                name = this.uri.host;
+                name = Uri.host;
             }
             if (name.Length > 26)
             {

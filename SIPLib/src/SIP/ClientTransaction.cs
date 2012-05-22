@@ -1,55 +1,52 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
-namespace SIPLib
+namespace SIPLib.SIP
 {
     class ClientTransaction : Transaction
     {
         public ClientTransaction(UserAgent app) : base(app)
         {
-            this.server = false;
+            server = false;
         }
 
         public void Start()
         {
-            this.state = "trying";
-            if (!this.transport.reliable)
+            state = "trying";
+            if (!transport.reliable)
             {
-                this.StartTimer("E", this.timer.E());
+                StartTimer("E", timer.E());
             }
-            this.StartTimer("F", this.timer.F());
-            this.stack.Send(this.request,this.remote,this.transport);
+            StartTimer("F", timer.F());
+            stack.Send(request,remote,transport);
         }
 
         public override void ReceivedResponse(Message response)
         {
             if (response.Is1xx())
             {
-                if (this.state == "trying")
+                if (state == "trying")
                 {
-                    this.state = "proceeding";
-                    this.app.ReceivedResponse(this,response);
+                    state = "proceeding";
+                    app.ReceivedResponse(this,response);
                 }
-                else if (this.state == "proceeding")
+                else if (state == "proceeding")
                 {
-                    this.app.ReceivedResponse(this,response);
+                    app.ReceivedResponse(this,response);
                 }
             }
             else if (response.IsFinal())
             {
-                if (this.state == "trying" || this.state == "proceeding")
+                if (state == "trying" || state == "proceeding")
                 {
-                    this.state = "completed";
-                    this.app.ReceivedResponse(this,response);
-                    if (!this.transport.reliable)
+                    state = "completed";
+                    app.ReceivedResponse(this,response);
+                    if (!transport.reliable)
                     {
-                        this.StartTimer("K", this.timer.K());
+                        StartTimer("K", timer.K());
                     }
                     else
                     {
-                        this.Timeout("K", 0);
+                        Timeout("K", 0);
                     }
                 }
             }
@@ -57,42 +54,42 @@ namespace SIPLib
 
         public void Timeout(string name, int timeout)
         {
-            if (this.state == "trying" | this.state == "proceeding")
+            if (state == "trying" | state == "proceeding")
             {
                 if (name == "E")
                 {
-                    if (this.state == "trying")
+                    if (state == "trying")
                     {
-                        timeout = Math.Min(2 * timeout, this.timer.T2);
+                        timeout = Math.Min(2 * timeout, timer.T2);
                     }
                     else
                     {
-                        timeout = this.timer.T2;
+                        timeout = timer.T2;
                     }
-                    this.StartTimer("E", timeout);
-                    this.stack.Send(this.request, this.remote, this.transport);
+                    StartTimer("E", timeout);
+                    stack.Send(request, remote, transport);
                 }
                 else if (name == "F")
                 {
-                    this.state = "terminated";
-                    this.app.Timeout(this);
+                    state = "terminated";
+                    app.Timeout(this);
                 }
             }
-            else if (this.state == "completed")
+            else if (state == "completed")
             {
                 if (name == "K")
                 {
-                    this.state = "terminated";
+                    state = "terminated";
                 }
             }
         }
 
         public void Error(string error)
         {
-            if (this.state == "trying" || this.state == "proceeding")
+            if (state == "trying" || state == "proceeding")
             {
-                this.state = "terminated";
-                this.app.Error(this,error);
+                state = "terminated";
+                app.Error(this,error);
             }
         }
     }

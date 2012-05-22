@@ -1,12 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Net;
 using System.Security.Cryptography;
+using SIPLib.SIP;
 using log4net;
 
-namespace SIPLib
+namespace SIPLib.utils
 {
     public static class Utils
     {
@@ -23,7 +23,7 @@ namespace SIPLib
             IPAddress[] addresses;
             try
             {
-                addresses = System.Net.Dns.GetHostAddresses(input);
+                addresses = Dns.GetHostAddresses(input);
             }
             catch (Exception ex)
             {
@@ -44,18 +44,18 @@ namespace SIPLib
                         return false;
                 }
             }
-            else return false;
+            return false;
         }
 
         public static string Base64Encode(string str)
         {
             byte[] encbuff = Encoding.UTF8.GetBytes(str);
-            return System.Convert.ToBase64String(encbuff);
+            return Convert.ToBase64String(encbuff);
         }
 
         public static string Base64Decode(string str)
         {
-            byte[] decbuff = System.Convert.FromBase64String(str);
+            byte[] decbuff = Convert.FromBase64String(str);
             return Encoding.UTF8.GetString(decbuff);
         }
 
@@ -112,32 +112,19 @@ namespace SIPLib
         return IsRequest(message.method);
     }
 
-    public static bool IsRequest(string request_line)
+    public static bool IsRequest(string requestLine)
     {
-        foreach (string method in Enum.GetNames(typeof(SipMethods)))
-        {
-            if (request_line.Contains(method))
-            { return true; }
-        }
-        return false;
+        return Enum.GetNames(typeof (SipMethods)).Any(requestLine.Contains);
     }
 
-    public static string Get_local_ip()
+    public static string GetLocalIP()
     {
-        string strHostName = "";
-        strHostName = Dns.GetHostName();
+        string strHostName = Dns.GetHostName();
         IPHostEntry ipEntry = Dns.GetHostEntry(strHostName);
         IPAddress[] addr = ipEntry.AddressList;
-        for (int i = 0; i < addr.Length; i++)
+        foreach (IPAddress t in addr.Where(t => t.AddressFamily.ToString() == "InterNetwork").TakeWhile(t => t.ToString() != "127.0.0.1"))
         {
-            if (addr[i].AddressFamily.ToString() == "InterNetwork")
-            {
-                if (addr[i].ToString() == "127.0.0.1")
-                {
-                    break;
-                }
-                return addr[i].ToString();
-            }
+            return t.ToString();
         }
         return "127.0.0.1";
     }

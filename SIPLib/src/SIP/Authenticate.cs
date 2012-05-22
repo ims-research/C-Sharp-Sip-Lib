@@ -4,33 +4,35 @@ using System.Linq;
 using System.Text;
 using System.Security.Cryptography;
 using System.Diagnostics;
+using SIPLib.utils;
 
-namespace SIPLib
+namespace SIPLib.SIP
 {
     public class Authenticate
     {
-        static Random Random = new Random();
+        static readonly Random Random = new Random();
         public static string CreateAuthenticate(string authMethod = "Digest", Dictionary<string, string> parameters = null)
         {
+            if (parameters == null) parameters = new Dictionary<string, string>();
             authMethod = authMethod.ToLower();
             if (authMethod.Equals("basic"))
             {
                 return "Basic realm=" + Utils.Quote(parameters.ContainsKey("realm") ? parameters["realm"] : "0");
             }
-            else if (authMethod.Equals("digest"))
+            if (authMethod.Equals("digest"))
             {
                 string[] predef = { "realm", "domain", "qop", "nonce", "opaque", "stale", "algorithm" };
                 string[] unquoted = { "stale", "algorithm" };
                 double time = Utils.ToUnixTime(DateTime.Now);
                 Guid guid = new Guid();
-                string md5_hash;
+                string md5Hashstr;
                 using (MD5 md5Hash = MD5.Create())
                 {
-                    md5_hash = Utils.GetMd5Hash(md5Hash, time.ToString() + ":" + guid.ToString());
+                    md5Hashstr = Utils.GetMd5Hash(md5Hash, time.ToString() + ":" + guid.ToString());
                 }
-                string nonce = Utils.Base64Encode(time.ToString() + " " + md5_hash);
+                string nonce = Utils.Base64Encode(time.ToString() + " " + md5Hashstr);
                 nonce = (parameters.ContainsKey("nonce") ? parameters["nonce"] : nonce);
-                Dictionary<string, string> default_dict = new Dictionary<string, string>()
+                Dictionary<string, string> defaultDict = new Dictionary<string, string>
                 {
 	                {"realm", ""},
 	                {"domain", ""},
@@ -41,18 +43,7 @@ namespace SIPLib
                     {"nonce",nonce}
 	            };
 
-                Dictionary<string, string> kv = new Dictionary<string, string>();
-                foreach (String s in predef)
-                {
-                    if (parameters.ContainsKey(s))
-                    {
-                        kv.Add(s, parameters[s]);
-                    }
-                    else
-                    {
-                        kv.Add(s, default_dict[s]);
-                    }
-                }
+                Dictionary<string, string> kv = predef.ToDictionary(s => s, s => parameters.ContainsKey(s) ? parameters[s] : defaultDict[s]);
                 foreach (KeyValuePair<string, string> kvp in parameters)
                 {
                     if (!predef.Contains(kvp.Key))
@@ -83,11 +74,8 @@ namespace SIPLib
                 sb.Replace("Digest , ", "Digest ");
                 return sb.ToString();
             }
-            else
-            {
-                Debug.Assert(false, String.Format("Invalid authMethod " + authMethod));
-                return null;
-            }
+            Debug.Assert(false, String.Format("Invalid authMethod " + authMethod));
+            return null;
         }
 
         public static string CreateAuthorization(string challenge, string username, string password, string uri = null, string method = null, string entityBody = null, Dictionary<string, string> context = null)
@@ -104,7 +92,7 @@ namespace SIPLib
             {
                 return authMethod + " " + Basic(cr);
             }
-            else if (authMethod.ToLower() == "digest")
+            if (authMethod.ToLower() == "digest")
             {
                 if (rest.Length > 0)
                 {
@@ -114,9 +102,7 @@ namespace SIPLib
                         ch[sides[0].ToLower().Trim()] = Utils.Unquote(sides[1].Trim());
                     }
                 }
-                string cnonce = null;
-                int nc = 1;
-                foreach (string s in new string[] { "username", "realm", "nonce", "opaque", "algorithm" })
+                foreach (string s in new[] { "username", "realm", "nonce", "opaque", "algorithm" })
                 {
                     if (ch.ContainsKey(s))
                     {
@@ -133,6 +119,8 @@ namespace SIPLib
                 }
                 if (ch.ContainsKey("qop"))
                 {
+                    string cnonce;
+                    int nc;
                     if (context != null && context.ContainsKey("cnonce"))
                     {
                         cnonce = context["cnonce"];
@@ -140,8 +128,8 @@ namespace SIPLib
                     }
                     else
                     {
-                        int random_int = Random.Next(0, 2147483647);
-                        cnonce = H(random_int.ToString());
+                        int randomInt = Random.Next(0, 2147483647);
+                        cnonce = H(randomInt.ToString());
                         nc = 1;
                     }
                     if (context != null)
@@ -154,15 +142,7 @@ namespace SIPLib
                     cr["nc"] = Convert.ToString(nc,10).PadLeft(8, '0');
                 }
                 cr["response"] = Digest(cr);
-                Dictionary<string, string> items = new Dictionary<string, string>();
-                foreach (KeyValuePair<string, string> kvp in cr)
-                {
-                    string[] filter = new string[] { "name", "authMethod", "value", "httpMethod", "entityBody", "password" };
-                    if (!filter.Contains(kvp.Key))
-                    {
-                        items.Add(kvp.Key, kvp.Value);
-                    }
-                }
+                Dictionary<string, string> items = (from kvp in cr let filter = new[] {"name", "authMethod", "value", "httpMethod", "entityBody", "password"} where !filter.Contains(kvp.Key) select kvp).ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
                 StringBuilder sb = new StringBuilder();
                 sb.Append(authMethod + " ");
 
@@ -199,27 +179,24 @@ namespace SIPLib
                 sb.Replace(authMethod + " , ", authMethod + " ");
                 return sb.ToString();
             }
-            else
-            {
-                Debug.Assert(false, String.Format("Invalid auth Method -- " + authMethod));
-                return null;
-            }
+            Debug.Assert(false, String.Format("Invalid auth Method -- " + authMethod));
+            return null;
         }
 
         public static string Digest(Dictionary<string, string> cr)
         {
-            string algorithm, username, realm, password, nonce, cnonce, nc, qop, httpMethod, uri, entityBody;
-            algorithm = cr.ContainsKey("algorithm") ? cr["algorithm"] : null;
-            username = cr.ContainsKey("username") ? cr["username"] : null;
-            realm = cr.ContainsKey("realm") ? cr["realm"] : null;
-            password = cr.ContainsKey("password") ? cr["password"] : null;
-            nonce = cr.ContainsKey("nonce") ? cr["nonce"] : null;
-            cnonce = cr.ContainsKey("cnonce") ? cr["cnonce"] : null;
+            string nc;
+            string algorithm = cr.ContainsKey("algorithm") ? cr["algorithm"] : null;
+            string username = cr.ContainsKey("username") ? cr["username"] : null;
+            string realm = cr.ContainsKey("realm") ? cr["realm"] : null;
+            string password = cr.ContainsKey("password") ? cr["password"] : null;
+            string nonce = cr.ContainsKey("nonce") ? cr["nonce"] : null;
+            string cnonce = cr.ContainsKey("cnonce") ? cr["cnonce"] : null;
             nc = cr.ContainsKey("nc") ? cr["nc"] : null;
-            qop = cr.ContainsKey("qop") ? cr["qop"] : null;
-            httpMethod = cr.ContainsKey("httpMethod") ? cr["httpMethod"] : null;
-            uri = cr.ContainsKey("uri") ? cr["uri"] : null;
-            entityBody = cr.ContainsKey("entityBody") ? cr["entityBody"] : null;
+            string qop = cr.ContainsKey("qop") ? cr["qop"] : null;
+            string httpMethod = cr.ContainsKey("httpMethod") ? cr["httpMethod"] : null;
+            string uri = cr.ContainsKey("uri") ? cr["uri"] : null;
+            string entityBody = cr.ContainsKey("entityBody") ? cr["entityBody"] : null;
             string A1,A2;
             
             if (algorithm != null && algorithm.ToLower() == "md5-sess")

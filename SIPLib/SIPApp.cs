@@ -1,34 +1,32 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using SIPLib.SIP;
 
 namespace SIPLib
 {
     public abstract class SIPApp
     {
-        public abstract string[] Authenticate(UserAgent ua, Header header, SIPStack sIPStack);
+        public abstract string[] Authenticate(UserAgent ua, Header header, SIPStack sipStack);
 
-        public abstract void DialogCreated(Dialog dialog, UserAgent ua, SIPStack sIPStack);
+        public abstract void DialogCreated(Dialog dialog, UserAgent ua, SIPStack sipStack);
 
-        public abstract void Cancelled(UserAgent ua, Message request, SIPStack sIPStack);
+        public abstract void Cancelled(UserAgent ua, Message request, SIPStack sipStack);
 
-        public abstract void ReceivedResponse(UserAgent ua, Message response, SIPStack sIPStack);
+        public abstract void ReceivedResponse(UserAgent ua, Message response, SIPStack sipStack);
 
-        public abstract void ReceivedRequest(UserAgent ua, Message request, SIPStack sIPStack);
+        public abstract void ReceivedRequest(UserAgent ua, Message request, SIPStack sipStack);
 
-        public abstract void Sending(UserAgent ua, Message message, SIPStack sIPStack);
+        public abstract void Sending(UserAgent ua, Message message, SIPStack sipStack);
 
-        public abstract UserAgent CreateServer(Message request, SIPURI uri, SIPStack sIPStack);
+        public abstract UserAgent CreateServer(Message request, SIPURI uri, SIPStack sipStack);
 
-        public abstract Timer CreateTimer(UserAgent obj, SIPStack sIPStack);
+        public abstract Timer CreateTimer(UserAgent obj, SIPStack sipStack);
 
-        public abstract void Send(string final_data, string destination_host, int destination_port, SIPStack sIPStack);
+        public abstract void Send(string finalData, string destinationHost, int destinationPort, SIPStack sipStack);
 
-        public abstract TransportInfo transport { get; set; }
+        public abstract TransportInfo Transport { get; set; }
 
-        public abstract SIPStack stack { get; set; }
+        public abstract SIPStack Stack { get; set; }
 
-        public virtual event EventHandler<RawEventArgs> Received_Data_Event;
+        public virtual event EventHandler<RawEventArgs> ReceivedDataEvent;
     }
 }

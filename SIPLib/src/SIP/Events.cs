@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using SIPLib;
-namespace SIPLib
+
+namespace SIPLib.SIP
 {
     public class Events
     {
@@ -12,55 +9,55 @@ namespace SIPLib
 
     public class SipMessageEventArgs : EventArgs
     {
-        public Message message;
-        public UserAgent ua;
+        public Message Message;
+        public UserAgent UA;
 
-        public SipMessageEventArgs(Message transferred_message)
+        public SipMessageEventArgs(Message transferredMessage)
         {
-            this.message = transferred_message;
+            Message = transferredMessage;
         }
 
-        public SipMessageEventArgs(Message transferred_message,UserAgent ua)
+        public SipMessageEventArgs(Message transferredMessage,UserAgent ua)
         {
-            this.message = transferred_message;
-            this.ua = ua;
+            Message = transferredMessage;
+            UA = ua;
         }
 
     }
 
     public class StackErrorEventArgs : EventArgs
     {
-        public string function;
-        public Exception exception;
+        public string Function;
+        public Exception Exception;
 
-        public StackErrorEventArgs(string Function, Exception e)
+        public StackErrorEventArgs(string inputFunction, Exception e)
         {
-            this.function = Function;
-            this.exception = e;
+            Function = inputFunction;
+            Exception = e;
         }
     }
 
     public class RegistrationChangedEventArgs : EventArgs
     {
-        public string state;
-        public Message message;
+        public string State;
+        public Message Message;
 
-        public RegistrationChangedEventArgs(string state, Message message)
+        public RegistrationChangedEventArgs(string s, Message m)
         {
-            this.state = state;
-            this.message = message;
+            State = s;
+            Message = m;
         }
     }
 
     public class RawEventArgs : EventArgs
     {
-        public string data;
-        public string[] src;
+        public string Data;
+        public string[] Src;
 
-        public RawEventArgs(string data,string[] src)
+        public RawEventArgs(string d,string[] s)
         {
-            this.data = data;
-            this.src = src;
+            Data = d;
+            Src = s;
         }
     }
 }

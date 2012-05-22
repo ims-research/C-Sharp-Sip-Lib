@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Diagnostics;
+using SIPLib.SIP;
 using SIPLib.src.SIP;
 
 namespace SIPLib
@@ -113,7 +112,7 @@ namespace SIPLib
                         if (!h.StartsWith("Warning:"))
                         {
                         List<Header> createdHeaders = Header.CreateHeaders(h);
-                        string name = createdHeaders[0].name;
+                        string name = createdHeaders[0].Name;
                         if (this.headers.ContainsKey(name))
                         {
                             this.headers[name].AddRange(createdHeaders);
@@ -134,7 +133,7 @@ namespace SIPLib
             int bodylength = 0;
             if (this.headers.ContainsKey("Content-Length"))
             {
-                bodylength = Convert.ToInt32(this.First("Content-Length").value);
+                bodylength = Convert.ToInt32(this.First("Content-Length").Value);
             }
             if (body.Length > 0)
             {
@@ -201,7 +200,7 @@ namespace SIPLib
 
         public void InsertHeader(Header header, string method = "replace")
         {
-            string name = header.name;
+            string name = header.Name;
             if (this.headers.ContainsKey(name))
             {
                 switch (method)
@@ -312,7 +311,7 @@ namespace SIPLib
             m = Message.PopulateMessage(m, headers, content);
             if (m.headers.ContainsKey("CSeq"))
             {
-                Header cseq = new Header(m.First("CSeq").number.ToString() + " " + method, "CSeq");
+                Header cseq = new Header(m.First("CSeq").Number.ToString() + " " + method, "CSeq");
                 List<Header> cseq_headers = new List<Header>();
                 cseq_headers.Add(cseq);
                 m.headers["CSeq"] = cseq_headers;

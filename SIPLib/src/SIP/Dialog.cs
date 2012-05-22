@@ -1,24 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Diagnostics;
-namespace SIPLib
+
+namespace SIPLib.SIP
 {
     public class Dialog : UserAgent
     {
-        public List<Transaction> servers { get; set; }
-        public List<Transaction> clients { get; set; }
+        public List<Transaction> Servers { get; set; }
+        public List<Transaction> Clients { get; set; }
         private string _id;
-        public string id
+        public string ID
         {
             get
             {
-                if (this._id.Length <= 0)
+                if (_id.Length <= 0)
                 {
-                    return this.callId + "|" + this.localTag + "|" + this.remoteTag;
+                    return CallID + "|" + LocalTag + "|" + RemoteTag;
                 }
-                else return this._id;
+                return _id;
             }
             set
             {
@@ -30,9 +29,9 @@ namespace SIPLib
         public Dialog(SIPStack stack, Message request, bool server, Transaction transaction = null)
             : base(stack, request, server)
         {
-            this.servers = new List<Transaction>();
-            this.clients = new List<Transaction>();
-            this._id = "";
+            Servers = new List<Transaction>();
+            Clients = new List<Transaction>();
+            _id = "";
             if (transaction != null)
             {
                 transaction.app = this;
@@ -41,11 +40,11 @@ namespace SIPLib
         }
         public void Close()
         {
-            if (this.stack != null)
+            if (Stack != null)
             {
-                if (this.stack.dialogs.ContainsKey(this.id))
+                if (Stack.dialogs.ContainsKey(ID))
                 {
-                    this.stack.dialogs.Remove(this.id);
+                    Stack.dialogs.Remove(ID);
                 }
             }
         }
@@ -53,74 +52,72 @@ namespace SIPLib
 
         public static Dialog CreateServer(SIPStack stack, Message request, Message response, Transaction transaction)
         {
-            Dialog d = new Dialog(stack, request, true);
-            d.request = request;
+            Dialog d = new Dialog(stack, request, true) {Request = request};
             if (request.headers.ContainsKey("Record-Route"))
             {
-                d.routeSet = request.headers["Record-Route"];
+                d.RouteSet = request.headers["Record-Route"];
             }
             // TODO: Handle multicast addresses
             // TODO: Handle tls / secure sip
-            d.localSeq = 0;
-            d.remoteSeq = request.First("CSeq").number;
-            d.callId = request.First("Call-ID").value.ToString();
-            d.localTag = response.First("To").attributes["tag"];
-            d.remoteTag = request.First("From").attributes["tag"];
-            d.localParty = new Address(request.First("To").value.ToString());
-            d.remoteParty = new Address(request.First("From").value.ToString());
-            d.remoteTarget = new SIPURI(((Address)(request.First("Contact").value)).uri.ToString());
+            d.LocalSeq = 0;
+            d.RemoteSeq = request.First("CSeq").Number;
+            d.CallID = request.First("Call-ID").Value.ToString();
+            d.LocalTag = response.First("To").Attributes["tag"];
+            d.RemoteTag = request.First("From").Attributes["tag"];
+            d.LocalParty = new Address(request.First("To").Value.ToString());
+            d.RemoteParty = new Address(request.First("From").Value.ToString());
+            d.RemoteTarget = new SIPURI(((Address)(request.First("Contact").Value)).Uri.ToString());
             // TODO: retransmission timer for 2xx in UAC
-            stack.dialogs[d.callId] = d;
+            stack.dialogs[d.CallID] = d;
             return d;
 
         }
 
         public static Dialog CreateClient(SIPStack stack, Message request, Message response, Transaction transaction)
         {
-            Dialog d = new Dialog(stack, request, false);
-            d.request = request;
+            Dialog d = new Dialog(stack, request, false) {Request = request};
             if (request.headers.ContainsKey("Record-Route"))
             {
-                d.routeSet = request.headers["Record-Route"];
-                d.routeSet.Reverse();
+                d.RouteSet = request.headers["Record-Route"];
+                d.RouteSet.Reverse();
             }
-            d.localSeq = request.First("CSeq").number;
-            d.remoteSeq = 0;
-            d.callId = request.First("Call-ID").value.ToString();
-            d.localTag = request.First("From").attributes["tag"];
-            d.remoteTag = response.First("To").attributes["tag"];
-            d.localParty = new Address(request.First("From").value.ToString());
-            d.remoteParty = new Address(request.First("To").value.ToString());
-            d.remoteTarget = new SIPURI(((Address)(response.First("Contact").value)).uri.ToString());
-            stack.dialogs[d.callId] = d;
+            d.LocalSeq = request.First("CSeq").Number;
+            d.RemoteSeq = 0;
+            d.CallID = request.First("Call-ID").Value.ToString();
+            d.LocalTag = request.First("From").Attributes["tag"];
+            d.RemoteTag = response.First("To").Attributes["tag"];
+            d.LocalParty = new Address(request.First("From").Value.ToString());
+            d.RemoteParty = new Address(request.First("To").Value.ToString());
+            d.RemoteTarget = new SIPURI(((Address)(response.First("Contact").Value)).Uri.ToString());
+            stack.dialogs[d.CallID] = d;
             return d;
         }
 
         public static string ExtractID(Message m)
         {
-            string temp = m.First("Call-ID").value.ToString() + "|";
-            if (m.method != null && m.method.Length > 0)
+            string temp = m.First("Call-ID").Value + "|";
+            if (!string.IsNullOrEmpty(m.method))
             {
-                temp = temp + m.First("To").attributes["tag"] + "|";
-                temp = temp + m.First("From").attributes["tag"];
+                temp = temp + m.First("To").Attributes["tag"] + "|";
+                temp = temp + m.First("From").Attributes["tag"];
             }
             else
             {
-                temp = temp + m.First("From").attributes["tag"] + "|";
-                temp = temp + m.First("To").attributes["tag"] + "|";
+                temp = temp + m.First("From").Attributes["tag"] + "|";
+                temp = temp + m.First("To").Attributes["tag"] + "|";
             }
             return temp;
         }
         public Message CreateRequest(string method, string content = null, string contentType = null)
         {
             Message request = base.CreateRequest(method, content, contentType);
-            if (this.remoteTag != "")
+            if (RemoteTag != "")
             {
-                request.headers["To"][0].attributes["tag"] = this.remoteTag;
+                request.headers["To"][0].Attributes["tag"] = RemoteTag;
             }
-            if (this.routeSet !=null && this.routeSet.Count > 0 && !this.routeSet[0].value.ToString().Contains("lr"))
+            if (RouteSet !=null && RouteSet.Count > 0 && !RouteSet[0].Value.ToString().Contains("lr"))
             {
-                request.uri = new SIPURI((string)(this.routeSet[0].value));
+                request.uri = new SIPURI((string)(RouteSet[0].Value));
                 request.uri.parameters.Remove("lr");
             }
             return request;
@@ -128,33 +125,33 @@ namespace SIPLib
 
         public Message CreateResponse(int response_code, string response_text, string content = null, string contentType = null)
         {
-            if (this.servers.Count == 0)
+            if (Servers.Count == 0)
             {
                 Debug.Assert(false, String.Format("No server transaction to create response"));
                 return null;
             }
-            Message request = this.servers[0].request;
+            Message request = Servers[0].request;
             Message response = Message.CreateResponse(response_code, response_text, null, content, request);
-            if (contentType.Length > 0)
+            if (!string.IsNullOrEmpty(contentType))
             {
                 response.InsertHeader(new Header(contentType, "Content-Type"));
             }
-            if (response.response_code != 100 && !response.headers["To"][0].attributes.ContainsKey("tag"))
+            if (response.response_code != 100 && !response.headers["To"][0].Attributes.ContainsKey("tag"))
             {
-                response.headers["To"][0].attributes["tag"] = this.localTag;
+                response.headers["To"][0].Attributes["tag"] = LocalTag;
             }
             return response;
         }
 
         public void SendResponse(object response, string response_text = null, string content = null, string contentType = null, bool createDialog = true)
         {
-            if (this.servers.Count == 0)
+            if (Servers.Count == 0)
             {
                 Debug.Assert(false, String.Format("No server transaction to create response"));
                 return;
             }
-            this.transaction = this.servers[0];
-            this.request = this.servers[0].request;
+            Transaction = Servers[0];
+            Request = Servers[0].request;
             base.SendResponse(response, response_text, content, contentType);
             int code = 0;
             if (response is int)
@@ -167,82 +164,82 @@ namespace SIPLib
             }
             if (code > 200)
             {
-                this.servers.RemoveAt(0);
+                Servers.RemoveAt(0);
             }
         }
 
         public void SendCancel()
         {
-            if (this.clients.Count == 0)
+            if (Clients.Count == 0)
             {
                 return;
             }
-            this.transaction = this.clients[0];
-            this.request = this.clients[0].request;
+            Transaction = Clients[0];
+            Request = Clients[0].request;
             base.SendCancel();
         }
 
         public void ReceivedRequest(Transaction transaction, Message request)
         {
-            if (this.remoteSeq != 0 && request.headers["CSeq"][0].number < this.remoteSeq)
+            if (RemoteSeq != 0 && request.headers["CSeq"][0].Number < RemoteSeq)
             {
-                Debug.Assert(false, String.Format("Dialog.receivedRequest() CSeq is old {0} < {1}", request.headers["CSeq"][0].number, this.remoteSeq));
-                this.SendResponse(500, "Internal server error - invalid CSeq");
+                SendResponse(500, "Internal server error - invalid CSeq");
+                Debug.Assert(false, String.Format("Dialog.receivedRequest() CSeq is old {0} < {1}", request.headers["CSeq"][0].Number, RemoteSeq));
                 return;
             }
-            this.remoteSeq = request.headers["CSeq"][0].number;
+            RemoteSeq = request.headers["CSeq"][0].Number;
 
             if (request.method == "INVITE" && request.headers.ContainsKey("Contact"))
             {
-                this.remoteTarget =new SIPURI(((Address)(request.headers["Contact"][0].value)).uri.ToString());
+                RemoteTarget =new SIPURI(((Address)(request.headers["Contact"][0].Value)).Uri.ToString());
             }
 
             if (request.method == "ACK" || request.method == "CANCEL")
             {
-                this.servers.RemoveAll(x => x == transaction);
+                Servers.RemoveAll(x => x == transaction);
                 if (request.method == "ACK")
                 {
-                    this.stack.ReceivedRequest(this,request);
+                    Stack.ReceivedRequest(this,request);
                 }
                 else
                 {
-                    this.stack.Cancelled(this,transaction.request);
+                    Stack.Cancelled(this,transaction.request);
                 }
                 return;
             }
-            this.servers.Add(transaction);
-            this.stack.ReceivedRequest(this,request);
+            Servers.Add(transaction);
+            Stack.ReceivedRequest(this,request);
         
         }
         public void ReceivedResponse(Transaction transaction, Message response)
         {
             if (response.Is2xx() && response.headers.ContainsKey("Contact") && transaction != null && transaction.request.method == "INVITE")
             {
-                this.remoteTarget = new SIPURI(((Address)(request.First("Contact").value)).uri.ToString());
+                RemoteTarget = new SIPURI(((Address)(Request.First("Contact").Value)).Uri.ToString());
             }
             if (!response.Is1xx())
-                this.clients.RemoveAll(x => x == transaction);
+                Clients.RemoveAll(x => x == transaction);
 
             if (response.response_code == 408 || response.response_code == 481)
             {
-                this.Close();
+                Close();
             }
 
             if (response.response_code == 401 || response.response_code == 407)
             {
-                if (this.Authenticate(response, transaction))
+                if (Authenticate(response, transaction))
                 {
-                    this.stack.ReceivedResponse(this, response);
+                    Stack.ReceivedResponse(this, response);
                 }
             }
             else if (transaction != null)
             {
-                this.stack.ReceivedResponse(this, response);
+                Stack.ReceivedResponse(this, response);
             }
 
-            if (this.autoack && response.Is2xx() && (transaction != null && transaction.request.method == "INVITE" || response.First("CSeq").method == "INVITE"))
+            if (Autoack && response.Is2xx() && (transaction != null && transaction.request.method == "INVITE" || response.First("CSeq").Method == "INVITE"))
             {
-                this.SendRequest(this.CreateRequest("ACK"));
+                SendRequest(CreateRequest("ACK"));
             }
 
         }
