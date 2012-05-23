@@ -108,8 +108,8 @@ namespace SIPLib.utils
 
     public static bool IsRequest(Message message)
     {
-        if (message.method == null) return false;
-        return IsRequest(message.method);
+        if (message.Method == null) return false;
+        return IsRequest(message.Method);
     }
 
     public static bool IsRequest(string requestLine)

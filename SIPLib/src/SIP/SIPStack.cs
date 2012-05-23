@@ -9,26 +9,26 @@ namespace SIPLib.SIP
 {
     public class SIPStack
     {
-        public string tag { get; set; }
+        public string Tag { get; set; }
         public TransportInfo Transport { get; set; }
-        public SIPApp app { get; set; }
-        private Random _random = new Random();
-        public bool closing = false;
-        public Dictionary<string, Dialog> dialogs { get; set; }
-        public Dictionary<string, Transaction> transactions { get; set; }
-        public string[] serverMethods = { "INVITE", "BYE", "MESSAGE", "SUBSCRIBE", "NOTIFY" };
-        public string proxy_host { get; set; }
-        public int proxy_port { get; set; }
+        public SIPApp App { get; set; }
+        private readonly Random _random = new Random();
+        public bool Closing;
+        public Dictionary<string, Dialog> Dialogs { get; set; }
+        public Dictionary<string, Transaction> Transactions { get; set; }
+        public string[] ServerMethods = { "INVITE", "BYE", "MESSAGE", "SUBSCRIBE", "NOTIFY" };
+        public string ProxyHost { get; set; }
+        public int ProxyPort { get; set; }
 
         private SIPURI _uri = null;
-        private List<Header> service_route { get; set; }
+        private List<Header> ServiceRoute { get; set; }
         private static ILog _log = LogManager.GetLogger(typeof(SIPStack));
 
-        public SIPURI uri
+        public SIPURI Uri
         {
             get
             {
-                return new SIPURI("sip" + ":" + Transport.host + ":" + Transport.port.ToString());
+                return new SIPURI("sip" + ":" + Transport.Host + ":" + Transport.Port.ToString());
             }
             set
             {
@@ -40,28 +40,28 @@ namespace SIPLib.SIP
         public SIPStack(SIPApp app)
         {
             Init();
-            this.Transport = app.Transport;
-            this.app = app;
-            this.app.ReceivedDataEvent += new EventHandler<RawEventArgs>(Transport_Received_Data_Event);
+            Transport = app.Transport;
+            App = app;
+            App.ReceivedDataEvent += TransportReceivedDataEvent;
 
             app.Stack = this;
         }
 
-        void Transport_Received_Data_Event(object sender, RawEventArgs e)
+        void TransportReceivedDataEvent(object sender, RawEventArgs e)
         {
             try
             {
-                this.Received(e.Data, e.Src);
+                Received(e.Data, e.Src);
             }
             catch (Exception ex)
             {
-                Debug.Assert(false, String.Format("Error receiving data",ex));
+                Debug.Assert(false, String.Format("Error receiving data with exception {0}",ex));
             }
         }
 
         ~SIPStack()  // destructor
         {
-            this.closing = true;
+            Closing = true;
 
             //foreach (Dialog d in this.dialogs.Values)
             //{
@@ -75,51 +75,51 @@ namespace SIPLib.SIP
             //    // ToDO: Check this? t.del ?
             //}
 
-            this.dialogs = new Dictionary<string, Dialog>();
-            this.transactions = new Dictionary<string, Transaction>();
+            Dialogs = new Dictionary<string, Dialog>();
+            Transactions = new Dictionary<string, Transaction>();
 
         }
 
         private void Init()
         {
             //this.tag = Guid.NewGuid().ToString().Replace("-", "").Substring(0, 8);
-            this.tag = _random.Next(0, 2147483647).ToString();
-            this.dialogs = new Dictionary<string, Dialog>();
-            this.transactions = new Dictionary<string, Transaction>();
+            Tag = _random.Next(0, 2147483647).ToString();
+            Dialogs = new Dictionary<string, Dialog>();
+            Transactions = new Dictionary<string, Transaction>();
         }
 
         public string NewCallId()
         {
-            return _random.Next(0, 2147483647).ToString() + "@" + (this.Transport.host);
+            return _random.Next(0, 2147483647).ToString() + "@" + (this.Transport.Host);
         }
 
         public Header CreateVia()
         {
-            return new Header("SIP/2.0/" + this.Transport.type.ToString().ToUpper() + " " + this.Transport.host + ':' + this.Transport.port.ToString() + ";rport", "Via");
+            return new Header("SIP/2.0/" + Transport.Type.ToString().ToUpper() + " " + Transport.Host + ':' + Transport.Port.ToString() + ";rport", "Via");
         }
 
         public void Send(object data, object dest = null, TransportInfo transport = null)
         {
             //send(string data, string ip,int port,Stack stack)
-            string destination_host = "";
-            int destination_port = 0;
-            string final_data;
-            if (this.proxy_host != null && this.proxy_port != 0)
+            string destinationHost = "";
+            int destinationPort = 0;
+            string finalData;
+            if (ProxyHost != null && ProxyPort != 0)
             {
-                destination_host = proxy_host;
-                destination_port = Convert.ToInt32(proxy_port);
+                destinationHost = ProxyHost;
+                destinationPort = Convert.ToInt32(ProxyPort);
             }
             else if (dest is SIPURI)
             {
                 SIPURI destination = (SIPURI)dest;
-                if (destination.host.Length == 0)
+                if (destination.Host.Length == 0)
                 {
-                    Debug.Assert(false, String.Format("No host in destination URI \n{0}\n", destination.ToString()));
+                    Debug.Assert(false, String.Format("No host in destination URI \n{0}\n", destination));
                 }
                 else
                 {
-                    destination_host = destination.host;
-                    destination_port = destination.port;
+                    destinationHost = destination.Host;
+                    destinationPort = destination.Port;
                 }
 
             }
@@ -127,47 +127,47 @@ namespace SIPLib.SIP
             {
                 string destination = (string)(dest);
                 string[] parts = destination.Split(':');
-                destination_host = parts[0];
-                destination_port = Convert.ToInt32(parts[1]);
+                destinationHost = parts[0];
+                destinationPort = Convert.ToInt32(parts[1]);
             }
 
             if (data is Message)
             {
                 Message m = (Message)data;
-                if (this.service_route != null)
+                if (ServiceRoute != null)
                 {
-                    if (!(Utils.IsRequest(m) && (m.method.ToLower().Contains("register"))))
+                    if (!(Utils.IsRequest(m) && (m.Method.ToLower().Contains("register"))))
                     {
-                        if (m.headers.ContainsKey("Route"))
+                        if (m.Headers.ContainsKey("Route"))
                         {
                             bool found = false;
-                            foreach (Header route_header in this.service_route)
+                            foreach (Header routeHeader in ServiceRoute)
                             {
-                                foreach (Header message_header in m.headers["Route"])
+                                foreach (Header messageHeader in m.Headers["Route"])
                                 {
-                                    if (message_header.ToString().ToLower().CompareTo(route_header.ToString().ToLower()) == 0)
+                                    if (messageHeader.ToString().ToLower().CompareTo(routeHeader.ToString().ToLower()) == 0)
                                     {
                                         found = true;
                                     }
                                 }
                                 if (!found)
                                 {
-                                    m.headers["Route"].Add(route_header);
+                                    m.Headers["Route"].Add(routeHeader);
                                 }
                             }
                         }
                         else
                         {
-                            m.headers.Add("Route",this.service_route);
+                            m.Headers.Add("Route",ServiceRoute);
                         }
                     }
                 }
-                if (m.headers.ContainsKey("Route"))
+                if (m.Headers.ContainsKey("Route"))
                 {
                     bool found = false;
-                    foreach (Header h in m.headers["Route"])
+                    foreach (Header h in m.Headers["Route"])
                     {
-                        if (h.ToString().Contains(proxy_host))
+                        if (ProxyHost != null && h.ToString().Contains(ProxyHost))
                         {
                             found = true;
                         }
@@ -175,24 +175,24 @@ namespace SIPLib.SIP
                     }
                     if (!found)
                     {
-                        m.InsertHeader(new Header("<sip:" + proxy_host + ":" + proxy_port + ">", "Route"), "insert");
+                        m.InsertHeader(new Header("<sip:" + ProxyHost + ":" + ProxyPort + ">", "Route"), "insert");
                     }
                     
                 }
                 else
                 {
-                    m.InsertHeader(new Header("<sip:"+proxy_host+":"+proxy_port+">", "Route"));
+                    m.InsertHeader(new Header("<sip:"+ProxyHost+":"+ProxyPort+">", "Route"));
                 }
-                if (m.method != null && m.method.Length > 0)
+                if (!string.IsNullOrEmpty(m.Method))
                 {
                     // TODO: Multicast handling of Maddr
                 }
-                else if (m.response_code > 0)
+                else if (m.ResponseCode > 0)
                 {
                     if (dest == null)
                     {
-                        destination_host = m.headers["Via"][0].ViaUri.host;
-                        destination_port = m.headers["Via"][0].ViaUri.port;
+                        destinationHost = m.Headers["Via"][0].ViaUri.Host;
+                        destinationPort = m.Headers["Via"][0].ViaUri.Port;
                     }
                 }
                 ////TODO FIX HACK
@@ -211,13 +211,13 @@ namespace SIPLib.SIP
                 //m.insertHeader(temp);
                 //}
                 
-                final_data = m.ToString();
+                finalData = m.ToString();
             }
             else
             {
-                final_data = (string)data;
+                finalData = (string)data;
             }
-            this.app.Send(final_data, destination_host, destination_port, this);
+            App.Send(finalData, destinationHost, destinationPort, this);
         }
 
         //private string mergeRoutes(string message_text)
@@ -257,28 +257,28 @@ namespace SIPLib.SIP
                 {
                     Message m = new Message(data);
                     SIPURI uri = new SIPURI("sip" + ":" + src[0] + ":" + src[1]);
-                    if (m.method != null)
+                    if (m.Method != null)
                     {
-                        if (!m.headers.ContainsKey("Via"))
+                        if (!m.Headers.ContainsKey("Via"))
                         {
                             Debug.Assert(false, String.Format("No Via header in request \n{0}\n", m.ToString()));
                         }
-                        Header via = m.headers["Via"].First();
-                        if (via.ViaUri.host != src[0] || !src[1].ToString().Equals(via.ViaUri.port))
+                        Header via = m.Headers["Via"].First();
+                        if (via.ViaUri.Host != src[0] || !src[1].ToString().Equals(via.ViaUri.Port))
                         {
                             via.Attributes.Add("received", src[0]);
-                            via.ViaUri.host = src[0];
+                            via.ViaUri.Host = src[0];
                         }
                         if (via.Attributes.ContainsKey("rport"))
                         {
                             via.Attributes["rport"] = src[1];
                         }
-                        via.ViaUri.port = Convert.ToInt32(src[1]);
-                        this.ReceivedRequest(m, uri);
+                        via.ViaUri.Port = Convert.ToInt32(src[1]);
+                        ReceivedRequest(m, uri);
                     }
-                    else if (m.response_code > 0)
+                    else if (m.ResponseCode > 0)
                     {
-                        this.ReceivedResponse(m, uri);
+                        ReceivedResponse(m, uri);
                     }
                     else
                     {
@@ -290,35 +290,30 @@ namespace SIPLib.SIP
                     Debug.Assert(false, String.Format("Error in received message \n{0}\n with error message {1}", data, ex.Message));
                 }
             }
-            else
-            {
-                //Console.WriteLine("Error, null message received");
-            }
-
         }
 
         private void ReceivedRequest(Message m, SIPURI uri)
         {
-            string branch = m.headers["Via"][0].Attributes["branch"];
-            Transaction t = null;
-            if (m.method == "ACK" && branch == "0")
+            string branch = m.Headers["Via"][0].Attributes["branch"];
+            Transaction t;
+            if (m.Method == "ACK" && branch == "0")
             {
                 t = null;
             }
             else
             {
-                t = this.FindTransaction(Transaction.CreateId(branch, m.method));
+                t = FindTransaction(Transaction.CreateId(branch, m.Method));
             }
             if (t == null)
             {
                 UserAgent app = null; // Huh ?
-                if ((m.method != "CANCEL") && (m.headers["To"][0].Attributes.ContainsKey("tag")))
+                if ((m.Method != "CANCEL") && (m.Headers["To"][0].Attributes.ContainsKey("tag")))
                 {
                     //In dialog request
-                    Dialog d = this.FindDialog(m);
+                    Dialog d = FindDialog(m);
                     if (d == null)
                     {
-                        if (m.method != "ACK")
+                        if (m.Method != "ACK")
                         {
                             //Updated from latest code TODO
                             UserAgent u = this.CreateServer(m, uri);
@@ -328,17 +323,17 @@ namespace SIPLib.SIP
                             }
                             else
                             {
-                                this.Send(Message.CreateResponse(481, "Dialog does not exist", null, null, m));
+                                Send(Message.CreateResponse(481, "Dialog does not exist", null, null, m));
                                 return;
                             }
                         }
                         else
                         {
-                            if ((t == null) && (branch != "0"))
+                            if ((branch != "0"))
                             {
-                                t = this.FindTransaction(Transaction.CreateId(branch, "INVITE"));
+                                t = FindTransaction(Transaction.CreateId(branch, "INVITE"));
                             }
-                            if (t != null && t.state != "terminated")
+                            if (t != null && t.State != "terminated")
                             {
                                 t.ReceivedRequest(m);
                                 return;
@@ -361,7 +356,7 @@ namespace SIPLib.SIP
                     }
 
                 }
-                else if (!(m.method == "CANCEL"))
+                else if (m.Method != "CANCEL")
                 {
                     //Out of dialog request
                     UserAgent u = this.CreateServer(m, uri);
@@ -370,53 +365,49 @@ namespace SIPLib.SIP
                         //TODO error.....
                         app = u;
                     }
-                    else if (m.method == "OPTIONS")
+                    else if (m.Method == "OPTIONS")
                     {
                         //Handle OPTIONS
                         Message reply = Message.CreateResponse(200, "OK", null, null, m);
                         reply.InsertHeader(new Header("INVITE,ACK,CANCEL,BYE,OPTION,MESSAGE", "Allow"));
-                        this.Send(m);
+                        Send(m);
                         return;
                     }
-                    else if (m.method == "MESSAGE")
+                    else if (m.Method == "MESSAGE")
                     {
                         //Handle MESSAGE
-                        UserAgent ua = new UserAgent(this);
-                        ua.Request = m;
+                        UserAgent ua = new UserAgent(this) {Request = m};
 
                         Message reply = ua.CreateResponse(200, "OK");
-                        this.Send(reply);
+                        Send(reply);
 
-                        this.app.ReceivedRequest(ua, m, this);
+                        App.ReceivedRequest(ua, m, this);
                         return;
                     }
-                    else if (m.method != "ACK")
+                    else if (m.Method != "ACK")
                     {
-                        this.Send(Message.CreateResponse(405, "Method not allowed", null, null, m));
+                        Send(Message.CreateResponse(405, "Method not allowed", null, null, m));
                         return;
                     }
                 }
                 else
                 {
                     //Cancel Request
-                    Transaction o = this.FindTransaction(Transaction.CreateId(m.headers["Via"][0].Attributes["branch"], "INVITE"));
+                    Transaction o = FindTransaction(Transaction.CreateId(m.Headers["Via"][0].Attributes["branch"], "INVITE"));
                     if (o == null)
                     {
-                        this.Send(Message.CreateResponse(481, "Original transaction does not exist", null, null, m));
+                        Send(Message.CreateResponse(481, "Original transaction does not exist", null, null, m));
                         return;
                     }
-                    else
-                    {
-                        app = o.app;
-                    }
+                    app = o.App;
                 }
                 if (app != null)
                 {
-                    t = Transaction.CreateServer(this, app, m, this.Transport, this.tag);
+                    t = Transaction.CreateServer(this, app, m, Transport, Tag);
                 }
-                else if (m.method != "ACK")
+                else if (m.Method != "ACK")
                 {
-                    this.Send(Message.CreateResponse(404, "Not found", null, null, m));
+                    Send(Message.CreateResponse(404, "Not found", null, null, m));
                 }
             }
             else
@@ -436,75 +427,69 @@ namespace SIPLib.SIP
             {
                 id = (string)(m);
             }
-            if (this.dialogs.ContainsKey(id))
+            if (Dialogs.ContainsKey(id))
             {
-                return this.dialogs[id];
+                return Dialogs[id];
             }
-            else return null;
+            return null;
         }
 
         public Transaction FindTransaction(string id)
         {
-            if (this.transactions.ContainsKey(id))
+            if (Transactions.ContainsKey(id))
             {
-                return this.transactions[id];
+                return Transactions[id];
             }
-            else return null;
+            return null;
         }
 
         public Transaction FindOtherTransactions(Message r, Transaction orig)
         {
-            foreach (Transaction t in this.transactions.Values)
-            {
-                if ((t != orig) && (Transaction.Equals(t, r, orig)))
-                {
-                    return t;
-                }
-            }
-            return null;
+            return Transactions.Values.FirstOrDefault(t => (t != orig) && (Transaction.Equals(t, r, orig)));
         }
-        public UserAgent CreateServer(Message request, SIPURI uri) { return this.app.CreateServer(request, uri, this); }
-        public void Sending(UserAgent ua, Message message) { this.app.Sending(ua, message, this); }
-        public void ReceivedRequest(UserAgent ua, Message request) { this.app.ReceivedRequest(ua, request, this); }
-        public void ReceivedResponse(UserAgent ua, Message response) { this.app.ReceivedResponse(ua, response, this); }
-        public void Cancelled(UserAgent ua, Message request) { this.app.Cancelled(ua, request, this); }
-        public void DialogCreated(Dialog dialog, UserAgent ua) { this.app.DialogCreated(dialog, ua, this); }
-        public string[] Authenticate(UserAgent ua, Header header) { return this.app.Authenticate(ua, header, this); }
-        public Timer CreateTimer(UserAgent obj) { return this.app.CreateTimer(obj, this); }
+
+        public UserAgent CreateServer(Message request, SIPURI uri) { return App.CreateServer(request, uri, this); }
+        public void Sending(UserAgent ua, Message message) { App.Sending(ua, message, this); }
+        public void ReceivedRequest(UserAgent ua, Message request) { App.ReceivedRequest(ua, request, this); }
+        public void ReceivedResponse(UserAgent ua, Message response) { App.ReceivedResponse(ua, response, this); }
+        public void Cancelled(UserAgent ua, Message request) { App.Cancelled(ua, request, this); }
+        public void DialogCreated(Dialog dialog, UserAgent ua) { App.DialogCreated(dialog, ua, this); }
+        public string[] Authenticate(UserAgent ua, Header header) { return App.Authenticate(ua, header, this); }
+        public Timer CreateTimer(UserAgent obj) { return App.CreateTimer(obj, this); }
 
         private void ReceivedResponse(Message r, SIPURI uri)
         {
-            if (r.headers.ContainsKey("Service-Route") && r.Is2xx() && r.First("CSeq").Method.Contains("REGISTER"))
+            if (r.Headers.ContainsKey("Service-Route") && r.Is2XX() && r.First("CSeq").Method.Contains("REGISTER"))
             {
-                this.service_route = r.headers["Service-Route"];
-                foreach (Header h in this.service_route)
+                ServiceRoute = r.Headers["Service-Route"];
+                foreach (Header h in ServiceRoute)
                 {
                     h.Name = "Route";
                 }
             }
-            else if (r.headers.ContainsKey("Record-Route") && r.Is2xx())
+            else if (r.Headers.ContainsKey("Record-Route") && r.Is2XX())
             {
-                this.service_route = r.headers["Record-Route"];
-                foreach (Header h in this.service_route)
+                ServiceRoute = r.Headers["Record-Route"];
+                foreach (Header h in ServiceRoute)
                 {
                     h.Name = "Route";
                 }
             }
 
 
-            if (!r.headers.ContainsKey("Via"))
+            if (!r.Headers.ContainsKey("Via"))
             {
                 Debug.Assert(false, String.Format("No Via header in received response \n{0}\n", r.ToString()));
                 return;
             }
-            string branch = r.headers["Via"][0].Attributes["branch"];
-            string method = r.headers["CSeq"][0].Method;
-            Transaction t = this.FindTransaction(Transaction.CreateId(branch, method));
+            string branch = r.Headers["Via"][0].Attributes["branch"];
+            string method = r.Headers["CSeq"][0].Method;
+            Transaction t = FindTransaction(Transaction.CreateId(branch, method));
             if (t == null)
             {
-                if ((method == "INVITE") && (r.Is2xx()))
+                if ((method == "INVITE") && (r.Is2XX()))
                 {
-                    Dialog d = this.FindDialog(r);
+                    Dialog d = FindDialog(r);
                     if (d == null)
                     {
                         Debug.Assert(false, String.Format("No transaction or dialog for 2xx of INVITE \n{0}\n", r.ToString()));
@@ -530,7 +515,7 @@ namespace SIPLib.SIP
         internal Timer CreateTimer(Transaction transaction)
         {
             //TODO implement Timers;
-            return new Timer(transaction.app);
+            return new Timer(transaction.App);
         }
     }
 }

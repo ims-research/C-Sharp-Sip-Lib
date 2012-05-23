@@ -1,63 +1,59 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Text;
 
-namespace SIPLib
+namespace SIPLib.SIP
 {
     public class SDPConnection
     {
-        public string nettype { get; set; }
-        public string addrtype { get; set; }
-        public string address { get; set; }
-        public string ttl { get; set; }
-        public string count { get; set; }
+        public string Nettype { get; set; }
+        public string Addrtype { get; set; }
+        public string Address { get; set; }
+        public string TTL { get; set; }
+        public string Count { get; set; }
 
-        public SDPConnection(string value = null,Dictionary<string,string> attr_dict = null)
+        public SDPConnection(string value = null,Dictionary<string,string> attrDict = null)
         {
-            string rest = null;
-            string[] rest2 = null;
             if (value != null)
             {
                 string[] values = value.Split(' ');
-                this.nettype = values[0];
-                this.addrtype = values[1];
-                rest = values[2];
-                rest2 = rest.Split('/');
-                if (rest2.Length == 1)
+                Nettype = values[0];
+                Addrtype = values[1];
+                string rest = values[2];
+                string[] rest2 = rest.Split('/');
+                switch (rest2.Length)
                 {
-                    this.address = rest2[0];
-                }
-                else if (rest2.Length == 2)
-                {
-                    this.address = rest2[0];
-                    this.ttl = rest2[1];
-                }
-                else
-                {
-                    this.address = rest2[0];
-                    this.ttl = rest2[1];
-                    this.count = rest2[2];
+                    case 1:
+                        Address = rest2[0];
+                        break;
+                    case 2:
+                        Address = rest2[0];
+                        TTL = rest2[1];
+                        break;
+                    default:
+                        Address = rest2[0];
+                        TTL = rest2[1];
+                        Count = rest2[2];
+                        break;
                 }
             }
-            else if (attr_dict.ContainsKey("address"))
+            else if (attrDict != null && attrDict.ContainsKey("address"))
             {
-                this.address = attr_dict["address"];
-                this.nettype = attr_dict.ContainsKey("nettype") ? attr_dict["nettype"] : "IN";
-                this.addrtype = attr_dict.ContainsKey("addrtype") ? attr_dict["addrtype"] : "IP4";
-                this.ttl = attr_dict.ContainsKey("ttl") ? attr_dict["ttl"] : null;
-                this.count = attr_dict.ContainsKey("count") ? attr_dict["count"] : null;
+                Address = attrDict["address"];
+                Nettype = attrDict.ContainsKey("nettype") ? attrDict["nettype"] : "IN";
+                Addrtype = attrDict.ContainsKey("addrtype") ? attrDict["addrtype"] : "IP4";
+                TTL = attrDict.ContainsKey("ttl") ? attrDict["ttl"] : null;
+                Count = attrDict.ContainsKey("count") ? attrDict["count"] : null;
           }
         }
 
         public string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append(nettype+" ");
-            sb.Append(addrtype + " ");
-            sb.Append(address);
-            if (this.ttl != null) sb.Append("/"+ttl);
-            if (this.count != null) sb.Append("/"+count);
+            sb.Append(Nettype+" ");
+            sb.Append(Addrtype + " ");
+            sb.Append(Address);
+            if (TTL != null) sb.Append("/" + TTL);
+            if (Count != null) sb.Append("/"+Count);
             return sb.ToString();
         }
     }

@@ -26,20 +26,20 @@ namespace SIPLibDriver
         {
             log4net.Config.XmlConfigurator.Configure();
             this.TempBuffer = new byte[4096];
-            if (transport.type == ProtocolType.Tcp)
+            if (transport.Type == ProtocolType.Tcp)
             {
-                transport.socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+                transport.Socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             }
             else
             {
-                transport.socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+                transport.Socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
             }
-            IPEndPoint localEP = new IPEndPoint(transport.host, transport.port);
-            transport.socket.Bind(localEP);
+            IPEndPoint localEP = new IPEndPoint(transport.Host, transport.Port);
+            transport.Socket.Bind(localEP);
 
             IPEndPoint sender = new IPEndPoint(IPAddress.Any, 0);
             EndPoint sendEP = (EndPoint)sender;
-            transport.socket.BeginReceiveFrom(TempBuffer, 0, TempBuffer.Length, SocketFlags.None, ref sendEP, new AsyncCallback(ReceiveDataCB), sendEP);
+            transport.Socket.BeginReceiveFrom(TempBuffer, 0, TempBuffer.Length, SocketFlags.None, ref sendEP, new AsyncCallback(ReceiveDataCB), sendEP);
             this.Transport = transport;
         }
 
@@ -55,7 +55,7 @@ namespace SIPLibDriver
         {
                 IPEndPoint sender = new IPEndPoint(IPAddress.Any, 0);
                 EndPoint sendEP = (EndPoint)sender;
-                int bytesRead = Transport.socket.EndReceiveFrom(asyncResult, ref sendEP);
+                int bytesRead = Transport.Socket.EndReceiveFrom(asyncResult, ref sendEP);
                 string data = ASCIIEncoding.ASCII.GetString(TempBuffer, 0, bytesRead);
                 string remote_host = ((IPEndPoint)sendEP).Address.ToString();
                 string remote_port = ((IPEndPoint)sendEP).Port.ToString();
@@ -63,7 +63,7 @@ namespace SIPLibDriver
                 {
                     this.ReceivedDataEvent(this, new RawEventArgs(data, new string[] { remote_host, remote_port }));
                 }
-                this.Transport.socket.BeginReceiveFrom(this.TempBuffer, 0, this.TempBuffer.Length, SocketFlags.None, ref sendEP, new AsyncCallback(this.ReceiveDataCB), sendEP);
+                this.Transport.Socket.BeginReceiveFrom(this.TempBuffer, 0, this.TempBuffer.Length, SocketFlags.None, ref sendEP, new AsyncCallback(this.ReceiveDataCB), sendEP);
         }
 
         public override void Send(string finalData, string destinationHost, int destinationPort, SIPStack stack)
@@ -72,14 +72,14 @@ namespace SIPLibDriver
             IPEndPoint dest = new IPEndPoint(addresses[0], destinationPort);
             EndPoint destEP = (EndPoint)dest;
             byte[] send_data = ASCIIEncoding.ASCII.GetBytes(finalData);
-            stack.Transport.socket.BeginSendTo(send_data, 0, send_data.Length, SocketFlags.None, destEP, new AsyncCallback(this.SendDataCB), destEP);
+            stack.Transport.Socket.BeginSendTo(send_data, 0, send_data.Length, SocketFlags.None, destEP, new AsyncCallback(this.SendDataCB), destEP);
         }
 
         private void SendDataCB(IAsyncResult asyncResult)
         {
             try
             {
-                Stack.Transport.socket.EndSend(asyncResult);
+                Stack.Transport.Socket.EndSend(asyncResult);
             }
             catch (Exception ex)
             {
@@ -89,7 +89,7 @@ namespace SIPLibDriver
 
         public override UserAgent CreateServer(Message request, SIPURI uri, SIPStack stack)
         {
-            if (request.method == "INVITE")
+            if (request.Method == "INVITE")
             {
                 return new UserAgent(this.Stack, request);
             }
@@ -100,11 +100,11 @@ namespace SIPLibDriver
         {
             if (Utils.IsRequest(message))
             {
-                _log.Info("Sending request with method " + message.method);
+                _log.Info("Sending request with method " + message.Method);
             }
             else
             {
-                _log.Info("Sending response with code " + message.response_code);
+                _log.Info("Sending response with code " + message.ResponseCode);
             }
             _log.Debug("\n\n" + message.ToString());
             //TODO: Allow App to modify message before it gets sent?;
@@ -136,9 +136,9 @@ namespace SIPLibDriver
 
         public override void ReceivedResponse(UserAgent ua, Message response, SIPStack stack)
         {
-            _log.Info("Received response with code " + response.response_code + " " + response.response_text);
+            _log.Info("Received response with code " + response.ResponseCode + " " + response.ResponseText);
             _log.Debug("\n\n" + response.ToString());
-            switch (response.response_code)
+            switch (response.ResponseCode)
             {
                 case 180:
                     {
@@ -159,7 +159,7 @@ namespace SIPLibDriver
                     }
                 default:
                     {
-                        _log.Info("Response code of " + response.response_code + " is unhandled ");
+                        _log.Info("Response code of " + response.ResponseCode + " is unhandled ");
                     }
                     break;
             }
@@ -167,9 +167,9 @@ namespace SIPLibDriver
 
         public override void ReceivedRequest(UserAgent ua, Message request, SIPStack stack)
         {
-            _log.Info("Received request with method " + request.method.ToUpper());
+            _log.Info("Received request with method " + request.Method.ToUpper());
             _log.Debug("\n\n" + request.ToString());
-            switch (request.method.ToUpper())
+            switch (request.Method.ToUpper())
             {
                 case "INVITE":
                     {
@@ -192,7 +192,7 @@ namespace SIPLibDriver
                     }
                 case "MESSAGE":
                     {
-                        _log.Info("MESSAGE: " + request.body);
+                        _log.Info("MESSAGE: " + request.Body);
                         //Address from = (Address) request.first("From").value;
                         //this.Message(from.uri.ToString(), request.body);
                         break;
@@ -205,7 +205,7 @@ namespace SIPLibDriver
                 case "INFO":
                 default:
                     {
-                        _log.Info("Request with method " + request.method.ToUpper() + " is unhandled");
+                        _log.Info("Request with method " + request.Method.ToUpper() + " is unhandled");
                         break;
                     }
             }

@@ -38,78 +38,78 @@ namespace SIPLib.SIP
 
         public UserAgent(SIPStack stack, Message request = null, bool server = false)
         {
-            this.Stack = stack;
+            Stack = stack;
             //this.app = stack.app;
-            this.Request = request;
-            if (server == true)
+            Request = request;
+            if (server)
             {
-                this.Server = true;
+                Server = true;
             }
             else
             {
-                this.Server = (request == null);
+                Server = (request == null);
             }
-            this.Transaction = null;
-            this.CancelRequest = null;
-            if ((request != null) && (request.headers.ContainsKey("Call-Id")))
+            Transaction = null;
+            CancelRequest = null;
+            if ((request != null) && (request.Headers.ContainsKey("Call-Id")))
             {
-                this.CallID = (string)request.headers["Call-ID"][0].Value;
-            }
-            else
-            {
-                this.CallID = stack.NewCallId();
-            }
-
-            if ((request != null) && (request.headers.ContainsKey("From")))
-            {
-                this.RemoteParty = (Address)request.headers["From"][0].Value;
+                CallID = (string)request.Headers["Call-ID"][0].Value;
             }
             else
             {
-                this.RemoteParty = null;
+                CallID = stack.NewCallId();
             }
 
-            if ((request != null) && (request.headers.ContainsKey("To")))
+            if ((request != null) && (request.Headers.ContainsKey("From")))
             {
-                this.LocalParty = (Address)request.headers["To"][0].Value;
-            }
-            else
-            {
-                this.LocalParty = null;
-            }
-            this.LocalTag = stack.tag + _random.Next(0, 2147483647).ToString();
-            this.RemoteTag = stack.tag + _random.Next(0, 2147483647).ToString();
-
-            if ((request != null) && (request.headers.ContainsKey("Subject")))
-            {
-                this.Subject = (string)request.headers["Subject"][0].Value;
+                RemoteParty = (Address)request.Headers["From"][0].Value;
             }
             else
             {
-                this.Subject = "";
+                RemoteParty = null;
             }
 
-            this.MaxForwards = 70;
-            this.RouteSet = new List<Header>();
-
-            this.LocalTarget = null;
-            this.RemoteTarget = null;
-            this.RemoteCandidates = null;
-            this.LocalSeq = 0;
-            this.RemoteSeq = 0;
-
-            this.Contact = new Address(stack.uri.ToString());
-
-            if (this.LocalParty != null)
+            if ((request != null) && (request.Headers.ContainsKey("To")))
             {
-                if (this.LocalParty.Uri.user.Length > 0)
+                LocalParty = (Address)request.Headers["To"][0].Value;
+            }
+            else
+            {
+                LocalParty = null;
+            }
+            LocalTag = stack.Tag + _random.Next(0, 2147483647).ToString();
+            RemoteTag = stack.Tag + _random.Next(0, 2147483647).ToString();
+
+            if ((request != null) && (request.Headers.ContainsKey("Subject")))
+            {
+                Subject = (string)request.Headers["Subject"][0].Value;
+            }
+            else
+            {
+                Subject = "";
+            }
+
+            MaxForwards = 70;
+            RouteSet = new List<Header>();
+
+            LocalTarget = null;
+            RemoteTarget = null;
+            RemoteCandidates = null;
+            LocalSeq = 0;
+            RemoteSeq = 0;
+
+            Contact = new Address(stack.Uri.ToString());
+
+            if (LocalParty != null)
+            {
+                if (LocalParty.Uri.User.Length > 0)
                 {
-                    this.Contact.Uri.user = this.LocalParty.Uri.user;
+                    Contact.Uri.User = LocalParty.Uri.User;
                 }
             }
 
-            this.Autoack = true;
-            this.Auth = new Dictionary<string, string>();
+            Autoack = true;
+            Auth = new Dictionary<string, string>();
         }
 
         public string Repr()
@@ -117,266 +117,253 @@ namespace SIPLib.SIP
             string type = "";
             if (this is Dialog) type = "Dialog";
             if (this is UserAgent) type = "Useragent";
-            return String.Format("<{0} call-id={1}>", type, this.CallID);
+            return String.Format("<{0} call-id={1}>", type, CallID);
         }
 
         public Message CreateRequest(string method, string content = "", string contentType = "")
         {
-            this.Server = false;
-            if (this.RemoteParty == null)
+            Server = false;
+            if (RemoteParty == null)
             {
                 Debug.Assert(false, String.Format("No remoteParty for UAC\n"));
             }
-            if (this.LocalParty == null)
+            if (LocalParty == null)
             {
-                this.LocalParty = new Address("\"Anonymous\" <sip:anonymous@anonymous.invalid>");
+                LocalParty = new Address("\"Anonymous\" <sip:anonymous@anonymous.invalid>");
             }
-            SIPURI uri;
-            if (this.RemoteTarget == null)
-            {
-                uri = new SIPURI(this.RemoteParty.ToString());
-            }
-            else
-            {
-                uri = this.RemoteParty.Uri;
-            }
+            SIPURI uri = RemoteTarget == null ? new SIPURI(RemoteParty.ToString()) : RemoteParty.Uri;
             if (method == "REGISTER")
             {
-                uri.user = "";
+                uri.User = "";
             }
             if ((method != "ACK") && (method != "CANCEL"))
             {
-                this.LocalSeq = ++this.LocalSeq;
+                LocalSeq = ++LocalSeq;
             }
-            Header To = new Header(this.RemoteParty.ToString(), "To");
-            Header From = new Header(this.LocalParty.ToString(), "From");
-            From.Attributes["tag"] = this.LocalTag;
-            Header CSeq = new Header(this.LocalSeq + " " + method, "CSeq");
-            Header CallId = new Header(this.CallID, "Call-ID");
-            Header MaxForwards = new Header(this.MaxForwards.ToString(), "Max-Forwards");
-            Header Via = this.Stack.CreateVia();
-            Dictionary<string, object> branch_params = new Dictionary<string, object>();
-            branch_params.Add("To", To.Value);
-            branch_params.Add("From", From.Value);
-            branch_params.Add("CallId", CallId.Value);
-            branch_params.Add("CSeq", CSeq.Number);
-            Via.Attributes["branch"] = Transaction.CreateBranch(branch_params, false);
-            if (this.LocalTarget == null)
+            Header to = new Header(RemoteParty.ToString(), "To");
+            Header from = new Header(LocalParty.ToString(), "From");
+            from.Attributes["tag"] = LocalTag;
+            Header cSeq = new Header(LocalSeq + " " + method, "CSeq");
+            Header callId = new Header(CallID, "Call-ID");
+            Header maxForwards = new Header(MaxForwards.ToString(), "Max-Forwards");
+            Header via = Stack.CreateVia();
+            Dictionary<string, object> branchParams = new Dictionary<string, object>
+                                                          {
+                                                              {"To", to.Value},
+                                                              {"From", @from.Value},
+                                                              {"CallId", callId.Value},
+                                                              {"CSeq", cSeq.Number}
+                                                          };
+            via.Attributes["branch"] = Transaction.CreateBranch(branchParams, false);
+            if (LocalTarget == null)
             {
-                this.LocalTarget = this.Stack.uri.Dup();
-                this.LocalTarget.user = this.LocalParty.Uri.user;
+                LocalTarget = Stack.Uri.Dup();
+                LocalTarget.User = LocalParty.Uri.User;
             }
-            Header Contact = new Header(this.LocalTarget.ToString(), "Contact");
-            List<Header> headers = new List<Header>();
-            Header[] header_list = { To, From, CSeq, CallId, MaxForwards, Via, Contact };
-            foreach (Header h in header_list)
-            {
-                headers.Add(h);
-            }
+            Header contact = new Header(this.LocalTarget.ToString(), "Contact");
+            Header[] headerList = { to, from, cSeq, callId, maxForwards, via, contact };
+            List<Header> headers = headerList.ToList();
             // Check this TODO
             //
             if (this.RouteSet.Count != 0)
             {
-                foreach (Header x in this.RouteSet)
-                {
-                    //Secure parsing missing TODO
-                    headers.Add(x);
-                }
+                headers.AddRange(this.RouteSet);
             }
 
             //app adds other headers such as Supported, Require and Proxy-Require
-            if (contentType != null && contentType.Length > 0)
+            if (!string.IsNullOrEmpty(contentType))
             {
                 headers.Add(new Header(contentType, "Content-Type"));
             }
-            Dictionary<string, List<Header>> header_dict = new Dictionary<string, List<Header>>();
+            Dictionary<string, List<Header>> headerDict = new Dictionary<string, List<Header>>();
             foreach (Header h in headers)
             {
-                if (header_dict.ContainsKey(h.Name))
+                if (headerDict.ContainsKey(h.Name))
                 {
-                    header_dict[h.Name].Add(h);
+                    headerDict[h.Name].Add(h);
                 }
                 else
                 {
-                    List<Header> temp = new List<Header>();
-                    temp.Add(h);
-                    header_dict.Add(h.Name, temp);
+                    List<Header> temp = new List<Header> {h};
+                    headerDict.Add(h.Name, temp);
                 }
             }
-            this.Request = Message.CreateRequest(method, uri, header_dict, content);
-            return this.Request;
+            Request = Message.CreateRequest(method, uri, headerDict, content);
+            return Request;
         }
 
         public Message CreateRegister(SIPURI aor)
         {
             if (aor != null)
             {
-                this.RemoteParty = new Address(aor.ToString());
+                RemoteParty = new Address(aor.ToString());
             }
-            if (this.LocalParty == null)
+            if (LocalParty == null)
             {
-                this.LocalParty = new Address(this.RemoteParty.ToString());
+                LocalParty = new Address(RemoteParty.ToString());
             }
-            Message m = this.CreateRequest("REGISTER");
+            Message m = CreateRequest("REGISTER");
             m.InsertHeader(new Header("", "Authorization"));
             return m;
         }
 
         public void SendRequest(Message request)
         {
-            if ((this.Request == null) && (request.method == "REGISTER"))
+            if ((Request == null) && (request.Method == "REGISTER"))
             {
-                if ((this.Transaction == null) && (this.Transaction.state != "completed") && (this.Transaction.state != "terminated"))
-                {
-                    Debug.Assert(false, String.Format("Cannot re-REGISTER since pending registration\n{0}"));
+                if ((Transaction == null) && (Transaction.State != "completed") && (Transaction.State != "terminated"))
+                { //TODO This doesn't make sense....
+                    Debug.Assert(false, String.Format("Cannot re-REGISTER since pending registration\n"));
                 }
             }
-            this.Request = request;
+            Request = request;
 
-            if (!request.headers.ContainsKey("Route"))
+            if (!request.Headers.ContainsKey("Route"))
             {
-                this.RemoteTarget = request.uri;
+                RemoteTarget = request.Uri;
             }
-            SIPURI target = this.RemoteTarget;
-            if (request.headers.ContainsKey("Route"))
+            SIPURI target = RemoteTarget;
+            if (request.Headers.ContainsKey("Route"))
             {
-                if (request.headers["Route"].Count > 0)
+                if (request.Headers["Route"].Count > 0)
                 {
-                    target = ((Address)(request.headers["Route"][0].Value)).Uri;
-                    if ((target == null) || !target.parameters.ContainsKey("lr"))
+                    target = ((Address)(request.Headers["Route"][0].Value)).Uri;
+                    if ((target == null) || !target.Parameters.ContainsKey("lr"))
                     {
-                        request.headers["Route"].RemoveAt(0);
-                        if (request.headers["Route"].Count > 0)
+                        request.Headers["Route"].RemoveAt(0);
+                        if (request.Headers["Route"].Count > 0)
                         {
-                            request.headers["Route"].Insert(request.headers["Route"].Count - 1, new Header(request.uri.ToString(), "Route"));
+                            request.Headers["Route"].Insert(request.Headers["Route"].Count - 1, new Header(request.Uri.ToString(), "Route"));
                         }
-                        request.uri = target;
+                        request.Uri = target;
                     }
                 }
 
             }
             // TODO: remove any Route Header in REGISTER request
-            this.Stack.Sending(this, request);
-            SIPURI dest = target.Dup();
-            if (dest.port == 0)
+            Stack.Sending(this, request);
+            if (target != null)
             {
-                dest.port = 5060;
-            }
+                SIPURI dest = target.Dup();
+                if (dest.Port == 0)
+                {
+                    dest.Port = 5060;
+                }
 
-            if (Utils.IsIPv4(dest.host))
-            {
-                this.RemoteCandidates = new List<SIPURI>();
-                this.RemoteCandidates.Add(dest);
+                if (Utils.IsIPv4(dest.Host))
+                {
+                    RemoteCandidates = new List<SIPURI> {dest};
+                }
             }
-            if ((this.RemoteCandidates == null) || (this.RemoteCandidates.Count == 0))
+            if ((RemoteCandidates == null) || (RemoteCandidates.Count == 0))
             {
-                this.Error(null, "Cannot Resolve DNS target");
+                Error(null, "Cannot Resolve DNS target");
                 return;
             }
-            target = this.RemoteCandidates.First();
-            this.RemoteCandidates.RemoveAt(0);
-            if (this.Request.method != "ACK")
+            target = RemoteCandidates.First();
+            RemoteCandidates.RemoveAt(0);
+            if (Request.Method != "ACK")
             {
-                this.Transaction = Transaction.CreateClient(this.Stack, this, this.Request, this.Stack.Transport, target.host + ":" + target.port);
+                Transaction = Transaction.CreateClient(Stack, this, Request, Stack.Transport, target.Host + ":" + target.Port);
             }
             else
             {
-                this.Stack.Send(this.Request, target.host + ":" + target.port);
+                Stack.Send(Request, target.Host + ":" + target.Port);
             }
         }
 
         public void Timeout(Transaction transaction)
         {
-            if ((transaction != null) && (transaction != this.Transaction))
+            if ((transaction != null) && (transaction != Transaction))
             {
                 return;
             }
-            this.Transaction = null;
-            if (this.Server == false)
+            Transaction = null;
+            if (Server == false)
             {
-                if ((this.RemoteCandidates != null) && (this.RemoteCandidates.Count > 0))
+                if ((RemoteCandidates != null) && (RemoteCandidates.Count > 0))
                 {
-                    this.RetryNextCandidate();
+                    RetryNextCandidate();
                 }
                 else
                 {
-                    this.ReceivedResponse(null, Message.CreateResponse(408, "Request Timeoute", null, null, this.Request));
+                    ReceivedResponse(null, Message.CreateResponse(408, "Request Timeoute", null, null, Request));
                 }
             }
         }
 
         private void RetryNextCandidate()
         {
-            if ((this.RemoteCandidates == null) || (this.RemoteCandidates.Count == 0))
+            if ((RemoteCandidates == null) || (RemoteCandidates.Count == 0))
             {
                 Debug.Assert(false, String.Format("No more DNS resolved address to try\n"));
             }
-            SIPURI target = this.RemoteCandidates.First();
-            this.RemoteCandidates.RemoveAt(0);
-            this.Request.headers["Via"][0].Attributes["branch"] += "A";
-            Transaction = Transaction.CreateClient(this.Stack, this, this.Request, this.Stack.Transport, target.host + ":" + target.port);
+            SIPURI target = RemoteCandidates.First();
+            RemoteCandidates.RemoveAt(0);
+            Request.Headers["Via"][0].Attributes["branch"] += "A";
+            Transaction = Transaction.CreateClient(Stack, this, Request, Stack.Transport, target.Host + ":" + target.Port);
 
         }
 
         public void Error(Transaction t, string error)
         {
-            if ((t != null) && t != this.Transaction)
+            if ((t != null) && t != Transaction)
             {
                 return;
             }
-            this.Transaction = null;
-            if (this.Server == false)
+            Transaction = null;
+            if (Server == false)
             {
-                if ((this.RemoteCandidates != null) && (this.RemoteCandidates.Count > 0))
+                if ((RemoteCandidates != null) && (RemoteCandidates.Count > 0))
                 {
-                    this.RetryNextCandidate();
+                    RetryNextCandidate();
                 }
                 else
                 {
-                    this.ReceivedResponse(null, Message.CreateResponse(503, "Service unavailable - " + error, null, null, this.Request));
+                    ReceivedResponse(null, Message.CreateResponse(503, "Service unavailable - " + error, null, null, Request));
                 }
             }
         }
 
         public void ReceivedResponse(Transaction transaction, Message response)
         {
-            if ((transaction != null) && transaction != this.Transaction)
+            if ((transaction != null) && transaction != Transaction)
             {
-                Debug.Assert(false, String.Format("Invalid transaction received {0} != {1}", transaction, this.Transaction));
+                Debug.Assert(false, String.Format("Invalid transaction received {0} != {1}", transaction, Transaction));
                 return;
             }
-            if (response.headers["Via"].Count > 1)
+            if (response.Headers["Via"].Count > 1)
             {
                 Debug.Assert(false, String.Format("More than one Via header in resposne"));
                 return;
             }
-            if (response.Is1xx())
+            if (response.Is1XX())
             {
-                if (this.CancelRequest != null)
+                if (CancelRequest != null)
                 {
-                    Transaction cancel = Transaction.CreateClient(this.Stack, this, this.CancelRequest, transaction.transport, transaction.remote);
-                    this.CancelRequest = null;
+                    Transaction cancel = Transaction.CreateClient(Stack, this, CancelRequest, transaction.Transport, transaction.Remote);
+                    CancelRequest = null;
                 }
                 else
                 {
-                    this.Stack.ReceivedResponse(this, response);
+                    Stack.ReceivedResponse(this, response);
                 }
             }
-            else if ((response.response_code == 401) || (response.response_code == 407))
+            else if ((response.ResponseCode == 401) || (response.ResponseCode == 407))
             {
-                if (!this.Authenticate(response, this.Transaction))
+                if (!Authenticate(response, Transaction))
                 {
-                    this.Stack.ReceivedResponse(this, response);
+                    Stack.ReceivedResponse(this, response);
                 }
             }
             else
             {
-                if (CanCreateDialog(this.Request, response))
+                if (CanCreateDialog(Request, response))
                 {
-                    Dialog dialog = Dialog.CreateClient(this.Stack, this.Request, response, transaction);
-                    this.Stack.DialogCreated(dialog, this);
-                    this.Stack.ReceivedResponse(dialog, response);
-                    if ((this.Autoack) && (this.Request.method == "INVITE"))
+                    Dialog dialog = Dialog.CreateClient(Stack, Request, response, transaction);
+                    Stack.DialogCreated(dialog, this);
+                    Stack.ReceivedResponse(dialog, response);
+                    if ((Autoack) && (Request.Method == "INVITE"))
                     {
                         Message ack = dialog.CreateRequest("ACK");
                         dialog.SendRequest(ack);
@@ -398,7 +385,7 @@ namespace SIPLib.SIP
                 }
                 else
                 {
-                    this.Stack.ReceivedResponse(this, response);
+                    Stack.ReceivedResponse(this, response);
                 }
             }
         }
@@ -407,12 +394,12 @@ namespace SIPLib.SIP
         public static bool CanCreateDialog(Message request, Message response)
         {
 
-            return ((response.Is2xx()) && ((request.method == "INVITE") || (request.method == "SUBSCRIBE")));
+            return ((response.Is2XX()) && ((request.Method == "INVITE") || (request.Method == "SUBSCRIBE")));
         }
 
         public void ReceivedRequest(Transaction transaction, Message request)
         {
-            if ((transaction != null) && (this.Transaction != null) && (transaction != this.Transaction) && (request.method != "CANCEL"))
+            if ((transaction != null) && (Transaction != null) && (transaction != Transaction) && (request.Method != "CANCEL"))
             {
                 Debug.Assert(false, String.Format("Invalid transaction for received request"));
                 return;
@@ -423,12 +410,12 @@ namespace SIPLib.SIP
             //response.Allow = Header('INVITE, ACK, CANCEL, BYE', 'Allow') # TODO make this configurable
             //transaction.sendResponse(response)
             //return;
-            if (request.uri.scheme != "sip")
+            if (request.Uri.Scheme != "sip")
             {
                 transaction.SendResponse(transaction.CreateResponse(416, "Unsupported URI scheme"));
                 return;
             }
-            if (!request.headers["To"][0].ToString().Contains("tag"))
+            if (!request.Headers["To"][0].ToString().Contains("tag"))
             {
                 if (this.Stack.FindOtherTransactions(request, transaction) != null)
                 {
@@ -446,134 +433,134 @@ namespace SIPLib.SIP
             //        return;
             //    }
             //}
-            if (this.Transaction != null)
+            if (Transaction != null)
             {
-                this.Transaction = transaction;
+                Transaction = transaction;
             }
-            if (request.method == "CANCEL")
+            if (request.Method == "CANCEL")
             {
-                Transaction original = this.Stack.FindTransaction(Transaction.CreateId(transaction.branch, "Invite"));
+                Transaction original = this.Stack.FindTransaction(Transaction.CreateId(transaction.Branch, "Invite"));
                 if (original == null)
                 {
                     transaction.SendResponse(transaction.CreateResponse(481, "Cannot find transaction??"));
                     return;
                 }
-                if (original.state == "proceeding" || original.state == "trying")
+                if (original.State == "proceeding" || original.State == "trying")
                 {
                     original.SendResponse(original.CreateResponse(487, "Request terminated"));
                 }
                 transaction.SendResponse(transaction.CreateResponse(200, "OK"));
                 // TODO: The To tag must be the same in the two responses
             }
-            this.Stack.ReceivedRequest(this, request);
+            Stack.ReceivedRequest(this, request);
         }
 
-        public void SendResponse(object response, string response_text = "", string content = "", string contentType = "", bool createDialog=true)
+        public void SendResponse(object response, string responseText = "", string content = "", string contentType = "", bool createDialog=true)
         {
-            Message response_message = null;
-            if (this.Request == null)
+            Message responseMessage;
+            if (Request == null)
             {
                 Debug.Assert(false, String.Format("Invalid request in sending a response"));
                 return;
             }
             if (response is int)
             {
-                response_message = this.CreateResponse((int)(response), response_text, content, contentType);
+                responseMessage = CreateResponse((int)(response), responseText, content, contentType);
             }
             else
             {
-                response_message = (Message)(response);
+                responseMessage = (Message)(response);
             }
-            if (createDialog && UserAgent.CanCreateDialog(this.Request, response_message))
+            if (createDialog && CanCreateDialog(Request, responseMessage))
             {
-                if (this.Request.headers.ContainsKey("Record-Route"))
+                if (Request.Headers.ContainsKey("Record-Route"))
                 {
-                    response_message.headers.Add("Record-Route", this.Request.headers["Record-Route"]);
+                    responseMessage.Headers.Add("Record-Route", Request.Headers["Record-Route"]);
                 }
 
-                if (!response_message.headers.ContainsKey("Contact"))
+                if (!responseMessage.Headers.ContainsKey("Contact"))
                 {
-                    Address contact = new Address(this.Contact.ToString());
-                    if (contact.Uri.user.Length == 0)
+                    Address contact = new Address(Contact.ToString());
+                    if (contact.Uri.User.Length == 0)
                     {
-                        contact.Uri.user = ((Address)this.Request.First("To").Value).Uri.user;
-                        response_message.InsertHeader(new Header(contact.ToString(), "Contact"));
+                        contact.Uri.User = ((Address)Request.First("To").Value).Uri.User;
+                        responseMessage.InsertHeader(new Header(contact.ToString(), "Contact"));
                     }
 
                 }
-                Dialog dialog = Dialog.CreateServer(this.Stack, this.Request, response_message, this.Transaction);
-                this.Stack.DialogCreated(dialog, this);
-                this.Stack.Sending(dialog, response_message);
+                Dialog dialog = Dialog.CreateServer(Stack, Request, responseMessage, Transaction);
+                Stack.DialogCreated(dialog, this);
+                Stack.Sending(dialog, responseMessage);
             }
             else
             {
-                this.Stack.Sending(this, response_message);
+                Stack.Sending(this, responseMessage);
             }
-            if (this.Transaction == null)
+            if (Transaction == null)
             {
-                this.Stack.Send(response_message, response_message.headers["Via"][0].ViaUri.HostPort(), null);
+                Stack.Send(responseMessage, responseMessage.Headers["Via"][0].ViaUri.HostPort());
             }
             else
             {
-                this.Transaction.SendResponse(response_message);
+                Transaction.SendResponse(responseMessage);
             }
 
         }
 
 
-        public Message CreateResponse(int response_code, string response_text, string content = null, string contentType = null)
+        public Message CreateResponse(int responseCode, string responseText, string content = null, string contentType = null)
         {
-            if (this.Request == null)
+            if (Request == null)
             {
                 Debug.Assert(false, String.Format("Invalid request in creating a response"));
                 return null;
             }
-            Message response_message = Message.CreateResponse(response_code, response_text, null, content, this.Request);
+            Message responseMessage = Message.CreateResponse(responseCode, responseText, null, content, Request);
             if (contentType != null)
             {
-                response_message.InsertHeader(new Header(contentType, "Content-Type"));
+                responseMessage.InsertHeader(new Header(contentType, "Content-Type"));
             }
-            if (response_message.response_code != 100 && !response_message.headers["To"][0].ToString().Contains("tag"))
+            if (responseMessage.ResponseCode != 100 && !responseMessage.Headers["To"][0].ToString().Contains("tag"))
             {
-                response_message.headers["To"][0].Attributes.Add("tag", this.LocalTag);
+                responseMessage.Headers["To"][0].Attributes.Add("tag", LocalTag);
             }
-            return response_message;
+            return responseMessage;
         }
 
         public void SendCancel()
         {
-            if (this.Transaction == null)
+            if (Transaction == null)
             {
                 Debug.Assert(false, String.Format("No transaction for sending CANCEL"));
             }
-            this.CancelRequest = this.Transaction.CreateCancel();
-            if (this.Transaction.state != "trying" && this.Transaction.state != "calling")
+            CancelRequest = Transaction.CreateCancel();
+            if (Transaction.State != "trying" && Transaction.State != "calling")
             {
-                if (this.Transaction.state == "proceeding")
+                if (Transaction.State == "proceeding")
                 {
-                    Transaction transaction = Transaction.CreateClient(this.Stack, this, this.CancelRequest, this.Transaction.transport, this.Transaction.remote);
+                    Transaction transaction = Transaction.CreateClient(this.Stack, this, this.CancelRequest, this.Transaction.Transport, this.Transaction.Remote);
                 }
-                this.CancelRequest = null;
+                CancelRequest = null;
             }
 
         }
 
         public bool Authenticate(Message response, Transaction transaction)
         {
-            Header a = null;
-            if (response.headers.ContainsKey("WWW-Authenticate") || response.headers.ContainsKey("Proxy-Authenticate"))
+            Header a;
+            if (response.Headers.ContainsKey("WWW-Authenticate") || response.Headers.ContainsKey("Proxy-Authenticate"))
             {
-                a = response.headers["WWW-Authenticate"][0];
+                a = response.Headers["WWW-Authenticate"][0];
             }
-            else if (response.headers.ContainsKey("Proxy-Authenticate"))
+            else if (response.Headers.ContainsKey("Proxy-Authenticate"))
             {
-                a = response.headers["Proxy-Authenticate"][0];
+                a = response.Headers["Proxy-Authenticate"][0];
             }
             else return false;
-            Message request = new Message(transaction.request.ToString());
+            Message request = new Message(transaction.Request.ToString());
             bool resend = false, present = false;
             // foreach (Header h in request.headers["Authorization"].Concat(request.headers["Proxy-Authorization"]))
-            foreach (Header h in request.headers["Authorization"])
+            foreach (Header h in request.Headers["Authorization"])
             {
                 try
                 {
@@ -589,44 +576,38 @@ namespace SIPLib.SIP
             }
             if (!present && a.Attributes.ContainsKey("realm"))
             {
-                string[] result = this.Stack.Authenticate(this, a);
+                string[] result = Stack.Authenticate(this, a);
                 if (result.Length == 0 || a.Attributes.ContainsKey("password") && a.Attributes.ContainsKey("hashValue"))
                 {
                     return false;
                 }
                 //string value = createAuthorization(a.value, a.attributes["username"], a.attributes["password"], request.uri.ToString(), this.request.method, this.request.body, this.auth);
-                string value = SIP.Authenticate.CreateAuthorization(a.ToString(), result[0], result[1], request.uri.ToString(), request.method, request.body, this.Auth);
+                string value = SIP.Authenticate.CreateAuthorization(a.ToString(), result[0], result[1], request.Uri.ToString(), request.Method, request.Body, Auth);
                 if (value.Length > 0)
                 {
-                    if (a.Name == "WWW-Authenticate")
-                    {
-                        request.InsertHeader(new Header(value, "Authorization"), "replace");
-                    }
-                    else
-                    {
-                        request.InsertHeader(new Header(value, "Proxy-Authorization"), "replace");
-                    }
+                    request.InsertHeader(
+                        a.Name == "WWW-Authenticate"
+                            ? new Header(value, "Authorization")
+                            : new Header(value, "Proxy-Authorization"));
 
                     resend = true;
                 }
-
             }
             if (resend)
             {
-                this.LocalSeq = request.First("CSeq").Number + 1;
-                request.InsertHeader(new Header(this.LocalSeq.ToString() + " " + request.method, "CSeq"));
+                LocalSeq = request.First("CSeq").Number + 1;
+                request.InsertHeader(new Header(LocalSeq.ToString() + " " + request.Method, "CSeq"));
                 //TODO FIX?
                 //request.headers["Via"][0].attributes["branch"] = Transaction.createBranch(request, false);
-                this.Request = request;
-                this.Transaction = Transaction.CreateClient(this.Stack, this, this.Request, transaction.transport, transaction.remote);
+                Request = request;
+                Transaction = Transaction.CreateClient(Stack, this, Request, transaction.Transport, transaction.Remote);
                 return true;
             }
-            else return false;
-
+            return false;
         }
 internal void ReceivedRequest(Transaction t, Message message, SIPStack sIPStack)
         {
-            this.ReceivedRequest(t, message);
+            ReceivedRequest(t, message);
         }
     }
 

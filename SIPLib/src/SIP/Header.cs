@@ -170,25 +170,25 @@ namespace SIPLib.SIP
                 string addr = parts[1].Split(';')[0];
                 string type = proto.Split('/')[2].ToLower();
                 ViaUri = new SIPURI("sip:" + addr + ";transport=" + type);
-                if (ViaUri.port == 0)
+                if (ViaUri.Port == 0)
                 {
-                    ViaUri.port = 5060;
+                    ViaUri.Port = 5060;
                 }
                 if (Attributes.Keys.Contains("rport"))
                 {
                     int tempPort = 5060;
                     int.TryParse(Attributes["rport"], out tempPort);
-                    ViaUri.port = tempPort;
+                    ViaUri.Port = tempPort;
                 }
                 if ((type != "tcp") && (type != "sctp") && (type != "tls"))
                 {
                     if (Attributes.Keys.Contains("maddr"))
                     {
-                        ViaUri.host = Attributes["maddr"];
+                        ViaUri.Host = Attributes["maddr"];
                     }
                     else if (Attributes.Keys.Contains("received"))
                     {
-                        ViaUri.host = Attributes["received"];
+                        ViaUri.Host = Attributes["received"];
                     }
                 }
             }

@@ -10,11 +10,11 @@ namespace SIPLibDriver
 
         public static SIPStack CreateStack(SIPApp app,string proxyIp = null, int proxyPort = -1)
         {
-            SIPStack myStack = new SIPStack(app) {uri = {user = "alice"}};
+            SIPStack myStack = new SIPStack(app) {Uri = {User = "alice"}};
             if (proxyIp != null)
             {
-                myStack.proxy_host = "192.168.0.7";
-                myStack.proxy_port = (proxyPort == -1) ? 5060 : proxyPort;
+                myStack.ProxyHost = "192.168.0.7";
+                myStack.ProxyPort = (proxyPort == -1) ? 5060 : proxyPort;
             }
             return myStack;
         }

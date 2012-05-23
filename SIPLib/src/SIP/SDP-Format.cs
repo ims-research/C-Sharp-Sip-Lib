@@ -1,26 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace SIPLib
+﻿namespace SIPLib.SIP
 {
     public class SDPMediaFormat
     {
-        public string pt { get; set; }
-        public string name { get; set; }
-        public string rate { get; set; }
-        public string parameters { get; set; }
-        public int  count { get; set; }
+        public string Pt { get; set; }
+        public string Name { get; set; }
+        public string Rate { get; set; }
+        public string Parameters { get; set; }
+        public int  Count { get; set; }
 
         public SDPMediaFormat()
         {
-            this.pt = "";
-            this.name = "";
-            this.rate = "";
-            this.parameters = "";
-            this.count = 0;
-
+            Pt = "";
+            Name = "";
+            Rate = "";
+            Parameters = "";
+            Count = 0;
         }
     }
 }

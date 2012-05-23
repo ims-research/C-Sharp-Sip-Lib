@@ -88,13 +88,13 @@ namespace SIPLib.SIP
             {
                 name = DisplayName;
             }
-            else if (Uri.user.Length > 0)
+            else if (Uri.User.Length > 0)
             {
-                name = Uri.user;
+                name = Uri.User;
             }
-            else if (Uri.host.Length > 0)
+            else if (Uri.Host.Length > 0)
             {
-                name = Uri.host;
+                name = Uri.Host;
             }
             if (name.Length > 26)
             {

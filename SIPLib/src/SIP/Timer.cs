@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using SIPLib.SIP;
 
-namespace SIPLib
+namespace SIPLib.SIP
 {
     public class Timer
     {
@@ -21,17 +17,17 @@ namespace SIPLib
 
         public int A()
         {
-            return this.T1;
+            return T1;
         }
 
         public int B()
         {
-            return 64*this.T1;
+            return 64*T1;
         }
 
         public int D()
         {
-            return Math.Max(64 * this.T1, 32000);
+            return Math.Max(64 * T1, 32000);
         }
 
         public int E()
@@ -57,7 +53,7 @@ namespace SIPLib
 
         public int I()
         {
-            return this.T4;
+            return T4;
         }
 
         public int J()
@@ -79,8 +75,8 @@ namespace SIPLib
 
         }
 
-        public int delay { get; set; }
+        public int Delay { get; set; }
 
-        public bool running { get; set; }
+        public bool Running { get; set; }
     }
 }

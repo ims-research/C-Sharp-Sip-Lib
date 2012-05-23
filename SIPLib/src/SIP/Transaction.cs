@@ -1,94 +1,91 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Security.Cryptography;
-using SIPLib.SIP;
 using SIPLib.utils;
 
-namespace SIPLib
+namespace SIPLib.SIP
 {
     public abstract class  Transaction
     {
-        public string branch { get; set; }
-        public string id { get; set; }
-        public SIPStack stack { get; set; }
-        public UserAgent app { get; set; }
-        public Message request { get; set; }
-        public TransportInfo transport { get; set; }
-        public string tag { get; set; }
-        public bool server { get; set; }
-        public Dictionary<string,Timer> timers { get; set; }
-        public Timer timer { get; set; }
-        public string remote { get; set; }
-        public string _state;
-        public Message lastResponse { get; set; }
-        public string state
+        public string Branch { get; set; }
+        public string ID { get; set; }
+        public SIPStack Stack { get; set; }
+        public UserAgent App { get; set; }
+        public Message Request { get; set; }
+        public TransportInfo Transport { get; set; }
+        public string Tag { get; set; }
+        public bool Server { get; set; }
+        public Dictionary<string,Timer> Timers { get; set; }
+        public Timer Timer { get; set; }
+        public string Remote { get; set; }
+        private string _state;
+        public Message LastResponse { get; set; }
+        public string State
         {
             get
             {
-                return this._state;
+                return _state;
             }
             set
             {
-                this._state = value;
-                if (this._state == "terminating")
+                _state = value;
+                if (_state == "terminating")
                 {
-                    this.Close();
+                    Close();
                 }
             }
 
         }
-        public Dictionary<string, List<Header>> _headers;
-        public Dictionary<string, List<Header>> headers
+
+        public Dictionary<string, List<Header>> Headers
         {
             get
             {
-                return (Dictionary<string, List<Header>>)this.request.headers.Where(p => p.Key == "To" || p.Key == "From" || p.Key == "CSeq" || p.Key == "Call-ID");
+                return (Dictionary<string, List<Header>>)Request.Headers.Where(p => p.Key == "To" || p.Key == "From" || p.Key == "CSeq" || p.Key == "Call-ID");
             }
         }
 
         protected Transaction(UserAgent app)
         {
-            this.timers = new Dictionary<string, Timer>();
-            this.timer = new Timer(this.app);
-            this.app = app;
+            Timers = new Dictionary<string, Timer>();
+            Timer = new Timer(App);
+            App = app;
         }
 
-        public Transaction(bool server)
+        protected Transaction(bool server)
         {
-            this.timers = new Dictionary<string, Timer>();
-            this.server = server;
-            this.timer = new Timer(this.app);
+            Timers = new Dictionary<string, Timer>();
+            Server = server;
+            Timer = new Timer(App);
         }
-
-        
 
         public static string CreateBranch(object request, bool server)
         {
-            string To = "", From = "", CallId = "", CSeq = "";
+            string to = "", from = "", callId = "", cSeq = "";
             if (request is Message)
             {
-                Message request_message = (Message)(request);
-                To = request_message.First("To").Value.ToString();
-                From = request_message.First("From").Value.ToString();
-                CallId = request_message.First("Call-ID").Value.ToString();
-                CSeq = request_message.First("CSeq").Number.ToString();
+                Message requestMessage = (Message)(request);
+                to = requestMessage.First("To").Value.ToString();
+                from = requestMessage.First("From").Value.ToString();
+                callId = requestMessage.First("Call-ID").Value.ToString();
+                cSeq = requestMessage.First("CSeq").Number.ToString();
             }
             else if (request is Dictionary<string,string>)
             {
                 Dictionary<string, string> dict = (Dictionary<string, string>)request;
                 string[] headers = dict.Values.ToArray();
-                To = headers[0];
-                From = headers[1];
-                CallId = headers[2];
-                CSeq = headers[3];
+                to = headers[0];
+                from = headers[1];
+                callId = headers[2];
+                cSeq = headers[3];
             }
-            string data = To.ToLower() + "|" + From.ToLower() + "|" + CallId.ToLower() + "|" + CSeq.ToLower() + "|" + server.ToString();
+            string data = to.ToLower() + "|" + from.ToLower() + "|" + callId.ToLower() + "|" + cSeq.ToLower() + "|" + server.ToString();
             using (MD5 md5Hash = MD5.Create())
             {
                 string hash = Utils.GetMd5Hash(md5Hash, data);
             }
+            //TODO fix this ? replace data with hash ?
             data = Utils.Base64Encode(data).Replace('=', '.');
             return "z9hG4bK" + data;
 
@@ -100,44 +97,41 @@ namespace SIPLib
             {
                 return branch;
             }
-            else
-            {
-                return branch + "|" + method;
-            }
+            return branch + "|" + method;
         }
 
         public static Transaction CreateServer(SIPStack stack, UserAgent app, Message request, TransportInfo transport, string tag)
         {
-            Transaction t = null;
-            if (request.method == "INVITE")
+            Transaction t;
+            if (request.Method == "INVITE")
             {
                 t = new InviteServerTransaction(app);
             }
-            else if (1 == 1)
+            else
             {
                 t = new ServerTransaction(app);
             }
-            t.stack = stack;
-            t.app = app;
-            t.request = request;
-            t.transport = transport;
-            t.tag = tag;
-            t.remote = request.First("Via").ViaUri.HostPort();
-            if (request.headers.ContainsKey("Via") && request.First("Via").Attributes.ContainsKey("branch"))
+            t.Stack = stack;
+            t.App = app;
+            t.Request = request;
+            t.Transport = transport;
+            t.Tag = tag;
+            t.Remote = request.First("Via").ViaUri.HostPort();
+            if (request.Headers.ContainsKey("Via") && request.First("Via").Attributes.ContainsKey("branch"))
             {
-                t.branch = request.First("Via").Attributes["branch"];
+                t.Branch = request.First("Via").Attributes["branch"];
             }
             else
             {
-                t.branch = Transaction.CreateBranch(request, true);
+                t.Branch = CreateBranch(request, true);
             }
-            t.id = Transaction.CreateId(t.branch, request.method);
-            stack.transactions[t.id] = t;
-            if (request.method == "INVITE")
+            t.ID = CreateId(t.Branch, request.Method);
+            stack.Transactions[t.ID] = t;
+            if (request.Method == "INVITE")
             {
                 ((InviteServerTransaction)t).Start();
             }
-            else if (1 == 1)
+            else
             {
                 ((ServerTransaction)t).Start();
             }
@@ -147,7 +141,7 @@ namespace SIPLib
         public static Transaction CreateClient(SIPStack stack, UserAgent app, Message request, TransportInfo transport, string remote)
         {
             Transaction t;
-            if (request.method == "INVITE")
+            if (request.Method == "INVITE")
             {
                 t = new InviteClientTransaction(app);
             }
@@ -155,23 +149,23 @@ namespace SIPLib
             {
                 t = new ClientTransaction(app);
             }
-            t.stack = stack;
-            t.app = app;
-            t.request = request;
-            t.transport = transport;
-            t.remote = remote;
+            t.Stack = stack;
+            t.App = app;
+            t.Request = request;
+            t.Transport = transport;
+            t.Remote = remote;
 
-            if (request.headers.ContainsKey("Via") && request.First("Via").Attributes.ContainsKey("branch"))
+            if (request.Headers.ContainsKey("Via") && request.First("Via").Attributes.ContainsKey("branch"))
             {
-                t.branch = request.First("Via").Attributes["branch"];
+                t.Branch = request.First("Via").Attributes["branch"];
             }
             else
             {
-                t.branch = Transaction.CreateBranch(request, false);
+                t.Branch = CreateBranch(request, false);
             }
-            t.id = Transaction.CreateId(t.branch, request.method);
-            stack.transactions[t.id] = t;
-            if (request.method == "INVITE")
+            t.ID = CreateId(t.Branch, request.Method);
+            stack.Transactions[t.ID] = t;
+            if (request.Method == "INVITE")
             {
                 ((InviteClientTransaction)t).Start();
             }
@@ -190,76 +184,72 @@ namespace SIPLib
 
         public static bool Equals(Transaction t1, Message r, Transaction t2)
         {
-            Message t = t1.request;
-            Address request_To = (Address)(r.First("To").Value);
-            Address t1_To = (Address)(t.First("To").Value);
+            Message t = t1.Request;
+            Address requestTo = (Address)(r.First("To").Value);
+            Address t1To = (Address)(t.First("To").Value);
 
-            Address request_From = (Address)(r.First("To").Value);
-            Address t1_From = (Address)(t.First("To").Value);
+            Address requestFrom = (Address)(r.First("To").Value);
+            Address t1From = (Address)(t.First("To").Value);
 
-            bool a = (request_To.Uri == t1_To.Uri);
-            a = a && (request_From.Uri == t1_From.Uri);
+            bool a = (requestTo.Uri == t1To.Uri);
+            a = a && (requestFrom.Uri == t1From.Uri);
 
             a = a && (r.First("Call-ID").Value.ToString() == t.First("Call-ID").Value.ToString());
             a = a && (r.First("CSeq").Value.ToString() == t.First("CSeq").Value.ToString());
 
             a = a && (r.First("From").Attributes["tag"] == t.First("From").Attributes["tag"]);
-            a = a && (t2.server == t1.server);
+            a = a && (t2.Server == t1.Server);
             return a;
         }
 
         public void Close()
         {
-            this.StopTimers();
-            if (this.stack != null)
+            StopTimers();
+            if (Stack != null)
             {
-                if (this.stack.transactions.ContainsKey(this.id))
+                if (Stack.Transactions.ContainsKey(ID))
                 {
-                    this.stack.transactions.Remove(this.id);
+                    Stack.Transactions.Remove(ID);
                 }
             }
         }
 
         public Message CreateAck()
         {
-            if (this.request != null && !this.server)
+            if (Request != null && !Server)
             {
-                return Message.CreateRequest("ACK", this.request.uri, this.headers);
+                return Message.CreateRequest("ACK", Request.Uri, Headers);
             }
-            else
-            {
-                return null;
-            }
+            return null;
         }
 
         public Message CreateCancel()
         {
             Message m = null;
-            if (this.request != null && !this.server)
+            if (Request != null && !Server)
             {
-                m = Message.CreateRequest("CANCEL", this.request.uri, this.headers);
-                if (m != null && this.request.headers.ContainsKey("Route"))
+                m = Message.CreateRequest("CANCEL", Request.Uri, Headers);
+                if (m != null && Request.Headers.ContainsKey("Route"))
                 {
-                    m.headers["Route"] = this.request.headers["Route"];
+                    m.Headers["Route"] = Request.Headers["Route"];
                 }
-                if (m != null && this.request.headers.ContainsKey("Via"))
+                if (m != null && Request.Headers.ContainsKey("Via"))
                 {
-                    m.headers["Via"] = new List<Header>();
-                    m.headers["Via"].Add(this.request.First("Route"));
+                    m.Headers["Via"] = new List<Header> {Request.First("Route")};
                 }
             }
             return m;
         }
 
-        public Message CreateResponse(int response_code, string responsetext)
+        public Message CreateResponse(int responseCode, string responseText)
         {
             Message m = null;
-            if (this.request != null && this.server)
+            if (Request != null && Server)
             {
-                m = Message.CreateResponse(response_code,responsetext,null,null,this.request);
-                if (response_code != 100 && !m.headers["To"][0].Attributes.ContainsKey("tag"))
+                m = Message.CreateResponse(responseCode,responseText,null,null,Request);
+                if (responseCode != 100 && !m.Headers["To"][0].Attributes.ContainsKey("tag"))
                 {
-                    m.headers["To"][0].Attributes.Add("tag", this.tag);
+                    m.Headers["To"][0].Attributes.Add("tag", Tag);
                 }
             }
             return m;
@@ -267,37 +257,38 @@ namespace SIPLib
 
         public void StartTimer(string name, int timeout)
         {
-            Timer timer = null;
             if (timeout > 0)
             {
-                if (this.timers.ContainsKey(name))
+                Timer timer;
+                if (Timers.ContainsKey(name))
                 {
-                    timer = this.timers[name];
+                    timer = Timers[name];
                 }
                 else
                 {
-                    timer = this.timers[name] = this.stack.CreateTimer(this);
+                    timer = Timers[name] = Stack.CreateTimer(this);
                 }
-                timer.delay = timeout;
+                timer.Delay = timeout;
                 timer.Start();
             }
         }
 
         public void Timedout(Timer timer)
         {
-            if (timer.running)
+            if (timer.Running)
             {
                 timer.Stop();
             }
-            var found = this.timers.Where(p => p.Value == timer);
-            if (found.Count() > 0)
+            var found = this.Timers.Where(p => p.Value == timer);
+            foreach (KeyValuePair<string, Timer> pair in found)
             {
                 foreach (KeyValuePair<string, Timer> kvp in found)
                 {
-                    this.timers.Remove(kvp.Key);
+                    Timers.Remove(kvp.Key);
                 }
+                break;
             }
-            this.Timeout(found.First().Value, timer.delay);
+            Timeout(found.First().Value, timer.Delay);
         }
 
         private void Timeout(Timer timer, int p)
@@ -307,11 +298,11 @@ namespace SIPLib
 
         public void StopTimers()
         {
-            foreach (Timer t in this.timers.Values)
+            foreach (Timer t in Timers.Values)
             {
                 t.Stop();
             }
-            this.timers = new Dictionary<string, Timer>();
+            Timers = new Dictionary<string, Timer>();
         }
 
         public virtual void SendResponse(Message message)
@@ -319,7 +310,7 @@ namespace SIPLib
             throw new NotImplementedException("sendResponse in Transaction is not implemented");
         }
 
-        public virtual void ReceivedRequest(Message m)
+        public virtual void ReceivedRequest(Message receivedRequest)
         {
             throw new NotImplementedException("receivedRequest in Transaction is not implemented");
         }

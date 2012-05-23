@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace SIPLib
+namespace SIPLib.SIP
 {
     public class SDP
     {
 
-        public const string _multiple = "tramb";
+        public static string Multiple = "tramb";
         public List<SDPMedia> Media { get; set; }
         public SDPConnection Connection { get; set; }
         public SDPOriginator Originator { get; set; }
@@ -17,55 +17,55 @@ namespace SIPLib
 
         public SDP(string sdp = null)
         {
-            this.Media = new List<SDPMedia>();
-            this.Other = new Dictionary<string, string>();
+            Media = new List<SDPMedia>();
+            Other = new Dictionary<string, string>();
 
             if (sdp != null)
             {
-                this._parse(sdp);
+                Parse(sdp);
             }
         }
 
-        public void _parse(string sdp)
+        public void Parse(string sdp)
         {
             sdp = sdp.Replace("\r\n", "\n");
             sdp = sdp.Replace("\r", "\n");
             sdp = sdp.Trim();
-            string current_object = "";
             foreach (String line in sdp.Split('\n'))
             {
                 //Per line parsing
                 string[] values = line.Split("=".ToCharArray(), 2);
                 string k = values[0];
-                if (k == "o")
+                string currentObject = "";
+                switch (k)
                 {
-                    this.Originator = new SDPOriginator(values[1]);
-                    current_object = this.Originator.ToString();
-                }
-                else if (k == "c")
-                {
-                    this.Connection = new SDPConnection(values[1]);
-                    current_object = this.Connection.ToString();
-                }
-                else if (k == "m")
-                {
-                    SDPMedia current_media = new SDPMedia(values[1]);
-                    this.Media.Add(current_media);
-                    current_object = current_media.ToString();
-                }
-                else
-                {
-                    //this.Other.Add(k, values[1]);
-                    current_object = values[1];
+                    case "o":
+                        Originator = new SDPOriginator(values[1]);
+                        currentObject = Originator.ToString();
+                        break;
+                    case "c":
+                        Connection = new SDPConnection(values[1]);
+                        currentObject = Connection.ToString();
+                        break;
+                    case "m":
+                        {
+                            SDPMedia currentMedia = new SDPMedia(values[1]);
+                            Media.Add(currentMedia);
+                            currentObject = currentMedia.ToString();
+                        }
+                        break;
+                    default:
+                        currentObject = values[1];
+                        break;
                 }
 
                 if (k == "m")
                 {
-                    SDPMedia obj = this.Media.Last();
+                    SDPMedia obj = Media.Last();
                 }
-                else if (this.Media.Count > 0)
+                else if (Media.Count > 0)
                 {
-                    SDPMedia obj = this.Media.Last();
+                    SDPMedia obj = Media.Last();
                     if (k == "a" && values[1].StartsWith("rtpmap:"))
                     {
                         string[] split = values[1].Remove(0, 7).Split(" ".ToCharArray(), 2);
@@ -81,28 +81,28 @@ namespace SIPLib
                             paramaters = final[1];
                         }
 
-                        foreach (SDPMediaFormat f in obj.mediaformats)
+                        foreach (SDPMediaFormat f in obj.Mediaformats)
                         {
-                            if (f.pt == pt)
+                            if (f.Pt == pt)
                             {
-                                f.name = name;
-                                f.rate = rate;
+                                f.Name = name;
+                                f.Rate = rate;
                                 if (paramaters != null)
                                 {
-                                    f.parameters = paramaters;
+                                    f.Parameters = paramaters;
                                 }
                             }
                         }
                     }
                     else
                     {
-                        if (!SDP._multiple.Contains(k))
+                        if (!Multiple.Contains(k))
                         {
-                            obj.other_attributes.Add(k, current_object);
+                            obj.OtherAttributes.Add(k, currentObject);
                         }
                         else
                         {
-                            obj.other_attributes.Add(k, current_object);
+                            obj.OtherAttributes.Add(k, currentObject);
                             //TODO HANDLE multiple attributes of the same type;
                             //if (obj.properties.ContainsKey(k))
                             //{
@@ -121,13 +121,13 @@ namespace SIPLib
                     if (k != "o" && k != "c")
                     {
                         SDP obj = this;
-                        if (!SDP._multiple.Contains(k))
+                        if (!Multiple.Contains(k))
                         {
-                            obj.Other.Add(k, current_object);
+                            obj.Other.Add(k, currentObject);
                         }
                         else
                         {
-                            obj.Other.Add(k, current_object);
+                            obj.Other.Add(k, currentObject);
                             //TODO HANDLE multiple attributes of the same type;
                             //if (obj.properties.ContainsKey(k))
                             //{
@@ -150,15 +150,15 @@ namespace SIPLib
             StringBuilder sb = new StringBuilder();
             foreach (Char c in "vosiuepcbtam")
             {
-                if (this.Other.ContainsKey(c.ToString()))
+                if (Other.ContainsKey(c.ToString()))
                 {
-                    if (!SDP._multiple.Contains(c))
+                    if (!Multiple.Contains(c))
                     {
-                        sb.Append(c + "=" + this.Other[c.ToString()] + "\r\n");
+                        sb.Append(c + "=" + Other[c.ToString()] + "\r\n");
                     }
                     else
                     {
-                        sb.Append(c + "=" + this.Other[c.ToString()] + "\r\n");
+                        sb.Append(c + "=" + Other[c.ToString()] + "\r\n");
                         // TODO: handle multiple lines of the same
                         //foreach (AttributeClass a in this[c.ToString(), true])
                         //{
@@ -168,15 +168,15 @@ namespace SIPLib
                 }
                 else if (c == 'c')
                 {
-                    sb.Append(c + "=" + this.Connection.ToString() + "\r\n");
+                    sb.Append(c + "=" + Connection.ToString() + "\r\n");
                 }
                 else if (c == 'o')
                 {
-                    sb.Append(c + "=" + this.Originator.ToString() + "\r\n");
+                    sb.Append(c + "=" + Originator.ToString() + "\r\n");
                 }
                 else if (c == 'm')
                 {
-                    foreach (SDPMedia m in this.Media)
+                    foreach (SDPMedia m in Media)
                     {
                         sb.Append(c + "=" + m.ToString() + "\r\n");
                     }
@@ -200,7 +200,7 @@ namespace SIPLib
             if (previous != null && previous.Originator != null)
             {
                 s.Originator = new SDPOriginator(previous.Originator.ToString());
-                s.Originator.version = s.Originator.version + 1;
+                s.Originator.Version = s.Originator.Version + 1;
             }
             s.Other["s"] = "-";
             s.Other["t"] = "0";
@@ -222,84 +222,65 @@ namespace SIPLib
             s.Originator = new SDPOriginator();
             s.Other["s"] = "-";
             s.Other["t"] = offer.Other["t"];
-            foreach (SDPMedia your_media in offer.Media)
+            foreach (SDPMedia yourMedia in offer.Media)
             {
-                SDPMedia my_media = null;
-                for (int i = 0; i < streams.Count; i++)
+                SDPMedia myMedia = null;
+                foreach (SDPMedia t in streams)
                 {
-                    if (streams[i].media == your_media.media)
+                    if (t.Media != yourMedia.Media) continue;
+                    myMedia = new SDPMedia(t.ToString());
+                    //streams.RemoveAt(i);
+                    List<KeyValuePair<SDPMediaFormat, SDPMediaFormat>> found = new List<KeyValuePair<SDPMediaFormat, SDPMediaFormat>>();
+                    foreach (SDPMediaFormat yourmf in yourMedia.Mediaformats)
                     {
-                        my_media = new SDPMedia(streams[i].ToString());
-                        //streams.RemoveAt(i);
-                        List<KeyValuePair<SDPMediaFormat, SDPMediaFormat>> found = new List<KeyValuePair<SDPMediaFormat, SDPMediaFormat>>();
-                        foreach (SDPMediaFormat yourmf in your_media.mediaformats)
+                        foreach (SDPMediaFormat mymf in myMedia.Mediaformats)
                         {
-                            foreach (SDPMediaFormat mymf in my_media.mediaformats)
+
+                            int mymfpt = -1;
+                            int yourmfpt = -1;
+                            try
+                            {
+                                mymfpt = Int32.Parse(mymf.Pt);
+                                yourmfpt = Int32.Parse(yourmf.Pt);
+                            }
+                            catch (Exception)
                             {
 
-                                int mymfpt = -1;
-                                int yourmfpt = -1;
-                                try
-                                {
-                                    mymfpt = Int32.Parse(mymf.pt);
-                                    yourmfpt = Int32.Parse(yourmf.pt);
-                                }
-                                catch (Exception)
-                                {
-
-                                    mymfpt = -1;
-                                    yourmfpt = -1;
-                                }
-                                if ((0 <= mymfpt && mymfpt < 32 && 0 <= yourmfpt && yourmfpt <= 32 && mymfpt == yourmfpt)
-                                    || (mymfpt < 0 && yourmfpt < 0 && mymfpt == yourmfpt)
-                                    || (mymf.name == yourmf.name && mymf.rate == yourmf.rate && mymf.count == yourmf.count))
-                                {
-                                    found.Add(new KeyValuePair<SDPMediaFormat, SDPMediaFormat>(yourmf, mymf)); break;
-                                }
-
+                                mymfpt = -1;
+                                yourmfpt = -1;
                             }
-                        }
-                        if (found.Count > 0)
-                        {
-                            foreach (KeyValuePair<SDPMediaFormat, SDPMediaFormat> kvp in found)
+                            if ((0 <= mymfpt && mymfpt < 32 && 0 <= yourmfpt && yourmfpt <= 32 && mymfpt == yourmfpt)
+                                || (mymfpt < 0 && yourmfpt < 0 && mymfpt == yourmfpt)
+                                || (mymf.Name == yourmf.Name && mymf.Rate == yourmf.Rate && mymf.Count == yourmf.Count))
                             {
-                                my_media.mediaformats.Add(kvp.Key);
+                                found.Add(new KeyValuePair<SDPMediaFormat, SDPMediaFormat>(yourmf, mymf)); break;
                             }
-                        }
-                        else
-                        {
-                            my_media.mediaformats.Clear();
-                            SDPMediaFormat temp = new SDPMediaFormat();
-                            temp.pt = "0";
-                            my_media.mediaformats.Add(temp);
-                            my_media.port = "0";
+
                         }
                     }
+                    if (found.Count > 0)
+                    {
+                        foreach (KeyValuePair<SDPMediaFormat, SDPMediaFormat> kvp in found)
+                        {
+                            myMedia.Mediaformats.Add(kvp.Key);
+                        }
+                    }
+                    else
+                    {
+                        myMedia.Mediaformats.Clear();
+                        SDPMediaFormat temp = new SDPMediaFormat {Pt = "0"};
+                        myMedia.Mediaformats.Add(temp);
+                        myMedia.Port = "0";
+                    }
                 }
-                if (my_media == null)
+                if (myMedia == null)
                 {
-                    my_media = new SDPMedia(your_media.ToString());
-                    my_media.port = "0";
+                    myMedia = new SDPMedia(yourMedia.ToString()) {Port = "0"};
                 }
-                s.Media.Add(my_media);
+                s.Media.Add(myMedia);
             }
-            bool valid = false;
-            foreach (SDPMedia my_media in s.Media)
-            {
-                if (my_media.port != "0")
-                {
-                    valid = true;
-                    break;
-                }
-            }
-            if (valid)
-            {
-                return s;
-            }
-            else
-            {
-                return null;
-            }
+            bool valid = s.Media.Any(myMedia => myMedia.Port != "0");
+            return valid ? s : null;
         }
     }
 }

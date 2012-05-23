@@ -6,43 +6,43 @@ namespace SIPLib.SIP
     {
         public ClientTransaction(UserAgent app) : base(app)
         {
-            server = false;
+            Server = false;
         }
 
         public void Start()
         {
-            state = "trying";
-            if (!transport.reliable)
+            State = "trying";
+            if (!Transport.Reliable)
             {
-                StartTimer("E", timer.E());
+                StartTimer("E", Timer.E());
             }
-            StartTimer("F", timer.F());
-            stack.Send(request,remote,transport);
+            StartTimer("F", Timer.F());
+            Stack.Send(Request,Remote,Transport);
         }
 
         public override void ReceivedResponse(Message response)
         {
-            if (response.Is1xx())
+            if (response.Is1XX())
             {
-                if (state == "trying")
+                if (State == "trying")
                 {
-                    state = "proceeding";
-                    app.ReceivedResponse(this,response);
+                    State = "proceeding";
+                    App.ReceivedResponse(this,response);
                 }
-                else if (state == "proceeding")
+                else if (State == "proceeding")
                 {
-                    app.ReceivedResponse(this,response);
+                    App.ReceivedResponse(this,response);
                 }
             }
             else if (response.IsFinal())
             {
-                if (state == "trying" || state == "proceeding")
+                if (State == "trying" || State == "proceeding")
                 {
-                    state = "completed";
-                    app.ReceivedResponse(this,response);
-                    if (!transport.reliable)
+                    State = "completed";
+                    App.ReceivedResponse(this,response);
+                    if (!Transport.Reliable)
                     {
-                        StartTimer("K", timer.K());
+                        StartTimer("K", Timer.K());
                     }
                     else
                     {
@@ -54,42 +54,35 @@ namespace SIPLib.SIP
 
         public void Timeout(string name, int timeout)
         {
-            if (state == "trying" | state == "proceeding")
+            if (State == "trying" | State == "proceeding")
             {
                 if (name == "E")
                 {
-                    if (state == "trying")
-                    {
-                        timeout = Math.Min(2 * timeout, timer.T2);
-                    }
-                    else
-                    {
-                        timeout = timer.T2;
-                    }
+                    timeout = State == "trying" ? Math.Min(2 * timeout, Timer.T2) : Timer.T2;
                     StartTimer("E", timeout);
-                    stack.Send(request, remote, transport);
+                    Stack.Send(Request, Remote, Transport);
                 }
                 else if (name == "F")
                 {
-                    state = "terminated";
-                    app.Timeout(this);
+                    State = "terminated";
+                    App.Timeout(this);
                 }
             }
-            else if (state == "completed")
+            else if (State == "completed")
             {
                 if (name == "K")
                 {
-                    state = "terminated";
+                    State = "terminated";
                 }
             }
         }
 
         public void Error(string error)
         {
-            if (state == "trying" || state == "proceeding")
+            if (State == "trying" || State == "proceeding")
             {
-                state = "terminated";
-                app.Error(this,error);
+                State = "terminated";
+                App.Error(this,error);
             }
         }
     }

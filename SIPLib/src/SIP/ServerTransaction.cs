@@ -1,33 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using SIPLib.SIP;
-
-namespace SIPLib
+﻿namespace SIPLib.SIP
 {
     public class ServerTransaction : Transaction
     {
         public ServerTransaction(UserAgent app): base(app)
         {
-            this.server = true;
+            Server = true;
         }
 
         public void Start()
         {
-            this.state = "trying";
-            this.app.ReceivedRequest(this, this.request,this.stack);
+            State = "trying";
+            App.ReceivedRequest(this, Request,Stack);
         }
 
-        public override void ReceivedRequest(Message request)
+        public override void ReceivedRequest(Message receivedRequest)
         {
-            if (this.request.method == request.method)
+            if (Request.Method == receivedRequest.Method)
             {
-                if (this.state == "proceeding" || this.state == "completed")
+                if (State == "proceeding" || State == "completed")
                 {
-                    this.stack.Send(this.lastResponse, this.remote, this.transport);
+                    Stack.Send(LastResponse, Remote, Transport);
                 }
-                else if (this.state == "trying")
+                else if (State == "trying")
                 {
                     // Ignore the retransmitted request
                 }
@@ -36,48 +30,48 @@ namespace SIPLib
 
         public void Timeout(string name, int timeout)
         {
-            if (this.state == "completed")
+            if (State == "completed")
             {
                 if (name == "J")
                 {
-                    this.state = "terminated";
+                    State = "terminated";
                 }
             }
         }
 
         public void Error(string error)
         {
-            if (this.state == "completed")
+            if (State == "completed")
             {
-                this.state = "terminated";
-                this.app.Error(this,error);
+                State = "terminated";
+                App.Error(this,error);
             }
         }
 
         public override void SendResponse(Message response)
         {
-            this.lastResponse = response;
-            if (response.Is1xx())
+            LastResponse = response;
+            if (response.Is1XX())
             {
-                if (this.state == "trying" || this.state == "proceeding")
+                if (State == "trying" || State == "proceeding")
                 {
-                    this.state = "proceeding";
-                    this.stack.Send(response, this.remote, this.transport);
+                    State = "proceeding";
+                    Stack.Send(response, Remote, Transport);
                 }
             }
             else if (response.IsFinal())
             {
-                if (this.state == "trying" || this.state == "proceeding")
+                if (State == "trying" || State == "proceeding")
                 {
-                    this.state = "completed";
-                    this.stack.Send(response, this.remote, this.transport);
-                    if (!this.transport.reliable)
+                    State = "completed";
+                    Stack.Send(response, Remote, Transport);
+                    if (!Transport.Reliable)
                     {
-                        this.StartTimer("J", this.timer.J());
+                        StartTimer("J", Timer.J());
                     }
                     else
                     {
-                        this.Timeout("J", 0);
+                        Timeout("J", 0);
                     }
                 }
             }

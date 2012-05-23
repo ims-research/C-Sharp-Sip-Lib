@@ -1,49 +1,45 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using SIPLib.SIP;
 
-namespace SIPLib
+namespace SIPLib.SIP
 {
     public class InviteServerTransaction : Transaction
     {
         public InviteServerTransaction(UserAgent app ) : base(app)
         {
-            this.server = true;
+            Server = true;
         }
 
         public  void Start()
         {
-            this.state = "proceeding";
-            this.SendResponse(this.CreateResponse(100, "Trying"));
-            this.app.ReceivedRequest(this, this.request,this.stack);
+            State = "proceeding";
+            SendResponse(CreateResponse(100, "Trying"));
+            App.ReceivedRequest(this, Request,Stack);
         }
 
-        public override void ReceivedRequest(Message request)
+        public override void ReceivedRequest(Message receivedRequest)
         {
-            if (this.request.method == request.method)
+            if (Request.Method == receivedRequest.Method)
             {
-                if (this.state == "proceeding" || this.state == "completed")
+                if (State == "proceeding" || State == "completed")
                 {
-                    this.stack.Send(this.lastResponse, this.remote, this.transport);
+                    Stack.Send(LastResponse, Remote, Transport);
                 }
             }
-            else if (request.method == "ACK")
+            else if (receivedRequest.Method == "ACK")
             {
-                if (this.state == "completed")
+                if (State == "completed")
                 {
-                    this.state = "confirmed";
-                    if (!this.transport.reliable)
+                    State = "confirmed";
+                    if (!Transport.Reliable)
                     {
-                        this.StartTimer("I", this.timer.I());
+                        StartTimer("I", Timer.I());
                     }
                     else
                     {
-                        this.Timeout("I", 0);
+                        Timeout("I", 0);
                     }
                 }
-                else if (this.state == "confirmed")
+                else if (State == "confirmed")
                 {
                     //Ignore duplicate ACK
                 }
@@ -52,66 +48,66 @@ namespace SIPLib
 
         public void Timeout(string name, int timeout)
         {
-            if (this.state == "completed")
+            if (State == "completed")
             {
                 if (name == "G")
                 {
-                    this.StartTimer("G", Math.Min(2 * timeout, this.timer.T2));
-                    this.stack.Send(this.lastResponse, this.remote, this.transport);
+                    StartTimer("G", Math.Min(2 * timeout, Timer.T2));
+                    Stack.Send(LastResponse, Remote, Transport);
                 }
                 else if (name == "H")
                 {
-                    this.state = "terminated";
-                    this.app.Timeout(this);
+                    State = "terminated";
+                    App.Timeout(this);
                 }
             }
-            else if (this.state == "confirmed")
+            else if (State == "confirmed")
             {
                 if (name == "I")
                 {
-                    this.state = "terminated";
+                    State = "terminated";
                 }
             }
         }
 
         public  void Error(string error)
         {
-            if (this.state == "proceeding" || this.state == "confirmed")
+            if (State == "proceeding" || State == "confirmed")
             {
-                this.state = "terminated";
-                this.app.Error(this,error);
+                State = "terminated";
+                App.Error(this,error);
             }
         }
 
         public override void SendResponse(Message response)
         {
-            this.lastResponse = response;
-            if (response.Is1xx())
+            LastResponse = response;
+            if (response.Is1XX())
             {
-                if (this.state == "proceeding")
+                if (State == "proceeding")
                 {
-                    this.stack.Send(response, this.remote, this.transport);
+                    Stack.Send(response, Remote, Transport);
                 }
             }
-            else if (response.Is2xx())
+            else if (response.Is2XX())
             {
-                if (this.state == "proceeding")
+                if (State == "proceeding")
                 {
-                    this.state = "terminated";
-                    this.stack.Send(response, this.remote, this.transport);
+                    State = "terminated";
+                    Stack.Send(response, Remote, Transport);
                 }
             }
             else
             {
-                if (this.state == "proceeding")
+                if (State == "proceeding")
                 {
-                    this.state = "completed";
-                    if (!this.transport.reliable)
+                    State = "completed";
+                    if (!Transport.Reliable)
                     {
-                        this.StartTimer("G", this.timer.G());
+                        StartTimer("G", Timer.G());
                     }
-                    this.StartTimer("H", this.timer.H());
-                    this.stack.Send(response, this.remote, this.transport);
+                    StartTimer("H", Timer.H());
+                    Stack.Send(response, Remote, Transport);
                 }
             }
         }

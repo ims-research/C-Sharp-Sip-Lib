@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 using System.Diagnostics;
-using SIPLib.SIP;
-using SIPLib.src.SIP;
 
-namespace SIPLib
+namespace SIPLib.SIP
 {
     public class Message
     {
@@ -13,13 +12,13 @@ namespace SIPLib
         static string[] _single = {"call-id", "content-disposition", "content-length", "content-type", "cseq", "date", "expires", "event", "max-forwards",
 "organization", "refer-to", "referred-by", "server", "session-expires", "subject", "timestamp", "to", "user-agent"};
 
-        public int response_code { get; set; }
-        public string response_text { get; set; }
-        public StatusCodes status_code_type = StatusCodes.Unknown;
-        public string protocol { get; set; }
-        public string method { get; set; }
-        public string _body = "";
-        public string body
+        public int ResponseCode { get; set; }
+        public string ResponseText { get; set; }
+        public StatusCodes StatusCodeType = StatusCodes.Unknown;
+        public string Protocol { get; set; }
+        public string Method { get; set; }
+        private string _body = "";
+        public string Body
         {
             get
             {
@@ -28,24 +27,24 @@ namespace SIPLib
             set
             {
                 _body = value;
-                if (this.headers.ContainsKey("Content-Length"))
+                if (Headers.ContainsKey("Content-Length"))
                 {
-                    this.headers["Content-Length"][0] = new Header(value.Length.ToString() + "\r\n", "Content-Length");
+                    Headers["Content-Length"][0] = new Header(value.Length.ToString() + "\r\n", "Content-Length");
                 }
                 else
                 {
-                    List<Header> headers = new List<Header>();
-                    headers.Add(new Header(value.Length.ToString() + "\r\n", "Content-Length"));
-                    this.headers.Add("Content-Length", headers);
+                    List<Header> headers = new List<Header>
+                                               {new Header(value.Length.ToString() + "\r\n", "Content-Length")};
+                    Headers.Add("Content-Length", headers);
                 }
             }
         }
-        public SIPURI uri { get; set; }
-        public Dictionary<string, List<Header>> headers { get; set; }
+        public SIPURI Uri { get; set; }
+        public Dictionary<string, List<Header>> Headers { get; set; }
 
         private void Init()
         {
-            this.headers = new Dictionary<string, List<Header>>();
+            Headers = new Dictionary<string, List<Header>>();
         }
 
         public Message()
@@ -56,10 +55,10 @@ namespace SIPLib
         public Message(string value)
         {
             Init();
-            this._parse(value);
+            Parse(value);
         }
 
-        public void _parse(string value)
+        public void Parse(string value)
         {
             int index = 0;
             index = value.IndexOf("\r\n\r\n");
@@ -67,8 +66,8 @@ namespace SIPLib
             string firstheaders = "";
             if (index == -1)
             {
-                Debug.Assert(false, String.Format("No message body, assuming empty\n{0}\n", value));
                 firstheaders = value;
+                Debug.Assert(false, String.Format("No message body, assuming empty\n{0}\n", value));
             }
             else
             {
@@ -83,67 +82,64 @@ namespace SIPLib
             {
                 Debug.Assert(false, String.Format("First line has less than 3 parts \n{0}\n", firstline));
             }
-            int temp_response_code = 0;
+            int tempResponseCode = 0;
 
-            if (int.TryParse(parts[1], out temp_response_code))
+            if (int.TryParse(parts[1], out tempResponseCode))
             {
-                this.response_code = temp_response_code;
-                this.response_text = parts[2];
-                this.protocol = parts[0];
-                this.status_code_type = Types.GetStatusType(response_code);
+                ResponseCode = tempResponseCode;
+                ResponseText = parts[2];
+                Protocol = parts[0];
+                StatusCodeType = Types.GetStatusType(ResponseCode);
             }
             else
             {
-                this.method = parts[0];
-                this.uri = new SIPURI(parts[1]);
-                this.protocol = parts[2];
+                Method = parts[0];
+                Uri = new SIPURI(parts[1]);
+                Protocol = parts[2];
             }
-            string[] stringSeparators = new string[] { "\r\n" };
+            string[] stringSeparators = new[] { "\r\n" };
             foreach (string h in headers.Split(stringSeparators, StringSplitOptions.None))
             {
                 if (Regex.IsMatch(h, @"^\s"))
                 {
                     break;
                 }
-                else
+                try
                 {
-                    try
+                    if (!h.StartsWith("Warning:"))
                     {
-                        if (!h.StartsWith("Warning:"))
-                        {
                         List<Header> createdHeaders = Header.CreateHeaders(h);
                         string name = createdHeaders[0].Name;
-                        if (this.headers.ContainsKey(name))
+                        if (Headers.ContainsKey(name))
                         {
-                            this.headers[name].AddRange(createdHeaders);
+                            Headers[name].AddRange(createdHeaders);
                         }
                         else
                         {
-                            this.headers.Add(name, createdHeaders);
-                        }
+                            Headers.Add(name, createdHeaders);
                         }
                     }
-                    catch (Exception exp)
-                    {
-                        Debug.Assert(false, String.Format("Error parsing header {0}\n with error\n{1}",h,exp.Message));
-                        break;
-                    }
+                }
+                catch (Exception exp)
+                {
+                    Debug.Assert(false, String.Format("Error parsing header {0}\n with error\n{1}",h,exp.Message));
+                    break;
                 }
             }
             int bodylength = 0;
-            if (this.headers.ContainsKey("Content-Length"))
+            if (Headers.ContainsKey("Content-Length"))
             {
-                bodylength = Convert.ToInt32(this.First("Content-Length").Value);
+                bodylength = Convert.ToInt32(First("Content-Length").Value);
             }
             if (body.Length > 0)
             {
-                this.body = body;
+                Body = body;
             }
             Debug.Assert(Math.Abs(body.Length - bodylength)<3, String.Format("Invalid content-length {0} != {1}\n", body.Length, bodylength));
             string[] mandatoryHeaders = { "To", "From", "CSeq", "Call-ID" };
             foreach (string s in mandatoryHeaders)
             {
-                if (!this.headers.ContainsKey(s))
+                if (!Headers.ContainsKey(s))
                 {
                     Debug.Assert(false, String.Format("Mandatory header missing {0}\n", s));
                 }
@@ -153,120 +149,106 @@ namespace SIPLib
         public string ToString()
         {
             string m = "";
-            if (this.method != null)
+            if (Method != null)
             {
-                m = this.method + " " + this.uri.ToString() + " " + this.protocol + "\r\n";
+                m = Method + " " + Uri + " " + Protocol + "\r\n";
             }
-            else if (this.response_text.Length > 0)
+            else if (ResponseText.Length > 0)
             {
-                m = this.protocol + " " + this.response_code.ToString() + " " + this.response_text + "\r\n";
+                m = Protocol + " " + ResponseCode.ToString() + " " + ResponseText + "\r\n";
             }
-            string content_length = "";
-            foreach (List<Header> headers in this.headers.Values)
+            string contentLength = "";
+            foreach (string current in from headers in Headers.Values where headers.Count > 0 let current = headers[0].Name+": " select headers.Aggregate(current, (current1, h) => current1 + h.ToString() + ", ") into current select current.Remove(current.Length - 2) into current select current + "\r\n")
             {
-                if (headers.Count > 0)
+                if (current.ToLower().Contains("content-length"))
                 {
-                    string current = headers[0].Name+": ";
-                    foreach (Header h in headers)
-                    {
-                        current = current + h.ToString() + ", ";
-                    }
-                    current = current.Remove(current.Length - 2);
-                    current = current + "\r\n";
-                    if (current.ToLower().Contains("content-length"))
-                    {
-                        content_length = current;
-                    }
-                    else m = m + current;
+                    contentLength = current;
                 }
+                else m = m + current;
             }
-            m = m + content_length;
+            m = m + contentLength;
             m = m + "\r\n";
-            if (this.body.Length > 0)
+            if (Body.Length > 0)
             {
-                m = m + this.body;
+                m = m + Body;
             }
             return m;
         }
 
         public Header First(string name)
         {
-            return this.headers[name][0];
+            return Headers[name][0];
         }
         public Message Dup()
         {
-            return new Message(this.ToString());
+            return new Message(ToString());
         }
 
         public void InsertHeader(Header header, string method = "replace")
         {
             string name = header.Name;
-            if (this.headers.ContainsKey(name))
+            if (Headers.ContainsKey(name))
             {
                 switch (method)
                 {
                     case "append":
                         {
-                            this.headers[name].Add(header);
+                            Headers[name].Add(header);
                             break;
                         }
                     case "replace":
                         {
-                            List<Header> headers = new List<Header>();
-                            headers.Add(header);
-                            this.headers[name] = headers;
+                            List<Header> headers = new List<Header> {header};
+                            Headers[name] = headers;
                             break;
                         }
                     case "insert":
                         {
-                            this.headers[name].Insert(0, header);
+                            Headers[name].Insert(0, header);
                             break;
                         }
-                    default:
-                        break;
                 }
             }
             else
             {
-                List<Header> headers = new List<Header>();
-                headers.Add(header);
-                this.headers[name] = headers;
+                List<Header> headers = new List<Header> {header};
+                Headers[name] = headers;
             }
         }
 
-        public bool Is1xx()
+        public bool Is1XX()
         {
-            return (this.response_code / 100 == 1);
+            return (ResponseCode / 100 == 1);
         }
 
-        public bool Is2xx()
+        public bool Is2XX()
         {
-            return (this.response_code / 100 == 2);
+            return (ResponseCode / 100 == 2);
         }
-        public bool Is3xx()
+        public bool Is3XX()
         {
-            return (this.response_code / 100 == 3);
+            return (ResponseCode / 100 == 3);
         }
-        public bool Is4xx()
+        public bool Is4XX()
         {
-            return (this.response_code / 100 == 4);
+            return (ResponseCode / 100 == 4);
         }
-        public bool Is5xx()
+        public bool Is5XX()
         {
-            return (this.response_code / 100 == 5);
+            return (ResponseCode / 100 == 5);
         }
-        public bool Is6xx()
+        public bool Is6XX()
         {
-            return (this.response_code / 100 == 6);
+            return (ResponseCode / 100 == 6);
         }
-        public bool Is7xx()
+        public bool Is7XX()
         {
-            return (this.response_code / 100 == 7);
+            return (ResponseCode / 100 == 7);
         }
 
         public bool IsFinal()
         {
-            return (this.response_code >= 200);
+            return (ResponseCode >= 200);
         }
 
         public static Message PopulateMessage(Message m, Dictionary<string, List<Header>> headers = null, string content = "")
@@ -281,21 +263,20 @@ namespace SIPLib
                     }
                 }
             }
-            if (content !=null && content.Length > 0)
+            if (!string.IsNullOrEmpty(content))
             {
-                m.body = content;
+                m.Body = content;
             }
             else
             {
-                if (m.headers.ContainsKey("Content-Length"))
+                if (m.Headers.ContainsKey("Content-Length"))
                 {
-                    m.headers["Content-Length"][0] = new Header("0" + "\r\n", "Content-Length");
+                    m.Headers["Content-Length"][0] = new Header("0" + "\r\n", "Content-Length");
                 }
                 else
                 {
-                    List<Header> newheaders = new List<Header>();
-                    newheaders.Add(new Header("0" + "\r\n", "Content-Length"));
-                    m.headers.Add("Content-Length", newheaders);
+                    List<Header> newheaders = new List<Header> {new Header("0" + "\r\n", "Content-Length")};
+                    m.Headers.Add("Content-Length", newheaders);
                 }
 
             }
@@ -304,40 +285,33 @@ namespace SIPLib
 
         public static Message CreateRequest(string method, SIPURI uri, Dictionary<string, List<Header>> headers = null, string content = "")
         {
-            Message m = new Message();
-            m.method = method;
-            m.uri = uri;
-            m.protocol = "SIP/2.0";
-            m = Message.PopulateMessage(m, headers, content);
-            if (m.headers.ContainsKey("CSeq"))
+            Message m = new Message {Method = method, Uri = uri, Protocol = "SIP/2.0"};
+            m = PopulateMessage(m, headers, content);
+            if (m.Headers.ContainsKey("CSeq"))
             {
                 Header cseq = new Header(m.First("CSeq").Number.ToString() + " " + method, "CSeq");
-                List<Header> cseq_headers = new List<Header>();
-                cseq_headers.Add(cseq);
-                m.headers["CSeq"] = cseq_headers;
+                List<Header> cseqHeaders = new List<Header> {cseq};
+                m.Headers["CSeq"] = cseqHeaders;
             }
             return m;
         }
 
-        public static Message CreateResponse(int response_code, string response_text, Dictionary<string, List<Header>> headers = null, string content = "", Message original_request = null)
+        public static Message CreateResponse(int responseCode, string responseText, Dictionary<string, List<Header>> headers = null, string content = "", Message originalRequest = null)
         {
-            Message m = new Message();
-            m.response_code = response_code;
-            m.response_text = response_text;
-            m.protocol = "SIP/2.0";
-            if (original_request != null)
+            Message m = new Message {ResponseCode = responseCode, ResponseText = responseText, Protocol = "SIP/2.0"};
+            if (originalRequest != null)
             {
-                m.headers["To"] = original_request.headers["To"];
-                m.headers["From"] = original_request.headers["From"];
-                m.headers["CSeq"] = original_request.headers["CSeq"];
-                m.headers["Call-ID"] = original_request.headers["Call-ID"];
-                m.headers["Via"] = original_request.headers["Via"];
-                if (response_code == 100 && m.headers.ContainsKey("Timestamp"))
+                m.Headers["To"] = originalRequest.Headers["To"];
+                m.Headers["From"] = originalRequest.Headers["From"];
+                m.Headers["CSeq"] = originalRequest.Headers["CSeq"];
+                m.Headers["Call-ID"] = originalRequest.Headers["Call-ID"];
+                m.Headers["Via"] = originalRequest.Headers["Via"];
+                if (responseCode == 100 && m.Headers.ContainsKey("Timestamp"))
                 {
-                    m.headers["Timestamp"] = original_request.headers["Timestamp"];
+                    m.Headers["Timestamp"] = originalRequest.Headers["Timestamp"];
                 }
             }
-            return Message.PopulateMessage(m, headers, content);
+            return PopulateMessage(m, headers, content);
         }
 
     }
