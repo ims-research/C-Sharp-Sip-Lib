@@ -96,7 +96,7 @@ namespace SIPLib.SIP
         public static string ExtractID(Message m)
         {
             // TODO fix this and use more than just call id ?
-            string temp = m.first("Call-ID").value.ToString();// +"|";
+            string temp = m.First("Call-ID").Value.ToString();// +"|";
             //if (m.method != null && m.method.Length > 0)
             //{
             //    temp = temp + m.first("To").attributes["tag"] + "|";

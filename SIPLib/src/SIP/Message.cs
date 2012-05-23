@@ -166,14 +166,10 @@ namespace SIPLib
             {
                 if (headers.Count > 0)
                 {
-                    string current = headers[0].name+": ";
+                    string current = headers[0].Name+": ";
                     foreach (Header h in headers)
                     {
-<<<<<<< HEAD
                         current = current + h.ToString() + ", ";
-=======
-                        current = current + h.Repr() + "\n";
->>>>>>> 856a6d9b5ee669eb178a3822dfcf9cc460520780
                     }
                     current = current.Remove(current.Length - 2);
                     current = current + "\r\n";

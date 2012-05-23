@@ -8,12 +8,12 @@ namespace SIPLib.SIP
 {
     public class Header
     {
-        static private readonly string[] Address = { "contact", "from", "record-route", "refer-to", "referred-by", "route", "to" };
-        static private readonly string[] Comma = { "authorization", "proxy-authenticate", "proxy-authorization", "www-authenticate" };
-        static private readonly string[] Unstructured = { "call-id", "cseq", "date", "expires", "max-forwards", "organization", "server", "subject", "timestamp", "user-agent", "service-route" };
-        static private readonly Dictionary<string, string> Short = new Dictionary<string, string> { {"u","allow-events"},{"i","call-id"},{"m","contact"},
+        static readonly string[] Address = { "contact", "from", "record-route", "refer-to", "referred-by", "route", "to" };
+        static readonly string[] Comma = { "authorization", "proxy-authenticate", "proxy-authorization", "www-authenticate" };
+        static readonly string[] Unstructured = { "call-id", "cseq", "date", "expires", "max-forwards", "organization", "server", "subject", "timestamp", "user-agent", "service-route" };
+        static readonly Dictionary<string, string> Short = new Dictionary<string, string> { {"u","allow-events"},{"i","call-id"},{"m","contact"},
             {"e","content-encoding"},{"l","content-length"},{"c",  "content-type"},{"o",  "event"},{"f", "from"},{"s",  "subject"},{"k","supported"},{"t","to"},{"v",  "via"}};
-        static private readonly Dictionary<string, string> Exceptions = new Dictionary<string, string> { { "call-id", "Call-ID" }, { "cseq", "CSeq" }, { "www-authenticate", "WWW-Authenticate" } };
+        static readonly Dictionary<string, string> Exceptions = new Dictionary<string, string> { { "call-id", "Call-ID" }, { "cseq", "CSeq" }, { "www-authenticate", "WWW-Authenticate" } };
 
         public Dictionary<string, string> Attributes { get; set; }
         public string HeaderType { get; set; }
@@ -35,12 +35,14 @@ namespace SIPLib.SIP
             {
                 return Exceptions[input];
             }
-            string[] words = input.Split('-');
-            for (int i = 0; i < words.Length; i++)
-            {
-                words[i] = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(words[i]);
-            }
-            return String.Join("-", words);
+            
+                string[] words = input.Split('-');
+                for (int i = 0; i < words.Length; i++)
+                {
+                    words[i] = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(words[i]);
+                }
+                return String.Join("-", words);
+            
         }
         public static string Quote(string input)
         {
@@ -57,7 +59,7 @@ namespace SIPLib.SIP
             {
                 return input.Substring(1, input.Length - 2);
             }
-            return input;
+                return input;
         }
 
         public Header(string value, string name)
@@ -65,13 +67,13 @@ namespace SIPLib.SIP
             Number = -1;
             Attributes = new Dictionary<string, string>();
             Name = Canon(name.Trim());
-            Parse(Name,value.Trim());
+            Parse(Name, value.Trim());
         }
 
         public void Parse(string name, string value)
         {
             string rest = "";
-            int index;
+            int index = 0;
             if (Address.Contains(name.ToLower()))
             {
                 HeaderType = "address";
@@ -100,30 +102,25 @@ namespace SIPLib.SIP
                 HeaderType = "standard";
                 if (!value.Contains(";lr>"))
                 {
-                if (value.Contains(';'))
-                {
-                    index = value.IndexOf(';');
-                    Value = value.Substring(0, index);
-                    string tempStr = value.Substring(index + 1).Trim();
-                    foreach (string parm in tempStr.Split(';'))
+                    if (value.Contains(';'))
                     {
                         index = value.IndexOf(';');
-                        this.value = value.Substring(0, index);
-                        string temp_str = value.Substring(index + 1).Trim();
-                        foreach (string parm in temp_str.Split(';'))
+                        Value = value.Substring(0, index);
+                        string tempStr = value.Substring(index + 1).Trim();
+                        foreach (string parm in tempStr.Split(';'))
                         {
                             if (parm.Contains('='))
                             {
                                 index = parm.IndexOf('=');
-                                string parm_name = parm.Substring(0, index);
-                                string parm_value = parm.Substring(index + 1);
-                                this.attributes.Add(parm_name, parm_value);
+                                string parmName = parm.Substring(0, index);
+                                string parmValue = parm.Substring(index + 1);
+                                Attributes.Add(parmName, parmValue);
                             }
                         }
                     }
                     else
                     {
-                        this.value = value;
+                        Value = value;
                     }
                 }
                 else
@@ -156,7 +153,7 @@ namespace SIPLib.SIP
             {
                 HeaderType = "unstructured";
                 string[] parts = value.Trim().Split(' ');
-                int tempNumber;
+                int tempNumber = -1;
                 int.TryParse(parts[0], out tempNumber);
                 Number = tempNumber;
                 Method = parts[1];
@@ -179,7 +176,7 @@ namespace SIPLib.SIP
                 }
                 if (Attributes.Keys.Contains("rport"))
                 {
-                    int tempPort;
+                    int tempPort = 5060;
                     int.TryParse(Attributes["rport"], out tempPort);
                     ViaUri.port = tempPort;
                 }
@@ -200,6 +197,7 @@ namespace SIPLib.SIP
 
         public override string ToString()
         {
+            string name = this.Name.ToLower();
             StringBuilder sb = new StringBuilder();
             sb.Append(Value);
             if (HeaderType != "comma" && HeaderType != "unstructured")
@@ -235,7 +233,7 @@ namespace SIPLib.SIP
 
         public Header Dup()
         {
-            return new Header(ToString(),Name);
+            return new Header(ToString(), Name);
         }
 
         public static List<Header> CreateHeaders(string value)

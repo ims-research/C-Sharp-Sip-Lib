@@ -406,15 +406,8 @@ namespace SIPLib.SIP
 
         public static bool CanCreateDialog(Message request, Message response)
         {
-<<<<<<< HEAD
-            if (request.method.ToLower().Contains("SUBSCRIBE"))
-            {
-                System.Console.WriteLine("TEST");
-            }
-            return ((response.is2xx()) && ((request.method == "INVITE") || (request.method == "SUBSCRIBE")));
-=======
+
             return ((response.Is2xx()) && ((request.method == "INVITE") || (request.method == "SUBSCRIBE")));
->>>>>>> 856a6d9b5ee669eb178a3822dfcf9cc460520780
         }
 
         public void ReceivedRequest(Transaction transaction, Message request)
@@ -631,12 +624,7 @@ namespace SIPLib.SIP
             else return false;
 
         }
-
-<<<<<<< HEAD
-        internal void receivedRequest(Transaction t, Message message, SIPStack sipStack)
-=======
-        internal void ReceivedRequest(Transaction t, Message message, SIPStack sIPStack)
->>>>>>> 856a6d9b5ee669eb178a3822dfcf9cc460520780
+internal void ReceivedRequest(Transaction t, Message message, SIPStack sIPStack)
         {
             this.ReceivedRequest(t, message);
         }
