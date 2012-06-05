@@ -114,7 +114,7 @@ namespace SIPLib.SIP
             //}
             return temp;
         }
-        public Message CreateRequest(string method, string content = null, string contentType = null)
+        public override Message CreateRequest(string method, string content = null, string contentType = null)
         {
             Message request = base.CreateRequest(method, content, contentType);
             if (RemoteTag != "")
@@ -129,7 +129,7 @@ namespace SIPLib.SIP
             return request;
         }
 
-        public Message CreateResponse(int response_code, string response_text, string content = null, string contentType = null)
+        public override Message CreateResponse(int response_code, string response_text, string content = null, string contentType = null)
         {
             if (Servers.Count == 0)
             {
@@ -149,7 +149,7 @@ namespace SIPLib.SIP
             return response;
         }
 
-        public void SendResponse(object response, string response_text = null, string content = null, string contentType = null, bool createDialog = true)
+        public override void SendResponse(object response, string response_text = null, string content = null, string contentType = null, bool createDialog = true)
         {
             if (Servers.Count == 0)
             {
@@ -174,7 +174,7 @@ namespace SIPLib.SIP
             }
         }
 
-        public void SendCancel()
+        public override void SendCancel()
         {
             if (Clients.Count == 0)
             {
@@ -185,7 +185,7 @@ namespace SIPLib.SIP
             base.SendCancel();
         }
 
-        public void ReceivedRequest(Transaction transaction, Message request)
+        public override void ReceivedRequest(Transaction transaction, Message request)
         {
             if (RemoteSeq != 0 && request.Headers["CSeq"][0].Number < RemoteSeq)
             {
@@ -217,7 +217,7 @@ namespace SIPLib.SIP
             Stack.ReceivedRequest(this,request);
         
         }
-        public void ReceivedResponse(Transaction transaction, Message response)
+        public override void ReceivedResponse(Transaction transaction, Message response)
         {
             if (response.Is2XX() && response.Headers.ContainsKey("Contact") && transaction != null && transaction.Request.Method == "INVITE")
             {

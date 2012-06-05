@@ -120,7 +120,7 @@ namespace SIPLib.SIP
             return String.Format("<{0} call-id={1}>", type, CallID);
         }
 
-        public Message CreateRequest(string method, string content = "", string contentType = "")
+        public virtual Message CreateRequest(string method, string content = "", string contentType = "")
         {
             Server = false;
             if (RemoteParty == null)
@@ -192,7 +192,7 @@ namespace SIPLib.SIP
             return Request;
         }
 
-        public Message CreateRegister(SIPURI aor)
+        public virtual Message CreateRegister(SIPURI aor)
         {
             if (aor != null)
             {
@@ -207,7 +207,7 @@ namespace SIPLib.SIP
             return m;
         }
 
-        public void SendRequest(Message request)
+        public virtual void SendRequest(Message request)
         {
             if ((Request == null) && (request.Method == "REGISTER"))
             {
@@ -272,7 +272,7 @@ namespace SIPLib.SIP
             }
         }
 
-        public void Timeout(Transaction transaction)
+        public virtual void Timeout(Transaction transaction)
         {
             if ((transaction != null) && (transaction != Transaction))
             {
@@ -305,7 +305,7 @@ namespace SIPLib.SIP
 
         }
 
-        public void Error(Transaction t, string error)
+        public virtual void Error(Transaction t, string error)
         {
             if ((t != null) && t != Transaction)
             {
@@ -325,7 +325,7 @@ namespace SIPLib.SIP
             }
         }
 
-        public void ReceivedResponse(Transaction transaction, Message response)
+        public virtual void ReceivedResponse(Transaction transaction, Message response)
         {
             if ((transaction != null) && transaction != Transaction)
             {
@@ -398,7 +398,7 @@ namespace SIPLib.SIP
             return ((response.Is2XX()) && ((request.Method == "INVITE") || (request.Method == "SUBSCRIBE")));
         }
 
-        public void ReceivedRequest(Transaction transaction, Message request)
+        public virtual void ReceivedRequest(Transaction transaction, Message request)
         {
             if ((transaction != null) && (Transaction != null) && (transaction != Transaction) && (request.Method != "CANCEL"))
             {
@@ -407,8 +407,8 @@ namespace SIPLib.SIP
                 bool test = Transaction.TEquals(t,request,t2);
                 System.Console.WriteLine("Invalid transaction for received request {0} != {1}, {2}", transaction, Transaction,test);
                 // TODO: Re-enable this
-                //Debug.Assert(false, String.Format("Invalid transaction for received request {0} != {1}", transaction, Transaction));
-                //return;
+                Debug.Assert(false, String.Format("Invalid transaction for received request {0} != {1}", transaction, Transaction));
+                return;
             }
             this.Server = true;
             //if request.method == 'REGISTER':
@@ -461,7 +461,7 @@ namespace SIPLib.SIP
             Stack.ReceivedRequest(this, request);
         }
 
-        public void SendResponse(object response, string responseText = "", string content = "", string contentType = "", bool createDialog=true)
+        public virtual void SendResponse(object response, string responseText = "", string content = "", string contentType = "", bool createDialog = true)
         {
             Message responseMessage;
             if (Request == null)
@@ -514,7 +514,7 @@ namespace SIPLib.SIP
         }
 
 
-        public Message CreateResponse(int responseCode, string responseText, string content = null, string contentType = null)
+        public virtual Message CreateResponse(int responseCode, string responseText, string content = null, string contentType = null)
         {
             if (Request == null)
             {
@@ -533,7 +533,7 @@ namespace SIPLib.SIP
             return responseMessage;
         }
 
-        public void SendCancel()
+        public virtual void SendCancel()
         {
             if (Transaction == null)
             {
@@ -551,7 +551,7 @@ namespace SIPLib.SIP
 
         }
 
-        public bool Authenticate(Message response, Transaction transaction)
+        public virtual bool Authenticate(Message response, Transaction transaction)
         {
             Header a;
             if (response.Headers.ContainsKey("WWW-Authenticate") || response.Headers.ContainsKey("Proxy-Authenticate"))
@@ -611,7 +611,7 @@ namespace SIPLib.SIP
             }
             return false;
         }
-internal void ReceivedRequest(Transaction t, Message message, SIPStack sIPStack)
+        internal virtual void ReceivedRequest(Transaction t, Message message, SIPStack sIPStack)
         {
             ReceivedRequest(t, message);
         }

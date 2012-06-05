@@ -214,7 +214,7 @@ namespace SIPLib.SIP
             }
         }
 
-        public Message CreateAck()
+        public virtual Message CreateAck()
         {
             if (Request != null && !Server)
             {
@@ -223,7 +223,7 @@ namespace SIPLib.SIP
             return null;
         }
 
-        public Message CreateCancel()
+        public virtual Message CreateCancel()
         {
             Message m = null;
             if (Request != null && !Server)
@@ -241,7 +241,7 @@ namespace SIPLib.SIP
             return m;
         }
 
-        public Message CreateResponse(int responseCode, string responseText)
+        public virtual Message CreateResponse(int responseCode, string responseText)
         {
             Message m = null;
             if (Request != null && Server)
@@ -255,7 +255,7 @@ namespace SIPLib.SIP
             return m;
         }
 
-        public void StartTimer(string name, int timeout)
+        public virtual void StartTimer(string name, int timeout)
         {
             if (timeout > 0)
             {
@@ -273,7 +273,7 @@ namespace SIPLib.SIP
             }
         }
 
-        public void Timedout(Timer timer)
+        public virtual void Timedout(Timer timer)
         {
             if (timer.Running)
             {
@@ -296,7 +296,7 @@ namespace SIPLib.SIP
             throw new NotImplementedException("Timeout in Transaction is not implemented");
         }
 
-        public void StopTimers()
+        public virtual void StopTimers()
         {
             foreach (Timer t in Timers.Values)
             {

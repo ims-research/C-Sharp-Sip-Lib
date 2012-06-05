@@ -133,6 +133,11 @@ namespace SIPLib.SIP
 
             if (data is Message)
             {
+                int count = data.ToString().Split(new[] { "Via:" }, StringSplitOptions.None).Length - 1;
+                if (count > 2)
+                {
+                    Console.Out.WriteLine("Test");
+                }
                 Message m = (Message)data;
                 m.InsertHeader(new Header("SIPLIB","User-Agent"));
                 if (ServiceRoute != null)
@@ -254,7 +259,8 @@ namespace SIPLib.SIP
         {
             if (data.Length > 2)
             {
-                if (data.Contains("NOTIFY") && data.Contains("OpenSIPS"))
+                int count = data.Split(new []{"Via:"},StringSplitOptions.None).Length - 1;
+                if (count >2)
                 {
                     Console.Out.WriteLine("Test");
                 }
@@ -357,7 +363,7 @@ namespace SIPLib.SIP
                     }
                     else
                     {
-                        app = d.App;
+                        app = d;
                     }
 
                 }

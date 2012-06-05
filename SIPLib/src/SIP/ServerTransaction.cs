@@ -10,7 +10,11 @@
         public void Start()
         {
             State = "trying";
-            App.ReceivedRequest(this, Request,Stack);
+            if (App is Dialog)
+            {
+                ((Dialog)(App)).ReceivedRequest(this, Request);
+            }
+            else App.ReceivedRequest(this, Request);
         }
 
         public override void ReceivedRequest(Message receivedRequest)

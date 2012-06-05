@@ -46,7 +46,7 @@ namespace SIPLib.SIP
           }
         }
 
-        public string ToString()
+        public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
             sb.Append(Nettype+" ");

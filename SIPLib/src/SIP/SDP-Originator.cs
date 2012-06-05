@@ -39,7 +39,7 @@ namespace SIPLib.SIP
             }
         }
 
-        public string ToString()
+        public override string ToString()
         {
             return Username + " " + Sessionid + " " + Version + " " + Nettype + " " + Addrtype + " " + Address;
         }
