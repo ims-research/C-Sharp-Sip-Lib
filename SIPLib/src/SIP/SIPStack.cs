@@ -100,6 +100,10 @@ namespace SIPLib.SIP
 
         public void Send(object data, object dest = null, TransportInfo transport = null)
         {
+            if (data.ToString().Contains("mt@"))
+            {
+                System.Console.WriteLine("Testing");
+            }
             //send(string data, string ip,int port,Stack stack)
             string destinationHost = "";
             int destinationPort = 0;
@@ -482,11 +486,12 @@ namespace SIPLib.SIP
             }
             else if (r.Headers.ContainsKey("Record-Route") && r.Is2XX())
             {
-                ServiceRoute = r.Headers["Record-Route"];
-                foreach (Header h in ServiceRoute)
-                {
-                    h.Name = "Route";
-                }
+                // TODO: FIX This ? don't need to keep building record-route ?
+                //ServiceRoute = r.Headers["Record-Route"];
+                //foreach (Header h in ServiceRoute)
+                //{
+                //    h.Name = "Route";
+                //}
             }
 
 

@@ -368,20 +368,6 @@ namespace SIPLib.SIP
                     {
                         Message ack = dialog.CreateRequest("ACK");
                         dialog.SendRequest(ack);
-
-                        // Do we need this ?
-                        /*
-                        Header route = new Header("<sip:mo@pcscf.open-ims.test:4060;lr>", "Route");
-                        ack.insertHeader(route, false);
-                        route = new Header("<sip:mo@scscf.open-ims.test:6060;lr>", "Route");
-                        ack.insertHeader(route, true);
-                        route = new Header("<sip:mt@scscf.open-ims.test:6060;lr>", "Route");
-                        ack.insertHeader(route, true);
-                        route = new Header("<sip:mt@pcscf.open-ims.test:4060;lr>", "Route");
-                        ack.insertHeader(route, true);
-                        ack.insertHeader(new Header("\"Alice\"  <sip:alice@open-ims.test>","P-Preferred-Id entity"));
-                         */
-                        
                     }
                 }
                 else
