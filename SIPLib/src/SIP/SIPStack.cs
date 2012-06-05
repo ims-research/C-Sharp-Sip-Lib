@@ -134,6 +134,7 @@ namespace SIPLib.SIP
             if (data is Message)
             {
                 Message m = (Message)data;
+                m.InsertHeader(new Header("SIPLIB","User-Agent"));
                 if (ServiceRoute != null)
                 {
                     if (!(Utils.IsRequest(m) && (m.Method.ToLower().Contains("register"))))
@@ -253,6 +254,10 @@ namespace SIPLib.SIP
         {
             if (data.Length > 2)
             {
+                if (data.Contains("NOTIFY") && data.Contains("OpenSIPS"))
+                {
+                    Console.Out.WriteLine("Test");
+                }
                 try
                 {
                     Message m = new Message(data);
@@ -403,6 +408,8 @@ namespace SIPLib.SIP
                 }
                 if (app != null)
                 {
+                    //t = Transaction.CreateServer(app.Stack, app, app.Request, app.Stack.Transport, app.Stack.Tag);
+                    // TODO: Check app or this ?
                     t = Transaction.CreateServer(this, app, m, Transport, Tag);
                 }
                 else if (m.Method != "ACK")
@@ -445,7 +452,7 @@ namespace SIPLib.SIP
 
         public Transaction FindOtherTransactions(Message r, Transaction orig)
         {
-            return Transactions.Values.FirstOrDefault(t => (t != orig) && (Transaction.Equals(t, r, orig)));
+            return Transactions.Values.FirstOrDefault(t => (t != orig) && (Transaction.TEquals(t, r, orig)));
         }
 
         public UserAgent CreateServer(Message request, SIPURI uri) { return App.CreateServer(request, uri, this); }

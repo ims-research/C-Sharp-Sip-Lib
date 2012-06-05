@@ -361,6 +361,7 @@ namespace SIPLib.SIP
                 if (CanCreateDialog(Request, response))
                 {
                     Dialog dialog = Dialog.CreateClient(Stack, Request, response, transaction);
+                    dialog.App = this;
                     Stack.DialogCreated(dialog, this);
                     Stack.ReceivedResponse(dialog, response);
                     if ((Autoack) && (Request.Method == "INVITE"))
@@ -401,8 +402,13 @@ namespace SIPLib.SIP
         {
             if ((transaction != null) && (Transaction != null) && (transaction != Transaction) && (request.Method != "CANCEL"))
             {
-                Debug.Assert(false, String.Format("Invalid transaction for received request"));
-                return;
+                Transaction t = Transaction;
+                Transaction t2 = transaction;
+                bool test = Transaction.TEquals(t,request,t2);
+                System.Console.WriteLine("Invalid transaction for received request {0} != {1}, {2}", transaction, Transaction,test);
+                // TODO: Re-enable this
+                //Debug.Assert(false, String.Format("Invalid transaction for received request {0} != {1}", transaction, Transaction));
+                //return;
             }
             this.Server = true;
             //if request.method == 'REGISTER':

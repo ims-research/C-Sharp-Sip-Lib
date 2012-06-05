@@ -88,7 +88,12 @@ namespace SIPLib.SIP
             d.RemoteTag = response.First("To").Attributes["tag"];
             d.LocalParty = new Address(request.First("From").Value.ToString());
             d.RemoteParty = new Address(request.First("To").Value.ToString());
-            d.RemoteTarget = new SIPURI(((Address)(response.First("Contact").Value)).Uri.ToString());
+            if (response.Headers.ContainsKey("Contact"))
+            {
+                d.RemoteTarget = new SIPURI(((Address)(response.First("Contact").Value)).Uri.ToString());    
+            }
+            else d.RemoteTarget = new SIPURI(((Address)(response.First("To").Value)).Uri.ToString());    
+            
             stack.Dialogs[d.CallID] = d;
             return d;
         }

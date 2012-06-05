@@ -182,7 +182,7 @@ namespace SIPLib.SIP
         //    //throw new NotImplementedException();
         //}
 
-        public static bool Equals(Transaction t1, Message r, Transaction t2)
+        public static bool TEquals(Transaction t1, Message r, Transaction t2)
         {
             Message t = t1.Request;
             Address requestTo = (Address)(r.First("To").Value);
@@ -191,11 +191,11 @@ namespace SIPLib.SIP
             Address requestFrom = (Address)(r.First("To").Value);
             Address t1From = (Address)(t.First("To").Value);
 
-            bool a = (requestTo.Uri == t1To.Uri);
-            a = a && (requestFrom.Uri == t1From.Uri);
+            bool a = (String.Compare(requestTo.Uri.ToString(), t1To.Uri.ToString()) == 0);
+            a = a && (String.Compare(requestFrom.Uri.ToString(), t1From.Uri.ToString()) == 0);
 
             a = a && (r.First("Call-ID").Value.ToString() == t.First("Call-ID").Value.ToString());
-            a = a && (r.First("CSeq").Value.ToString() == t.First("CSeq").Value.ToString());
+            //a = a && (r.First("CSeq").Number.ToString() == t.First("CSeq").Number.ToString());
 
             a = a && (r.First("From").Attributes["tag"] == t.First("From").Attributes["tag"]);
             a = a && (t2.Server == t1.Server);
