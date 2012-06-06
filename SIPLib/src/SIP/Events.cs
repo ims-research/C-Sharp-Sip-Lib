@@ -53,11 +53,13 @@ namespace SIPLib.SIP
     {
         public string Data;
         public string[] Src;
+        public bool Sent;
 
-        public RawEventArgs(string d,string[] s)
+        public RawEventArgs(string d,string[] s, bool sent)
         {
             Data = d;
             Src = s;
+            Sent = sent;
         }
     }
 }

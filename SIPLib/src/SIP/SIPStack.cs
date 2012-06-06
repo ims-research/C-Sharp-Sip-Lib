@@ -100,11 +100,6 @@ namespace SIPLib.SIP
 
         public void Send(object data, object dest = null, TransportInfo transport = null)
         {
-            if (data.ToString().Contains("mt@"))
-            {
-                System.Console.WriteLine("Testing");
-            }
-            //send(string data, string ip,int port,Stack stack)
             string destinationHost = "";
             int destinationPort = 0;
             string finalData;
@@ -263,8 +258,7 @@ namespace SIPLib.SIP
         {
             if (data.Length > 2)
             {
-                int count = data.Split(new []{"Via:"},StringSplitOptions.None).Length - 1;
-                if (count >2)
+                if (data.Contains("401"))
                 {
                     Console.Out.WriteLine("Test");
                 }

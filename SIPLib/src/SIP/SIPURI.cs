@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -93,7 +94,7 @@ namespace SIPLib.SIP
             StringBuilder sb = new StringBuilder();
             string host;
             string user;
-            if (Scheme.ToLower() == "tel")
+            if (!String.IsNullOrEmpty(Scheme) && Scheme.ToLower() == "tel")
             {
                 user = "";
                 host = User;
@@ -103,7 +104,7 @@ namespace SIPLib.SIP
                 user = User;
                 host = Host;
             }
-            if (Scheme.Length > 0)
+            if (!String.IsNullOrEmpty(Scheme))
             {
                 sb.Append(Scheme + ":");
                 if (user.Length > 0)

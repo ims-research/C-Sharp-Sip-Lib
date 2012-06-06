@@ -131,7 +131,7 @@ namespace SIPLib.SIP
             {
                 LocalParty = new Address("\"Anonymous\" <sip:anonymous@anonymous.invalid>");
             }
-            SIPURI uri = RemoteTarget == null ? new SIPURI(RemoteParty.ToString()) : RemoteParty.Uri;
+            SIPURI uri = new SIPURI(RemoteParty.ToString());
             if (method == "REGISTER")
             {
                 uri.User = "";
