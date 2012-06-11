@@ -332,7 +332,11 @@ namespace SIPLib.SIP
                             }
                             else
                             {
-                                Send(Message.CreateResponse(481, "Dialog does not exist", null, null, m));
+                                // TODO: FIX NOTIFY ON SUBSCRIBE HANDLING
+                                if (m.Method != "NOTIFY")
+                                {
+                                    Send(Message.CreateResponse(481, "Dialog does not exist", null, null, m));
+                                }
                                 return;
                             }
                         }
@@ -364,6 +368,7 @@ namespace SIPLib.SIP
                         app = d;
                     }
 
+                    
                 }
                 else if (m.Method != "CANCEL")
                 {
