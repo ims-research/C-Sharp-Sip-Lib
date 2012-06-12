@@ -24,6 +24,8 @@ namespace SIPLib.SIP
         private List<Header> ServiceRoute { get; set; }
         private static ILog _log = LogManager.GetLogger(typeof(SIPStack));
 
+        private Dictionary<string,int> _seenNotifys = new Dictionary<string, int>();
+
         public SIPURI Uri
         {
             get
@@ -258,7 +260,7 @@ namespace SIPLib.SIP
         {
             if (data.Length > 2)
             {
-                if (data.Contains("401"))
+                if (data.Contains("2 NOTIFY"))
                 {
                     Console.Out.WriteLine("Test");
                 }
@@ -336,6 +338,28 @@ namespace SIPLib.SIP
                                 if (m.Method != "NOTIFY")
                                 {
                                     Send(Message.CreateResponse(481, "Dialog does not exist", null, null, m));
+                                    return;
+                                }
+                                else
+                                {
+                                    string branchID = m.Headers["Via"][0].Attributes["branch"];
+                                    if (_seenNotifys.ContainsKey(branchID) && _seenNotifys[branchID] > 1)
+                                    {
+                                        Send(Message.CreateResponse(481, "Dialog does not exist", null, null, m));
+                                        return;
+                                    }
+                                    else
+                                    {
+                                        if (_seenNotifys.ContainsKey(branchID))
+                                        {
+                                            _seenNotifys[branchID] = _seenNotifys[branchID] + 1;
+                                        }
+                                        else
+                                        {
+                                            _seenNotifys[branchID] = 1;
+                                        }
+                                        
+                                    }
                                 }
                                 return;
                             }

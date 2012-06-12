@@ -136,7 +136,29 @@ namespace SIPLib.SIP
                 Debug.Assert(false, String.Format("No server transaction to create response"));
                 return null;
             }
-            Message request = Servers[0].Request;
+
+
+            // TODO REMOVE THIS LOGIC
+            //string branchID = ((Message)response).First("Via").Attributes["branch"];
+            //Transaction = null;
+            //foreach (Transaction transaction in Servers)
+            //{
+            //    if (branchID == transaction.Branch)
+            //    {
+            //        Transaction = transaction;
+            //        Request = transaction.Request;
+            //    }
+            //}
+            //if (Transaction == null)
+            //{
+            //    Debug.Assert(false, String.Format("No transactions in dialog matched"));
+            //    return;
+            //}
+            if (Servers.Count > 1)
+            {
+                Console.WriteLine("Got some transaction servers");
+            }
+            Message request = Servers[Servers.Count-1].Request;
             Message response = Message.CreateResponse(response_code, response_text, null, content, request);
             if (!string.IsNullOrEmpty(contentType))
             {
@@ -156,8 +178,25 @@ namespace SIPLib.SIP
                 Debug.Assert(false, String.Format("No server transaction to create response"));
                 return;
             }
-            Transaction = Servers[0];
-            Request = Servers[0].Request;
+
+            //TODO HOW ABOUT SERVERS[SERVERS.COUNT-1]
+            string branchID = ((Message)response).First("Via").Attributes["branch"];
+            Transaction = null;
+            
+            foreach (Transaction transaction in Servers)
+            {
+                if (branchID == transaction.Branch)
+                {
+                    Transaction = transaction;
+                    Request = transaction.Request;
+                }
+            }
+            if (Transaction == null)
+                {
+                    Debug.Assert(false, String.Format("No transactions in dialog matched"));
+                    return;
+                }
+            
             base.SendResponse(response, response_text, content, contentType);
             int code = 0;
             if (response is int)
