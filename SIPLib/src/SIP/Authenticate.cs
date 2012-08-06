@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Security.Cryptography;
 using System.Diagnostics;
-using SIPLib.utils;
+using SIPLib.Utils;
 
 namespace SIPLib.SIP
 {
@@ -17,20 +17,20 @@ namespace SIPLib.SIP
             authMethod = authMethod.ToLower();
             if (authMethod.Equals("basic"))
             {
-                return "Basic realm=" + Utils.Quote(parameters.ContainsKey("realm") ? parameters["realm"] : "0");
+                return "Basic realm=" + Utils.Helpers.Quote(parameters.ContainsKey("realm") ? parameters["realm"] : "0");
             }
             if (authMethod.Equals("digest"))
             {
                 string[] predef = { "realm", "domain", "qop", "nonce", "opaque", "stale", "algorithm" };
                 string[] unquoted = { "stale", "algorithm" };
-                double time = Utils.ToUnixTime(DateTime.Now);
+                double time = Utils.Helpers.ToUnixTime(DateTime.Now);
                 Guid guid = new Guid();
                 string md5Hashstr;
                 using (MD5 md5Hash = MD5.Create())
                 {
-                    md5Hashstr = Utils.GetMd5Hash(md5Hash, time.ToString() + ":" + guid.ToString());
+                    md5Hashstr = Utils.Helpers.GetMd5Hash(md5Hash, time.ToString() + ":" + guid.ToString());
                 }
-                string nonce = Utils.Base64Encode(time.ToString() + " " + md5Hashstr);
+                string nonce = Utils.Helpers.Base64Encode(time.ToString() + " " + md5Hashstr);
                 nonce = (parameters.ContainsKey("nonce") ? parameters["nonce"] : nonce);
                 Dictionary<string, string> defaultDict = new Dictionary<string, string>
                 {
@@ -68,7 +68,7 @@ namespace SIPLib.SIP
                         sb.Append(", ");
                         sb.Append(kvp.Key);
                         sb.Append("=");
-                        sb.Append(Utils.Quote(kvp.Value));
+                        sb.Append(Utils.Helpers.Quote(kvp.Value));
                     }
                 }
                 sb.Replace("Digest , ", "Digest ");
@@ -99,7 +99,7 @@ namespace SIPLib.SIP
                     foreach (string pairs in rest.Split(','))
                     {
                         string[] sides = pairs.Trim().Split('=');
-                        ch[sides[0].ToLower().Trim()] = Utils.Unquote(sides[1].Trim());
+                        ch[sides[0].ToLower().Trim()] = Utils.Helpers.Unquote(sides[1].Trim());
                     }
                 }
                 foreach (string s in new[] { "username", "realm", "nonce", "opaque", "algorithm" })
@@ -165,7 +165,7 @@ namespace SIPLib.SIP
                         sb.Append(", ");
                         sb.Append(kvp.Key);
                         sb.Append("=");
-                        sb.Append(Utils.Quote(kvp.Value));
+                        sb.Append(Utils.Helpers.Quote(kvp.Value));
                     }
                     else
                     {
@@ -225,25 +225,25 @@ namespace SIPLib.SIP
             //}
             //else
             //{
-                return Utils.Quote(KD(H(A1), nonce + ":" + H(A2)));
+                return Utils.Helpers.Quote(KD(H(A1), nonce + ":" + H(A2)));
             //}
         }
 
         public static string Basic(Dictionary<string, string> cr)
         {
-            return Utils.Base64Encode(cr["username"] + ":" + cr["password"]);
+            return Utils.Helpers.Base64Encode(cr["username"] + ":" + cr["password"]);
         }
 
         private static string H(string input)
         {
             MD5 md5Hash = MD5.Create();
-            return Utils.GetMd5Hash(md5Hash, input);
+            return Utils.Helpers.GetMd5Hash(md5Hash, input);
         }
 
         private static string KD(string s, string d)
         {
             MD5 md5Hash = MD5.Create();
-            return Utils.GetMd5Hash(md5Hash, s + ":" + d);
+            return Utils.Helpers.GetMd5Hash(md5Hash, s + ":" + d);
         }
     }
 }

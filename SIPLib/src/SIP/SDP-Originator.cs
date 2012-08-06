@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Net;
-using SIPLib.utils;
+using SIPLib.Utils;
 
 namespace SIPLib.SIP
 {
@@ -31,8 +31,8 @@ namespace SIPLib.SIP
                 IPHostEntry ip = Dns.GetHostEntry(hostname);
                 string ipAddress = ip.ToString();
                 Username = "-";
-                Sessionid = Utils.ToUnixTime(DateTime.Now).ToString();
-                Version = Utils.ToUnixTime(DateTime.Now).ToString();
+                Sessionid = Utils.Helpers.ToUnixTime(DateTime.Now).ToString();
+                Version = Utils.Helpers.ToUnixTime(DateTime.Now).ToString();
                 Nettype = "IN";
                 Addrtype = "IP4";
                 Address = ipAddress;

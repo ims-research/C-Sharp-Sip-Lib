@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
-using SIPLib.utils;
+using SIPLib.Utils;
 
 namespace SIPLib.SIP
 {
@@ -71,22 +71,22 @@ namespace SIPLib.SIP
                 callId = requestMessage.First("Call-ID").Value.ToString();
                 cSeq = requestMessage.First("CSeq").Number.ToString();
             }
-            else if (request is Dictionary<string,string>)
+            else if (request is Dictionary<string,object>)
             {
-                Dictionary<string, string> dict = (Dictionary<string, string>)request;
-                string[] headers = dict.Values.ToArray();
-                to = headers[0];
-                from = headers[1];
-                callId = headers[2];
-                cSeq = headers[3];
+                Dictionary<string, object> dict = (Dictionary<string, object>)request;
+                object[] headers = dict.Values.ToArray();
+                to = headers[0].ToString();
+                from = headers[1].ToString();
+                callId = headers[2].ToString();
+                cSeq = headers[3].ToString();
             }
             string data = to.ToLower() + "|" + from.ToLower() + "|" + callId.ToLower() + "|" + cSeq.ToLower() + "|" + server.ToString();
             using (MD5 md5Hash = MD5.Create())
             {
-                string hash = Utils.GetMd5Hash(md5Hash, data);
+                string hash = Utils.Helpers.GetMd5Hash(md5Hash, data);
             }
             //TODO fix this ? replace data with hash ?
-            data = Utils.Base64Encode(data).Replace('=', '.');
+            data = Utils.Helpers.Base64Encode(data).Replace('=', '.');
             return "z9hG4bK" + data;
 
         }

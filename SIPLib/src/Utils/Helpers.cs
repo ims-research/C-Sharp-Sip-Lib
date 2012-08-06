@@ -6,9 +6,9 @@ using System.Security.Cryptography;
 using SIPLib.SIP;
 using log4net;
 
-namespace SIPLib.utils
+namespace SIPLib.Utils
 {
-    public static class Utils
+    public static class Helpers
     {
 
         private static ILog _log = LogManager.GetLogger(typeof(SIPStack));
@@ -57,6 +57,13 @@ namespace SIPLib.utils
         {
             byte[] decbuff = Convert.FromBase64String(str);
             return Encoding.UTF8.GetString(decbuff);
+        }
+
+        public static string RemoveAngelBrackets(string str)
+        {
+            if (str.StartsWith("<")) str = str.Remove(0, 1);
+            if (str.EndsWith(">")) str = str.Remove(str.LastIndexOf(">"), 1);
+            return str;
         }
 
         public static string GetMd5Hash(MD5 md5Hash, string input)

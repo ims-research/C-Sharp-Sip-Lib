@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Diagnostics;
-using SIPLib.utils;
+using SIPLib.Utils;
 
 namespace SIPLib.SIP
 {
@@ -250,7 +250,7 @@ namespace SIPLib.SIP
                     dest.Port = 5060;
                 }
 
-                if (Utils.IsIPv4(dest.Host))
+                if (Utils.Helpers.IsIPv4(dest.Host))
                 {
                     RemoteCandidates = new List<SIPURI> {dest};
                 }

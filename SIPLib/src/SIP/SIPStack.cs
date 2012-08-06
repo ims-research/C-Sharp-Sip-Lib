@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Diagnostics;
-using SIPLib.utils;
+using SIPLib.Utils;
 using log4net;
 
 namespace SIPLib.SIP
@@ -143,7 +143,7 @@ namespace SIPLib.SIP
                 m.InsertHeader(new Header("SIPLIB","User-Agent"));
                 if (ServiceRoute != null)
                 {
-                    if (!(Utils.IsRequest(m) && (m.Method.ToLower().Contains("register"))))
+                    if (!(Utils.Helpers.IsRequest(m) && (m.Method.ToLower().Contains("register"))))
                     {
                         if (m.Headers.ContainsKey("Route"))
                         {
@@ -260,9 +260,9 @@ namespace SIPLib.SIP
         {
             if (data.Length > 2)
             {
-                if (data.Contains("2 NOTIFY"))
+                if (data.Contains("200 OK") && data.Contains("CSeq:  1 SUBSCRIBE"))
                 {
-                    Console.Out.WriteLine("Test");
+                    _log.Debug(new Message(data));
                 }
                 try
                 {
@@ -530,6 +530,11 @@ namespace SIPLib.SIP
             {
                 if ((method == "INVITE") && (r.Is2XX()))
                 {
+                    _log.Debug("Looking for dialog with ID " + Dialog.ExtractID(r));
+                    foreach (KeyValuePair<string, Dialog> keyValuePair in Dialogs)
+                    {
+                        _log.Debug("Current Dialogs " + keyValuePair.Key);
+                    }
                     Dialog d = FindDialog(r);
                     if (d == null)
                     {

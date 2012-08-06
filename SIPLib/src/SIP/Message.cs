@@ -170,7 +170,7 @@ namespace SIPLib.SIP
                 m = Protocol + " " + ResponseCode.ToString() + " " + ResponseText + "\r\n";
             }
             string contentLength = "";
-            foreach (List<Header> headers in this.Headers.Values)
+            foreach (List<Header> headers in this.Headers.Values.ToList())
             {
                 if (headers.First().Name == "Via")
                 {

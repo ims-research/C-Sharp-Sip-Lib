@@ -69,7 +69,7 @@
     <Compile Include="src\SIP\Transaction.cs" />
     <Compile Include="src\SIP\TransportInfo.cs" />
     <Compile Include="src\SIP\UserAgent.cs" />
-    <Compile Include="src\utils\Utils.cs" />
+    <Compile Include="src\Utils\Helpers.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
