@@ -51,7 +51,7 @@ namespace SIPLib.SIP
             }
             Transaction = null;
             CancelRequest = null;
-            if ((request != null) && (request.Headers.ContainsKey("Call-Id")))
+            if ((request != null) && (request.Headers.ContainsKey("Call-ID")))
             {
                 CallID = (string)request.Headers["Call-ID"][0].Value;
             }
