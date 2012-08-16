@@ -102,7 +102,11 @@ namespace SIPLib.SIP
                         }
                         else
                         {
-                            obj.OtherAttributes.Add(k, currentObject);
+                            if (!obj.OtherAttributes.ContainsKey(k))
+                            {
+                                obj.OtherAttributes.Add(k, currentObject);
+                            }
+                            
                             //TODO HANDLE multiple attributes of the same type;
                             //if (obj.properties.ContainsKey(k))
                             //{

@@ -22,6 +22,8 @@ namespace SIPLib.SIP
 
         private SIPURI _uri = null;
         private List<Header> ServiceRoute { get; set; }
+        private List<Header> InviteRecordRoute { get; set; }
+
         private static ILog _log = LogManager.GetLogger(typeof(SIPStack));
 
         private Dictionary<string,int> _seenNotifys = new Dictionary<string, int>();
@@ -45,7 +47,7 @@ namespace SIPLib.SIP
             Transport = app.Transport;
             App = app;
             App.ReceivedDataEvent += TransportReceivedDataEvent;
-
+            Dialogs = new Dictionary<string, Dialog>();
             app.Stack = this;
         }
 
@@ -165,7 +167,16 @@ namespace SIPLib.SIP
                         }
                         else
                         {
-                            m.Headers.Add("Route",ServiceRoute);
+                            if ((Utils.Helpers.IsRequest(m) && (m.Method.ToLower().Contains("bye")))
+                            {
+                                m.Headers.Add("Route", InviteRecordRoute);
+                            }
+                            else
+                            {
+                                m.Headers.Add("Route", ServiceRoute);
+                            }
+                            //m.Headers.Add("Route",rec);
+                            
                         }
                     }
                 }
@@ -510,11 +521,11 @@ namespace SIPLib.SIP
             else if (r.Headers.ContainsKey("Record-Route") && r.Is2XX())
             {
                 // TODO: FIX This ? don't need to keep building record-route ?
-                //ServiceRoute = r.Headers["Record-Route"];
-                //foreach (Header h in ServiceRoute)
-                //{
-                //    h.Name = "Route";
-                //}
+                InviteRecordRoute = r.Headers["Record-Route"];
+                foreach (Header h in InviteRecordRoute)
+                {
+                    h.Name = "Route";
+                }
             }
 
 

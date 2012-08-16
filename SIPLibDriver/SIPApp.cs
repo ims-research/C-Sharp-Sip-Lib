@@ -3,7 +3,7 @@ using System.Text;
 using System.Net;
 using System.Net.Sockets;
 using SIPLib.SIP;
-using SIPLib.utils;
+using SIPLib.Utils;
 using log4net;
 using SIPLib;
 
