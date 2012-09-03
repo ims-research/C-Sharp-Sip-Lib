@@ -55,7 +55,8 @@ namespace SIPLib.SIP
             Dialog d = new Dialog(stack, request, true) {Request = request};
             if (request.Headers.ContainsKey("Record-Route"))
             {
-                d.RouteSet = request.Headers["Record-Route"];
+                // TODO: Fix copying of Record-Route
+                //d.RouteSet = request.Headers["Record-Route"];
             }
             // TODO: Handle multicast addresses
             // TODO: Handle tls / secure sip
@@ -78,8 +79,9 @@ namespace SIPLib.SIP
             Dialog d = new Dialog(stack, request, false) {Request = request};
             if (request.Headers.ContainsKey("Record-Route"))
             {
-                d.RouteSet = request.Headers["Record-Route"];
-                d.RouteSet.Reverse();
+                // TODO: Fix RouteSet / Record-Route
+                //d.RouteSet = request.Headers["Record-Route"];
+                //d.RouteSet.Reverse();
             }
             d.LocalSeq = request.First("CSeq").Number;
             d.RemoteSeq = 0;

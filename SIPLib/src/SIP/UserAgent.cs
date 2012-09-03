@@ -131,7 +131,17 @@ namespace SIPLib.SIP
             {
                 LocalParty = new Address("\"Anonymous\" <sip:anonymous@anonymous.invalid>");
             }
-            SIPURI uri = new SIPURI(RemoteParty.ToString());
+            //TODO: Use Remote Party instead of Remote Target?
+            SIPURI uri;
+            if (RemoteTarget != null)
+            {
+                uri = new SIPURI(RemoteTarget.ToString());
+            }
+            else
+            {
+                uri = new SIPURI(RemoteParty.ToString());
+            }
+           
             if (method == "REGISTER")
             {
                 uri.User = "";
@@ -140,7 +150,17 @@ namespace SIPLib.SIP
             {
                 LocalSeq = ++LocalSeq;
             }
-            Header to = new Header(RemoteParty.ToString(), "To");
+            //TODO: Use Remote Party instead of Remote Target?
+            Header to;
+            if (RemoteTarget != null)
+            {
+                 to = new Header(RemoteTarget.ToString(), "To");
+            }
+            else
+            {
+                to = new Header(RemoteParty.ToString(), "To");
+            }
+            
             Header from = new Header(LocalParty.ToString(), "From");
             from.Attributes["tag"] = LocalTag;
             Header cSeq = new Header(LocalSeq + " " + method, "CSeq");

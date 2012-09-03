@@ -136,12 +136,13 @@ namespace SIPLib.SIP
 
             if (data is Message)
             {
-                int count = data.ToString().Split(new[] { "Via:" }, StringSplitOptions.None).Length - 1;
-                if (count > 2)
-                {
-                    Console.Out.WriteLine("Test");
-                }
                 Message m = (Message)data;
+                //TODO: Fix stripping of record-route
+                if (m.Headers.ContainsKey("Record-Route")) m.Headers.Remove("Record-Route");
+                //if (!Helpers.IsRequest(m) && m.Is2XX() && m.First("CSeq").Method.Contains("INVITE"))
+                //{
+                //    m.Headers.Remove("Record-Route");
+                //}
                 m.InsertHeader(new Header("SIPLIB","User-Agent"));
                 if (ServiceRoute != null)
                 {
@@ -167,9 +168,16 @@ namespace SIPLib.SIP
                         }
                         else
                         {
-                            if ((Utils.Helpers.IsRequest(m) && (m.Method.ToLower().Contains("bye")))
+                            if ((Utils.Helpers.IsRequest(m) && (m.Method.ToLower().Contains("bye"))))
                             {
-                                m.Headers.Add("Route", InviteRecordRoute);
+                                //m.Headers.Add("Route", InviteRecordRoute);
+                                List<Header> headers = new List<Header>();
+                                //headers.Add(new Header("<sip:mo@pcscf.open-ims.test:4060;lr>", "Route"));
+                                //headers.Add(new Header("<sip:mo@scscf.open-ims.test:6060;lr>", "Route"));
+                                //headers.Add(new Header("<sip:mt@scscf.open-ims.test:6060;lr>", "Route"));
+                                //headers.Add(new Header("<sip:mt@pcscf.open-ims.test:4060;lr>", "Route"));
+                                //m.Headers.Add("Route",headers);
+
                             }
                             else
                             {
