@@ -8,6 +8,7 @@ namespace SIPLib.SIP
     {
         public List<Transaction> Servers { get; set; }
         public List<Transaction> Clients { get; set; }
+        private List<Header> InviteRecordRoute { get; set; }
         private string _id;
         public string ID
         {
@@ -55,8 +56,11 @@ namespace SIPLib.SIP
             Dialog d = new Dialog(stack, request, true) {Request = request};
             if (request.Headers.ContainsKey("Record-Route"))
             {
-                // TODO: Fix copying of Record-Route
-                //d.RouteSet = request.Headers["Record-Route"];
+                d.RouteSet = request.Headers["Record-Route"];
+                foreach (Header h in d.RouteSet)
+                {
+                    h.Name = "Route";
+                }
             }
             // TODO: Handle multicast addresses
             // TODO: Handle tls / secure sip
@@ -77,11 +81,14 @@ namespace SIPLib.SIP
         public static Dialog CreateClient(SIPStack stack, Message request, Message response, Transaction transaction)
         {
             Dialog d = new Dialog(stack, request, false) {Request = request};
-            if (request.Headers.ContainsKey("Record-Route"))
+            if (response.Headers.ContainsKey("Record-Route"))
             {
-                // TODO: Fix RouteSet / Record-Route
-                //d.RouteSet = request.Headers["Record-Route"];
-                //d.RouteSet.Reverse();
+                d.RouteSet = response.Headers["Record-Route"];
+                d.RouteSet.Reverse();
+                foreach (Header h in d.RouteSet)
+                {
+                    h.Name = "Route";
+                }
             }
             d.LocalSeq = request.First("CSeq").Number;
             d.RemoteSeq = 0;
@@ -95,7 +102,6 @@ namespace SIPLib.SIP
                 d.RemoteTarget = new SIPURI(((Address)(response.First("Contact").Value)).Uri.ToString());    
             }
             else d.RemoteTarget = new SIPURI(((Address)(response.First("To").Value)).Uri.ToString());    
-            
             stack.Dialogs[d.CallID] = d;
             return d;
         }
@@ -125,9 +131,18 @@ namespace SIPLib.SIP
             }
             if (RouteSet !=null && RouteSet.Count > 0 && !RouteSet[0].Value.ToString().Contains("lr"))
             {
+                //TODO: Check this RouteSet
                 request.Uri = new SIPURI((string)(RouteSet[0].Value));
                 request.Uri.Parameters.Remove("lr");
             }
+            //if (RouteSet.Count > 0)
+            //{
+            //    request.Headers["Route"] = this.RouteSet;
+            //    foreach (Header h in request.Headers["Route"])
+            //    {
+            //        h.Name = "Route";
+            //    }
+            //}
             return request;
         }
 
@@ -287,7 +302,6 @@ namespace SIPLib.SIP
             if (Autoack && response.Is2XX() && (transaction != null && transaction.Request.Method == "INVITE" || response.First("CSeq").Method == "INVITE"))
             {
                 Message ack = CreateRequest("ACK");
-                
                 SendRequest(ack);
             }
 

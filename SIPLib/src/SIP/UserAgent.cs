@@ -387,11 +387,16 @@ namespace SIPLib.SIP
                     if ((Autoack) && (Request.Method == "INVITE"))
                     {
                         Message ack = dialog.CreateRequest("ACK");
-                        if (response.Headers.ContainsKey("Record-Route"))
-                        {
-                            ack.Headers["Route"] = response.Headers["Record-Route"];
-                            ack.Headers["Route"].Reverse();
-                        }
+                        // TODO: Check dialog RouteSet creation (the manual hack below works)
+                        //if (response.Headers.ContainsKey("Record-Route"))
+                        //{
+                        //    ack.Headers["Route"] = response.Headers["Record-Route"];
+                        //    ack.Headers["Route"].Reverse();
+                        //foreach (Header h in Headers["Route"])
+                        //{
+                        //    h.Name = "Route";
+                        //}
+                        //}
                         dialog.SendRequest(ack);
                     }
                 }

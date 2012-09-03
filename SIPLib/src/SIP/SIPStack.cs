@@ -22,7 +22,7 @@ namespace SIPLib.SIP
 
         private SIPURI _uri = null;
         private List<Header> ServiceRoute { get; set; }
-        private List<Header> InviteRecordRoute { get; set; }
+        
 
         private static ILog _log = LogManager.GetLogger(typeof(SIPStack));
 
@@ -486,11 +486,11 @@ namespace SIPLib.SIP
             else if (r.Headers.ContainsKey("Record-Route") && r.Is2XX())
             {
                 // TODO: FIX This ? don't need to keep building record-route ?
-                InviteRecordRoute = r.Headers["Record-Route"];
-                foreach (Header h in InviteRecordRoute)
-                {
-                    h.Name = "Route";
-                }
+                //InviteRecordRoute = r.Headers["Record-Route"];
+                //foreach (Header h in InviteRecordRoute)
+                //{
+                //    h.Name = "Route";
+                //}
             }
 
 
