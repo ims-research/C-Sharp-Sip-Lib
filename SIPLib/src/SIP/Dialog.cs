@@ -286,7 +286,9 @@ namespace SIPLib.SIP
 
             if (Autoack && response.Is2XX() && (transaction != null && transaction.Request.Method == "INVITE" || response.First("CSeq").Method == "INVITE"))
             {
-                SendRequest(CreateRequest("ACK"));
+                Message ack = CreateRequest("ACK");
+                
+                SendRequest(ack);
             }
 
         }

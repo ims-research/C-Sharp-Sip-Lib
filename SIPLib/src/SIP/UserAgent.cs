@@ -387,6 +387,11 @@ namespace SIPLib.SIP
                     if ((Autoack) && (Request.Method == "INVITE"))
                     {
                         Message ack = dialog.CreateRequest("ACK");
+                        if (response.Headers.ContainsKey("Record-Route"))
+                        {
+                            ack.Headers["Route"] = response.Headers["Record-Route"];
+                            ack.Headers["Route"].Reverse();
+                        }
                         dialog.SendRequest(ack);
                     }
                 }
@@ -493,7 +498,7 @@ namespace SIPLib.SIP
                 if (!responseMessage.Headers.ContainsKey("Contact"))
                 {
                     Address contact = new Address(Contact.ToString());
-                    if (contact.Uri.User.Length == 0)
+                    if (contact.Uri.User.Length != 0)
                     {
                         contact.Uri.User = ((Address)Request.First("To").Value).Uri.User;
                         responseMessage.InsertHeader(new Header(contact.ToString(), "Contact"));

@@ -143,71 +143,28 @@ namespace SIPLib.SIP
                 //{
                 //    m.Headers.Remove("Record-Route");
                 //}
-                m.InsertHeader(new Header("SIPLIB","User-Agent"));
-                if (ServiceRoute != null)
+                if (Utils.Helpers.IsRequest(m) && m.Method == "ACK")
                 {
-                    if (!(Utils.Helpers.IsRequest(m) && (m.Method.ToLower().Contains("register"))))
-                    {
-                        if (m.Headers.ContainsKey("Route"))
-                        {
-                            bool found = false;
-                            foreach (Header routeHeader in ServiceRoute)
-                            {
-                                foreach (Header messageHeader in m.Headers["Route"])
-                                {
-                                    if (messageHeader.ToString().ToLower().CompareTo(routeHeader.ToString().ToLower()) == 0)
-                                    {
-                                        found = true;
-                                    }
-                                }
-                                if (!found)
-                                {
-                                    m.Headers["Route"].Add(routeHeader);
-                                }
-                            }
-                        }
-                        else
-                        {
-                            if ((Utils.Helpers.IsRequest(m) && (m.Method.ToLower().Contains("bye"))))
-                            {
-                                //m.Headers.Add("Route", InviteRecordRoute);
-                                List<Header> headers = new List<Header>();
-                                //headers.Add(new Header("<sip:mo@pcscf.open-ims.test:4060;lr>", "Route"));
-                                //headers.Add(new Header("<sip:mo@scscf.open-ims.test:6060;lr>", "Route"));
-                                //headers.Add(new Header("<sip:mt@scscf.open-ims.test:6060;lr>", "Route"));
-                                //headers.Add(new Header("<sip:mt@pcscf.open-ims.test:4060;lr>", "Route"));
-                                //m.Headers.Add("Route",headers);
-
-                            }
-                            else
-                            {
-                                m.Headers.Add("Route", ServiceRoute);
-                            }
-                            //m.Headers.Add("Route",rec);
-                            
-                        }
-                    }
+                    _log.Info("Sending ACK");
                 }
+                m.InsertHeader(new Header("SIPLIB","User-Agent"));
                 if (m.Headers.ContainsKey("Route"))
                 {
-                    bool found = false;
-                    foreach (Header h in m.Headers["Route"])
-                    {
-                        if (ProxyHost != null && h.ToString().Contains(ProxyHost))
-                        {
-                            found = true;
-                        }
-                        
-                    }
-                    if (!found)
-                    {
-                        m.InsertHeader(new Header("<sip:" + ProxyHost + ":" + ProxyPort + ">", "Route"), "insert");
-                    }
-                    
+
                 }
                 else
                 {
-                    m.InsertHeader(new Header("<sip:"+ProxyHost+":"+ProxyPort+">", "Route"));
+                    if (ServiceRoute != null)
+                    {
+                        if (!(Utils.Helpers.IsRequest(m) && (m.Method.ToLower().Contains("register"))))
+                        {
+                            m.Headers["Route"] = ServiceRoute;
+                        }
+                    }
+                    else
+                    {
+                        m.InsertHeader(new Header("<sip:" + ProxyHost + ":" + ProxyPort + ">", "Route"));
+                    }
                 }
                 if (!string.IsNullOrEmpty(m.Method))
                 {
