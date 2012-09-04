@@ -144,7 +144,8 @@ namespace SIPLib.SIP
            
             if (method == "REGISTER")
             {
-                uri.User = "";
+                //TODO: Is this right ?
+                //uri.User = "";
             }
             if ((method != "ACK") && (method != "CANCEL"))
             {

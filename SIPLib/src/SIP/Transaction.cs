@@ -88,7 +88,6 @@ namespace SIPLib.SIP
             //TODO fix this ? replace data with hash ?
             data = Utils.Helpers.Base64Encode(data).Replace('=', '.');
             return "z9hG4bK" + data;
-
         }
 
         public static string CreateId(string branch, string method)

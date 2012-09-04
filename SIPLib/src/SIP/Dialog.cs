@@ -101,8 +101,15 @@ namespace SIPLib.SIP
             {
                 d.RemoteTarget = new SIPURI(((Address)(response.First("Contact").Value)).Uri.ToString());    
             }
-            else d.RemoteTarget = new SIPURI(((Address)(response.First("To").Value)).Uri.ToString());    
-            stack.Dialogs[d.CallID] = d;
+            else d.RemoteTarget = new SIPURI(((Address)(response.First("To").Value)).Uri.ToString());
+            try
+            {
+                stack.Dialogs[d.CallID] = d;
+            }
+            catch (Exception)
+            {
+                Debug.Assert(false,"Error assiging callID to stack dialog list");
+            }
             return d;
         }
 
@@ -197,7 +204,17 @@ namespace SIPLib.SIP
             }
 
             //TODO HOW ABOUT SERVERS[SERVERS.COUNT-1]
-            string branchID = ((Message)response).First("Via").Attributes["branch"];
+            string branchID = "z9hG4bK" + "ERROR";
+            try
+            {
+                branchID = ((Message)response).First("Via").Attributes["branch"];
+            }
+            catch (Exception)
+            {
+                Debug.Assert(false,"Error trying to convert response object into Message");
+                return;
+            }
+            
             Transaction = null;
             
             foreach (Transaction transaction in Servers)
