@@ -5,7 +5,6 @@ using System.Net.Sockets;
 using SIPLib.SIP;
 using SIPLib.Utils;
 using log4net;
-using SIPLib;
 
 namespace SIPLibDriver
 {
@@ -61,7 +60,7 @@ namespace SIPLibDriver
                 string remote_port = ((IPEndPoint)sendEP).Port.ToString();
                 if (this.ReceivedDataEvent != null)
                 {
-                    this.ReceivedDataEvent(this, new RawEventArgs(data, new string[] { remote_host, remote_port }));
+                    this.ReceivedDataEvent(this, new RawEventArgs(data, new string[] { remote_host, remote_port },false));
                 }
                 this.Transport.Socket.BeginReceiveFrom(this.TempBuffer, 0, this.TempBuffer.Length, SocketFlags.None, ref sendEP, new AsyncCallback(this.ReceiveDataCB), sendEP);
         }
@@ -98,7 +97,7 @@ namespace SIPLibDriver
 
         public override void Sending(UserAgent ua, Message message, SIPStack stack)
         {
-            if (Utils.IsRequest(message))
+            if (Helpers.IsRequest(message))
             {
                 _log.Info("Sending request with method " + message.Method);
             }
