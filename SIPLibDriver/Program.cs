@@ -13,7 +13,7 @@ namespace SIPLibDriver
             SIPStack myStack = new SIPStack(app) {Uri = {User = "alice"}};
             if (proxyIp != null)
             {
-                myStack.ProxyHost = "192.168.0.7";
+                myStack.ProxyHost = proxyIp;
                 myStack.ProxyPort = (proxyPort == -1) ? 5060 : proxyPort;
             }
             return myStack;
