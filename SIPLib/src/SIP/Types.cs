@@ -14,7 +14,7 @@
 
     public enum CallState
     {
-        Starting, Calling, Ringing, Queued, WaitingForAccept, Active, Ending, Ended
+        Starting, Calling, Ringing, Queued, WaitingForAccept, Active, Ending, Ended, Inactive
     }
     public class Types
     {

@@ -262,7 +262,8 @@ namespace SIPLib.SIP
         {
             if (RemoteSeq != 0 && request.Headers["CSeq"][0].Number < RemoteSeq)
             {
-                SendResponse(500, "Internal server error - invalid CSeq");
+                Message m = transaction.CreateResponse(500, "Internal server error - invalid CSeq");
+                SendResponse(m);
                 Debug.Assert(false, String.Format("Dialog.receivedRequest() CSeq is old {0} < {1}", request.Headers["CSeq"][0].Number, RemoteSeq));
                 return;
             }
