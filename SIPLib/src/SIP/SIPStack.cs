@@ -236,7 +236,7 @@ namespace SIPLib.SIP
         {
             if (data.Length > 2)
             {
-                if (data.Contains("200 OK") && data.Contains("CSeq:  1 SUBSCRIBE"))
+                if (data.Contains("INVITE") && data.Contains("CSeq:  1 INVITE"))
                 {
                     _log.Debug(new Message(data));
                 }

@@ -253,6 +253,10 @@ namespace SIPLib.SIP
             {
                 headers.AddRange(value.Split(',').Select(part => new Header(part.Trim(), name)));
             }
+            else if (name == "Route" && value.Contains(","))
+            {
+                headers.AddRange(value.Split(',').Select(part => new Header(part.Trim(), name)));
+            }
             else
             {
                 headers.Add(new Header(value.Trim(), name));

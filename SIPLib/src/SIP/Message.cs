@@ -335,6 +335,11 @@ namespace SIPLib.SIP
                 m.Headers["CSeq"] = originalRequest.Headers["CSeq"];
                 m.Headers["Call-ID"] = originalRequest.Headers["Call-ID"];
                 m.Headers["Via"] = originalRequest.Headers["Via"];
+                if (originalRequest.Headers.ContainsKey("Route"))
+                {
+                    m.Headers["Route"] = originalRequest.Headers["Route"];
+                }
+
                 if (responseCode == 100 && m.Headers.ContainsKey("Timestamp"))
                 {
                     m.Headers["Timestamp"] = originalRequest.Headers["Timestamp"];
