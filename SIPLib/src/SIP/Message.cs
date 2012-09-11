@@ -337,7 +337,7 @@ namespace SIPLib.SIP
                 m.Headers["Via"] = originalRequest.Headers["Via"];
                 if (originalRequest.Headers.ContainsKey("Route"))
                 {
-                    m.Headers["Route"] = originalRequest.Headers["Route"];
+                    //m.Headers["Route"] = originalRequest.Headers["Route"];
                 }
 
                 if (responseCode == 100 && m.Headers.ContainsKey("Timestamp"))

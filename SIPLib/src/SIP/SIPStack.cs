@@ -138,7 +138,7 @@ namespace SIPLib.SIP
             {
                 Message m = (Message)data;
                 //TODO: Fix stripping of record-route
-                if (m.Headers.ContainsKey("Record-Route")) m.Headers.Remove("Record-Route");
+                //if (m.Headers.ContainsKey("Record-Route")) m.Headers.Remove("Record-Route");
                 //if (!Helpers.IsRequest(m) && m.Is2XX() && m.First("CSeq").Method.Contains("INVITE"))
                 //{
                 //    m.Headers.Remove("Record-Route");
@@ -156,7 +156,7 @@ namespace SIPLib.SIP
                 {
                     if (ServiceRoute != null)
                     {
-                        if (!(Utils.Helpers.IsRequest(m) && (m.Method.ToLower().Contains("register"))))
+                        if (!(Utils.Helpers.IsRequest(m) && ((m.Method.ToLower().Contains("register")||(m.Method.ToLower().Contains("ack"))))))
                         {
                             m.Headers["Route"] = ServiceRoute;
                         }
