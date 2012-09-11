@@ -72,13 +72,18 @@ namespace SIPLib.SIP
                         string pt = split[0];
                         string[] rest = split[1].Split("/".ToCharArray(), 2);
                         string name = rest[0];
-
-                        string[] final = rest[1].Split("/".ToCharArray(), 2);
-                        string rate = final[0];
+                        string rate = null;
                         string paramaters = null;
-                        if (final.Length > 1)
+                        if (rest.Length > 1)
                         {
-                            paramaters = final[1];
+                            string[] final = rest[1].Split("/".ToCharArray(), 2);
+                            rate = final[0];
+
+                            paramaters = null;
+                            if (final.Length > 1)
+                            {
+                                paramaters = final[1];
+                            }
                         }
 
                         foreach (SDPMediaFormat f in obj.Mediaformats)
@@ -86,7 +91,10 @@ namespace SIPLib.SIP
                             if (f.Pt == pt)
                             {
                                 f.Name = name;
-                                f.Rate = rate;
+                                if (rate != null)
+                                {
+                                    f.Rate = rate;
+                                }
                                 if (paramaters != null)
                                 {
                                     f.Parameters = paramaters;
