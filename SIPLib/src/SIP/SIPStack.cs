@@ -156,7 +156,7 @@ namespace SIPLib.SIP
                 {
                     if (ServiceRoute != null)
                     {
-                        if (!(Utils.Helpers.IsRequest(m) && ((m.Method.ToLower().Contains("register")||(m.Method.ToLower().Contains("ack"))))))
+                        if (!(Utils.Helpers.IsRequest(m) && ((m.Method.ToLower().Contains("register")||(m.Method.ToLower().Contains("ack")||(m.Method.ToLower().Contains("bye")))))))
                         {
                             m.Headers["Route"] = ServiceRoute;
                         }
