@@ -19,6 +19,8 @@ namespace SIPLib.SIP
         public string Protocol { get; set; }
         public string Method { get; set; }
         private string _body = "";
+        public bool had_lr;
+
         public string Body
         {
             get
@@ -206,7 +208,11 @@ namespace SIPLib.SIP
 
         public Header First(string name)
         {
-            return Headers[name][0];
+            if (Headers.ContainsKey(name))
+            {
+                return Headers[name][0];
+            }
+            else return null;
         }
         public Message Dup()
         {

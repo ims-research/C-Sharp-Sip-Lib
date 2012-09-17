@@ -27,10 +27,10 @@ namespace SIPLibDriver
         static void Main(string[] args)
         {
             //TransportInfo local_transport = createTransport(Utils.get_local_ip(), 5060);
-            TransportInfo localTransport = CreateTransport("192.168.0.5", 5060);
+            TransportInfo localTransport = CreateTransport("192.168.20.28", 6060);
             SIPApp app = new SIPApp(localTransport);
-            SIPStack stack = CreateStack(app,"192.168.0.7", 4060);
-            app.Register("sip:alice@open-ims.test");
+            SIPStack stack = CreateStack(app,"192.168.20.28", 5060);
+            app.Register("sip:r@192.168.20.28");
             Console.ReadKey();
             app.Invite("bob@open-ims.test");
             Console.ReadKey();
