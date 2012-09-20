@@ -2,6 +2,7 @@
 using SIPLib;
 using System.Net;
 using SIPLib.SIP;
+using SIPLib.Utils;
 
 namespace SIPLibDriver
 {
@@ -26,11 +27,11 @@ namespace SIPLibDriver
 
         static void Main(string[] args)
         {
-            //TransportInfo local_transport = createTransport(Utils.get_local_ip(), 5060);
-            TransportInfo localTransport = CreateTransport("192.168.20.28", 6060);
+            TransportInfo localTransport = CreateTransport(Helpers.GetLocalIP(), 3420);
+            //TransportInfo localTransport = CreateTransport("192.168.20.28", 8989);
             SIPApp app = new SIPApp(localTransport);
-            SIPStack stack = CreateStack(app,"192.168.20.28", 5060);
-            app.Register("sip:r@192.168.20.28");
+            SIPStack stack = CreateStack(app,"192.168.20.248", 9000);
+            app.Register("sip:alice@open-ims.test");
             Console.ReadKey();
             app.Invite("bob@open-ims.test");
             Console.ReadKey();

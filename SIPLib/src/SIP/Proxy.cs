@@ -7,9 +7,9 @@ using SIPLib.SIP;
 
 namespace SIPLib.src.SIP
 {
-    internal class Proxy : UserAgent
+    public class Proxy : UserAgent
     {
-        private List<ProxyBranch> _branches;
+        private List<ProxyBranch> _branches = new List<ProxyBranch>();
 
         public Proxy(SIPStack stack, Message request, bool server)
             : base(stack, request, server)
@@ -26,6 +26,10 @@ namespace SIPLib.src.SIP
 
         public override void ReceivedRequest(Transaction transaction, Message request)
         {
+            try
+            {
+
+            
             if ((transaction != null) && Transaction != null && Transaction != transaction &&
                 request.Method.ToUpper() != "CANCEL")
             {
@@ -38,7 +42,7 @@ namespace SIPLib.src.SIP
                 return;
             }
 
-            if (request.First("Max-Forwards") != null && ((int) (request.First("Max-Forwards").Value) < 0))
+            if (request.First("Max-Forwards") != null && int.Parse(request.First("Max-Forwards").Value.ToString()) < 0)
             {
                 SendResponse(483, "Too many hops");
                 return;
@@ -112,6 +116,11 @@ namespace SIPLib.src.SIP
                 request.had_lr = true;
             }
             Stack.ReceivedRequest(this, request);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public bool IsLocal(SIPURI uri)
@@ -324,6 +333,10 @@ namespace SIPLib.src.SIP
                 else
                 {
                     response.Headers["Via"].RemoveAt(0);
+                    if (response.Headers["Via"].Count <=0)
+                    {
+                        response.Headers.Remove("Via");
+                    }
                     SendResponse(response);
                 }
             }

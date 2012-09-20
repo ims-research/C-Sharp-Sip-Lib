@@ -162,6 +162,15 @@ namespace SIPLib.SIP
 
         public override string ToString()
         {
+            foreach (KeyValuePair<string, List<Header>> keyValuePair in Headers.ToList())
+            {
+                if (keyValuePair.Value.Count <= 0)
+                {
+                    Headers.Remove(keyValuePair.Key);
+                }
+            }
+            try
+            {
             string m = "";
             if (Method != null)
             {
@@ -174,6 +183,9 @@ namespace SIPLib.SIP
             string contentLength = "";
             foreach (List<Header> headers in this.Headers.Values.ToList())
             {
+                
+                try
+                {
                 if (headers.First().Name == "Via")
                 {
                     m = m + HandleVia(headers);
@@ -196,6 +208,11 @@ namespace SIPLib.SIP
                         else m = m + current;
                     }
                 }
+                }
+                catch (Exception ex)
+                {
+                    Debug.Assert(false, String.Format("Error converting message to string {0}", ex.Message));
+                }
             }
             m = m + contentLength;
             m = m + "\r\n";
@@ -204,6 +221,12 @@ namespace SIPLib.SIP
                 m = m + Body;
             }
             return m;
+            }
+            catch (Exception ex)
+            {
+                Debug.Assert(false, String.Format("Error converting message to string {0}", ex.Message));
+            }
+            return "Error converting Message";
         }
 
         public Header First(string name)
@@ -343,7 +366,8 @@ namespace SIPLib.SIP
                 m.Headers["Via"] = originalRequest.Headers["Via"];
                 if (originalRequest.Headers.ContainsKey("Route"))
                 {
-                    //m.Headers["Route"] = originalRequest.Headers["Route"];
+                    //Todo check this
+                    m.Headers["Route"] = originalRequest.Headers["Route"];
                 }
 
                 if (responseCode == 100 && m.Headers.ContainsKey("Timestamp"))
