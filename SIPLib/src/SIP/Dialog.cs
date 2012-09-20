@@ -195,7 +195,7 @@ namespace SIPLib.SIP
             return response;
         }
 
-        public override void SendResponse(object response, string response_text = null, string content = null, string contentType = null, bool createDialog = true)
+        public override void SendResponse(object response, string responseText = null, string content = null, string contentType = null, bool createDialog = true)
         {
             if (Servers.Count == 0)
             {
@@ -231,7 +231,7 @@ namespace SIPLib.SIP
                     return;
                 }
             
-            base.SendResponse(response, response_text, content, contentType);
+            base.SendResponse(response, responseText, content, contentType);
             int code = 0;
             if (response is int)
             {

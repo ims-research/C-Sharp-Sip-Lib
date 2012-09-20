@@ -318,5 +318,25 @@ namespace SIPLib.SIP
         {
             throw new NotImplementedException("receivedResponse in Transaction is not implemented");
         }
+
+        internal static string createProxyBranch(Message request, bool server)
+        {
+            Header via = request.First("Via");
+            if (via != null && via.Attributes.ContainsKey("branch"))
+            {
+                string data = via.Attributes["branch"];
+                using (MD5 md5Hash = MD5.Create())
+                {
+                    string hash = Utils.Helpers.GetMd5Hash(md5Hash, data);
+                }
+                //TODO fix this ? replace data with hash ?
+                data = Utils.Helpers.Base64Encode(data).Replace('=', '.');
+                return "z9hG4bK" + data;
+            }
+            else
+            {
+                return Transaction.CreateBranch(request, server);
+            }
+        }
     }
 }
