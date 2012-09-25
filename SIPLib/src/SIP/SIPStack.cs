@@ -13,6 +13,7 @@ namespace SIPLib.SIP
         public TransportInfo Transport { get; set; }
         public SIPApp App { get; set; }
         private readonly Random _random = new Random();
+        private readonly string _userAgentName;
         public bool Closing;
         public Dictionary<string, Dialog> Dialogs { get; set; }
         public Dictionary<string, Transaction> Transactions { get; set; }
@@ -41,7 +42,7 @@ namespace SIPLib.SIP
 
         }
 
-        public SIPStack(SIPApp app)
+        public SIPStack(SIPApp app, string userAgentName = "SIPLIB")
         {
             Init();
             Transport = app.Transport;
@@ -49,6 +50,7 @@ namespace SIPLib.SIP
             App.ReceivedDataEvent += TransportReceivedDataEvent;
             Dialogs = new Dictionary<string, Dialog>();
             app.Stack = this;
+            this._userAgentName = userAgentName;
         }
 
         void TransportReceivedDataEvent(object sender, RawEventArgs e)
@@ -147,7 +149,7 @@ namespace SIPLib.SIP
                 {
                     _log.Info("Sending ACK");
                 }
-                m.InsertHeader(new Header("SIPLIB","User-Agent"));
+                m.InsertHeader(new Header(this._userAgentName,"User-Agent"));
                 if (m.Headers.ContainsKey("Route"))
                 {
 
@@ -524,7 +526,9 @@ namespace SIPLib.SIP
                 }
                 else
                 {
-                    Debug.Assert(false, String.Format("No Transaction for response \n{0}\n", r.ToString()));
+                    Console.WriteLine("No Transaction for response...ignoring....");
+                    //Debug.Assert(false, String.Format("No Transaction for response \n{0}\n", r.ToString()));
+                    return;
                 }
             }
             else
