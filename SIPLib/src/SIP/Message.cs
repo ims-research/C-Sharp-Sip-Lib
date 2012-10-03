@@ -100,8 +100,9 @@ namespace SIPLib.SIP
                 Protocol = parts[2];
             }
             string[] stringSeparators = new[] { "\r\n" };
-            foreach (string h in headers.Split(stringSeparators, StringSplitOptions.None))
+            foreach (string bh in headers.Split(stringSeparators, StringSplitOptions.None))
             {
+                string h = bh.Trim();
                 if (Regex.IsMatch(h, @"^\s"))
                 {
                     break;
@@ -367,7 +368,7 @@ namespace SIPLib.SIP
                 if (originalRequest.Headers.ContainsKey("Route"))
                 {
                     //Todo check this
-                    m.Headers["Route"] = originalRequest.Headers["Route"];
+                    //m.Headers["Route"] = originalRequest.Headers["Route"];
                 }
 
                 if (responseCode == 100 && m.Headers.ContainsKey("Timestamp"))

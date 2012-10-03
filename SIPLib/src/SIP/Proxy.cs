@@ -209,7 +209,7 @@ namespace SIPLib.src.SIP
 
             Header viaHeader = Stack.CreateVia();
             viaHeader.Attributes["branch"] = Transaction.createProxyBranch(request, false);
-            request.InsertHeader(viaHeader);
+            request.InsertHeader(viaHeader,"insert");
             return request;
         }
 
@@ -360,6 +360,10 @@ namespace SIPLib.src.SIP
             {
                 _branches = new List<ProxyBranch>();
                 response.Headers["Via"].RemoveAt(0);
+                if (response.Headers["Via"].Count == 0)
+                {
+                    response.Headers.Remove("Via");
+                }
                 SendResponse(response);
             }
         }

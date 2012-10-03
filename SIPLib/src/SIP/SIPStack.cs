@@ -163,7 +163,7 @@ namespace SIPLib.SIP
                             m.Headers["Route"] = ServiceRoute;
                         }
                     }
-                    else
+                    else if (!string.IsNullOrEmpty(ProxyHost))
                     {
                         m.InsertHeader(new Header("<sip:" + ProxyHost + ":" + ProxyPort + ">", "Route"));
                     }
@@ -238,7 +238,7 @@ namespace SIPLib.SIP
         {
             if (data.Length > 2)
             {
-                if (data.Contains("INVITE") && data.Contains("CSeq:  1 INVITE"))
+                if (data.Contains("INVITE"))
                 {
                     _log.Debug(new Message(data));
                 }
