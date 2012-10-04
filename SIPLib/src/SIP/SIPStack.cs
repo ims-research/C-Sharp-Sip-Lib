@@ -463,7 +463,11 @@ namespace SIPLib.SIP
 
         public Transaction FindOtherTransactions(Message r, Transaction orig)
         {
-            return Transactions.Values.FirstOrDefault(t => (t != orig) && (Transaction.TEquals(t, r, orig)));
+            foreach (Transaction t in Transactions.Values)
+            {
+                if ((t != orig) && (Transaction.TEquals(t, r, orig))) return t;
+            }
+            return null;
         }
 
         public UserAgent CreateServer(Message request, SIPURI uri) { return App.CreateServer(request, uri, this); }

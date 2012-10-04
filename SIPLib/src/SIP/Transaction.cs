@@ -194,7 +194,7 @@ namespace SIPLib.SIP
             a = a && (String.Compare(requestFrom.Uri.ToString(), t1From.Uri.ToString()) == 0);
 
             a = a && (r.First("Call-ID").Value.ToString() == t.First("Call-ID").Value.ToString());
-            //a = a && (r.First("CSeq").Number.ToString() == t.First("CSeq").Number.ToString());
+            a = a && (r.First("CSeq").Number.ToString() == t.First("CSeq").Number.ToString());
 
             a = a && (r.First("From").Attributes["tag"] == t.First("From").Attributes["tag"]);
             a = a && (t2.Server == t1.Server);

@@ -28,10 +28,7 @@ namespace SIPLib.src.SIP
         {
             try
             {
-
-            
-            if ((transaction != null) && Transaction != null && Transaction != transaction &&
-                request.Method.ToUpper() != "CANCEL")
+            if ((transaction != null) && Transaction != null && Transaction != transaction &&request.Method.ToUpper() != "CANCEL")
             {
                 Debug.Assert(false, "Invalid transaction for received request");
             }
@@ -52,7 +49,7 @@ namespace SIPLib.src.SIP
             {
                 if (Stack.FindOtherTransactions(request, transaction) != null)
                 {
-                    SendResponse(482, "Loop detected - found another transaction");
+                    //SendResponse(482, "Loop detected - found another transaction");
                     return;
                 }
             }
