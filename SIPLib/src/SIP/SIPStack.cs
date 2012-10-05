@@ -285,9 +285,20 @@ namespace SIPLib.SIP
         {
             string branch = m.Headers["Via"][0].Attributes["branch"];
             Transaction t;
-            if (m.Method == "ACK" && branch == "0")
+            if (m.Method == "ACK")
             {
-                t = null;
+                if (branch == "0")
+                {
+                    t = null;
+                }
+                else
+                {
+                    t = FindTransaction(branch);
+                    if (t == null || (t.LastResponse != null && t.LastResponse.Is2XX()))
+                    {
+                        t = FindTransaction(Transaction.CreateId(branch, m.Method));
+                    }
+                }
             }
             else
             {
@@ -344,7 +355,8 @@ namespace SIPLib.SIP
                         }
                         else
                         {
-                            if ((branch != "0"))
+                            _log.Info("No dialog for ACK, finding transaction");
+                            if (t==null && branch != "0")
                             {
                                 t = FindTransaction(Transaction.CreateId(branch, "INVITE"));
                             }
@@ -355,7 +367,7 @@ namespace SIPLib.SIP
                             }
                             else
                             {
-                                Debug.Assert(false, String.Format("No existing transaction for ACK \n{0}\n", m.ToString()));
+                                _log.Info("No existing transaction for ACK \n");
                                 UserAgent u = this.CreateServer(m, uri);
                                 if (u != null)
                                 {
