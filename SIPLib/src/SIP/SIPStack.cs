@@ -397,7 +397,7 @@ namespace SIPLib.SIP
                     {
                         //Handle OPTIONS
                         Message reply = Message.CreateResponse(200, "OK", null, null, m);
-                        reply.InsertHeader(new Header("INVITE,ACK,CANCEL,BYE,OPTION,MESSAGE", "Allow"));
+                        reply.InsertHeader(new Header("INVITE,ACK,CANCEL,BYE,OPTION,MESSAGE,PUBLISH", "Allow"));
                         Send(m);
                         return;
                     }
@@ -405,12 +405,15 @@ namespace SIPLib.SIP
                     {
                         //Handle MESSAGE
                         UserAgent ua = new UserAgent(this) {Request = m};
-
-                        Message reply = ua.CreateResponse(200, "OK");
-                        Send(reply);
-
+                        /*Message reply = ua.CreateResponse(200, "OK");
+                        Send(reply);*/
                         App.ReceivedRequest(ua, m, this);
                         return;
+                    }
+                    else if (m.Method == "PUBLISH")
+                    {
+                        UserAgent ua = new UserAgent(this) { Request = m };
+                        App.ReceivedRequest(ua,m,this);
                     }
                     else if (m.Method != "ACK")
                     {
