@@ -2,25 +2,50 @@
 {
     public enum StatusCodes
     {
-        Informational, Successful, Redirection,
-        ClientFailure, ServerFailure, GlobalFailure, Unknown
+        Informational,
+        Successful,
+        Redirection,
+        ClientFailure,
+        ServerFailure,
+        GlobalFailure,
+        Unknown
     }
 
     public enum SipMethods
     {
-        REGISTER, INVITE, ACK, BYE, CANCEL, MESSAGE, OPTIONS, PRACK,
-        SUBSCRIBE, NOTIFY, PUBLISH, INFO, REFER, UPDATE
+        REGISTER,
+        INVITE,
+        ACK,
+        BYE,
+        CANCEL,
+        MESSAGE,
+        OPTIONS,
+        PRACK,
+        SUBSCRIBE,
+        NOTIFY,
+        PUBLISH,
+        INFO,
+        REFER,
+        UPDATE
     }
 
     public enum CallState
     {
-        Starting, Calling, Ringing, Queued, WaitingForAccept, Active, Ending, Ended, Inactive
+        Starting,
+        Calling,
+        Ringing,
+        Queued,
+        WaitingForAccept,
+        Active,
+        Ending,
+        Ended,
+        Inactive
     }
+
     public class Types
     {
         public static StatusCodes GetStatusType(int statusCode)
         {
-
             if ((statusCode) >= 100 && (statusCode) < 200)
             {
                 return StatusCodes.Informational;
@@ -48,7 +73,4 @@
             return StatusCodes.Unknown;
         }
     }
-
-    
 }
-

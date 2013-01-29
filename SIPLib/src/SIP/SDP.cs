@@ -1,19 +1,17 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+
+#endregion
 
 namespace SIPLib.SIP
 {
     public class SDP
     {
-
         public static string Multiple = "tramb";
-        public List<SDPMedia> Media { get; set; }
-        public SDPConnection Connection { get; set; }
-        public SDPOriginator Originator { get; set; }
-        public Dictionary<string, string> Other { get; set; }
-
 
         public SDP(string sdp = null)
         {
@@ -25,6 +23,12 @@ namespace SIPLib.SIP
                 Parse(sdp);
             }
         }
+
+        public List<SDPMedia> Media { get; set; }
+        public SDPConnection Connection { get; set; }
+        public SDPOriginator Originator { get; set; }
+        public Dictionary<string, string> Other { get; set; }
+
 
         public void Parse(string sdp)
         {
@@ -114,7 +118,7 @@ namespace SIPLib.SIP
                             {
                                 obj.OtherAttributes.Add(k, currentObject);
                             }
-                            
+
                             //TODO HANDLE multiple attributes of the same type;
                             //if (obj.properties.ContainsKey(k))
                             //{
@@ -152,7 +156,6 @@ namespace SIPLib.SIP
                             //}
                         }
                     }
-
                 }
             }
         }
@@ -180,20 +183,19 @@ namespace SIPLib.SIP
                 }
                 else if (c == 'c')
                 {
-                    sb.Append(c + "=" + Connection.ToString() + "\r\n");
+                    sb.Append(c + "=" + Connection + "\r\n");
                 }
                 else if (c == 'o')
                 {
-                    sb.Append(c + "=" + Originator.ToString() + "\r\n");
+                    sb.Append(c + "=" + Originator + "\r\n");
                 }
                 else if (c == 'm')
                 {
                     foreach (SDPMedia m in Media)
                     {
-                        sb.Append(c + "=" + m.ToString() + "\r\n");
+                        sb.Append(c + "=" + m + "\r\n");
                     }
                 }
-
             }
             return sb.ToString();
         }
@@ -242,12 +244,12 @@ namespace SIPLib.SIP
                     if (t.Media != yourMedia.Media) continue;
                     myMedia = new SDPMedia(t.ToString());
                     //streams.RemoveAt(i);
-                    List<KeyValuePair<SDPMediaFormat, SDPMediaFormat>> found = new List<KeyValuePair<SDPMediaFormat, SDPMediaFormat>>();
+                    List<KeyValuePair<SDPMediaFormat, SDPMediaFormat>> found =
+                        new List<KeyValuePair<SDPMediaFormat, SDPMediaFormat>>();
                     foreach (SDPMediaFormat yourmf in yourMedia.Mediaformats)
                     {
                         foreach (SDPMediaFormat mymf in myMedia.Mediaformats)
                         {
-
                             int mymfpt = -1;
                             int yourmfpt = -1;
                             try
@@ -257,7 +259,6 @@ namespace SIPLib.SIP
                             }
                             catch (Exception)
                             {
-
                                 mymfpt = -1;
                                 yourmfpt = -1;
                             }
@@ -265,9 +266,9 @@ namespace SIPLib.SIP
                                 || (mymfpt < 0 && yourmfpt < 0 && mymfpt == yourmfpt)
                                 || (mymf.Name == yourmf.Name && mymf.Rate == yourmf.Rate && mymf.Count == yourmf.Count))
                             {
-                                found.Add(new KeyValuePair<SDPMediaFormat, SDPMediaFormat>(yourmf, mymf)); break;
+                                found.Add(new KeyValuePair<SDPMediaFormat, SDPMediaFormat>(yourmf, mymf));
+                                break;
                             }
-
                         }
                     }
                     if (found.Count > 0)

@@ -1,19 +1,26 @@
-﻿using System;
+﻿#region
+
+using System;
+
+#endregion
 
 namespace SIPLib.SIP
 {
     public class Timer
     {
-        public int T1 { get; set; }
-        public int T2 { get; set; }
-        public int T4 { get; set; }
-
         public Timer(UserAgent app, int T1 = 500, int T2 = 4000, int T4 = 5000)
         {
             this.T1 = T1;
             this.T2 = T2;
             this.T4 = T4;
         }
+
+        public int T1 { get; set; }
+        public int T2 { get; set; }
+        public int T4 { get; set; }
+        public int Delay { get; set; }
+
+        public bool Running { get; set; }
 
         public int A()
         {
@@ -27,7 +34,7 @@ namespace SIPLib.SIP
 
         public int D()
         {
-            return Math.Max(64 * T1, 32000);
+            return Math.Max(64*T1, 32000);
         }
 
         public int E()
@@ -68,15 +75,10 @@ namespace SIPLib.SIP
 
         public void Start(int delay = 0)
         {
-
         }
+
         public void Stop(int delay = 0)
         {
-
         }
-
-        public int Delay { get; set; }
-
-        public bool Running { get; set; }
     }
 }

@@ -1,46 +1,25 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Diagnostics;
+using System.Linq;
 using SIPLib.Utils;
 using log4net;
+
+#endregion
 
 namespace SIPLib.SIP
 {
     public class SIPStack
     {
-        public string Tag { get; set; }
-        public TransportInfo Transport { get; set; }
-        public SIPApp App { get; set; }
+        private static ILog _log = LogManager.GetLogger(typeof (SIPStack));
         private readonly Random _random = new Random();
         private readonly string _userAgentName;
         public bool Closing;
-        public Dictionary<string, Dialog> Dialogs { get; set; }
-        public Dictionary<string, Transaction> Transactions { get; set; }
-        public string[] ServerMethods = { "INVITE", "BYE", "MESSAGE", "SUBSCRIBE", "NOTIFY" };
-        public string ProxyHost { get; set; }
-        public int ProxyPort { get; set; }
-
-        private SIPURI _uri = null;
-        private List<Header> ServiceRoute { get; set; }
-        
-
-        private static ILog _log = LogManager.GetLogger(typeof(SIPStack));
-
-        private Dictionary<string,int> _seenNotifys = new Dictionary<string, int>();
-
-        public SIPURI Uri
-        {
-            get
-            {
-                return new SIPURI("sip" + ":" + Transport.Host + ":" + Transport.Port.ToString());
-            }
-            set
-            {
-                _uri = value;
-            }
-
-        }
+        public string[] ServerMethods = {"INVITE", "BYE", "MESSAGE", "SUBSCRIBE", "NOTIFY"};
+        private Dictionary<string, int> _seenNotifys = new Dictionary<string, int>();
+        private SIPURI _uri;
 
         public SIPStack(SIPApp app, string userAgentName = "SIPLIB")
         {
@@ -50,10 +29,28 @@ namespace SIPLib.SIP
             App.ReceivedDataEvent += TransportReceivedDataEvent;
             Dialogs = new Dictionary<string, Dialog>();
             app.Stack = this;
-            this._userAgentName = userAgentName;
+            _userAgentName = userAgentName;
         }
 
-        void TransportReceivedDataEvent(object sender, RawEventArgs e)
+        public string Tag { get; set; }
+        public TransportInfo Transport { get; set; }
+        public SIPApp App { get; set; }
+
+        public Dictionary<string, Dialog> Dialogs { get; set; }
+        public Dictionary<string, Transaction> Transactions { get; set; }
+        public string ProxyHost { get; set; }
+        public int ProxyPort { get; set; }
+
+        private List<Header> ServiceRoute { get; set; }
+
+
+        public SIPURI Uri
+        {
+            get { return new SIPURI("sip" + ":" + Transport.Host + ":" + Transport.Port.ToString()); }
+            set { _uri = value; }
+        }
+
+        private void TransportReceivedDataEvent(object sender, RawEventArgs e)
         {
             try
             {
@@ -61,11 +58,11 @@ namespace SIPLib.SIP
             }
             catch (Exception ex)
             {
-                Debug.Assert(false, String.Format("Error receiving data with exception {0}",ex));
+                Debug.Assert(false, String.Format("Error receiving data with exception {0}", ex));
             }
         }
 
-        ~SIPStack()  // destructor
+        ~SIPStack() // destructor
         {
             Closing = true;
 
@@ -83,7 +80,6 @@ namespace SIPLib.SIP
 
             Dialogs = new Dictionary<string, Dialog>();
             Transactions = new Dictionary<string, Transaction>();
-
         }
 
         private void Init()
@@ -96,12 +92,15 @@ namespace SIPLib.SIP
 
         public string NewCallId()
         {
-            return _random.Next(0, 2147483647).ToString() + "@" + (this.Transport.Host);
+            return _random.Next(0, 2147483647).ToString() + "@" + (Transport.Host);
         }
 
         public Header CreateVia()
         {
-            return new Header("SIP/2.0/" + Transport.Type.ToString().ToUpper() + " " + Transport.Host + ':' + Transport.Port.ToString() + ";rport", "Via");
+            return
+                new Header(
+                    "SIP/2.0/" + Transport.Type.ToString().ToUpper() + " " + Transport.Host + ':' +
+                    Transport.Port.ToString() + ";rport", "Via");
         }
 
         public void Send(object data, object dest = null, TransportInfo transport = null)
@@ -116,7 +115,7 @@ namespace SIPLib.SIP
             }
             else if (dest is SIPURI)
             {
-                SIPURI destination = (SIPURI)dest;
+                SIPURI destination = (SIPURI) dest;
                 if (destination.Host.Length == 0)
                 {
                     Debug.Assert(false, String.Format("No host in destination URI \n{0}\n", destination));
@@ -126,11 +125,10 @@ namespace SIPLib.SIP
                     destinationHost = destination.Host;
                     destinationPort = destination.Port;
                 }
-
             }
             else if (dest is string)
             {
-                string destination = (string)(dest);
+                string destination = (string) (dest);
                 string[] parts = destination.Split(':');
                 destinationHost = parts[0];
                 destinationPort = Convert.ToInt32(parts[1]);
@@ -138,27 +136,29 @@ namespace SIPLib.SIP
 
             if (data is Message)
             {
-                Message m = (Message)data;
+                Message m = (Message) data;
                 //TODO: Fix stripping of record-route
                 //if (m.Headers.ContainsKey("Record-Route")) m.Headers.Remove("Record-Route");
                 //if (!Helpers.IsRequest(m) && m.Is2XX() && m.First("CSeq").Method.Contains("INVITE"))
                 //{
                 //    m.Headers.Remove("Record-Route");
                 //}
-                if (Utils.Helpers.IsRequest(m) && m.Method == "ACK")
+                if (Helpers.IsRequest(m) && m.Method == "ACK")
                 {
                     _log.Info("Sending ACK");
                 }
-                m.InsertHeader(new Header(this._userAgentName,"User-Agent"));
+                m.InsertHeader(new Header(_userAgentName, "User-Agent"));
                 if (m.Headers.ContainsKey("Route"))
                 {
-
                 }
                 else
                 {
                     if (ServiceRoute != null)
                     {
-                        if (!(Utils.Helpers.IsRequest(m) && ((m.Method.ToLower().Contains("register")||(m.Method.ToLower().Contains("ack")||(m.Method.ToLower().Contains("bye")))))))
+                        if (
+                            !(Helpers.IsRequest(m) &&
+                              ((m.Method.ToLower().Contains("register") ||
+                                (m.Method.ToLower().Contains("ack") || (m.Method.ToLower().Contains("bye")))))))
                         {
                             m.Headers["Route"] = ServiceRoute;
                         }
@@ -195,12 +195,12 @@ namespace SIPLib.SIP
                 //m.headers.Remove("Route");
                 //m.insertHeader(temp);
                 //}
-                
+
                 finalData = m.ToString();
             }
             else
             {
-                finalData = (string)data;
+                finalData = (string) data;
             }
             App.Send(finalData, destinationHost, destinationPort, this);
         }
@@ -250,10 +250,10 @@ namespace SIPLib.SIP
                     {
                         if (!m.Headers.ContainsKey("Via"))
                         {
-                            Debug.Assert(false, String.Format("No Via header in request \n{0}\n", m.ToString()));
+                            Debug.Assert(false, String.Format("No Via header in request \n{0}\n", m));
                         }
                         Header via = m.Headers["Via"].First();
-                        if (via.ViaUri.Host != src[0] || !src[1].ToString().Equals(via.ViaUri.Port))
+                        if (via.ViaUri.Host != src[0] || !src[1].Equals(via.ViaUri.Port))
                         {
                             via.Attributes.Add("received", src[0]);
                             via.ViaUri.Host = src[0];
@@ -271,12 +271,14 @@ namespace SIPLib.SIP
                     }
                     else
                     {
-                        Debug.Assert(false, String.Format("Received invalid message \n{0}\n", m.ToString()));
+                        Debug.Assert(false, String.Format("Received invalid message \n{0}\n", m));
                     }
                 }
                 catch (Exception ex)
                 {
-                    Debug.Assert(false, String.Format("Error in received message \n{0}\n with error message {1}", data, ex.Message));
+                    Debug.Assert(false,
+                                 String.Format("Error in received message \n{0}\n with error message {1}", data,
+                                               ex.Message));
                 }
             }
         }
@@ -316,7 +318,7 @@ namespace SIPLib.SIP
                         if (m.Method != "ACK")
                         {
                             //Updated from latest code TODO
-                            UserAgent u = this.CreateServer(m, uri);
+                            UserAgent u = CreateServer(m, uri);
                             if (u != null)
                             {
                                 app = u;
@@ -347,7 +349,6 @@ namespace SIPLib.SIP
                                         {
                                             _seenNotifys[branchID] = 1;
                                         }
-                                        
                                     }
                                 }
                                 return;
@@ -356,7 +357,7 @@ namespace SIPLib.SIP
                         else
                         {
                             _log.Info("No dialog for ACK, finding transaction");
-                            if (t==null && branch != "0")
+                            if (t == null && branch != "0")
                             {
                                 t = FindTransaction(Transaction.CreateId(branch, "INVITE"));
                             }
@@ -368,7 +369,7 @@ namespace SIPLib.SIP
                             else
                             {
                                 _log.Info("No existing transaction for ACK \n");
-                                UserAgent u = this.CreateServer(m, uri);
+                                UserAgent u = CreateServer(m, uri);
                                 if (u != null)
                                 {
                                     app = u;
@@ -381,13 +382,11 @@ namespace SIPLib.SIP
                     {
                         app = d;
                     }
-
-                    
                 }
                 else if (m.Method != "CANCEL")
                 {
                     //Out of dialog request
-                    UserAgent u = this.CreateServer(m, uri);
+                    UserAgent u = CreateServer(m, uri);
                     if (u != null)
                     {
                         //TODO error.....
@@ -412,8 +411,8 @@ namespace SIPLib.SIP
                     }
                     else if (m.Method == "PUBLISH")
                     {
-                        UserAgent ua = new UserAgent(this) { Request = m };
-                        App.ReceivedRequest(ua,m,this);
+                        UserAgent ua = new UserAgent(this) {Request = m};
+                        App.ReceivedRequest(ua, m, this);
                     }
                     else if (m.Method != "ACK")
                     {
@@ -424,7 +423,8 @@ namespace SIPLib.SIP
                 else
                 {
                     //Cancel Request
-                    Transaction o = FindTransaction(Transaction.CreateId(m.Headers["Via"][0].Attributes["branch"], "INVITE"));
+                    Transaction o =
+                        FindTransaction(Transaction.CreateId(m.Headers["Via"][0].Attributes["branch"], "INVITE"));
                     if (o == null)
                     {
                         Send(Message.CreateResponse(481, "Original transaction does not exist", null, null, m));
@@ -454,11 +454,11 @@ namespace SIPLib.SIP
             string id = "";
             if (m is Message)
             {
-                id = Dialog.ExtractID((Message)m);
+                id = Dialog.ExtractID((Message) m);
             }
             else
             {
-                id = (string)(m);
+                id = (string) (m);
             }
             if (Dialogs.ContainsKey(id))
             {
@@ -485,14 +485,45 @@ namespace SIPLib.SIP
             return null;
         }
 
-        public UserAgent CreateServer(Message request, SIPURI uri) { return App.CreateServer(request, uri, this); }
-        public void Sending(UserAgent ua, Message message) { App.Sending(ua, message, this); }
-        public void ReceivedRequest(UserAgent ua, Message request) { App.ReceivedRequest(ua, request, this); }
-        public void ReceivedResponse(UserAgent ua, Message response) { App.ReceivedResponse(ua, response, this); }
-        public void Cancelled(UserAgent ua, Message request) { App.Cancelled(ua, request, this); }
-        public void DialogCreated(Dialog dialog, UserAgent ua) { App.DialogCreated(dialog, ua, this); }
-        public string[] Authenticate(UserAgent ua, Header header) { return App.Authenticate(ua, header, this); }
-        public Timer CreateTimer(UserAgent obj) { return App.CreateTimer(obj, this); }
+        public UserAgent CreateServer(Message request, SIPURI uri)
+        {
+            return App.CreateServer(request, uri, this);
+        }
+
+        public void Sending(UserAgent ua, Message message)
+        {
+            App.Sending(ua, message, this);
+        }
+
+        public void ReceivedRequest(UserAgent ua, Message request)
+        {
+            App.ReceivedRequest(ua, request, this);
+        }
+
+        public void ReceivedResponse(UserAgent ua, Message response)
+        {
+            App.ReceivedResponse(ua, response, this);
+        }
+
+        public void Cancelled(UserAgent ua, Message request)
+        {
+            App.Cancelled(ua, request, this);
+        }
+
+        public void DialogCreated(Dialog dialog, UserAgent ua)
+        {
+            App.DialogCreated(dialog, ua, this);
+        }
+
+        public string[] Authenticate(UserAgent ua, Header header)
+        {
+            return App.Authenticate(ua, header, this);
+        }
+
+        public Timer CreateTimer(UserAgent obj)
+        {
+            return App.CreateTimer(obj, this);
+        }
 
         private void ReceivedResponse(Message r, SIPURI uri)
         {
@@ -517,7 +548,7 @@ namespace SIPLib.SIP
 
             if (!r.Headers.ContainsKey("Via"))
             {
-                Debug.Assert(false, String.Format("No Via header in received response \n{0}\n", r.ToString()));
+                Debug.Assert(false, String.Format("No Via header in received response \n{0}\n", r));
                 return;
             }
             string branch = r.Headers["Via"][0].Attributes["branch"];
@@ -535,7 +566,7 @@ namespace SIPLib.SIP
                     Dialog d = FindDialog(r);
                     if (d == null)
                     {
-                        Debug.Assert(false, String.Format("No transaction or dialog for 2xx of INVITE \n{0}\n", r.ToString()));
+                        Debug.Assert(false, String.Format("No transaction or dialog for 2xx of INVITE \n{0}\n", r));
                         return;
                     }
                     else

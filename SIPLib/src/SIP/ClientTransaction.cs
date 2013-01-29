@@ -1,8 +1,12 @@
-﻿using System;
+﻿#region
+
+using System;
+
+#endregion
 
 namespace SIPLib.SIP
 {
-    class ClientTransaction : Transaction
+    internal class ClientTransaction : Transaction
     {
         public ClientTransaction(UserAgent app) : base(app)
         {
@@ -17,7 +21,7 @@ namespace SIPLib.SIP
                 StartTimer("E", Timer.E());
             }
             StartTimer("F", Timer.F());
-            Stack.Send(Request,Remote,Transport);
+            Stack.Send(Request, Remote, Transport);
         }
 
         public override void ReceivedResponse(Message response)
@@ -27,11 +31,11 @@ namespace SIPLib.SIP
                 if (State == "trying")
                 {
                     State = "proceeding";
-                    App.ReceivedResponse(this,response);
+                    App.ReceivedResponse(this, response);
                 }
                 else if (State == "proceeding")
                 {
-                    App.ReceivedResponse(this,response);
+                    App.ReceivedResponse(this, response);
                 }
             }
             else if (response.IsFinal())
@@ -39,7 +43,7 @@ namespace SIPLib.SIP
                 if (State == "trying" || State == "proceeding")
                 {
                     State = "completed";
-                    App.ReceivedResponse(this,response);
+                    App.ReceivedResponse(this, response);
                     if (!Transport.Reliable)
                     {
                         StartTimer("K", Timer.K());
@@ -58,7 +62,7 @@ namespace SIPLib.SIP
             {
                 if (name == "E")
                 {
-                    timeout = State == "trying" ? Math.Min(2 * timeout, Timer.T2) : Timer.T2;
+                    timeout = State == "trying" ? Math.Min(2*timeout, Timer.T2) : Timer.T2;
                     StartTimer("E", timeout);
                     Stack.Send(Request, Remote, Transport);
                 }
@@ -82,7 +86,7 @@ namespace SIPLib.SIP
             if (State == "trying" || State == "proceeding")
             {
                 State = "terminated";
-                App.Error(this,error);
+                App.Error(this, error);
             }
         }
     }

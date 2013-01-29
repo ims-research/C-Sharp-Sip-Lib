@@ -2,7 +2,7 @@
 {
     public class ServerTransaction : Transaction
     {
-        public ServerTransaction(UserAgent app): base(app)
+        public ServerTransaction(UserAgent app) : base(app)
         {
             Server = true;
         }
@@ -12,7 +12,7 @@
             State = "trying";
             if (App is Dialog)
             {
-                ((Dialog)(App)).ReceivedRequest(this, Request);
+                ((App)).ReceivedRequest(this, Request);
             }
             else App.ReceivedRequest(this, Request);
         }
@@ -48,7 +48,7 @@
             if (State == "completed")
             {
                 State = "terminated";
-                App.Error(this,error);
+                App.Error(this, error);
             }
         }
 
@@ -81,5 +81,4 @@
             }
         }
     }
-
 }

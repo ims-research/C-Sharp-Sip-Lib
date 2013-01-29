@@ -1,9 +1,14 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using SIPLib.SIP;
+using SIPLib.Utils;
+
+#endregion
 
 namespace SIPLib.src.SIP
 {
@@ -19,7 +24,6 @@ namespace SIPLib.src.SIP
 
         public Transaction CreateTransaction(Message request)
         {
-
             ReceivedRequest(null, request);
             return null;
         }
@@ -28,91 +32,91 @@ namespace SIPLib.src.SIP
         {
             try
             {
-            if ((transaction != null) && Transaction != null && Transaction != transaction &&request.Method.ToUpper() != "CANCEL")
-            {
-                Debug.Assert(false, "Invalid transaction for received request");
-            }
-            Server = true;
-            if (!request.Uri.Scheme.ToLower().Equals("sip"))
-            {
-                SendResponse(416, "Unsupported URI scheme");
-                return;
-            }
-
-            if (request.First("Max-Forwards") != null && int.Parse(request.First("Max-Forwards").Value.ToString()) < 0)
-            {
-                SendResponse(483, "Too many hops");
-                return;
-            }
-
-            if (!request.Headers["To"][0].Attributes.ContainsKey("tag") && transaction != null)
-            {
-                if (Stack.FindOtherTransactions(request, transaction) != null)
+                if ((transaction != null) && Transaction != null && Transaction != transaction &&
+                    request.Method.ToUpper() != "CANCEL")
                 {
-                    //SendResponse(482, "Loop detected - found another transaction");
-                    return;
+                    Debug.Assert(false, "Invalid transaction for received request");
                 }
-            }
-
-            if (request.First("Proxy-Require") != null)
-            {
-                if (!request.Method.ToUpper().Contains("CANCEL") && !request.Method.ToUpper().Contains("ACK"))
+                Server = true;
+                if (!request.Uri.Scheme.ToLower().Equals("sip"))
                 {
-                    Message response = CreateResponse(420, "Bad extension");
-                    Header unsupported = request.First("Proxy-Require");
-                    unsupported.Name = "Unsupported";
-                    response.InsertHeader(unsupported);
-                    SendResponse(unsupported);
+                    SendResponse(416, "Unsupported URI scheme");
                     return;
                 }
 
-            }
-
-            if (transaction != null)
-            {
-                Transaction = transaction;
-            }
-
-            if (request.Method.ToUpper() == "CANCEL")
-            {
-                string branch;
-                if (request.First("Via") != null && request.First("Via").Attributes.ContainsKey("branch"))
+                if (request.First("Max-Forwards") != null &&
+                    int.Parse(request.First("Max-Forwards").Value.ToString()) < 0)
                 {
-                    branch = request.First("Via").Attributes["branch"];
+                    SendResponse(483, "Too many hops");
+                    return;
                 }
-                else
+
+                if (!request.Headers["To"][0].Attributes.ContainsKey("tag") && transaction != null)
                 {
-                    branch = Transaction.CreateBranch(request, true);
-                }
-                Transaction original = Stack.FindTransaction(Transaction.CreateId(branch, "INVITE"));
-                if (original != null)
-                {
-                    if (original.State == "proceeding" || original.State == "trying")
+                    if (Stack.FindOtherTransactions(request, transaction) != null)
                     {
-                        original.SendResponse(original.CreateResponse(487, "Request terminated"));
+                        //SendResponse(482, "Loop detected - found another transaction");
+                        return;
                     }
-                    transaction = Transaction.CreateServer(Stack, this, request, Stack.Transport,
-                                                           Stack.Tag, false);
-                    transaction.SendResponse(transaction.CreateResponse(200, "OK"));
                 }
-                SendCancel();
-                return;
-            }
 
-            if (string.IsNullOrEmpty(request.Uri.User) && IsLocal(request.Uri) && request.Uri.Parameters != null &&
-                request.First("Route") != null)
-            {
+                if (request.First("Proxy-Require") != null)
+                {
+                    if (!request.Method.ToUpper().Contains("CANCEL") && !request.Method.ToUpper().Contains("ACK"))
+                    {
+                        Message response = CreateResponse(420, "Bad extension");
+                        Header unsupported = request.First("Proxy-Require");
+                        unsupported.Name = "Unsupported";
+                        response.InsertHeader(unsupported);
+                        SendResponse(unsupported);
+                        return;
+                    }
+                }
 
-                Header lastRoute = request.Headers["Route"].Last();
-                request.Headers["Route"].RemoveAt(request.Headers["Route"].Count - 1);
-                request.Uri = ((Address) (lastRoute.Value)).Uri;
-            }
-            if (request.First("Route") != null && IsLocal(((Address) (request.First("Route").Value)).Uri))
-            {
-                request.Headers["Route"].RemoveAt(0);
-                request.had_lr = true;
-            }
-            Stack.ReceivedRequest(this, request);
+                if (transaction != null)
+                {
+                    Transaction = transaction;
+                }
+
+                if (request.Method.ToUpper() == "CANCEL")
+                {
+                    string branch;
+                    if (request.First("Via") != null && request.First("Via").Attributes.ContainsKey("branch"))
+                    {
+                        branch = request.First("Via").Attributes["branch"];
+                    }
+                    else
+                    {
+                        branch = Transaction.CreateBranch(request, true);
+                    }
+                    Transaction original = Stack.FindTransaction(Transaction.CreateId(branch, "INVITE"));
+                    if (original != null)
+                    {
+                        if (original.State == "proceeding" || original.State == "trying")
+                        {
+                            original.SendResponse(original.CreateResponse(487, "Request terminated"));
+                        }
+                        transaction = Transaction.CreateServer(Stack, this, request, Stack.Transport,
+                                                               Stack.Tag, false);
+                        transaction.SendResponse(transaction.CreateResponse(200, "OK"));
+                    }
+                    SendCancel();
+                    return;
+                }
+
+                if (string.IsNullOrEmpty(request.Uri.User) && IsLocal(request.Uri) && request.Uri.Parameters != null &&
+                    request.First("Route") != null)
+                {
+                    Header lastRoute = request.Headers["Route"].Last();
+                    request.Headers["Route"].RemoveAt(request.Headers["Route"].Count - 1);
+                    request.Uri = ((Address) (lastRoute.Value)).Uri;
+                }
+                if (request.First("Route") != null && IsLocal(((Address) (request.First("Route").Value)).Uri))
+                {
+                    request.Headers["Route"].RemoveAt(0);
+                    request.had_lr = true;
+                }
+                Stack.ReceivedRequest(this, request);
             }
             catch (Exception)
             {
@@ -164,22 +168,21 @@ namespace SIPLib.src.SIP
             if (dest.GetType() == typeof (Address))
             {
                 request.Uri = ((Address) dest).Uri.Dup();
-
             }
             else if (dest is string[])
             {
-                string[] destArray = (string[])dest;
+                string[] destArray = (string[]) dest;
                 string scheme = request.Uri.Scheme;
                 string user = request.Uri.User;
                 request.Uri = new SIPURI
-                                  {Scheme = scheme, User = user, Host = destArray[0], Port = int.Parse(destArray[1])};
+                    {Scheme = scheme, User = user, Host = destArray[0], Port = int.Parse(destArray[1])};
             }
             else
             {
                 Debug.Assert(false, "Dest in Proxy Create Request is not a String or Address");
                 //else: request.uri = dest.dup()
             }
-            if (request.First("Max-Forwards")!=null)
+            if (request.First("Max-Forwards") != null)
             {
                 object value = request.First("Max-Forwards").Value;
                 int currentValue = int.Parse(value.ToString());
@@ -192,7 +195,7 @@ namespace SIPLib.src.SIP
                 Address rr = new Address(Stack.Uri.ToString());
                 rr.Uri.Parameters["lr"] = null;
                 rr.MustQuote = true;
-                request.InsertHeader(new Header(rr.ToString(),"Record-Route"));
+                request.InsertHeader(new Header(rr.ToString(), "Record-Route"));
             }
             if (headers != null) request.Headers.Concat(headers).ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
             if (route != null)
@@ -206,14 +209,14 @@ namespace SIPLib.src.SIP
 
             Header viaHeader = Stack.CreateVia();
             viaHeader.Attributes["branch"] = Transaction.createProxyBranch(request, false);
-            request.InsertHeader(viaHeader,"insert");
+            request.InsertHeader(viaHeader, "insert");
             return request;
         }
 
         public override void SendRequest(Message request)
         {
             SIPURI target = null;
-            if (request.First("Route")==null)
+            if (request.First("Route") == null)
             {
                 target = request.Uri;
             }
@@ -224,24 +227,22 @@ namespace SIPLib.src.SIP
                 {
                     try
                     {
-                        target = ((Address)routes[0].Value).Uri;
+                        target = ((Address) routes[0].Value).Uri;
                         string test = target.Parameters["lr"];
                     }
                     catch (Exception)
                     {
                         routes.RemoveAt(0);
-                        if (routes.Count >0)
+                        if (routes.Count > 0)
                         {
-                            routes.Add(new Header(request.Uri.ToString(),"Route"));
+                            routes.Add(new Header(request.Uri.ToString(), "Route"));
                         }
                         request.Headers["Route"] = routes;
                         request.Uri = target;
                     }
-                    
                 }
-
             }
-            Stack.Sending(this,request);
+            Stack.Sending(this, request);
             ProxyBranch branch = new ProxyBranch();
 
             SIPURI dest = target.Dup();
@@ -254,7 +255,7 @@ namespace SIPLib.src.SIP
                 dest.Port = target.Port;
             }
 
-            if (!Utils.Helpers.IsIPv4(dest.Host))
+            if (!Helpers.IsIPv4(dest.Host))
             {
                 try
                 {
@@ -263,16 +264,15 @@ namespace SIPLib.src.SIP
                 }
                 catch (Exception)
                 {
-
                 }
             }
-            if (Utils.Helpers.IsIPv4(dest.Host))
+            if (Helpers.IsIPv4(dest.Host))
             {
                 branch.RemoteCandidates = new List<SIPURI> {dest};
             }
-            if (branch.RemoteCandidates == null || branch.RemoteCandidates.Count ==0)
+            if (branch.RemoteCandidates == null || branch.RemoteCandidates.Count == 0)
             {
-                Error(null,"Cannot resolve DNS target");
+                Error(null, "Cannot resolve DNS target");
                 return;
             }
             target = branch.RemoteCandidates.First();
@@ -285,7 +285,7 @@ namespace SIPLib.src.SIP
             }
             else
             {
-                Stack.Send(request,target.HostPort());
+                Stack.Send(request, target.HostPort());
             }
         }
 
@@ -298,9 +298,10 @@ namespace SIPLib.src.SIP
             SIPURI target = RemoteCandidates.First();
             RemoteCandidates.RemoveAt(0);
             branch.Request.First("Via").Attributes["branch"] += "A";
-            branch.Transaction = Transaction.CreateClient(Stack, this, branch.Request, Stack.Transport, target.Host + ":" + target.Port);
+            branch.Transaction = Transaction.CreateClient(Stack, this, branch.Request, Stack.Transport,
+                                                          target.Host + ":" + target.Port);
         }
-        
+
         private ProxyBranch GetBranch(Transaction transaction)
         {
             return _branches.First(proxyBranch => proxyBranch.Transaction == transaction);
@@ -311,7 +312,7 @@ namespace SIPLib.src.SIP
             ProxyBranch branch = GetBranch(transaction);
             if (branch == null)
             {
-                Debug.Assert(false,"Invalid transaction received "+ transaction);
+                Debug.Assert(false, "Invalid transaction received " + transaction);
                 return;
             }
             if (response.Is1XX() && branch.CancelRequest != null)
@@ -330,22 +331,23 @@ namespace SIPLib.src.SIP
                 else
                 {
                     response.Headers["Via"].RemoveAt(0);
-                    if (response.Headers["Via"].Count <=0)
+                    if (response.Headers["Via"].Count <= 0)
                     {
                         response.Headers.Remove("Via");
                     }
                     SendResponse(response);
                 }
             }
-
         }
 
         private void SendResponseIfPossible()
         {
-            List<ProxyBranch> branchesfinal = _branches.Where(proxyBranch => proxyBranch.Response != null && proxyBranch.Response.IsFinal()).ToList();
-            List<ProxyBranch> branches2XX = _branches.Where(proxyBranch => proxyBranch.Response != null && proxyBranch.Response.Is2XX()).ToList();
+            List<ProxyBranch> branchesfinal =
+                _branches.Where(proxyBranch => proxyBranch.Response != null && proxyBranch.Response.IsFinal()).ToList();
+            List<ProxyBranch> branches2XX =
+                _branches.Where(proxyBranch => proxyBranch.Response != null && proxyBranch.Response.Is2XX()).ToList();
             Message response = null;
-            if (branches2XX != null && branches2XX.Count >0)
+            if (branches2XX != null && branches2XX.Count > 0)
             {
                 response = branches2XX[0].Response;
             }
@@ -391,15 +393,14 @@ namespace SIPLib.src.SIP
                 return;
             }
             branch.Transaction = null;
-            if (branch.RemoteCandidates != null && branch.RemoteCandidates.Count >0)
+            if (branch.RemoteCandidates != null && branch.RemoteCandidates.Count > 0)
             {
                 RetryNextCandidate(branch);
             }
             else
             {
-                ReceivedResponse(null,Message.CreateResponse(408,"Request timeout",null,null,branch.Request));
+                ReceivedResponse(null, Message.CreateResponse(408, "Request timeout", null, null, branch.Request));
             }
-
         }
 
         public override void Error(Transaction transaction, string error)
@@ -414,7 +415,7 @@ namespace SIPLib.src.SIP
                     SendResponse(response);
                     return;
                 }
-                Debug.Assert(false,"Warning, dropping ACK");
+                Debug.Assert(false, "Warning, dropping ACK");
             }
             ProxyBranch branch = GetBranch(transaction);
             if (branch == null) return;
@@ -426,7 +427,9 @@ namespace SIPLib.src.SIP
             }
             else
             {
-                ReceivedResponse(null, Message.CreateResponse(503, "Service unavailable - "+error, null, null, branch.Request));
+                ReceivedResponse(null,
+                                 Message.CreateResponse(503, "Service unavailable - " + error, null, null,
+                                                        branch.Request));
             }
         }
     }

@@ -1,50 +1,18 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
 using SIPLib.Utils;
 
+#endregion
+
 namespace SIPLib.SIP
 {
-    public abstract class  Transaction
+    public abstract class Transaction
     {
-        public string Branch { get; set; }
-        public string ID { get; set; }
-        public SIPStack Stack { get; set; }
-        public UserAgent App { get; set; }
-        public Message Request { get; set; }
-        public TransportInfo Transport { get; set; }
-        public string Tag { get; set; }
-        public bool Server { get; set; }
-        public Dictionary<string,Timer> Timers { get; set; }
-        public Timer Timer { get; set; }
-        public string Remote { get; set; }
         private string _state;
-        public Message LastResponse { get; set; }
-        public string State
-        {
-            get
-            {
-                return _state;
-            }
-            set
-            {
-                _state = value;
-                if (_state == "terminating")
-                {
-                    Close();
-                }
-            }
-
-        }
-
-        public Dictionary<string, List<Header>> Headers
-        {
-            get
-            {
-                return (Dictionary<string, List<Header>>)Request.Headers.Where(p => p.Key == "To" || p.Key == "From" || p.Key == "CSeq" || p.Key == "Call-ID");
-            }
-        }
 
         protected Transaction(UserAgent app)
         {
@@ -60,33 +28,70 @@ namespace SIPLib.SIP
             Timer = new Timer(App);
         }
 
+        public string Branch { get; set; }
+        public string ID { get; set; }
+        public SIPStack Stack { get; set; }
+        public UserAgent App { get; set; }
+        public Message Request { get; set; }
+        public TransportInfo Transport { get; set; }
+        public string Tag { get; set; }
+        public bool Server { get; set; }
+        public Dictionary<string, Timer> Timers { get; set; }
+        public Timer Timer { get; set; }
+        public string Remote { get; set; }
+        public Message LastResponse { get; set; }
+
+        public string State
+        {
+            get { return _state; }
+            set
+            {
+                _state = value;
+                if (_state == "terminating")
+                {
+                    Close();
+                }
+            }
+        }
+
+        public Dictionary<string, List<Header>> Headers
+        {
+            get
+            {
+                return
+                    (Dictionary<string, List<Header>>)
+                    Request.Headers.Where(p => p.Key == "To" || p.Key == "From" || p.Key == "CSeq" || p.Key == "Call-ID");
+            }
+        }
+
         public static string CreateBranch(object request, bool server)
         {
             string to = "", from = "", callId = "", cSeq = "";
             if (request is Message)
             {
-                Message requestMessage = (Message)(request);
+                Message requestMessage = (Message) (request);
                 to = requestMessage.First("To").Value.ToString();
                 from = requestMessage.First("From").Value.ToString();
                 callId = requestMessage.First("Call-ID").Value.ToString();
                 cSeq = requestMessage.First("CSeq").Number.ToString();
             }
-            else if (request is Dictionary<string,object>)
+            else if (request is Dictionary<string, object>)
             {
-                Dictionary<string, object> dict = (Dictionary<string, object>)request;
+                Dictionary<string, object> dict = (Dictionary<string, object>) request;
                 object[] headers = dict.Values.ToArray();
                 to = headers[0].ToString();
                 from = headers[1].ToString();
                 callId = headers[2].ToString();
                 cSeq = headers[3].ToString();
             }
-            string data = to.ToLower() + "|" + from.ToLower() + "|" + callId.ToLower() + "|" + cSeq.ToLower() + "|" + server.ToString();
+            string data = to.ToLower() + "|" + from.ToLower() + "|" + callId.ToLower() + "|" + cSeq.ToLower() + "|" +
+                          server.ToString();
             using (MD5 md5Hash = MD5.Create())
             {
-                string hash = Utils.Helpers.GetMd5Hash(md5Hash, data);
+                string hash = Helpers.GetMd5Hash(md5Hash, data);
             }
             //TODO fix this ? replace data with hash ?
-            data = Utils.Helpers.Base64Encode(data).Replace('=', '.');
+            data = Helpers.Base64Encode(data).Replace('=', '.');
             return "z9hG4bK" + data;
         }
 
@@ -99,7 +104,8 @@ namespace SIPLib.SIP
             return branch + "|" + method;
         }
 
-        public static Transaction CreateServer(SIPStack stack, UserAgent app, Message request, TransportInfo transport, string tag,Boolean start = true)
+        public static Transaction CreateServer(SIPStack stack, UserAgent app, Message request, TransportInfo transport,
+                                               string tag, Boolean start = true)
         {
             Transaction t;
             if (request.Method == "INVITE")
@@ -128,16 +134,17 @@ namespace SIPLib.SIP
             stack.Transactions[t.ID] = t;
             if (request.Method == "INVITE")
             {
-                ((InviteServerTransaction)t).Start();
+                ((InviteServerTransaction) t).Start();
             }
             else
             {
-                ((ServerTransaction)t).Start();
+                ((ServerTransaction) t).Start();
             }
             return t;
         }
 
-        public static Transaction CreateClient(SIPStack stack, UserAgent app, Message request, TransportInfo transport, string remote)
+        public static Transaction CreateClient(SIPStack stack, UserAgent app, Message request, TransportInfo transport,
+                                               string remote)
         {
             Transaction t;
             if (request.Method == "INVITE")
@@ -166,11 +173,11 @@ namespace SIPLib.SIP
             stack.Transactions[t.ID] = t;
             if (request.Method == "INVITE")
             {
-                ((InviteClientTransaction)t).Start();
+                ((InviteClientTransaction) t).Start();
             }
             else
             {
-                ((ClientTransaction)t).Start();
+                ((ClientTransaction) t).Start();
             }
             return t;
         }
@@ -184,11 +191,11 @@ namespace SIPLib.SIP
         public static bool TEquals(Transaction t1, Message r, Transaction t2)
         {
             Message t = t1.Request;
-            Address requestTo = (Address)(r.First("To").Value);
-            Address t1To = (Address)(t.First("To").Value);
+            Address requestTo = (Address) (r.First("To").Value);
+            Address t1To = (Address) (t.First("To").Value);
 
-            Address requestFrom = (Address)(r.First("To").Value);
-            Address t1From = (Address)(t.First("To").Value);
+            Address requestFrom = (Address) (r.First("To").Value);
+            Address t1From = (Address) (t.First("To").Value);
 
             bool a = (String.Compare(requestTo.Uri.ToString(), t1To.Uri.ToString()) == 0);
             a = a && (String.Compare(requestFrom.Uri.ToString(), t1From.Uri.ToString()) == 0);
@@ -245,7 +252,7 @@ namespace SIPLib.SIP
             Message m = null;
             if (Request != null && Server)
             {
-                m = Message.CreateResponse(responseCode,responseText,null,null,Request);
+                m = Message.CreateResponse(responseCode, responseText, null, null, Request);
                 if (responseCode != 100 && !m.Headers["To"][0].Attributes.ContainsKey("tag"))
                 {
                     m.Headers["To"][0].Attributes.Add("tag", Tag);
@@ -278,7 +285,7 @@ namespace SIPLib.SIP
             {
                 timer.Stop();
             }
-            var found = this.Timers.Where(p => p.Value == timer);
+            var found = Timers.Where(p => p.Value == timer);
             foreach (KeyValuePair<string, Timer> pair in found)
             {
                 foreach (KeyValuePair<string, Timer> kvp in found)
@@ -327,15 +334,15 @@ namespace SIPLib.SIP
                 string data = via.Attributes["branch"];
                 using (MD5 md5Hash = MD5.Create())
                 {
-                    string hash = Utils.Helpers.GetMd5Hash(md5Hash, data);
+                    string hash = Helpers.GetMd5Hash(md5Hash, data);
                 }
                 //TODO fix this ? replace data with hash ?
-                data = Utils.Helpers.Base64Encode(data).Replace('=', '.');
+                data = Helpers.Base64Encode(data).Replace('=', '.');
                 return "z9hG4bK" + data;
             }
             else
             {
-                return Transaction.CreateBranch(request, server);
+                return CreateBranch(request, server);
             }
         }
     }

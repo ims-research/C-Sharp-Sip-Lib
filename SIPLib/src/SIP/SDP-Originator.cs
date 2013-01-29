@@ -1,18 +1,15 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Net;
 using SIPLib.Utils;
+
+#endregion
 
 namespace SIPLib.SIP
 {
     public class SDPOriginator
     {
-        public string Username { get; set; }
-        public string Sessionid { get; set; }
-        public string Version { get; set; }
-        public string Nettype { get; set; }
-        public string Addrtype { get; set; }
-        public string Address { get; set; }
-
         public SDPOriginator(string value = null)
         {
             if (value != null)
@@ -31,13 +28,20 @@ namespace SIPLib.SIP
                 IPHostEntry ip = Dns.GetHostEntry(hostname);
                 string ipAddress = ip.ToString();
                 Username = "-";
-                Sessionid = Utils.Helpers.ToUnixTime(DateTime.Now).ToString();
-                Version = Utils.Helpers.ToUnixTime(DateTime.Now).ToString();
+                Sessionid = Helpers.ToUnixTime(DateTime.Now).ToString();
+                Version = Helpers.ToUnixTime(DateTime.Now).ToString();
                 Nettype = "IN";
                 Addrtype = "IP4";
                 Address = ipAddress;
             }
         }
+
+        public string Username { get; set; }
+        public string Sessionid { get; set; }
+        public string Version { get; set; }
+        public string Nettype { get; set; }
+        public string Addrtype { get; set; }
+        public string Address { get; set; }
 
         public override string ToString()
         {

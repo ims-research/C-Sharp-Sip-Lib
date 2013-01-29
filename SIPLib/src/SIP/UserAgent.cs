@@ -1,40 +1,18 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Diagnostics;
+using System.Linq;
 using SIPLib.Utils;
+
+#endregion
 
 namespace SIPLib.SIP
 {
     public class UserAgent
     {
-
-        public Message Request { get; set; }
-        public SIPStack Stack { get; set; }
-        public bool Server { get; set; }
-        public Transaction Transaction { get; set; }
-        public Message CancelRequest { get; set; }
-        public string CallID { get; set; }
-        public Address RemoteParty { get; set; }
-        public Address LocalParty { get; set; }
-        readonly Random _random = new Random();
-        public string LocalTag { get; set; }
-        public string RemoteTag { get; set; }
-        public string Subject { get; set; }
-        public List<Header> RouteSet { get; set; }
-        public int MaxForwards { get; set; }
-
-        public SIPURI LocalTarget { get; set; }
-        public SIPURI RemoteTarget { get; set; }
-        public List<SIPURI> RemoteCandidates { get; set; }
-        public int RemoteSeq { get; set; }
-        public int LocalSeq { get; set; }
-
-        public Address Contact { get; set; }
-        public bool Autoack { get; set; }
-        public Dictionary<string, string> Auth { get; set; }
-
-        public UserAgent App { get; set; }
+        private readonly Random _random = new Random();
 
         public UserAgent(SIPStack stack, Message request = null, bool server = false)
         {
@@ -53,7 +31,7 @@ namespace SIPLib.SIP
             CancelRequest = null;
             if ((request != null) && (request.Headers.ContainsKey("Call-ID")))
             {
-                CallID = (string)request.Headers["Call-ID"][0].Value;
+                CallID = (string) request.Headers["Call-ID"][0].Value;
             }
             else
             {
@@ -62,7 +40,7 @@ namespace SIPLib.SIP
 
             if ((request != null) && (request.Headers.ContainsKey("From")))
             {
-                RemoteParty = (Address)request.Headers["From"][0].Value;
+                RemoteParty = (Address) request.Headers["From"][0].Value;
             }
             else
             {
@@ -71,7 +49,7 @@ namespace SIPLib.SIP
 
             if ((request != null) && (request.Headers.ContainsKey("To")))
             {
-                LocalParty = (Address)request.Headers["To"][0].Value;
+                LocalParty = (Address) request.Headers["To"][0].Value;
             }
             else
             {
@@ -82,7 +60,7 @@ namespace SIPLib.SIP
 
             if ((request != null) && (request.Headers.ContainsKey("Subject")))
             {
-                Subject = (string)request.Headers["Subject"][0].Value;
+                Subject = (string) request.Headers["Subject"][0].Value;
             }
             else
             {
@@ -111,6 +89,32 @@ namespace SIPLib.SIP
             Autoack = true;
             Auth = new Dictionary<string, string>();
         }
+
+        public Message Request { get; set; }
+        public SIPStack Stack { get; set; }
+        public bool Server { get; set; }
+        public Transaction Transaction { get; set; }
+        public Message CancelRequest { get; set; }
+        public string CallID { get; set; }
+        public Address RemoteParty { get; set; }
+        public Address LocalParty { get; set; }
+        public string LocalTag { get; set; }
+        public string RemoteTag { get; set; }
+        public string Subject { get; set; }
+        public List<Header> RouteSet { get; set; }
+        public int MaxForwards { get; set; }
+
+        public SIPURI LocalTarget { get; set; }
+        public SIPURI RemoteTarget { get; set; }
+        public List<SIPURI> RemoteCandidates { get; set; }
+        public int RemoteSeq { get; set; }
+        public int LocalSeq { get; set; }
+
+        public Address Contact { get; set; }
+        public bool Autoack { get; set; }
+        public Dictionary<string, string> Auth { get; set; }
+
+        public UserAgent App { get; set; }
 
         public string Repr()
         {
@@ -141,7 +145,7 @@ namespace SIPLib.SIP
             {
                 uri = new SIPURI(RemoteParty.ToString());
             }
-           
+
             if (method == "REGISTER")
             {
                 //TODO: Is this right ?
@@ -155,13 +159,13 @@ namespace SIPLib.SIP
             Header to;
             if (RemoteTarget != null)
             {
-                 to = new Header(RemoteTarget.ToString(), "To");
+                to = new Header(RemoteTarget.ToString(), "To");
             }
             else
             {
                 to = new Header(RemoteParty.ToString(), "To");
             }
-            
+
             Header from = new Header(LocalParty.ToString(), "From");
             from.Attributes["tag"] = LocalTag;
             Header cSeq = new Header(LocalSeq + " " + method, "CSeq");
@@ -169,26 +173,26 @@ namespace SIPLib.SIP
             Header maxForwards = new Header(MaxForwards.ToString(), "Max-Forwards");
             Header via = Stack.CreateVia();
             Dictionary<string, object> branchParams = new Dictionary<string, object>
-                                                          {
-                                                              {"To", to.Value},
-                                                              {"From", @from.Value},
-                                                              {"CallId", callId.Value},
-                                                              {"CSeq", cSeq.Number}
-                                                          };
+                {
+                    {"To", to.Value},
+                    {"From", @from.Value},
+                    {"CallId", callId.Value},
+                    {"CSeq", cSeq.Number}
+                };
             via.Attributes["branch"] = Transaction.CreateBranch(branchParams, false);
             if (LocalTarget == null)
             {
                 LocalTarget = Stack.Uri.Dup();
                 LocalTarget.User = LocalParty.Uri.User;
             }
-            Header contact = new Header(this.LocalTarget.ToString(), "Contact");
-            Header[] headerList = { to, from, cSeq, callId, maxForwards, via, contact };
+            Header contact = new Header(LocalTarget.ToString(), "Contact");
+            Header[] headerList = {to, from, cSeq, callId, maxForwards, via, contact};
             List<Header> headers = headerList.ToList();
             // Check this TODO
             //
-            if (this.RouteSet.Count != 0)
+            if (RouteSet.Count != 0)
             {
-                headers.AddRange(this.RouteSet);
+                headers.AddRange(RouteSet);
             }
 
             //app adds other headers such as Supported, Require and Proxy-Require
@@ -233,7 +237,8 @@ namespace SIPLib.SIP
             if ((Request == null) && (request.Method == "REGISTER"))
             {
                 if ((Transaction == null) && (Transaction.State != "completed") && (Transaction.State != "terminated"))
-                { //TODO This doesn't make sense....
+                {
+                    //TODO This doesn't make sense....
                     Debug.Assert(false, String.Format("Cannot re-REGISTER since pending registration\n"));
                 }
             }
@@ -248,18 +253,18 @@ namespace SIPLib.SIP
             {
                 if (request.Headers["Route"].Count > 0)
                 {
-                    target = ((Address)(request.Headers["Route"][0].Value)).Uri;
+                    target = ((Address) (request.Headers["Route"][0].Value)).Uri;
                     if ((target == null) || !target.Parameters.ContainsKey("lr"))
                     {
                         request.Headers["Route"].RemoveAt(0);
                         if (request.Headers["Route"].Count > 0)
                         {
-                            request.Headers["Route"].Insert(request.Headers["Route"].Count - 1, new Header(request.Uri.ToString(), "Route"));
+                            request.Headers["Route"].Insert(request.Headers["Route"].Count - 1,
+                                                            new Header(request.Uri.ToString(), "Route"));
                         }
                         request.Uri = target;
                     }
                 }
-
             }
             // TODO: remove any Route Header in REGISTER request
             Stack.Sending(this, request);
@@ -271,7 +276,7 @@ namespace SIPLib.SIP
                     dest.Port = 5060;
                 }
 
-                if (Utils.Helpers.IsIPv4(dest.Host))
+                if (Helpers.IsIPv4(dest.Host))
                 {
                     RemoteCandidates = new List<SIPURI> {dest};
                 }
@@ -285,7 +290,8 @@ namespace SIPLib.SIP
             RemoteCandidates.RemoveAt(0);
             if (Request.Method != "ACK")
             {
-                Transaction = Transaction.CreateClient(Stack, this, Request, Stack.Transport, target.Host + ":" + target.Port);
+                Transaction = Transaction.CreateClient(Stack, this, Request, Stack.Transport,
+                                                       target.Host + ":" + target.Port);
             }
             else
             {
@@ -322,8 +328,8 @@ namespace SIPLib.SIP
             SIPURI target = RemoteCandidates.First();
             RemoteCandidates.RemoveAt(0);
             Request.Headers["Via"][0].Attributes["branch"] += "A";
-            Transaction = Transaction.CreateClient(Stack, this, Request, Stack.Transport, target.Host + ":" + target.Port);
-
+            Transaction = Transaction.CreateClient(Stack, this, Request, Stack.Transport,
+                                                   target.Host + ":" + target.Port);
         }
 
         public virtual void Error(Transaction t, string error)
@@ -341,7 +347,8 @@ namespace SIPLib.SIP
                 }
                 else
                 {
-                    ReceivedResponse(null, Message.CreateResponse(503, "Service unavailable - " + error, null, null, Request));
+                    ReceivedResponse(null,
+                                     Message.CreateResponse(503, "Service unavailable - " + error, null, null, Request));
                 }
             }
         }
@@ -362,7 +369,8 @@ namespace SIPLib.SIP
             {
                 if (CancelRequest != null)
                 {
-                    Transaction cancel = Transaction.CreateClient(Stack, this, CancelRequest, transaction.Transport, transaction.Remote);
+                    Transaction cancel = Transaction.CreateClient(Stack, this, CancelRequest, transaction.Transport,
+                                                                  transaction.Remote);
                     CancelRequest = null;
                 }
                 else
@@ -411,23 +419,26 @@ namespace SIPLib.SIP
 
         public static bool CanCreateDialog(Message request, Message response)
         {
-
             return ((response.Is2XX()) && ((request.Method == "INVITE") || (request.Method == "SUBSCRIBE")));
         }
 
         public virtual void ReceivedRequest(Transaction transaction, Message request)
         {
-            if ((transaction != null) && (Transaction != null) && (transaction != Transaction) && (request.Method != "CANCEL"))
+            if ((transaction != null) && (Transaction != null) && (transaction != Transaction) &&
+                (request.Method != "CANCEL"))
             {
                 Transaction t = Transaction;
                 Transaction t2 = transaction;
-                bool test = Transaction.TEquals(t,request,t2);
-                System.Console.WriteLine("Invalid transaction for received request {0} != {1}, {2}", transaction, Transaction,test);
+                bool test = Transaction.TEquals(t, request, t2);
+                Console.WriteLine("Invalid transaction for received request {0} != {1}, {2}", transaction, Transaction,
+                                  test);
                 // TODO: Re-enable this
-                Debug.Assert(false, String.Format("Invalid transaction for received request {0} != {1}", transaction, Transaction));
+                Debug.Assert(false,
+                             String.Format("Invalid transaction for received request {0} != {1}", transaction,
+                                           Transaction));
                 return;
             }
-            this.Server = true;
+            Server = true;
             //if request.method == 'REGISTER':
             //response = transaction.createResponse(405, 'Method not allowed')
             //response.Allow = Header('INVITE, ACK, CANCEL, BYE', 'Allow') # TODO make this configurable
@@ -440,7 +451,7 @@ namespace SIPLib.SIP
             }
             if (!request.Headers["To"][0].ToString().Contains("tag"))
             {
-                if (this.Stack.FindOtherTransactions(request, transaction) != null)
+                if (Stack.FindOtherTransactions(request, transaction) != null)
                 {
                     transaction.SendResponse(transaction.CreateResponse(482, "Loop Detected - found another transaction"));
                 }
@@ -462,7 +473,7 @@ namespace SIPLib.SIP
             }
             if (request.Method == "CANCEL")
             {
-                Transaction original = this.Stack.FindTransaction(Transaction.CreateId(transaction.Branch, "Invite"));
+                Transaction original = Stack.FindTransaction(Transaction.CreateId(transaction.Branch, "Invite"));
                 if (original == null)
                 {
                     transaction.SendResponse(transaction.CreateResponse(481, "Cannot find transaction??"));
@@ -478,7 +489,8 @@ namespace SIPLib.SIP
             Stack.ReceivedRequest(this, request);
         }
 
-        public virtual void SendResponse(object response, string responseText = "", string content = "", string contentType = "", bool createDialog = true)
+        public virtual void SendResponse(object response, string responseText = "", string content = "",
+                                         string contentType = "", bool createDialog = true)
         {
             Message responseMessage;
             if (Request == null)
@@ -488,11 +500,11 @@ namespace SIPLib.SIP
             }
             if (response is int)
             {
-                responseMessage = CreateResponse((int)(response), responseText, content, contentType);
+                responseMessage = CreateResponse((int) (response), responseText, content, contentType);
             }
             else
             {
-                responseMessage = (Message)(response);
+                responseMessage = (Message) (response);
             }
             if (createDialog && CanCreateDialog(Request, responseMessage))
             {
@@ -506,10 +518,9 @@ namespace SIPLib.SIP
                     Address contact = new Address(Contact.ToString());
                     if (contact.Uri.User.Length != 0)
                     {
-                        contact.Uri.User = ((Address)Request.First("To").Value).Uri.User;
+                        contact.Uri.User = ((Address) Request.First("To").Value).Uri.User;
                         responseMessage.InsertHeader(new Header(contact.ToString(), "Contact"));
                     }
-
                 }
                 Dialog dialog = Dialog.CreateServer(Stack, Request, responseMessage, Transaction);
                 Stack.DialogCreated(dialog, this);
@@ -527,11 +538,11 @@ namespace SIPLib.SIP
             {
                 Transaction.SendResponse(responseMessage);
             }
-
         }
 
 
-        public virtual Message CreateResponse(int responseCode, string responseText, string content = null, string contentType = null)
+        public virtual Message CreateResponse(int responseCode, string responseText, string content = null,
+                                              string contentType = null)
         {
             if (Request == null)
             {
@@ -561,11 +572,11 @@ namespace SIPLib.SIP
             {
                 if (Transaction.State == "proceeding")
                 {
-                    Transaction transaction = Transaction.CreateClient(this.Stack, this, this.CancelRequest, this.Transaction.Transport, this.Transaction.Remote);
+                    Transaction transaction = Transaction.CreateClient(Stack, this, CancelRequest, Transaction.Transport,
+                                                                       Transaction.Remote);
                 }
                 CancelRequest = null;
             }
-
         }
 
         public virtual bool Authenticate(Message response, Transaction transaction)
@@ -587,7 +598,9 @@ namespace SIPLib.SIP
             {
                 try
                 {
-                    if (a.Attributes["realm"] == h.Attributes["realm"] && (a.Name == "WWW-Authenticate" && h.Name == "Authorization" || a.Name == "Proxy-Authenticate" && h.Name == "Proxy-Authorization"))
+                    if (a.Attributes["realm"] == h.Attributes["realm"] &&
+                        (a.Name == "WWW-Authenticate" && h.Name == "Authorization" ||
+                         a.Name == "Proxy-Authenticate" && h.Name == "Proxy-Authorization"))
                     {
                         present = true;
                         break;
@@ -605,7 +618,9 @@ namespace SIPLib.SIP
                     return false;
                 }
                 //string value = createAuthorization(a.value, a.attributes["username"], a.attributes["password"], request.uri.ToString(), this.request.method, this.request.body, this.auth);
-                string value = SIP.Authenticate.CreateAuthorization(a.ToString(), result[0], result[1], request.Uri.ToString(), request.Method, request.Body, Auth);
+                string value = SIP.Authenticate.CreateAuthorization(a.ToString(), result[0], result[1],
+                                                                    request.Uri.ToString(), request.Method, request.Body,
+                                                                    Auth);
                 if (value.Length > 0)
                 {
                     request.InsertHeader(
@@ -628,10 +643,10 @@ namespace SIPLib.SIP
             }
             return false;
         }
+
         internal virtual void ReceivedRequest(Transaction t, Message message, SIPStack sIPStack)
         {
             ReceivedRequest(t, message);
         }
     }
-
 }

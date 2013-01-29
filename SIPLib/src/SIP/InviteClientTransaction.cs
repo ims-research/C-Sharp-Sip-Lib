@@ -1,12 +1,16 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+
+#endregion
 
 namespace SIPLib.SIP
 {
     public class InviteClientTransaction : Transaction
     {
-        public InviteClientTransaction(UserAgent app ) : base(app)
+        public InviteClientTransaction(UserAgent app) : base(app)
         {
             Server = false;
         }
@@ -51,16 +55,16 @@ namespace SIPLib.SIP
                     App.ReceivedResponse(this, response);
                     if (!Transport.Reliable)
                     {
-                        StartTimer("D",Timer.D());
+                        StartTimer("D", Timer.D());
                     }
                     else
                     {
-                        Timeout("D",0);
+                        Timeout("D", 0);
                     }
                 }
                 else if (State == "completed")
                 {
-                    Stack.Send(CreateAck(response),Remote,Transport);
+                    Stack.Send(CreateAck(response), Remote, Transport);
                 }
             }
         }
@@ -71,7 +75,7 @@ namespace SIPLib.SIP
             {
                 if (name == "A")
                 {
-                    StartTimer("A", 2 * timeout);
+                    StartTimer("A", 2*timeout);
                     Stack.Send(Request, Remote, Transport);
                 }
                 else if (name == "B")
@@ -94,7 +98,7 @@ namespace SIPLib.SIP
             if (State == "calling" || State == "completed")
             {
                 State = "terminated";
-                App.Error(this,error);
+                App.Error(this, error);
             }
         }
 
@@ -128,6 +132,5 @@ namespace SIPLib.SIP
             }
             return m;
         }
-
     }
 }

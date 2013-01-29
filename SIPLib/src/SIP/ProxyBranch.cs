@@ -1,15 +1,19 @@
-﻿using System.Collections.Generic;
+﻿#region
+
+using System.Collections.Generic;
 using SIPLib.SIP;
+
+#endregion
 
 namespace SIPLib.src.SIP
 {
-    class ProxyBranch
+    internal class ProxyBranch
     {
+        public Message CancelRequest;
+        public List<SIPURI> RemoteCandidates;
         public Message Request;
         public Message Response;
-        public List<SIPURI> RemoteCandidates;
         public Transaction Transaction;
-        public Message CancelRequest;
 
         public ProxyBranch()
         {

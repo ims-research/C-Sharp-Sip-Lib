@@ -1,19 +1,23 @@
-﻿using System;
+﻿#region
+
+using System;
+
+#endregion
 
 namespace SIPLib.SIP
 {
     public class InviteServerTransaction : Transaction
     {
-        public InviteServerTransaction(UserAgent app ) : base(app)
+        public InviteServerTransaction(UserAgent app) : base(app)
         {
             Server = true;
         }
 
-        public  void Start()
+        public void Start()
         {
             State = "proceeding";
             SendResponse(CreateResponse(100, "Trying"));
-            App.ReceivedRequest(this, Request,Stack);
+            App.ReceivedRequest(this, Request, Stack);
         }
 
         public override void ReceivedRequest(Message receivedRequest)
@@ -52,7 +56,7 @@ namespace SIPLib.SIP
             {
                 if (name == "G")
                 {
-                    StartTimer("G", Math.Min(2 * timeout, Timer.T2));
+                    StartTimer("G", Math.Min(2*timeout, Timer.T2));
                     Stack.Send(LastResponse, Remote, Transport);
                 }
                 else if (name == "H")
@@ -70,12 +74,12 @@ namespace SIPLib.SIP
             }
         }
 
-        public  void Error(string error)
+        public void Error(string error)
         {
             if (State == "proceeding" || State == "confirmed")
             {
                 State = "terminated";
-                App.Error(this,error);
+                App.Error(this, error);
             }
         }
 

@@ -1,28 +1,24 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Security.Cryptography;
+
+#endregion
 
 namespace SIPLib.SIP
 {
     public class SIPURI
     {
-        public string Scheme { get; set; }
-        public string User { get; set; }
-        public string Password { get; set; }
-        public string Host { get; set; }
-        public string IP { get; set; }
-        public int Port { get; set; }
-        public Dictionary<string,string> Parameters { get; set; }
-        public Dictionary<string, string> Headers { get; set; }
-
         public SIPURI(string uri)
         {
             Init();
-            const string regEx = @"^(?<scheme>[a-zA-Z][a-zA-Z0-9\+\-\.]*):(((?<user>[a-zA-Z0-9\-_\.\!\~\*\'\(\)&=\+\$,;\?\/\%]+)(:(?<password>[^:@;\?]+))?)@)?(((?<host>[^;\?:]*)(:(?<port>[\d]+))?))(;(?<params>[^\?]*))?(\?(?<headers>.*))?$";
-            Regex exp = new Regex(regEx,RegexOptions.IgnoreCase);
+            const string regEx =
+                @"^(?<scheme>[a-zA-Z][a-zA-Z0-9\+\-\.]*):(((?<user>[a-zA-Z0-9\-_\.\!\~\*\'\(\)&=\+\$,;\?\/\%]+)(:(?<password>[^:@;\?]+))?)@)?(((?<host>[^;\?:]*)(:(?<port>[\d]+))?))(;(?<params>[^\?]*))?(\?(?<headers>.*))?$";
+            Regex exp = new Regex(regEx, RegexOptions.IgnoreCase);
 
             MatchCollection mc = exp.Matches(uri);
             string param = "";
@@ -38,9 +34,8 @@ namespace SIPLib.SIP
                 Port = tempPort;
                 param = m.Groups["params"].ToString();
                 head = m.Groups["headers"].ToString();
-                
             }
-            if ((Scheme == "tel") && (User==""))
+            if ((Scheme == "tel") && (User == ""))
             {
                 User = Host;
                 Host = null;
@@ -50,13 +45,13 @@ namespace SIPLib.SIP
                 if (paramater.Contains('='))
                 {
                     int index = paramater.IndexOf('=');
-                    string paramName = paramater.Substring(0,index);
-                    string paramValue = paramater.Substring(index+1);
-                    Parameters.Add(paramName,paramValue);
+                    string paramName = paramater.Substring(0, index);
+                    string paramValue = paramater.Substring(index + 1);
+                    Parameters.Add(paramName, paramValue);
                 }
                 else if (paramater.ToLower() == "lr")
                 {
-                    Parameters.Add(paramater,"");
+                    Parameters.Add(paramater, "");
                 }
                 else break;
             }
@@ -73,20 +68,31 @@ namespace SIPLib.SIP
                     break;
             }
         }
+
         public SIPURI()
         {
             Init();
         }
+
+        public string Scheme { get; set; }
+        public string User { get; set; }
+        public string Password { get; set; }
+        public string Host { get; set; }
+        public string IP { get; set; }
+        public int Port { get; set; }
+        public Dictionary<string, string> Parameters { get; set; }
+        public Dictionary<string, string> Headers { get; set; }
+
         private void Init()
         {
             Parameters = new Dictionary<string, string>();
             Headers = new Dictionary<string, string>();
 
-            Scheme = null; 
-            User = null; 
-            Password = null; 
+            Scheme = null;
+            User = null;
+            Password = null;
             Host = null;
-            Port = 0; 
+            Port = 0;
         }
 
         public override string ToString()
@@ -162,9 +168,9 @@ namespace SIPLib.SIP
             string hash = GetMd5Hash(m, ToString().ToLower());
             return hash;
         }
-        static string GetMd5Hash(MD5 md5Hash, string input)
-        {
 
+        private static string GetMd5Hash(MD5 md5Hash, string input)
+        {
             // Convert the input string to a byte array and compute the hash.
             byte[] data = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(input));
 
@@ -190,7 +196,7 @@ namespace SIPLib.SIP
 
         public string HostPort()
         {
-            return this.Host + ":" + Port.ToString();
+            return Host + ":" + Port.ToString();
         }
     }
 }

@@ -1,31 +1,16 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+
+#endregion
 
 namespace SIPLib.SIP
 {
     public class Dialog : UserAgent
     {
-        public List<Transaction> Servers { get; set; }
-        public List<Transaction> Clients { get; set; }
-        private List<Header> InviteRecordRoute { get; set; }
         private string _id;
-        public string ID
-        {
-            get
-            {
-                if (_id.Length <= 0)
-                {
-                    return CallID + "|" + LocalTag + "|" + RemoteTag;
-                }
-                return _id;
-            }
-            set
-            {
-                _id = value;
-            }
-
-        }
 
         public Dialog(SIPStack stack, Message request, bool server, Transaction transaction = null)
             : base(stack, request, server)
@@ -37,8 +22,25 @@ namespace SIPLib.SIP
             {
                 transaction.App = this;
             }
-
         }
+
+        public List<Transaction> Servers { get; set; }
+        public List<Transaction> Clients { get; set; }
+        private List<Header> InviteRecordRoute { get; set; }
+
+        public string ID
+        {
+            get
+            {
+                if (_id.Length <= 0)
+                {
+                    return CallID + "|" + LocalTag + "|" + RemoteTag;
+                }
+                return _id;
+            }
+            set { _id = value; }
+        }
+
         public void Close()
         {
             if (Stack != null)
@@ -71,11 +73,10 @@ namespace SIPLib.SIP
             d.RemoteTag = request.First("From").Attributes["tag"];
             d.LocalParty = new Address(request.First("To").Value.ToString());
             d.RemoteParty = new Address(request.First("From").Value.ToString());
-            d.RemoteTarget = new SIPURI(((Address)(request.First("Contact").Value)).Uri.ToString());
+            d.RemoteTarget = new SIPURI(((Address) (request.First("Contact").Value)).Uri.ToString());
             // TODO: retransmission timer for 2xx in UAC
             stack.Dialogs[d.CallID] = d;
             return d;
-
         }
 
         public static Dialog CreateClient(SIPStack stack, Message request, Message response, Transaction transaction)
@@ -99,16 +100,16 @@ namespace SIPLib.SIP
             d.RemoteParty = new Address(request.First("To").Value.ToString());
             if (response.Headers.ContainsKey("Contact"))
             {
-                d.RemoteTarget = new SIPURI(((Address)(response.First("Contact").Value)).Uri.ToString());    
+                d.RemoteTarget = new SIPURI(((Address) (response.First("Contact").Value)).Uri.ToString());
             }
-            else d.RemoteTarget = new SIPURI(((Address)(response.First("To").Value)).Uri.ToString());
+            else d.RemoteTarget = new SIPURI(((Address) (response.First("To").Value)).Uri.ToString());
             try
             {
                 stack.Dialogs[d.CallID] = d;
             }
             catch (Exception)
             {
-                Debug.Assert(false,"Error assiging callID to stack dialog list");
+                Debug.Assert(false, "Error assiging callID to stack dialog list");
             }
             return d;
         }
@@ -116,7 +117,7 @@ namespace SIPLib.SIP
         public static string ExtractID(Message m)
         {
             // TODO fix this and use more than just call id ?
-            string temp = m.First("Call-ID").Value.ToString();// +"|";
+            string temp = m.First("Call-ID").Value.ToString(); // +"|";
             //if (m.method != null && m.method.Length > 0)
             //{
             //    temp = temp + m.first("To").attributes["tag"] + "|";
@@ -129,6 +130,7 @@ namespace SIPLib.SIP
             //}
             return temp;
         }
+
         public override Message CreateRequest(string method, string content = null, string contentType = null)
         {
             Message request = base.CreateRequest(method, content, contentType);
@@ -136,10 +138,10 @@ namespace SIPLib.SIP
             {
                 request.Headers["To"][0].Attributes["tag"] = RemoteTag;
             }
-            if (RouteSet !=null && RouteSet.Count > 0 && !RouteSet[0].Value.ToString().Contains("lr"))
+            if (RouteSet != null && RouteSet.Count > 0 && !RouteSet[0].Value.ToString().Contains("lr"))
             {
                 //TODO: Check this RouteSet
-                request.Uri = new SIPURI((string)(RouteSet[0].Value));
+                request.Uri = new SIPURI((string) (RouteSet[0].Value));
                 request.Uri.Parameters.Remove("lr");
             }
             //if (RouteSet.Count > 0)
@@ -153,7 +155,8 @@ namespace SIPLib.SIP
             return request;
         }
 
-        public override Message CreateResponse(int response_code, string response_text, string content = null, string contentType = null)
+        public override Message CreateResponse(int response_code, string response_text, string content = null,
+                                               string contentType = null)
         {
             if (Servers.Count == 0)
             {
@@ -182,7 +185,7 @@ namespace SIPLib.SIP
             {
                 Console.WriteLine("Got some transaction servers");
             }
-            Message request = Servers[Servers.Count-1].Request;
+            Message request = Servers[Servers.Count - 1].Request;
             Message response = Message.CreateResponse(response_code, response_text, null, content, request);
             if (!string.IsNullOrEmpty(contentType))
             {
@@ -195,7 +198,8 @@ namespace SIPLib.SIP
             return response;
         }
 
-        public override void SendResponse(object response, string responseText = null, string content = null, string contentType = null, bool createDialog = true)
+        public override void SendResponse(object response, string responseText = null, string content = null,
+                                          string contentType = null, bool createDialog = true)
         {
             if (Servers.Count == 0)
             {
@@ -207,16 +211,16 @@ namespace SIPLib.SIP
             string branchID = "z9hG4bK" + "ERROR";
             try
             {
-                branchID = ((Message)response).First("Via").Attributes["branch"];
+                branchID = ((Message) response).First("Via").Attributes["branch"];
             }
             catch (Exception)
             {
-                Debug.Assert(false,"Error trying to convert response object into Message");
+                Debug.Assert(false, "Error trying to convert response object into Message");
                 return;
             }
-            
+
             Transaction = null;
-            
+
             foreach (Transaction transaction in Servers)
             {
                 if (branchID == transaction.Branch)
@@ -226,11 +230,11 @@ namespace SIPLib.SIP
                 }
             }
             if (Transaction == null)
-                {
-                    Debug.Assert(false, String.Format("No transactions in dialog matched"));
-                    return;
-                }
-            
+            {
+                Debug.Assert(false, String.Format("No transactions in dialog matched"));
+                return;
+            }
+
             base.SendResponse(response, responseText, content, contentType);
             int code = 0;
             if (response is int)
@@ -239,7 +243,7 @@ namespace SIPLib.SIP
             }
             else if (response is Message)
             {
-                code = ((Message)(response)).ResponseCode;
+                code = ((Message) (response)).ResponseCode;
             }
             if (code > 200)
             {
@@ -264,14 +268,16 @@ namespace SIPLib.SIP
             {
                 Message m = transaction.CreateResponse(500, "Internal server error - invalid CSeq");
                 SendResponse(m);
-                Debug.Assert(false, String.Format("Dialog.receivedRequest() CSeq is old {0} < {1}", request.Headers["CSeq"][0].Number, RemoteSeq));
+                Debug.Assert(false,
+                             String.Format("Dialog.receivedRequest() CSeq is old {0} < {1}",
+                                           request.Headers["CSeq"][0].Number, RemoteSeq));
                 return;
             }
             RemoteSeq = request.Headers["CSeq"][0].Number;
 
             if (request.Method == "INVITE" && request.Headers.ContainsKey("Contact"))
             {
-                RemoteTarget =new SIPURI(((Address)(request.Headers["Contact"][0].Value)).Uri.ToString());
+                RemoteTarget = new SIPURI(((Address) (request.Headers["Contact"][0].Value)).Uri.ToString());
             }
 
             if (request.Method == "ACK" || request.Method == "CANCEL")
@@ -279,23 +285,24 @@ namespace SIPLib.SIP
                 Servers.RemoveAll(x => x == transaction);
                 if (request.Method == "ACK")
                 {
-                    Stack.ReceivedRequest(this,request);
+                    Stack.ReceivedRequest(this, request);
                 }
                 else
                 {
-                    Stack.Cancelled(this,transaction.Request);
+                    Stack.Cancelled(this, transaction.Request);
                 }
                 return;
             }
             Servers.Add(transaction);
-            Stack.ReceivedRequest(this,request);
-        
+            Stack.ReceivedRequest(this, request);
         }
+
         public override void ReceivedResponse(Transaction transaction, Message response)
         {
-            if (response.Is2XX() && response.Headers.ContainsKey("Contact") && transaction != null && transaction.Request.Method == "INVITE")
+            if (response.Is2XX() && response.Headers.ContainsKey("Contact") && transaction != null &&
+                transaction.Request.Method == "INVITE")
             {
-                RemoteTarget = new SIPURI(((Address)(Request.First("Contact").Value)).Uri.ToString());
+                RemoteTarget = new SIPURI(((Address) (Request.First("Contact").Value)).Uri.ToString());
             }
             if (!response.Is1XX())
                 Clients.RemoveAll(x => x == transaction);
@@ -317,12 +324,13 @@ namespace SIPLib.SIP
                 Stack.ReceivedResponse(this, response);
             }
 
-            if (Autoack && response.Is2XX() && (transaction != null && transaction.Request.Method == "INVITE" || response.First("CSeq").Method == "INVITE"))
+            if (Autoack && response.Is2XX() &&
+                (transaction != null && transaction.Request.Method == "INVITE" ||
+                 response.First("CSeq").Method == "INVITE"))
             {
                 Message ack = CreateRequest("ACK");
                 SendRequest(ack);
             }
-
         }
     }
 }

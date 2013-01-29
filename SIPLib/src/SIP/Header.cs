@@ -1,19 +1,65 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
-using System.Globalization;
+
+#endregion
 
 namespace SIPLib.SIP
 {
     public class Header
     {
-        static readonly string[] Address = { "contact", "from", "record-route", "refer-to", "referred-by", "route", "to" };
-        static readonly string[] Comma = { "authorization", "proxy-authenticate", "proxy-authorization", "www-authenticate" };
-        static readonly string[] Unstructured = { "call-id", "cseq", "date", "expires", "max-forwards", "organization", "server", "subject", "timestamp", "user-agent", "service-route" };
-        static readonly Dictionary<string, string> Short = new Dictionary<string, string> { {"u","allow-events"},{"i","call-id"},{"m","contact"},
-            {"e","content-encoding"},{"l","content-length"},{"c",  "content-type"},{"o",  "event"},{"f", "from"},{"s",  "subject"},{"k","supported"},{"t","to"},{"v",  "via"}};
-        static readonly Dictionary<string, string> Exceptions = new Dictionary<string, string> { { "call-id", "Call-ID" }, { "cseq", "CSeq" }, { "www-authenticate", "WWW-Authenticate" } };
+        private static readonly string[] Address =
+            {
+                "contact", "from", "record-route", "refer-to", "referred-by",
+                "route", "to"
+            };
+
+        private static readonly string[] Comma =
+            {
+                "authorization", "proxy-authenticate", "proxy-authorization",
+                "www-authenticate"
+            };
+
+        private static readonly string[] Unstructured =
+            {
+                "call-id", "cseq", "date", "expires", "max-forwards",
+                "organization", "server", "subject", "timestamp", "user-agent", "service-route"
+            };
+
+        private static readonly Dictionary<string, string> Short = new Dictionary<string, string>
+            {
+                {"u", "allow-events"},
+                {"i", "call-id"},
+                {"m", "contact"},
+                {"e", "content-encoding"},
+                {"l", "content-length"},
+                {"c", "content-type"},
+                {"o", "event"},
+                {"f", "from"},
+                {"s", "subject"},
+                {"k", "supported"},
+                {"t", "to"},
+                {"v", "via"}
+            };
+
+        private static readonly Dictionary<string, string> Exceptions = new Dictionary<string, string>
+            {
+                {"call-id", "Call-ID"},
+                {"cseq", "CSeq"},
+                {"www-authenticate", "WWW-Authenticate"}
+            };
+
+        public Header(string value, string name)
+        {
+            Number = -1;
+            Attributes = new Dictionary<string, string>();
+            Name = Canon(name.Trim());
+            Parse(Name, value.Trim());
+        }
 
         public Dictionary<string, string> Attributes { get; set; }
         public string HeaderType { get; set; }
@@ -35,15 +81,15 @@ namespace SIPLib.SIP
             {
                 return Exceptions[input];
             }
-            
-                string[] words = input.Split('-');
-                for (int i = 0; i < words.Length; i++)
-                {
-                    words[i] = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(words[i]);
-                }
-                return String.Join("-", words);
-            
+
+            string[] words = input.Split('-');
+            for (int i = 0; i < words.Length; i++)
+            {
+                words[i] = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(words[i]);
+            }
+            return String.Join("-", words);
         }
+
         public static string Quote(string input)
         {
             if (input.StartsWith("\"") && input.EndsWith("\""))
@@ -59,15 +105,7 @@ namespace SIPLib.SIP
             {
                 return input.Substring(1, input.Length - 2);
             }
-                return input;
-        }
-
-        public Header(string value, string name)
-        {
-            Number = -1;
-            Attributes = new Dictionary<string, string>();
-            Name = Canon(name.Trim());
-            Parse(Name, value.Trim());
+            return input;
         }
 
         public void Parse(string name, string value)
@@ -95,7 +133,6 @@ namespace SIPLib.SIP
                         }
                     }
                 }
-
             }
             else if (!(Comma.Contains(name.ToLower())) && !(Unstructured.Contains(name.ToLower())))
             {
@@ -192,12 +229,11 @@ namespace SIPLib.SIP
                     }
                 }
             }
-
         }
 
         public override string ToString()
         {
-            string name = this.Name.ToLower();
+            string name = Name.ToLower();
             StringBuilder sb = new StringBuilder();
             sb.Append(Value);
             if (HeaderType != "comma" && HeaderType != "unstructured")
@@ -213,7 +249,6 @@ namespace SIPLib.SIP
                 sb.Append(" ");
                 foreach (KeyValuePair<string, string> kvp in Attributes)
                 {
-
                     sb.Append(kvp.Key + "=" + kvp.Value);
                     sb.Append(",");
                 }
@@ -264,6 +299,4 @@ namespace SIPLib.SIP
             return headers;
         }
     }
-
-
 }

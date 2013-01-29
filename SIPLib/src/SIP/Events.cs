@@ -1,10 +1,13 @@
-﻿using System;
+﻿#region
+
+using System;
+
+#endregion
 
 namespace SIPLib.SIP
 {
     public class Events
     {
-
     }
 
     public class SipMessageEventArgs : EventArgs
@@ -17,18 +20,17 @@ namespace SIPLib.SIP
             Message = transferredMessage;
         }
 
-        public SipMessageEventArgs(Message transferredMessage,UserAgent ua)
+        public SipMessageEventArgs(Message transferredMessage, UserAgent ua)
         {
             Message = transferredMessage;
             UA = ua;
         }
-
     }
 
     public class StackErrorEventArgs : EventArgs
     {
-        public string Function;
         public Exception Exception;
+        public string Function;
 
         public StackErrorEventArgs(string inputFunction, Exception e)
         {
@@ -39,8 +41,8 @@ namespace SIPLib.SIP
 
     public class RegistrationChangedEventArgs : EventArgs
     {
-        public string State;
         public Message Message;
+        public string State;
 
         public RegistrationChangedEventArgs(string s, Message m)
         {
@@ -52,10 +54,10 @@ namespace SIPLib.SIP
     public class RawEventArgs : EventArgs
     {
         public string Data;
-        public string[] Src;
         public bool Sent;
+        public string[] Src;
 
-        public RawEventArgs(string d,string[] s, bool sent)
+        public RawEventArgs(string d, string[] s, bool sent)
         {
             Data = d;
             Src = s;

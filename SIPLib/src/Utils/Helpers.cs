@@ -1,21 +1,43 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Linq;
-using System.Text;
 using System.Net;
+using System.Net.Sockets;
 using System.Security.Cryptography;
+using System.Text;
 using SIPLib.SIP;
 using log4net;
+
+#endregion
 
 namespace SIPLib.Utils
 {
     public static class Helpers
     {
-
-        private static ILog _log = LogManager.GetLogger(typeof(SIPStack));
         public enum SipMethods
         {
-            REGISTER, INVITE, ACK, BYE, CANCEL, MESSAGE, OPTIONS, PRACK,
-            SUBSCRIBE, NOTIFY, PUBLISH, INFO, REFER, UPDATE
+            REGISTER,
+            INVITE,
+            ACK,
+            BYE,
+            CANCEL,
+            MESSAGE,
+            OPTIONS,
+            PRACK,
+            SUBSCRIBE,
+            NOTIFY,
+            PUBLISH,
+            INFO,
+            REFER,
+            UPDATE
+        }
+
+        private static ILog _log = LogManager.GetLogger(typeof (SIPStack));
+
+        private static DateTime UnixTime
+        {
+            get { return new DateTime(1970, 1, 1); }
         }
 
         public static bool IsIPv4(string input)
@@ -36,9 +58,9 @@ namespace SIPLib.Utils
             {
                 switch (address.AddressFamily)
                 {
-                    case System.Net.Sockets.AddressFamily.InterNetwork:
+                    case AddressFamily.InterNetwork:
                         return true;
-                    case System.Net.Sockets.AddressFamily.InterNetworkV6:
+                    case AddressFamily.InterNetworkV6:
                         return false;
                     default:
                         return false;
@@ -68,7 +90,6 @@ namespace SIPLib.Utils
 
         public static string GetMd5Hash(MD5 md5Hash, string input)
         {
-
             // Convert the input string to a byte array and compute the hash.
             byte[] data = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(input));
 
@@ -87,54 +108,51 @@ namespace SIPLib.Utils
             return sBuilder.ToString();
         }
 
-        private static DateTime UnixTime
+        public static DateTime FromUnixTime(double unixTime)
         {
-        get { return new DateTime(1970, 1, 1); }
-        }
- 
-        public static DateTime FromUnixTime( double unixTime )
-        {
-        return UnixTime.AddSeconds( unixTime );
-        }
- 
-        public static double ToUnixTime( DateTime dateTime )
-        {
-        TimeSpan timeSpan = dateTime - UnixTime;
-        return timeSpan.TotalSeconds;
+            return UnixTime.AddSeconds(unixTime);
         }
 
-	public static string Quote(string input)
-	{
-		return "\"" + input.Trim('"') + "\"";
-	}
-
-	public static string Unquote(string input)
-	{
-		return input.Trim('"');	
-	}
-
-    public static bool IsRequest(Message message)
-    {
-        if (message.Method == null) return false;
-        return IsRequest(message.Method);
-    }
-
-    public static bool IsRequest(string requestLine)
-    {
-        return Enum.GetNames(typeof (SipMethods)).Any(requestLine.Contains);
-    }
-
-    public static string GetLocalIP()
-    {
-        string strHostName = Dns.GetHostName();
-        IPHostEntry ipEntry = Dns.GetHostEntry(strHostName);
-        IPAddress[] addr = ipEntry.AddressList;
-        foreach (IPAddress t in addr.Where(t => t.AddressFamily.ToString() == "InterNetwork").TakeWhile(t => t.ToString() != "127.0.0.1"))
+        public static double ToUnixTime(DateTime dateTime)
         {
-            return t.ToString();
+            TimeSpan timeSpan = dateTime - UnixTime;
+            return timeSpan.TotalSeconds;
         }
-        return "127.0.0.1";
-    }
 
+        public static string Quote(string input)
+        {
+            return "\"" + input.Trim('"') + "\"";
+        }
+
+        public static string Unquote(string input)
+        {
+            return input.Trim('"');
+        }
+
+        public static bool IsRequest(Message message)
+        {
+            if (message.Method == null) return false;
+            return IsRequest(message.Method);
+        }
+
+        public static bool IsRequest(string requestLine)
+        {
+            return Enum.GetNames(typeof (SipMethods)).Any(requestLine.Contains);
+        }
+
+        public static string GetLocalIP()
+        {
+            string strHostName = Dns.GetHostName();
+            IPHostEntry ipEntry = Dns.GetHostEntry(strHostName);
+            IPAddress[] addr = ipEntry.AddressList;
+            foreach (
+                IPAddress t in
+                    addr.Where(t => t.AddressFamily.ToString() == "InterNetwork")
+                        .TakeWhile(t => t.ToString() != "127.0.0.1"))
+            {
+                return t.ToString();
+            }
+            return "127.0.0.1";
+        }
     }
 }

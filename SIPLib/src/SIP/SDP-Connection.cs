@@ -1,17 +1,15 @@
-﻿using System.Collections.Generic;
+﻿#region
+
+using System.Collections.Generic;
 using System.Text;
+
+#endregion
 
 namespace SIPLib.SIP
 {
     public class SDPConnection
     {
-        public string Nettype { get; set; }
-        public string Addrtype { get; set; }
-        public string Address { get; set; }
-        public string TTL { get; set; }
-        public string Count { get; set; }
-
-        public SDPConnection(string value = null,Dictionary<string,string> attrDict = null)
+        public SDPConnection(string value = null, Dictionary<string, string> attrDict = null)
         {
             if (value != null)
             {
@@ -43,17 +41,23 @@ namespace SIPLib.SIP
                 Addrtype = attrDict.ContainsKey("addrtype") ? attrDict["addrtype"] : "IP4";
                 TTL = attrDict.ContainsKey("ttl") ? attrDict["ttl"] : null;
                 Count = attrDict.ContainsKey("count") ? attrDict["count"] : null;
-          }
+            }
         }
+
+        public string Nettype { get; set; }
+        public string Addrtype { get; set; }
+        public string Address { get; set; }
+        public string TTL { get; set; }
+        public string Count { get; set; }
 
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append(Nettype+" ");
+            sb.Append(Nettype + " ");
             sb.Append(Addrtype + " ");
             sb.Append(Address);
             if (TTL != null) sb.Append("/" + TTL);
-            if (Count != null) sb.Append("/"+Count);
+            if (Count != null) sb.Append("/" + Count);
             return sb.ToString();
         }
     }

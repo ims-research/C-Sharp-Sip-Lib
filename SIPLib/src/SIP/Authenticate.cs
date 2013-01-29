@@ -1,49 +1,59 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Security.Cryptography;
 using System.Diagnostics;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using SIPLib.Utils;
+
+#endregion
 
 namespace SIPLib.SIP
 {
     public class Authenticate
     {
-        static readonly Random Random = new Random();
-        public static string CreateAuthenticate(string authMethod = "Digest", Dictionary<string, string> parameters = null)
+        private static readonly Random Random = new Random();
+
+        public static string CreateAuthenticate(string authMethod = "Digest",
+                                                Dictionary<string, string> parameters = null)
         {
             if (parameters == null) parameters = new Dictionary<string, string>();
             authMethod = authMethod.ToLower();
             if (authMethod.Equals("basic"))
             {
-                return "Basic realm=" + Utils.Helpers.Quote(parameters.ContainsKey("realm") ? parameters["realm"] : "0");
+                return "Basic realm=" + Helpers.Quote(parameters.ContainsKey("realm") ? parameters["realm"] : "0");
             }
             if (authMethod.Equals("digest"))
             {
-                string[] predef = { "realm", "domain", "qop", "nonce", "opaque", "stale", "algorithm" };
-                string[] unquoted = { "stale", "algorithm" };
-                double time = Utils.Helpers.ToUnixTime(DateTime.Now);
+                string[] predef = {"realm", "domain", "qop", "nonce", "opaque", "stale", "algorithm"};
+                string[] unquoted = {"stale", "algorithm"};
+                double time = Helpers.ToUnixTime(DateTime.Now);
                 Guid guid = new Guid();
                 string md5Hashstr;
                 using (MD5 md5Hash = MD5.Create())
                 {
-                    md5Hashstr = Utils.Helpers.GetMd5Hash(md5Hash, time.ToString() + ":" + guid.ToString());
+                    md5Hashstr = Helpers.GetMd5Hash(md5Hash, time.ToString() + ":" + guid.ToString());
                 }
-                string nonce = Utils.Helpers.Base64Encode(time.ToString() + " " + md5Hashstr);
+                string nonce = Helpers.Base64Encode(time.ToString() + " " + md5Hashstr);
                 nonce = (parameters.ContainsKey("nonce") ? parameters["nonce"] : nonce);
                 Dictionary<string, string> defaultDict = new Dictionary<string, string>
-                {
-	                {"realm", ""},
-	                {"domain", ""},
-	                {"opaque",""},
-	                {"stale","FALSE"},
-                    {"algorithm","MD5"},
-                    {"qop","auth"},
-                    {"nonce",nonce}
-	            };
+                    {
+                        {"realm", ""},
+                        {"domain", ""},
+                        {"opaque", ""},
+                        {"stale", "FALSE"},
+                        {"algorithm", "MD5"},
+                        {"qop", "auth"},
+                        {"nonce", nonce}
+                    };
 
-                Dictionary<string, string> kv = predef.ToDictionary(s => s, s => parameters.ContainsKey(s) ? parameters[s] : defaultDict[s]);
+                Dictionary<string, string> kv = predef.ToDictionary(s => s,
+                                                                    s =>
+                                                                    parameters.ContainsKey(s)
+                                                                        ? parameters[s]
+                                                                        : defaultDict[s]);
                 foreach (KeyValuePair<string, string> kvp in parameters)
                 {
                     if (!predef.Contains(kvp.Key))
@@ -68,7 +78,7 @@ namespace SIPLib.SIP
                         sb.Append(", ");
                         sb.Append(kvp.Key);
                         sb.Append("=");
-                        sb.Append(Utils.Helpers.Quote(kvp.Value));
+                        sb.Append(Helpers.Quote(kvp.Value));
                     }
                 }
                 sb.Replace("Digest , ", "Digest ");
@@ -78,7 +88,9 @@ namespace SIPLib.SIP
             return null;
         }
 
-        public static string CreateAuthorization(string challenge, string username, string password, string uri = null, string method = null, string entityBody = null, Dictionary<string, string> context = null)
+        public static string CreateAuthorization(string challenge, string username, string password, string uri = null,
+                                                 string method = null, string entityBody = null,
+                                                 Dictionary<string, string> context = null)
         {
             challenge = challenge.Trim();
             string[] values = challenge.Split(" ".ToCharArray(), 2);
@@ -99,10 +111,10 @@ namespace SIPLib.SIP
                     foreach (string pairs in rest.Split(','))
                     {
                         string[] sides = pairs.Trim().Split('=');
-                        ch[sides[0].ToLower().Trim()] = Utils.Helpers.Unquote(sides[1].Trim());
+                        ch[sides[0].ToLower().Trim()] = Helpers.Unquote(sides[1].Trim());
                     }
                 }
-                foreach (string s in new[] { "username", "realm", "nonce", "opaque", "algorithm" })
+                foreach (string s in new[] {"username", "realm", "nonce", "opaque", "algorithm"})
                 {
                     if (ch.ContainsKey(s))
                     {
@@ -139,10 +151,19 @@ namespace SIPLib.SIP
                     }
                     cr["qop"] = "auth";
                     cr["cnonce"] = cnonce;
-                    cr["nc"] = Convert.ToString(nc,10).PadLeft(8, '0');
+                    cr["nc"] = Convert.ToString(nc, 10).PadLeft(8, '0');
                 }
                 cr["response"] = Digest(cr);
-                Dictionary<string, string> items = (from kvp in cr let filter = new[] {"name", "authMethod", "value", "httpMethod", "entityBody", "password"} where !filter.Contains(kvp.Key) select kvp).ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
+                Dictionary<string, string> items = (from kvp in cr
+                                                    let filter =
+                                                        new[]
+                                                            {
+                                                                "name", "authMethod", "value", "httpMethod",
+                                                                "entityBody",
+                                                                "password"
+                                                            }
+                                                    where !filter.Contains(kvp.Key)
+                                                    select kvp).ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
                 StringBuilder sb = new StringBuilder();
                 sb.Append(authMethod + " ");
 
@@ -161,11 +182,10 @@ namespace SIPLib.SIP
                     }
                     else if (!(kvp.Key == "qop" || kvp.Key == "nc"))
                     {
-
                         sb.Append(", ");
                         sb.Append(kvp.Key);
                         sb.Append("=");
-                        sb.Append(Utils.Helpers.Quote(kvp.Value));
+                        sb.Append(Helpers.Quote(kvp.Value));
                     }
                     else
                     {
@@ -197,8 +217,8 @@ namespace SIPLib.SIP
             string httpMethod = cr.ContainsKey("httpMethod") ? cr["httpMethod"] : null;
             string uri = cr.ContainsKey("uri") ? cr["uri"] : null;
             string entityBody = cr.ContainsKey("entityBody") ? cr["entityBody"] : null;
-            string A1,A2;
-            
+            string A1, A2;
+
             if (algorithm != null && algorithm.ToLower() == "md5-sess")
             {
                 A1 = H(username + ":" + realm + ":" + password) + ":" + nonce + ":" + cnonce;
@@ -225,25 +245,25 @@ namespace SIPLib.SIP
             //}
             //else
             //{
-                return Utils.Helpers.Quote(KD(H(A1), nonce + ":" + H(A2)));
+            return Helpers.Quote(KD(H(A1), nonce + ":" + H(A2)));
             //}
         }
 
         public static string Basic(Dictionary<string, string> cr)
         {
-            return Utils.Helpers.Base64Encode(cr["username"] + ":" + cr["password"]);
+            return Helpers.Base64Encode(cr["username"] + ":" + cr["password"]);
         }
 
         private static string H(string input)
         {
             MD5 md5Hash = MD5.Create();
-            return Utils.Helpers.GetMd5Hash(md5Hash, input);
+            return Helpers.GetMd5Hash(md5Hash, input);
         }
 
         private static string KD(string s, string d)
         {
             MD5 md5Hash = MD5.Create();
-            return Utils.Helpers.GetMd5Hash(md5Hash, s + ":" + d);
+            return Helpers.GetMd5Hash(md5Hash, s + ":" + d);
         }
     }
 }

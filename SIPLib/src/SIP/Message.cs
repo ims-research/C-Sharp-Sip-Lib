@@ -1,53 +1,31 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Diagnostics;
+
+#endregion
 
 namespace SIPLib.SIP
 {
     public class Message
     {
-        static string[] _keywords = { "method", "uri", "response", "responsetext", "protocol", "_body", "body" };
-        static string[] _single = {"call-id", "content-disposition", "content-length", "content-type", "cseq", "date", "expires", "event", "max-forwards",
-"organization", "refer-to", "referred-by", "server", "session-expires", "subject", "timestamp", "to", "user-agent"};
+        private static string[] _keywords = {"method", "uri", "response", "responsetext", "protocol", "_body", "body"};
 
-        public int ResponseCode { get; set; }
-        public string ResponseText { get; set; }
+        private static string[] _single =
+            {
+                "call-id", "content-disposition", "content-length", "content-type", "cseq", "date", "expires", "event",
+                "max-forwards",
+                "organization", "refer-to", "referred-by", "server", "session-expires", "subject", "timestamp", "to",
+                "user-agent"
+            };
+
         public StatusCodes StatusCodeType = StatusCodes.Unknown;
-        public string Protocol { get; set; }
-        public string Method { get; set; }
         private string _body = "";
         public bool had_lr;
-
-        public string Body
-        {
-            get
-            {
-                return _body;
-            }
-            set
-            {
-                _body = value;
-                if (Headers.ContainsKey("Content-Length"))
-                {
-                    Headers["Content-Length"][0] = new Header(value.Length.ToString() + "\r\n", "Content-Length");
-                }
-                else
-                {
-                    List<Header> headers = new List<Header> { new Header(value.Length.ToString() + "\r\n", "Content-Length") };
-                    Headers.Add("Content-Length", headers);
-                }
-            }
-        }
-        public SIPURI Uri { get; set; }
-        public Dictionary<string, List<Header>> Headers { get; set; }
-
-        private void Init()
-        {
-            Headers = new Dictionary<string, List<Header>>();
-        }
 
         public Message()
         {
@@ -58,6 +36,40 @@ namespace SIPLib.SIP
         {
             Init();
             Parse(value);
+        }
+
+        public int ResponseCode { get; set; }
+        public string ResponseText { get; set; }
+        public string Protocol { get; set; }
+        public string Method { get; set; }
+
+        public string Body
+        {
+            get { return _body; }
+            set
+            {
+                _body = value;
+                if (Headers.ContainsKey("Content-Length"))
+                {
+                    Headers["Content-Length"][0] = new Header(value.Length.ToString() + "\r\n", "Content-Length");
+                }
+                else
+                {
+                    List<Header> headers = new List<Header>
+                        {
+                            new Header(value.Length.ToString() + "\r\n", "Content-Length")
+                        };
+                    Headers.Add("Content-Length", headers);
+                }
+            }
+        }
+
+        public SIPURI Uri { get; set; }
+        public Dictionary<string, List<Header>> Headers { get; set; }
+
+        private void Init()
+        {
+            Headers = new Dictionary<string, List<Header>>();
         }
 
         public void Parse(string value)
@@ -99,7 +111,7 @@ namespace SIPLib.SIP
                 Uri = new SIPURI(parts[1]);
                 Protocol = parts[2];
             }
-            string[] stringSeparators = new[] { "\r\n" };
+            string[] stringSeparators = new[] {"\r\n"};
             foreach (string bh in headers.Split(stringSeparators, StringSplitOptions.None))
             {
                 string h = bh.Trim();
@@ -138,8 +150,9 @@ namespace SIPLib.SIP
             {
                 Body = body;
             }
-            Debug.Assert(Math.Abs(body.Length - bodylength) < 3, String.Format("Invalid content-length {0} != {1}\n", body.Length, bodylength));
-            string[] mandatoryHeaders = { "To", "From", "CSeq", "Call-ID" };
+            Debug.Assert(Math.Abs(body.Length - bodylength) < 3,
+                         String.Format("Invalid content-length {0} != {1}\n", body.Length, bodylength));
+            string[] mandatoryHeaders = {"To", "From", "CSeq", "Call-ID"};
             foreach (string s in mandatoryHeaders)
             {
                 if (!Headers.ContainsKey(s))
@@ -155,7 +168,7 @@ namespace SIPLib.SIP
             foreach (Header h in headers)
             {
                 sb.Append("Via: ");
-                sb.Append(h.ToString());
+                sb.Append(h);
                 sb.Append("\r\n");
             }
             return sb.ToString();
@@ -172,56 +185,55 @@ namespace SIPLib.SIP
             }
             try
             {
-            string m = "";
-            if (Method != null)
-            {
-                m = Method + " " + Uri + " " + Protocol + "\r\n";
-            }
-            else if (ResponseText.Length > 0)
-            {
-                m = Protocol + " " + ResponseCode.ToString() + " " + ResponseText + "\r\n";
-            }
-            string contentLength = "";
-            foreach (List<Header> headers in this.Headers.Values.ToList())
-            {
-                
-                try
+                string m = "";
+                if (Method != null)
                 {
-                if (headers.First().Name == "Via")
-                {
-                    m = m + HandleVia(headers);
+                    m = Method + " " + Uri + " " + Protocol + "\r\n";
                 }
-                else
+                else if (ResponseText.Length > 0)
                 {
-                    if (headers.Count > 0)
+                    m = Protocol + " " + ResponseCode.ToString() + " " + ResponseText + "\r\n";
+                }
+                string contentLength = "";
+                foreach (List<Header> headers in Headers.Values.ToList())
+                {
+                    try
                     {
-                        string current = headers[0].Name + ": ";
-                        foreach (Header h in headers)
+                        if (headers.First().Name == "Via")
                         {
-                            current = current + h.ToString() + ", ";
+                            m = m + HandleVia(headers);
                         }
-                        current = current.Remove(current.Length - 2);
-                        current = current + "\r\n";
-                        if (current.ToLower().Contains("content-length"))
+                        else
                         {
-                            contentLength = current;
+                            if (headers.Count > 0)
+                            {
+                                string current = headers[0].Name + ": ";
+                                foreach (Header h in headers)
+                                {
+                                    current = current + h + ", ";
+                                }
+                                current = current.Remove(current.Length - 2);
+                                current = current + "\r\n";
+                                if (current.ToLower().Contains("content-length"))
+                                {
+                                    contentLength = current;
+                                }
+                                else m = m + current;
+                            }
                         }
-                        else m = m + current;
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.Assert(false, String.Format("Error converting message to string {0}", ex.Message));
                     }
                 }
-                }
-                catch (Exception ex)
+                m = m + contentLength;
+                m = m + "\r\n";
+                if (Body.Length > 0)
                 {
-                    Debug.Assert(false, String.Format("Error converting message to string {0}", ex.Message));
+                    m = m + Body;
                 }
-            }
-            m = m + contentLength;
-            m = m + "\r\n";
-            if (Body.Length > 0)
-            {
-                m = m + Body;
-            }
-            return m;
+                return m;
             }
             catch (Exception ex)
             {
@@ -238,6 +250,7 @@ namespace SIPLib.SIP
             }
             else return null;
         }
+
         public Message Dup()
         {
             return new Message(ToString());
@@ -257,7 +270,7 @@ namespace SIPLib.SIP
                         }
                     case "replace":
                         {
-                            List<Header> headers = new List<Header> { header };
+                            List<Header> headers = new List<Header> {header};
                             Headers[name] = headers;
                             break;
                         }
@@ -270,39 +283,44 @@ namespace SIPLib.SIP
             }
             else
             {
-                List<Header> headers = new List<Header> { header };
+                List<Header> headers = new List<Header> {header};
                 Headers[name] = headers;
             }
         }
 
         public bool Is1XX()
         {
-            return (ResponseCode / 100 == 1);
+            return (ResponseCode/100 == 1);
         }
 
         public bool Is2XX()
         {
-            return (ResponseCode / 100 == 2);
+            return (ResponseCode/100 == 2);
         }
+
         public bool Is3XX()
         {
-            return (ResponseCode / 100 == 3);
+            return (ResponseCode/100 == 3);
         }
+
         public bool Is4XX()
         {
-            return (ResponseCode / 100 == 4);
+            return (ResponseCode/100 == 4);
         }
+
         public bool Is5XX()
         {
-            return (ResponseCode / 100 == 5);
+            return (ResponseCode/100 == 5);
         }
+
         public bool Is6XX()
         {
-            return (ResponseCode / 100 == 6);
+            return (ResponseCode/100 == 6);
         }
+
         public bool Is7XX()
         {
-            return (ResponseCode / 100 == 7);
+            return (ResponseCode/100 == 7);
         }
 
         public bool IsFinal()
@@ -310,7 +328,8 @@ namespace SIPLib.SIP
             return (ResponseCode >= 200);
         }
 
-        public static Message PopulateMessage(Message m, Dictionary<string, List<Header>> headers = null, string content = "")
+        public static Message PopulateMessage(Message m, Dictionary<string, List<Header>> headers = null,
+                                              string content = "")
         {
             if (headers != null)
             {
@@ -334,30 +353,32 @@ namespace SIPLib.SIP
                 }
                 else
                 {
-                    List<Header> newheaders = new List<Header> { new Header("0" + "\r\n", "Content-Length") };
+                    List<Header> newheaders = new List<Header> {new Header("0" + "\r\n", "Content-Length")};
                     m.Headers.Add("Content-Length", newheaders);
                 }
-
             }
             return m;
         }
 
-        public static Message CreateRequest(string method, SIPURI uri, Dictionary<string, List<Header>> headers = null, string content = "")
+        public static Message CreateRequest(string method, SIPURI uri, Dictionary<string, List<Header>> headers = null,
+                                            string content = "")
         {
-            Message m = new Message { Method = method, Uri = uri, Protocol = "SIP/2.0" };
+            Message m = new Message {Method = method, Uri = uri, Protocol = "SIP/2.0"};
             m = PopulateMessage(m, headers, content);
             if (m.Headers.ContainsKey("CSeq"))
             {
                 Header cseq = new Header(m.First("CSeq").Number.ToString() + " " + method, "CSeq");
-                List<Header> cseqHeaders = new List<Header> { cseq };
+                List<Header> cseqHeaders = new List<Header> {cseq};
                 m.Headers["CSeq"] = cseqHeaders;
             }
             return m;
         }
 
-        public static Message CreateResponse(int responseCode, string responseText, Dictionary<string, List<Header>> headers = null, string content = "", Message originalRequest = null)
+        public static Message CreateResponse(int responseCode, string responseText,
+                                             Dictionary<string, List<Header>> headers = null, string content = "",
+                                             Message originalRequest = null)
         {
-            Message m = new Message { ResponseCode = responseCode, ResponseText = responseText, Protocol = "SIP/2.0" };
+            Message m = new Message {ResponseCode = responseCode, ResponseText = responseText, Protocol = "SIP/2.0"};
             if (originalRequest != null)
             {
                 m.Headers["To"] = originalRequest.Headers["To"];
@@ -378,6 +399,5 @@ namespace SIPLib.SIP
             }
             return PopulateMessage(m, headers, content);
         }
-
     }
 }

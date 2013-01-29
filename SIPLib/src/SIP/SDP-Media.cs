@@ -1,19 +1,16 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+#endregion
+
 namespace SIPLib.SIP
 {
-    public class SDPMedia 
+    public class SDPMedia
     {
-        public string Media { get; set; }
-        public string Port { get; set; }
-        public string Proto { get; set; }
-        public string Count { get; set; }
-        public List<SDPMediaFormat> Mediaformats { get; set; }
-        public Dictionary<string, string> OtherAttributes { get; set; }
-
         public SDPMedia(string value = null, Dictionary<string, string> attrDict = null)
         {
             Mediaformats = new List<SDPMediaFormat>();
@@ -49,6 +46,13 @@ namespace SIPLib.SIP
             }
         }
 
+        public string Media { get; set; }
+        public string Port { get; set; }
+        public string Proto { get; set; }
+        public string Count { get; set; }
+        public List<SDPMediaFormat> Mediaformats { get; set; }
+        public Dictionary<string, string> OtherAttributes { get; set; }
+
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
@@ -73,9 +77,9 @@ namespace SIPLib.SIP
                         //
                         //foreach (AttributeClass header in this[c.ToString(), true])
                         //{
-                            //sb.Append("\r\n" + c + "=" + header.value);
+                        //sb.Append("\r\n" + c + "=" + header.value);
                         //}
-                        sb.Append("\r\n" + c + "=" + this.OtherAttributes[c.ToString()]);
+                        sb.Append("\r\n" + c + "=" + OtherAttributes[c.ToString()]);
                     }
                 }
             }

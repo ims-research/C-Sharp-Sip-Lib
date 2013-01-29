@@ -1,14 +1,14 @@
-﻿using System.Text;
+﻿#region
+
+using System.Text;
 using System.Text.RegularExpressions;
+
+#endregion
 
 namespace SIPLib.SIP
 {
     public class Address
     {
-        public string DisplayName { get; set; }
-        public SIPURI Uri { get; set; }
-        public bool Wildcard { get; set; }
-        public bool MustQuote { get; set; }
         public Address()
         {
             Init();
@@ -19,6 +19,11 @@ namespace SIPLib.SIP
             Init();
             Parse(address);
         }
+
+        public string DisplayName { get; set; }
+        public SIPURI Uri { get; set; }
+        public bool Wildcard { get; set; }
+        public bool MustQuote { get; set; }
 
         private void Init()
         {
@@ -34,7 +39,12 @@ namespace SIPLib.SIP
                 Wildcard = true;
                 return 1;
             }
-            string[] regExs = { @"^(?<name>[a-zA-Z0-9\-\._\+\~\ \t]*)<(?<uri>[^>]+)>", @"^(""(?<name>[a-zA-Z0-9\-\._\+\~\ \t]+)"")[\ \t]*<(?<uri>[^>]+)>", @"^[\ \t]*(?<name>)(?<uri>[^;]+)" };
+            string[] regExs =
+                {
+                    @"^(?<name>[a-zA-Z0-9\-\._\+\~\ \t]*)<(?<uri>[^>]+)>",
+                    @"^(""(?<name>[a-zA-Z0-9\-\._\+\~\ \t]+)"")[\ \t]*<(?<uri>[^>]+)>",
+                    @"^[\ \t]*(?<name>)(?<uri>[^;]+)"
+                };
 
             foreach (string expression in regExs)
             {
@@ -49,6 +59,7 @@ namespace SIPLib.SIP
             }
             return -1;
         }
+
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
@@ -67,7 +78,7 @@ namespace SIPLib.SIP
                 {
                     sb.Append("<");
                 }
-                sb.Append(Uri.ToString());
+                sb.Append(Uri);
                 if ((MustQuote) || (DisplayName.Length > 0))
                 {
                     sb.Append(">");
