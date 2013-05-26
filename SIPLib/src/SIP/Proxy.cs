@@ -23,7 +23,7 @@ using SIPLib.Utils;
 
 #endregion
 
-namespace SIPLib.src.SIP
+namespace SIPLib.SIP
 {
     /// <summary>
     /// This class is used to build a SIP proxy. It extends the Useragent class to allow correct handling of messages when acting as a SIP proxy.
