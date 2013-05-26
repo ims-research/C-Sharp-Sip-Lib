@@ -1,4 +1,17 @@
-﻿#region
+﻿// ***********************************************************************
+// Assembly         : SIPLib
+// Author           : Richard Spiers
+// Created          : 06-06-2012
+//
+// Last Modified By : Richard Spiers
+// Last Modified On : 02-02-2013
+// ***********************************************************************
+// <copyright file="InviteServerTransaction.cs">
+//     Copyright (c) Richard Spiers. All rights reserved.
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+#region
 
 using System;
 
@@ -6,13 +19,23 @@ using System;
 
 namespace SIPLib.SIP
 {
+    /// <summary>
+    /// Class InviteServerTransaction. This class represents a server transaction that is used for SIP INVITE processing.
+    /// </summary>
     public class InviteServerTransaction : Transaction
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:SIPLib.SIP.InviteServerTransaction"/> class.
+        /// </summary>
+        /// <param name="app">Takes in a user agent.</param>
         public InviteServerTransaction(UserAgent app) : base(app)
         {
             Server = true;
         }
 
+        /// <summary>
+        /// Starts this instance. This sends the response represented by the transaction and passes the request up the stack.
+        /// </summary>
         public void Start()
         {
             State = "proceeding";
@@ -20,6 +43,10 @@ namespace SIPLib.SIP
             App.ReceivedRequest(this, Request, Stack);
         }
 
+        /// <summary>
+        /// Triggered on receipt of any requests. Updates state of transaction
+        /// </summary>
+        /// <param name="receivedRequest">The received request.</param>
         public override void ReceivedRequest(Message receivedRequest)
         {
             if (Request.Method == receivedRequest.Method)
@@ -50,6 +77,11 @@ namespace SIPLib.SIP
             }
         }
 
+        /// <summary>
+        ///  Handles timeouts.
+        /// </summary>
+        /// <param name="name">The Timer name (G H I etc.)</param>
+        /// <param name="timeout">The timeout.</param>
         public void Timeout(string name, int timeout)
         {
             if (State == "completed")
@@ -74,6 +106,10 @@ namespace SIPLib.SIP
             }
         }
 
+        /// <summary>
+        /// Raises an error.
+        /// </summary>
+        /// <param name="error">The error.</param>
         public void Error(string error)
         {
             if (State == "proceeding" || State == "confirmed")
@@ -83,6 +119,10 @@ namespace SIPLib.SIP
             }
         }
 
+        /// <summary>
+        /// Sends a response based on this transaction.
+        /// </summary>
+        /// <param name="response">The response.</param>
         public override void SendResponse(Message response)
         {
             LastResponse = response;

@@ -48,7 +48,7 @@ namespace SIPLib.SIP
         }
 
         /// <summary>
-        /// Triggered on receipt of any responses. Updates state of transaction
+        /// Triggered on receipt of any responses. Updates state of transaction.
         /// </summary>
         /// <param name="response">The response.</param>
         public override void ReceivedResponse(Message response)
@@ -99,7 +99,7 @@ namespace SIPLib.SIP
         /// <summary>
         /// Handles timeouts.
         /// </summary>
-        /// <param name="name">The Timer name (E F K etc.)</param>
+        /// <param name="name">The Timer name (A B D etc.)</param>
         /// <param name="timeout">The timeout.</param>
         public void Timeout(string name, int timeout)
         {
