@@ -1,4 +1,17 @@
-﻿#region
+﻿// ***********************************************************************
+// Assembly         : SIPLib
+// Author           : Richard Spiers
+// Created          : 06-06-2012
+//
+// Last Modified By : Richard Spiers
+// Last Modified On : 02-02-2013
+// ***********************************************************************
+// <copyright file="ClientTransaction.cs">
+//     Copyright (c) Richard Spiers. All rights reserved.
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+#region
 
 using System;
 
@@ -6,13 +19,23 @@ using System;
 
 namespace SIPLib.SIP
 {
+    /// <summary>
+    /// Class ClientTransaction. Used to represent SIP client transactions.
+    /// </summary>
     internal class ClientTransaction : Transaction
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:SIPLib.SIP.ClientTransaction"/> class.
+        /// </summary>
+        /// <param name="app">Takes in a useragent instance.</param>
         public ClientTransaction(UserAgent app) : base(app)
         {
             Server = false;
         }
 
+        /// <summary>
+        /// Starts this instance. This sends the request represented by the transaction.
+        /// </summary>
         public void Start()
         {
             State = "trying";
@@ -24,6 +47,10 @@ namespace SIPLib.SIP
             Stack.Send(Request, Remote, Transport);
         }
 
+        /// <summary>
+        /// Triggered on receipt of any responses
+        /// </summary>
+        /// <param name="response">The SIP response message.</param>
         public override void ReceivedResponse(Message response)
         {
             if (response.Is1XX())
@@ -56,6 +83,11 @@ namespace SIPLib.SIP
             }
         }
 
+        /// <summary>
+        /// Handles timeouts.
+        /// </summary>
+        /// <param name="name">The Timer name (E F K etc.)</param>
+        /// <param name="timeout">The timeout.</param>
         public void Timeout(string name, int timeout)
         {
             if (State == "trying" | State == "proceeding")
@@ -81,6 +113,10 @@ namespace SIPLib.SIP
             }
         }
 
+        /// <summary>
+        /// Raises an error
+        /// </summary>
+        /// <param name="error">The error.</param>
         public void Error(string error)
         {
             if (State == "trying" || State == "proceeding")
