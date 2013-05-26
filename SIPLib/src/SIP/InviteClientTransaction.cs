@@ -1,4 +1,17 @@
-﻿#region
+﻿// ***********************************************************************
+// Assembly         : SIPLib
+// Author           : Richard Spiers
+// Created          : 06-06-2012
+//
+// Last Modified By : Richard Spiers
+// Last Modified On : 02-02-2013
+// ***********************************************************************
+// <copyright file="InviteClientTransaction.cs">
+//     Copyright (c) Richard Spiers. All rights reserved.
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+#region
 
 using System;
 using System.Collections.Generic;
@@ -8,13 +21,23 @@ using System.Diagnostics;
 
 namespace SIPLib.SIP
 {
+    /// <summary>
+    /// Class InviteClientTransaction. This class represents an client transaction that is used for client SIP INVITE processing.
+    /// </summary>
     public class InviteClientTransaction : Transaction
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:SIPLib.SIP.InviteClientTransaction"/> class.
+        /// </summary>
+        /// <param name="app">Takes in the useragent as a parameter.</param>
         public InviteClientTransaction(UserAgent app) : base(app)
         {
             Server = false;
         }
 
+        /// <summary>
+        /// Starts this instance. This sends the request represented by the transaction.
+        /// </summary>
         public void Start()
         {
             State = "calling";
@@ -24,6 +47,10 @@ namespace SIPLib.SIP
             Stack.Send(Request, Remote, Transport);
         }
 
+        /// <summary>
+        /// Triggered on receipt of any responses. Updates state of transaction
+        /// </summary>
+        /// <param name="response">The response.</param>
         public override void ReceivedResponse(Message response)
         {
             if (response.Is1XX())
@@ -69,6 +96,11 @@ namespace SIPLib.SIP
             }
         }
 
+        /// <summary>
+        /// Handles timeouts.
+        /// </summary>
+        /// <param name="name">The Timer name (E F K etc.)</param>
+        /// <param name="timeout">The timeout.</param>
         public void Timeout(string name, int timeout)
         {
             if (State == "calling")
@@ -93,6 +125,10 @@ namespace SIPLib.SIP
             }
         }
 
+        /// <summary>
+        /// Raises an error.
+        /// </summary>
+        /// <param name="error">The error.</param>
         public void Error(string error)
         {
             if (State == "calling" || State == "completed")
@@ -102,6 +138,11 @@ namespace SIPLib.SIP
             }
         }
 
+        /// <summary>
+        /// Creates a SIP ACK message based on the transaction and SIP response.
+        /// </summary>
+        /// <param name="response">The response.</param>
+        /// <returns>Message.</returns>
         public Message CreateAck(Message response)
         {
             if (Request == null)

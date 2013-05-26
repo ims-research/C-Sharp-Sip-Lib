@@ -20,7 +20,7 @@ using System;
 namespace SIPLib.SIP
 {
     /// <summary>
-    /// Class ClientTransaction. Used to represent SIP client transactions.
+    /// Class ClientTransaction. Used to represent SIP, non INVITE client transactions.
     /// </summary>
     internal class ClientTransaction : Transaction
     {
@@ -48,7 +48,7 @@ namespace SIPLib.SIP
         }
 
         /// <summary>
-        /// Triggered on receipt of any responses
+        /// Triggered on receipt of any responses. Updates state of transaction.
         /// </summary>
         /// <param name="response">The SIP response message.</param>
         public override void ReceivedResponse(Message response)
@@ -114,7 +114,7 @@ namespace SIPLib.SIP
         }
 
         /// <summary>
-        /// Raises an error
+        /// Raises an error.
         /// </summary>
         /// <param name="error">The error.</param>
         public void Error(string error)
