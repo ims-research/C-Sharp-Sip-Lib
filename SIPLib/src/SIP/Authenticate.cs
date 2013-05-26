@@ -1,4 +1,17 @@
-﻿#region
+﻿// ***********************************************************************
+// Assembly         : SIPLib
+// Author           : Richard Spiers
+// Created          : 06-06-2012
+//
+// Last Modified By : Richard Spiers
+// Last Modified On : 02-02-2013
+// ***********************************************************************
+// <copyright file="Authenticate.cs">
+//     Copyright (c) Richard Spiers. All rights reserved.
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+#region
 
 using System;
 using System.Collections.Generic;
@@ -12,10 +25,22 @@ using SIPLib.Utils;
 
 namespace SIPLib.SIP
 {
+    /// <summary>
+    /// Class Authenticate. This class is used to handle the SIP authentication headers.
+    /// </summary>
     public class Authenticate
     {
+        /// <summary>
+        /// Random number generator.
+        /// </summary>
         private static readonly Random Random = new Random();
 
+        /// <summary>
+        /// Creates the authentication header.
+        /// </summary>
+        /// <param name="authMethod">The auth method.</param>
+        /// <param name="parameters">The parameters used.</param>
+        /// <returns>System.String.</returns>
         public static string CreateAuthenticate(string authMethod = "Digest",
                                                 Dictionary<string, string> parameters = null)
         {
@@ -88,6 +113,17 @@ namespace SIPLib.SIP
             return null;
         }
 
+        /// <summary>
+        /// Creates the actual authorization header values.
+        /// </summary>
+        /// <param name="challenge">The challenge.</param>
+        /// <param name="username">The username.</param>
+        /// <param name="password">The password.</param>
+        /// <param name="uri">The URI.</param>
+        /// <param name="method">The method.</param>
+        /// <param name="entityBody">The entity body.</param>
+        /// <param name="context">The context.</param>
+        /// <returns>System.String.</returns>
         public static string CreateAuthorization(string challenge, string username, string password, string uri = null,
                                                  string method = null, string entityBody = null,
                                                  Dictionary<string, string> context = null)
@@ -203,6 +239,11 @@ namespace SIPLib.SIP
             return null;
         }
 
+        /// <summary>
+        /// Creates the digest version of the challenge response.
+        /// </summary>
+        /// <param name="cr">The challenge/response.</param>
+        /// <returns>System.String.</returns>
         public static string Digest(Dictionary<string, string> cr)
         {
             string nc;
@@ -249,17 +290,33 @@ namespace SIPLib.SIP
             //}
         }
 
+        /// <summary>
+        /// Base64 encodes username:password from the challenge/response
+        /// </summary>
+        /// <param name="cr">The cr.</param>
+        /// <returns>System.String.</returns>
         public static string Basic(Dictionary<string, string> cr)
         {
             return Helpers.Base64Encode(cr["username"] + ":" + cr["password"]);
         }
 
+        /// <summary>
+        /// Helper function to md5hash the input string.
+        /// </summary>
+        /// <param name="input">The input.</param>
+        /// <returns>System.String.</returns>
         private static string H(string input)
         {
             MD5 md5Hash = MD5.Create();
             return Helpers.GetMd5Hash(md5Hash, input);
         }
 
+        /// <summary>
+        /// Returns a md5hash of s:d
+        /// </summary>
+        /// <param name="s">Input string s.</param>
+        /// <param name="d">Input string d.</param>
+        /// <returns>System.String.</returns>
         private static string KD(string s, string d)
         {
             MD5 md5Hash = MD5.Create();
