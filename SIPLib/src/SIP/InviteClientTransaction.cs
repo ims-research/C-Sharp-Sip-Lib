@@ -22,7 +22,7 @@ using System.Diagnostics;
 namespace SIPLib.SIP
 {
     /// <summary>
-    /// Class InviteClientTransaction. This class represents an client transaction that is used for client SIP INVITE processing.
+    /// This class represents an client transaction that is used for client SIP INVITE processing.
     /// </summary>
     public class InviteClientTransaction : Transaction
     {

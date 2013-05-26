@@ -20,7 +20,7 @@ using System;
 namespace SIPLib.SIP
 {
     /// <summary>
-    /// Class ClientTransaction. Used to represent SIP, non INVITE client transactions.
+    /// This class is used to represent SIP, non INVITE client transactions.
     /// </summary>
     internal class ClientTransaction : Transaction
     {

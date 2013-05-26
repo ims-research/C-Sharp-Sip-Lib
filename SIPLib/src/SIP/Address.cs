@@ -21,7 +21,7 @@ using System.Text.RegularExpressions;
 namespace SIPLib.SIP
 {
     /// <summary>
-    /// Class Address. This class is used to represent a SIP Address
+    /// This class is used to represent a SIP Address,
     /// e.g. "Display Name + &lt;sip_uri@example.com&gt;"
     /// </summary>
     public class Address

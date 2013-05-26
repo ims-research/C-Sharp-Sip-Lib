@@ -24,7 +24,7 @@ using System.Text;
 namespace SIPLib.SIP
 {
     /// <summary>
-    /// Class Header. Class is used to represent a SIP header.
+    /// This class is used to represent a SIP header.
     /// </summary>
     public class Header
     {

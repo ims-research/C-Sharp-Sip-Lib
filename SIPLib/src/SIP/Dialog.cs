@@ -22,7 +22,7 @@ using System.Diagnostics;
 namespace SIPLib.SIP
 {
     /// <summary>
-    /// Class Dialog. This class represents a SIP Dialog.
+    /// This class represents a SIP Dialog.
     /// </summary>
     public class Dialog : UserAgent
     {

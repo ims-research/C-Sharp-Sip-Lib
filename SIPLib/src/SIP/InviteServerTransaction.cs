@@ -20,7 +20,7 @@ using System;
 namespace SIPLib.SIP
 {
     /// <summary>
-    /// Class InviteServerTransaction. This class represents a server transaction that is used for SIP INVITE processing.
+    /// This class represents a server transaction that is used for SIP INVITE processing.
     /// </summary>
     public class InviteServerTransaction : Transaction
     {

@@ -21,7 +21,7 @@ namespace SIPLib.SIP
 {
 
     /// <summary>
-    /// Class SipMessageEventArgs. This is a simple class used to pass SIP messages around triggered on various events.
+    /// This is a simple class used to pass SIP messages around triggered on various events.
     /// </summary>
     public class SipMessageEventArgs : EventArgs
     {

@@ -26,7 +26,7 @@ using SIPLib.Utils;
 namespace SIPLib.SIP
 {
     /// <summary>
-    /// Class Authenticate. This class is used to handle the SIP authentication headers.
+    /// This class is used to handle the SIP authentication headers.
     /// </summary>
     public class Authenticate
     {
