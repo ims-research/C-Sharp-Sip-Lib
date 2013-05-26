@@ -1,4 +1,17 @@
-﻿#region
+﻿// ***********************************************************************
+// Assembly         : SIPLib
+// Author           : Richard Spiers
+// Created          : 10-03-2012
+//
+// Last Modified By : Richard Spiers
+// Last Modified On : 02-02-2013
+// ***********************************************************************
+// <copyright file="Proxy.cs">
+//     Copyright (c) Richard Spiers. All rights reserved.
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+#region
 
 using System;
 using System.Collections.Generic;
@@ -12,22 +25,44 @@ using SIPLib.Utils;
 
 namespace SIPLib.src.SIP
 {
+    /// <summary>
+    /// This class is used to build a SIP proxy. It extends the Useragent class to allow correct handling of messages when acting as a SIP proxy.
+    /// </summary>
     public class Proxy : UserAgent
     {
+        /// <summary>
+        /// Private array used to keep track of branches.
+        /// </summary>
         private List<ProxyBranch> _branches = new List<ProxyBranch>();
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:SIPLib.SIP.Proxy"/> class.
+        /// </summary>
+        /// <param name="stack">The SIP stack to use.</param>
+        /// <param name="request">The incoming request to proxy.</param>
+        /// <param name="server">if set to <c>true</c> [server].</param>
         public Proxy(SIPStack stack, Message request, bool server)
             : base(stack, request, server)
         {
             if (request == null) Debug.Assert(false, "Cannot create Proxy without incoming request");
         }
 
+        /// <summary>
+        /// Simply passed the request on to the receivedRequest function when acting as a proxy.
+        /// </summary>
+        /// <param name="request">The request.</param>
+        /// <returns>Transaction.</returns>
         public Transaction CreateTransaction(Message request)
         {
             ReceivedRequest(null, request);
             return null;
         }
 
+        /// <summary>
+        /// Receives the SIP request, modifies headers and passes on to the stack.
+        /// </summary>
+        /// <param name="transaction">The transaction.</param>
+        /// <param name="request">The request.</param>
         public override void ReceivedRequest(Transaction transaction, Message request)
         {
             try
@@ -124,6 +159,11 @@ namespace SIPLib.src.SIP
             }
         }
 
+        /// <summary>
+        /// Determines whether the specified URI is local.
+        /// </summary>
+        /// <param name="uri">The URI.</param>
+        /// <returns><c>true</c> if the specified URI is local; otherwise, <c>false</c>.</returns>
         public bool IsLocal(SIPURI uri)
         {
             bool host = Stack.Transport.Host.ToString() == uri.Host || uri.Host == "localhost" ||
@@ -140,6 +180,14 @@ namespace SIPLib.src.SIP
             return (host && port);
         }
 
+        /// <summary>
+        /// Sends a SIP response.
+        /// </summary>
+        /// <param name="response">The response.</param>
+        /// <param name="responseText">The response text.</param>
+        /// <param name="content">The SIP body content.</param>
+        /// <param name="contentType">Type of the content.</param>
+        /// <param name="createDialog">Always false for a Proxy.</param>
         public override void SendResponse(object response, string responseText = "", string content = "",
                                           string contentType = "", bool createDialog = true)
         {
@@ -151,6 +199,16 @@ namespace SIPLib.src.SIP
             base.SendResponse(response, responseText, content, contentType, false);
         }
 
+        /// <summary>
+        /// Creates a SIP request.
+        /// </summary>
+        /// <param name="method">The SIP method.</param>
+        /// <param name="dest">The dest (either Address of string[]).</param>
+        /// <param name="stateless">if set to <c>true</c> [act as a stateless proxy].</param>
+        /// <param name="recordRoute">if set to <c>true</c> [record the SIP route].</param>
+        /// <param name="headers">The SIP headers to use.</param>
+        /// <param name="route">The route.</param>
+        /// <returns>Message.</returns>
         public Message CreateRequest(string method, object dest, bool stateless = false, bool recordRoute = false,
                                      Dictionary<string, List<Header>> headers = null, List<Header> route = null)
         {
@@ -213,6 +271,10 @@ namespace SIPLib.src.SIP
             return request;
         }
 
+        /// <summary>
+        /// Sends the SIP request.
+        /// </summary>
+        /// <param name="request">The request.</param>
         public override void SendRequest(Message request)
         {
             SIPURI target = null;
@@ -289,6 +351,10 @@ namespace SIPLib.src.SIP
             }
         }
 
+        /// <summary>
+        /// Retries the next candidate to send to.
+        /// </summary>
+        /// <param name="branch">The branch.</param>
         private void RetryNextCandidate(ProxyBranch branch)
         {
             if ((RemoteCandidates == null) || (RemoteCandidates.Count == 0))
@@ -302,11 +368,21 @@ namespace SIPLib.src.SIP
                                                           target.Host + ":" + target.Port);
         }
 
+        /// <summary>
+        /// Returns the branch ID for the specified transaction.
+        /// </summary>
+        /// <param name="transaction">The transaction.</param>
+        /// <returns>ProxyBranch.</returns>
         private ProxyBranch GetBranch(Transaction transaction)
         {
             return _branches.First(proxyBranch => proxyBranch.Transaction == transaction);
         }
 
+        /// <summary>
+        /// Receives the SIP response
+        /// </summary>
+        /// <param name="transaction">The transaction.</param>
+        /// <param name="response">The response.</param>
         public override void ReceivedResponse(Transaction transaction, Message response)
         {
             ProxyBranch branch = GetBranch(transaction);
@@ -340,6 +416,9 @@ namespace SIPLib.src.SIP
             }
         }
 
+        /// <summary>
+        /// Sends a SIP response if possible.
+        /// </summary>
         private void SendResponseIfPossible()
         {
             List<ProxyBranch> branchesfinal =
@@ -367,6 +446,9 @@ namespace SIPLib.src.SIP
             }
         }
 
+        /// <summary>
+        /// Sends a SIP cancel request
+        /// </summary>
         public override void SendCancel()
         {
             foreach (ProxyBranch proxyBranch in _branches)
@@ -385,6 +467,10 @@ namespace SIPLib.src.SIP
             }
         }
 
+        /// <summary>
+        /// Handles request timeouts
+        /// </summary>
+        /// <param name="transaction">The transaction.</param>
         private void TimeOut(Transaction transaction)
         {
             ProxyBranch branch = GetBranch(transaction);
@@ -403,6 +489,11 @@ namespace SIPLib.src.SIP
             }
         }
 
+        /// <summary>
+        /// Raises an error (Service unavailable etc)
+        /// </summary>
+        /// <param name="transaction">The transaction.</param>
+        /// <param name="error">The error.</param>
         public override void Error(Transaction transaction, string error)
         {
             if (transaction == null)
