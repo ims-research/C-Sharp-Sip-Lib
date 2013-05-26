@@ -1,4 +1,17 @@
-﻿#region
+﻿// ***********************************************************************
+// Assembly         : SIPLib
+// Author           : Richard Spiers
+// Created          : 06-06-2012
+//
+// Last Modified By : Richard Spiers
+// Last Modified On : 02-02-2013
+// ***********************************************************************
+// <copyright file="Header.cs">
+//     Copyright (c) Richard Spiers. All rights reserved.
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+#region
 
 using System;
 using System.Collections.Generic;
@@ -10,26 +23,41 @@ using System.Text;
 
 namespace SIPLib.SIP
 {
+    /// <summary>
+    /// Class Header. Class is used to represent a SIP header.
+    /// </summary>
     public class Header
     {
+        /// <summary>
+        /// Private array holding headers relating to addresses.
+        /// </summary>
         private static readonly string[] Address =
             {
                 "contact", "from", "record-route", "refer-to", "referred-by",
                 "route", "to"
             };
 
+        /// <summary>
+        /// Private array holding headers needing special formatting.
+        /// </summary>
         private static readonly string[] Comma =
             {
                 "authorization", "proxy-authenticate", "proxy-authorization",
                 "www-authenticate"
             };
 
+        /// <summary>
+        /// Private array holding headers needing general formatting.
+        /// </summary>
         private static readonly string[] Unstructured =
             {
                 "call-id", "cseq", "date", "expires", "max-forwards",
                 "organization", "server", "subject", "timestamp", "user-agent", "service-route"
             };
 
+        /// <summary>
+        /// Private dictionary holding shortened forms of headers.
+        /// </summary>
         private static readonly Dictionary<string, string> Short = new Dictionary<string, string>
             {
                 {"u", "allow-events"},
@@ -46,6 +74,9 @@ namespace SIPLib.SIP
                 {"v", "via"}
             };
 
+        /// <summary>
+        /// Private array holding headers requiring special capitalization.
+        /// </summary>
         private static readonly Dictionary<string, string> Exceptions = new Dictionary<string, string>
             {
                 {"call-id", "Call-ID"},
@@ -53,6 +84,11 @@ namespace SIPLib.SIP
                 {"www-authenticate", "WWW-Authenticate"}
             };
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:SIPLib.SIP.Header"/> class, taking in the Header name and it's value.
+        /// </summary>
+        /// <param name="value">The value of the header.</param>
+        /// <param name="name">The name of the header.</param>
         public Header(string value, string name)
         {
             Number = -1;
@@ -61,15 +97,52 @@ namespace SIPLib.SIP
             Parse(Name, value.Trim());
         }
 
+        /// <summary>
+        /// Gets or sets attributes of the header.
+        /// </summary>
+        /// <value>The attributes.</value>
         public Dictionary<string, string> Attributes { get; set; }
+        /// <summary>
+        /// Gets or sets the type of the header.
+        /// </summary>
+        /// <value>The type of the header.</value>
         public string HeaderType { get; set; }
+        /// <summary>
+        /// Gets or sets the value.
+        /// </summary>
+        /// <value>The value.</value>
         public object Value { get; set; }
+        /// <summary>
+        /// Gets or sets the auth method.
+        /// </summary>
+        /// <value>The auth method.</value>
         public string AuthMethod { get; set; }
+        /// <summary>
+        /// Gets or sets the number.
+        /// </summary>
+        /// <value>The number.</value>
         public int Number { get; set; }
+        /// <summary>
+        /// Gets or sets the SIP method.
+        /// </summary>
+        /// <value>The SIP method.</value>
         public string Method { get; set; }
+        /// <summary>
+        /// Gets or sets the header name.
+        /// </summary>
+        /// <value>The header name.</value>
         public string Name { get; set; }
+        /// <summary>
+        /// Gets or sets the via URI.
+        /// </summary>
+        /// <value>The via URI.</value>
         public SIPURI ViaUri { get; set; }
 
+        /// <summary>
+        /// Returns the correct capitalization etc of the input string.
+        /// </summary>
+        /// <param name="input">The input.</param>
+        /// <returns>System.String.</returns>
         public static string Canon(string input)
         {
             input = input.ToLower();
@@ -90,6 +163,11 @@ namespace SIPLib.SIP
             return String.Join("-", words);
         }
 
+        /// <summary>
+        /// Adds quotation marks to the specified string.
+        /// </summary>
+        /// <param name="input">The input string without quotation marks.</param>
+        /// <returns>System.String.</returns>
         public static string Quote(string input)
         {
             if (input.StartsWith("\"") && input.EndsWith("\""))
@@ -99,6 +177,11 @@ namespace SIPLib.SIP
             return "\"" + input + "\"";
         }
 
+        /// <summary>
+        /// Removes quotation marks from the specified string
+        /// </summary>
+        /// <param name="input">The input string with quotation marks.</param>
+        /// <returns>System.String.</returns>
         public static string Unquote(string input)
         {
             if (input.StartsWith("\"") && input.EndsWith("\""))
@@ -108,6 +191,11 @@ namespace SIPLib.SIP
             return input;
         }
 
+        /// <summary>
+        /// Parses the specified string into an header object.
+        /// </summary>
+        /// <param name="name">The header name.</param>
+        /// <param name="value">The header value.</param>
         public void Parse(string name, string value)
         {
             string rest = "";
@@ -231,6 +319,10 @@ namespace SIPLib.SIP
             }
         }
 
+        /// <summary>
+        /// Returns a <see cref="System.String" /> that represents this instance of a header for displaying / printing.
+        /// </summary>
+        /// <returns>A <see cref="System.String" /> that represents this instance.</returns>
         public override string ToString()
         {
             string name = Name.ToLower();
@@ -261,16 +353,29 @@ namespace SIPLib.SIP
             return sb.ToString();
         }
 
+        /// <summary>
+        /// Returns a human readable format of this header - e.g. Header Name:Header Value
+        /// </summary>
+        /// <returns>System.String.</returns>
         public string Repr()
         {
             return Name + ":" + ToString();
         }
 
+        /// <summary>
+        /// Clones this header and returns a new one.
+        /// </summary>
+        /// <returns>Header.</returns>
         public Header Dup()
         {
             return new Header(ToString(), Name);
         }
 
+        /// <summary>
+        /// Creates a list of headers from a text string (multiple headers of same name).
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns>List{Header}.</returns>
         public static List<Header> CreateHeaders(string value)
         {
             int index = value.IndexOf(':');
