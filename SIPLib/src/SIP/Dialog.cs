@@ -1,4 +1,17 @@
-﻿#region
+﻿// ***********************************************************************
+// Assembly         : SIPLib
+// Author           : Richard Spiers
+// Created          : 06-06-2012
+//
+// Last Modified By : Richard Spiers
+// Last Modified On : 02-02-2013
+// ***********************************************************************
+// <copyright file="Dialog.cs">
+//     Copyright (c) Richard Spiers. All rights reserved.
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+#region
 
 using System;
 using System.Collections.Generic;
@@ -8,10 +21,23 @@ using System.Diagnostics;
 
 namespace SIPLib.SIP
 {
+    /// <summary>
+    /// Class Dialog. This class represents a SIP Dialog.
+    /// </summary>
     public class Dialog : UserAgent
     {
+        /// <summary>
+        /// Private dialog _id
+        /// </summary>
         private string _id;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:SIPLib.SIP.Dialog"/> class.
+        /// </summary>
+        /// <param name="stack">The SIP stack currently being used.</param>
+        /// <param name="request">The request.</param>
+        /// <param name="server">If set to <c>true</c> then set the relevant useragent properties for a server.</param>
+        /// <param name="transaction">The transaction.</param>
         public Dialog(SIPStack stack, Message request, bool server, Transaction transaction = null)
             : base(stack, request, server)
         {
@@ -24,10 +50,26 @@ namespace SIPLib.SIP
             }
         }
 
+        /// <summary>
+        /// Gets or sets the servers.
+        /// </summary>
+        /// <value>The servers.</value>
         public List<Transaction> Servers { get; set; }
+        /// <summary>
+        /// Gets or sets the clients.
+        /// </summary>
+        /// <value>The clients.</value>
         public List<Transaction> Clients { get; set; }
+        /// <summary>
+        /// Gets or sets the invite record route.
+        /// </summary>
+        /// <value>The invite record route.</value>
         private List<Header> InviteRecordRoute { get; set; }
 
+        /// <summary>
+        /// Gets or sets the ID.
+        /// </summary>
+        /// <value>The ID.</value>
         public string ID
         {
             get
@@ -41,6 +83,9 @@ namespace SIPLib.SIP
             set { _id = value; }
         }
 
+        /// <summary>
+        /// Closes this instance.
+        /// </summary>
         public void Close()
         {
             if (Stack != null)
@@ -53,6 +98,14 @@ namespace SIPLib.SIP
         }
 
 
+        /// <summary>
+        /// Creates the server side dialog.
+        /// </summary>
+        /// <param name="stack">The stack.</param>
+        /// <param name="request">The request.</param>
+        /// <param name="response">The response.</param>
+        /// <param name="transaction">The transaction.</param>
+        /// <returns>Dialog.</returns>
         public static Dialog CreateServer(SIPStack stack, Message request, Message response, Transaction transaction)
         {
             Dialog d = new Dialog(stack, request, true) {Request = request};
@@ -79,6 +132,14 @@ namespace SIPLib.SIP
             return d;
         }
 
+        /// <summary>
+        /// Creates the client side dialog.
+        /// </summary>
+        /// <param name="stack">The stack.</param>
+        /// <param name="request">The request.</param>
+        /// <param name="response">The response.</param>
+        /// <param name="transaction">The transaction.</param>
+        /// <returns>Dialog.</returns>
         public static Dialog CreateClient(SIPStack stack, Message request, Message response, Transaction transaction)
         {
             Dialog d = new Dialog(stack, request, false) {Request = request};
@@ -114,6 +175,11 @@ namespace SIPLib.SIP
             return d;
         }
 
+        /// <summary>
+        /// Extracts the call ID from a message.
+        /// </summary>
+        /// <param name="m">The m.</param>
+        /// <returns>System.String.</returns>
         public static string ExtractID(Message m)
         {
             // TODO fix this and use more than just call id ?
@@ -131,6 +197,13 @@ namespace SIPLib.SIP
             return temp;
         }
 
+        /// <summary>
+        /// Creates a SIP request with the necessary Dialog parameters.
+        /// </summary>
+        /// <param name="method">The SIP method to use.</param>
+        /// <param name="content">The SIP body contents.</param>
+        /// <param name="contentType">The type of the SIP body.</param>
+        /// <returns>Message.</returns>
         public override Message CreateRequest(string method, string content = null, string contentType = null)
         {
             Message request = base.CreateRequest(method, content, contentType);
@@ -155,6 +228,14 @@ namespace SIPLib.SIP
             return request;
         }
 
+        /// <summary>
+        /// Creates a SIP response, filling in the necessary parameters from the dialog.
+        /// </summary>
+        /// <param name="response_code">The SIP response_code.</param>
+        /// <param name="response_text">The SIP response_text.</param>
+        /// <param name="content">The SIP body contents.</param>
+        /// <param name="contentType">The type of the SIP body.</param>
+        /// <returns>Message.</returns>
         public override Message CreateResponse(int response_code, string response_text, string content = null,
                                                string contentType = null)
         {
@@ -198,6 +279,14 @@ namespace SIPLib.SIP
             return response;
         }
 
+        /// <summary>
+        /// Sends a SIP response on the matching transaction.
+        /// </summary>
+        /// <param name="response">The SIP response message</param>
+        /// <param name="responseText">The SIP response text.</param>
+        /// <param name="content">The SIP body content.</param>
+        /// <param name="contentType">The type of the SIP body.</param>
+        /// <param name="createDialog">if set to <c>true</c> [create dialog].</param>
         public override void SendResponse(object response, string responseText = null, string content = null,
                                           string contentType = null, bool createDialog = true)
         {
@@ -251,6 +340,9 @@ namespace SIPLib.SIP
             }
         }
 
+        /// <summary>
+        /// Sends a SIP cancel message.
+        /// </summary>
         public override void SendCancel()
         {
             if (Clients.Count == 0)
@@ -262,6 +354,11 @@ namespace SIPLib.SIP
             base.SendCancel();
         }
 
+        /// <summary>
+        /// Triggered on receipt of a SIP request.
+        /// </summary>
+        /// <param name="transaction">The SIP transaction.</param>
+        /// <param name="request">The SIP request.</param>
         public override void ReceivedRequest(Transaction transaction, Message request)
         {
             if (RemoteSeq != 0 && request.Headers["CSeq"][0].Number < RemoteSeq)
@@ -297,6 +394,11 @@ namespace SIPLib.SIP
             Stack.ReceivedRequest(this, request);
         }
 
+        /// <summary>
+        /// Triggered on receipt of a SIP response.
+        /// </summary>
+        /// <param name="transaction">The transaction.</param>
+        /// <param name="response">The response.</param>
         public override void ReceivedResponse(Transaction transaction, Message response)
         {
             if (response.Is2XX() && response.Headers.ContainsKey("Contact") && transaction != null &&
