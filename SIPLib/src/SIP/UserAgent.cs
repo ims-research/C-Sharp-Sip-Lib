@@ -1,4 +1,17 @@
-﻿#region
+﻿// ***********************************************************************
+// Assembly         : SIPLib
+// Author           : Richard
+// Created          : 10-25-2012
+//
+// Last Modified By : Richard
+// Last Modified On : 01-29-2013
+// ***********************************************************************
+// <copyright file="UserAgent.cs" company="">
+//     Copyright (c) . All rights reserved.
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+#region
 
 using System;
 using System.Collections.Generic;
@@ -10,10 +23,26 @@ using SIPLib.Utils;
 
 namespace SIPLib.SIP
 {
+    /// <summary>
+    /// This class is used to represent a user agent. From RFC3261 p.34 – A user agent represents an end system. It contains a user agent client (UAC), which
+    /// generates requests, and a user agent server (UAS), which responds to them. A UAC is capable of generating a
+    /// request based on some external stimulus (the user clicking a button, or a signal on a PSTN line) and processing
+    /// a response. A UAS is capable of receiving a request and generating a response based on user input, external
+    /// stimulus, the result of a program execution, or some other mechanism.
+    /// </summary>
     public class UserAgent
     {
+        /// <summary>
+        /// A random number generator
+        /// </summary>
         private readonly Random _random = new Random();
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:SIPLib.SIP.UserAgent"/> class.
+        /// </summary>
+        /// <param name="stack">The SIP stack associated with this UA.</param>
+        /// <param name="request">An optional SIP request.</param>
+        /// <param name="server">if set to <c>true</c> [act as a user agent server].</param>
         public UserAgent(SIPStack stack, Message request = null, bool server = false)
         {
             Stack = stack;
@@ -90,32 +119,124 @@ namespace SIPLib.SIP
             Auth = new Dictionary<string, string>();
         }
 
+        /// <summary>
+        /// Gets or sets the request.
+        /// </summary>
+        /// <value>The request.</value>
         public Message Request { get; set; }
+        /// <summary>
+        /// Gets or sets the stack.
+        /// </summary>
+        /// <value>The stack.</value>
         public SIPStack Stack { get; set; }
+        /// <summary>
+        /// Gets or sets a value indicating whether this <see cref="T:SIPLib.SIP.UserAgent"/> is a user agent server.
+        /// </summary>
+        /// <value><c>true</c> if server; otherwise, <c>false</c>.</value>
         public bool Server { get; set; }
+        /// <summary>
+        /// Gets or sets the transaction.
+        /// </summary>
+        /// <value>The transaction.</value>
         public Transaction Transaction { get; set; }
+        /// <summary>
+        /// Gets or sets the cancel request.
+        /// </summary>
+        /// <value>The cancel request.</value>
         public Message CancelRequest { get; set; }
+        /// <summary>
+        /// Gets or sets the call ID.
+        /// </summary>
+        /// <value>The call ID.</value>
         public string CallID { get; set; }
+        /// <summary>
+        /// Gets or sets the remote party.
+        /// </summary>
+        /// <value>The remote party.</value>
         public Address RemoteParty { get; set; }
+        /// <summary>
+        /// Gets or sets the local party.
+        /// </summary>
+        /// <value>The local party.</value>
         public Address LocalParty { get; set; }
+        /// <summary>
+        /// Gets or sets the local tag.
+        /// </summary>
+        /// <value>The local tag.</value>
         public string LocalTag { get; set; }
+        /// <summary>
+        /// Gets or sets the remote tag.
+        /// </summary>
+        /// <value>The remote tag.</value>
         public string RemoteTag { get; set; }
+        /// <summary>
+        /// Gets or sets the subject.
+        /// </summary>
+        /// <value>The subject.</value>
         public string Subject { get; set; }
+        /// <summary>
+        /// Gets or sets the route set.
+        /// </summary>
+        /// <value>The route set.</value>
         public List<Header> RouteSet { get; set; }
+        /// <summary>
+        /// Gets or sets the max forwards.
+        /// </summary>
+        /// <value>The max forwards.</value>
         public int MaxForwards { get; set; }
 
+        /// <summary>
+        /// Gets or sets the local target.
+        /// </summary>
+        /// <value>The local target.</value>
         public SIPURI LocalTarget { get; set; }
+        /// <summary>
+        /// Gets or sets the remote target.
+        /// </summary>
+        /// <value>The remote target.</value>
         public SIPURI RemoteTarget { get; set; }
+        /// <summary>
+        /// Gets or sets the remote candidates.
+        /// </summary>
+        /// <value>The remote candidates.</value>
         public List<SIPURI> RemoteCandidates { get; set; }
+        /// <summary>
+        /// Gets or sets the remote seq.
+        /// </summary>
+        /// <value>The remote seq.</value>
         public int RemoteSeq { get; set; }
+        /// <summary>
+        /// Gets or sets the local seq.
+        /// </summary>
+        /// <value>The local seq.</value>
         public int LocalSeq { get; set; }
 
+        /// <summary>
+        /// Gets or sets the contact.
+        /// </summary>
+        /// <value>The contact.</value>
         public Address Contact { get; set; }
+        /// <summary>
+        /// Gets or sets a value indicating whether this <see cref="T:SIPLib.SIP.UserAgent"/> should automatically ack requests.
+        /// </summary>
+        /// <value><c>true</c> if autoack; otherwise, <c>false</c>.</value>
         public bool Autoack { get; set; }
+        /// <summary>
+        /// Gets or sets the auth.
+        /// </summary>
+        /// <value>The auth.</value>
         public Dictionary<string, string> Auth { get; set; }
 
+        /// <summary>
+        /// Gets or sets the app.
+        /// </summary>
+        /// <value>The app.</value>
         public UserAgent App { get; set; }
 
+        /// <summary>
+        /// Returns a string representation of this user agent.
+        /// </summary>
+        /// <returns>System.String.</returns>
         public string Repr()
         {
             string type = "";
@@ -124,6 +245,13 @@ namespace SIPLib.SIP
             return String.Format("<{0} call-id={1}>", type, CallID);
         }
 
+        /// <summary>
+        /// Creates a SIP request.
+        /// </summary>
+        /// <param name="method">The SIP method (invite etc.)</param>
+        /// <param name="content">The SIP body contents.</param>
+        /// <param name="contentType">The type of the SIP body.</param>
+        /// <returns>Message.</returns>
         public virtual Message CreateRequest(string method, string content = "", string contentType = "")
         {
             Server = false;
@@ -217,6 +345,11 @@ namespace SIPLib.SIP
             return Request;
         }
 
+        /// <summary>
+        /// Creates a SIP register request.
+        /// </summary>
+        /// <param name="aor">The address-of-record.</param>
+        /// <returns>Message.</returns>
         public virtual Message CreateRegister(SIPURI aor)
         {
             if (aor != null)
@@ -232,6 +365,10 @@ namespace SIPLib.SIP
             return m;
         }
 
+        /// <summary>
+        /// Sends a specific SIP request.
+        /// </summary>
+        /// <param name="request">The request.</param>
         public virtual void SendRequest(Message request)
         {
             if ((Request == null) && (request.Method == "REGISTER"))
@@ -299,6 +436,10 @@ namespace SIPLib.SIP
             }
         }
 
+        /// <summary>
+        /// Triggered on timeout.
+        /// </summary>
+        /// <param name="transaction">The transaction.</param>
         public virtual void Timeout(Transaction transaction)
         {
             if ((transaction != null) && (transaction != Transaction))
@@ -314,11 +455,14 @@ namespace SIPLib.SIP
                 }
                 else
                 {
-                    ReceivedResponse(null, Message.CreateResponse(408, "Request Timeoute", null, null, Request));
+                    ReceivedResponse(null, Message.CreateResponse(408, "Request Timeout", null, null, Request));
                 }
             }
         }
 
+        /// <summary>
+        /// Retries the next candidate.
+        /// </summary>
         private void RetryNextCandidate()
         {
             if ((RemoteCandidates == null) || (RemoteCandidates.Count == 0))
@@ -332,6 +476,11 @@ namespace SIPLib.SIP
                                                    target.Host + ":" + target.Port);
         }
 
+        /// <summary>
+        /// Raises an error
+        /// </summary>
+        /// <param name="t">The transaction.</param>
+        /// <param name="error">The error.</param>
         public virtual void Error(Transaction t, string error)
         {
             if ((t != null) && t != Transaction)
@@ -353,6 +502,11 @@ namespace SIPLib.SIP
             }
         }
 
+        /// <summary>
+        /// Virtual function for receiving a response.
+        /// </summary>
+        /// <param name="transaction">The transaction.</param>
+        /// <param name="response">The response.</param>
         public virtual void ReceivedResponse(Transaction transaction, Message response)
         {
             if ((transaction != null) && transaction != Transaction)
@@ -417,11 +571,22 @@ namespace SIPLib.SIP
         }
 
 
+        /// <summary>
+        /// Determines whether this instance [can create a dialog] for the specified request.
+        /// </summary>
+        /// <param name="request">The request.</param>
+        /// <param name="response">The response.</param>
+        /// <returns><c>true</c> if this instance [can create a dialog] for the specified request; otherwise, <c>false</c>.</returns>
         public static bool CanCreateDialog(Message request, Message response)
         {
             return ((response.Is2XX()) && ((request.Method == "INVITE") || (request.Method == "SUBSCRIBE")));
         }
 
+        /// <summary>
+        /// Virtual function to receive a request.
+        /// </summary>
+        /// <param name="transaction">The transaction.</param>
+        /// <param name="request">The request.</param>
         public virtual void ReceivedRequest(Transaction transaction, Message request)
         {
             if ((transaction != null) && (Transaction != null) && (transaction != Transaction) &&
@@ -489,6 +654,14 @@ namespace SIPLib.SIP
             Stack.ReceivedRequest(this, request);
         }
 
+        /// <summary>
+        /// Sends a SIP response.
+        /// </summary>
+        /// <param name="response">The SIP response (either a response code or SIP message).</param>
+        /// <param name="responseText">Optional response text.</param>
+        /// <param name="content">Optional content.</param>
+        /// <param name="contentType">Optional type of the SIP body contents.</param>
+        /// <param name="createDialog">if set to <c>true</c> [can create dialog].</param>
         public virtual void SendResponse(object response, string responseText = "", string content = "",
                                          string contentType = "", bool createDialog = true)
         {
@@ -541,6 +714,14 @@ namespace SIPLib.SIP
         }
 
 
+        /// <summary>
+        /// Creates a SIP response given the response code and responseText
+        /// </summary>
+        /// <param name="responseCode">The response code.</param>
+        /// <param name="responseText">The response text.</param>
+        /// <param name="content">The content.</param>
+        /// <param name="contentType">Type of the content.</param>
+        /// <returns>Message.</returns>
         public virtual Message CreateResponse(int responseCode, string responseText, string content = null,
                                               string contentType = null)
         {
@@ -561,6 +742,9 @@ namespace SIPLib.SIP
             return responseMessage;
         }
 
+        /// <summary>
+        /// Sends a SIP CANCEL request.
+        /// </summary>
         public virtual void SendCancel()
         {
             if (Transaction == null)
@@ -579,6 +763,12 @@ namespace SIPLib.SIP
             }
         }
 
+        /// <summary>
+        /// Authenticates the specified response.
+        /// </summary>
+        /// <param name="response">The response.</param>
+        /// <param name="transaction">The transaction.</param>
+        /// <returns><c>true</c> if attempt to authenticate is created, <c>false</c> otherwise</returns>
         public virtual bool Authenticate(Message response, Transaction transaction)
         {
             Header a;
@@ -644,7 +834,13 @@ namespace SIPLib.SIP
             return false;
         }
 
-        internal virtual void ReceivedRequest(Transaction t, Message message, SIPStack sIPStack)
+        /// <summary>
+        /// Virtual function to pass received message to real function.
+        /// </summary>
+        /// <param name="t">The transaction.</param>
+        /// <param name="message">The SIP message.</param>
+        /// <param name="sIPStack">The SIP stack.</param>
+        internal virtual void ReceivedRequest(Transaction t, Message message, SIPStack SIPStack)
         {
             ReceivedRequest(t, message);
         }
