@@ -1,4 +1,17 @@
-﻿#region
+﻿// ***********************************************************************
+// Assembly         : SIPLib
+// Author           : Richard
+// Created          : 10-25-2012
+//
+// Last Modified By : Richard
+// Last Modified On : 01-29-2013
+// ***********************************************************************
+// <copyright file="SIPURI.cs" company="">
+//     Copyright (c) . All rights reserved.
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+#region
 
 using System;
 using System.Collections.Generic;
@@ -11,8 +24,15 @@ using System.Text.RegularExpressions;
 
 namespace SIPLib.SIP
 {
+    /// <summary>
+    /// This class is used to represent a SIPURI (“Firstname Lastname” &lt;sip:firstname@domain.net&gt; etc)
+    /// </summary>
     public class SIPURI
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:SIPLib.SIP.SIPURI"/> class.
+        /// </summary>
+        /// <param name="uri">A string representing a SIP URI.</param>
         public SIPURI(string uri)
         {
             Init();
@@ -40,18 +60,18 @@ namespace SIPLib.SIP
                 User = Host;
                 Host = null;
             }
-            foreach (string paramater in param.Split(';'))
+            foreach (string parameter in param.Split(';'))
             {
-                if (paramater.Contains('='))
+                if (parameter.Contains('='))
                 {
-                    int index = paramater.IndexOf('=');
-                    string paramName = paramater.Substring(0, index);
-                    string paramValue = paramater.Substring(index + 1);
+                    int index = parameter.IndexOf('=');
+                    string paramName = parameter.Substring(0, index);
+                    string paramValue = parameter.Substring(index + 1);
                     Parameters.Add(paramName, paramValue);
                 }
-                else if (paramater.ToLower() == "lr")
+                else if (parameter.ToLower() == "lr")
                 {
-                    Parameters.Add(paramater, "");
+                    Parameters.Add(parameter, "");
                 }
                 else break;
             }
@@ -69,20 +89,58 @@ namespace SIPLib.SIP
             }
         }
 
+        /// <summary>
+        /// Initializes an empty instance of the <see cref="T:SIPLib.SIP.SIPURI"/> class.
+        /// </summary>
         public SIPURI()
         {
             Init();
         }
 
+        /// <summary>
+        /// Gets or sets the scheme (e.g. sip)
+        /// </summary>
+        /// <value>The scheme (e.g. sip)</value>
         public string Scheme { get; set; }
+        /// <summary>
+        /// Gets or sets the user.
+        /// </summary>
+        /// <value>The user.</value>
         public string User { get; set; }
+        /// <summary>
+        /// Gets or sets the password.
+        /// </summary>
+        /// <value>The password.</value>
         public string Password { get; set; }
+        /// <summary>
+        /// Gets or sets the host.
+        /// </summary>
+        /// <value>The host.</value>
         public string Host { get; set; }
+        /// <summary>
+        /// Gets or sets the IP.
+        /// </summary>
+        /// <value>The IP.</value>
         public string IP { get; set; }
+        /// <summary>
+        /// Gets or sets the port.
+        /// </summary>
+        /// <value>The port.</value>
         public int Port { get; set; }
+        /// <summary>
+        /// Gets or sets the parameters.
+        /// </summary>
+        /// <value>The parameters.</value>
         public Dictionary<string, string> Parameters { get; set; }
+        /// <summary>
+        /// Gets or sets the headers.
+        /// </summary>
+        /// <value>The headers.</value>
         public Dictionary<string, string> Headers { get; set; }
 
+        /// <summary>
+        /// Initializes the SIPURI object
+        /// </summary>
         private void Init()
         {
             Parameters = new Dictionary<string, string>();
@@ -95,6 +153,10 @@ namespace SIPLib.SIP
             Port = 0;
         }
 
+        /// <summary>
+        /// Returns a <see cref="System.String" /> that represents this instance.
+        /// </summary>
+        /// <returns>A <see cref="System.String" /> that represents this instance.</returns>
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
@@ -157,11 +219,19 @@ namespace SIPLib.SIP
             return sb.ToString();
         }
 
+        /// <summary>
+        /// Clones this SIPURI and returns a new SIPURI
+        /// </summary>
+        /// <returns>SIPURI.</returns>
         public SIPURI Dup()
         {
             return new SIPURI(ToString());
         }
 
+        /// <summary>
+        /// Returns a md5 hash based on the lowercased string contents of this SIPURI.
+        /// </summary>
+        /// <returns>System.String.</returns>
         public string Hash()
         {
             MD5 m = MD5.Create();
@@ -169,6 +239,12 @@ namespace SIPLib.SIP
             return hash;
         }
 
+        /// <summary>
+        /// Helper function used to get the MD5 hash of the inputed string using the MD5 object passed in.
+        /// </summary>
+        /// <param name="md5Hash">The MD5 hash.</param>
+        /// <param name="input">The input.</param>
+        /// <returns>System.String.</returns>
         private static string GetMd5Hash(MD5 md5Hash, string input)
         {
             // Convert the input string to a byte array and compute the hash.
@@ -189,11 +265,20 @@ namespace SIPLib.SIP
             return sBuilder.ToString();
         }
 
+        /// <summary>
+        /// Helper function to compares this SIPURI to another specified SIPURI.
+        /// </summary>
+        /// <param name="other">The other.</param>
+        /// <returns><c>true</c> if XXXX, <c>false</c> otherwise</returns>
         public bool Compare(SIPURI other)
         {
             return ((ToString().ToLower()) == (other.ToString().ToLower()));
         }
 
+        /// <summary>
+        /// Helper function returning a string combining the SIPURI's host and port.
+        /// </summary>
+        /// <returns>System.String.</returns>
         public string HostPort()
         {
             return Host + ":" + Port.ToString();
