@@ -1,4 +1,17 @@
-﻿#region
+﻿// ***********************************************************************
+// Assembly         : SIPLib
+// Author           : Richard
+// Created          : 10-25-2012
+//
+// Last Modified By : Richard
+// Last Modified On : 01-29-2013
+// ***********************************************************************
+// <copyright file="SDP-Connection.cs" company="">
+//     Copyright (c) . All rights reserved.
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+#region
 
 using System.Collections.Generic;
 using System.Text;
@@ -7,8 +20,16 @@ using System.Text;
 
 namespace SIPLib.SIP
 {
+    /// <summary>
+    /// This class is used to represent a SDP Connection data (c=nettype addrtype connection-address)
+    /// </summary>
     public class SDPConnection
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:SIPLib.SIP.SDPConnection"/> class.
+        /// </summary>
+        /// <param name="value">The input string representing the c line in the SDP</param>
+        /// <param name="attrDict">An optional dictionary containing the c= parameters</param>
         public SDPConnection(string value = null, Dictionary<string, string> attrDict = null)
         {
             if (value != null)
@@ -44,12 +65,36 @@ namespace SIPLib.SIP
             }
         }
 
+        /// <summary>
+        /// Gets or sets the nettype (e.g. "IN")
+        /// </summary>
+        /// <value>The nettype (e.g. "IN")</value>
         public string Nettype { get; set; }
+        /// <summary>
+        /// Gets or sets the addrtype (e.g. "IP4")
+        /// </summary>
+        /// <value>The addrtype (e.g. "IP4")</value>
         public string Addrtype { get; set; }
+        /// <summary>
+        /// Gets or sets the address (e.g. "192.168.0.1")
+        /// </summary>
+        /// <value>The address (e.g. "192.168.0.1")</value>
         public string Address { get; set; }
+        /// <summary>
+        /// Gets or sets the TTL (for multicast)
+        /// </summary>
+        /// <value>The TTL (for multicast)</value>
         public string TTL { get; set; }
+        /// <summary>
+        /// Gets or sets the number of addresses  (multiple multicast groups)
+        /// </summary>
+        /// <value>How many addresses should be used (multiple multicast groups)</value>
         public string Count { get; set; }
 
+        /// <summary>
+        /// Returns a <see cref="System.String" /> that represents this instance.
+        /// </summary>
+        /// <returns>A <see cref="System.String" /> that represents this instance.</returns>
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
