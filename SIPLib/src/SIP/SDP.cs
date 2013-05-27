@@ -1,4 +1,17 @@
-﻿#region
+﻿// ***********************************************************************
+// Assembly         : SIPLib
+// Author           : Richard
+// Created          : 10-25-2012
+//
+// Last Modified By : Richard
+// Last Modified On : 01-29-2013
+// ***********************************************************************
+// <copyright file="SDP.cs" company="">
+//     Copyright (c) . All rights reserved.
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+#region
 
 using System;
 using System.Collections.Generic;
@@ -9,10 +22,20 @@ using System.Text;
 
 namespace SIPLib.SIP
 {
+    /// <summary>
+    /// This class is used to represent the SDP: Session Description Protocol (rfc4566).
+    /// </summary>
     public class SDP
     {
+        /// <summary>
+        /// List of SDP lines that can be repeated.
+        /// </summary>
         public static string Multiple = "tramb";
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:SIPLib.SIP.SDP"/> class.
+        /// </summary>
+        /// <param name="sdp">A input block of text representing SDP.</param>
         public SDP(string sdp = null)
         {
             Media = new List<SDPMedia>();
@@ -24,12 +47,32 @@ namespace SIPLib.SIP
             }
         }
 
+        /// <summary>
+        /// Gets or sets a list of SDPMedia objects representing different media items in the SDP.
+        /// </summary>
+        /// <value>A list of SDPMedia objects</value>
         public List<SDPMedia> Media { get; set; }
+        /// <summary>
+        /// Gets or sets the SDP line representing the connection (c=...)
+        /// </summary>
+        /// <value>The connection line (c=...)</value>
         public SDPConnection Connection { get; set; }
+        /// <summary>
+        /// Gets or sets the originator of the session.
+        /// </summary>
+        /// <value>The originator line (o=...)</value>
         public SDPOriginator Originator { get; set; }
+        /// <summary>
+        /// Gets or sets the other parameters.
+        /// </summary>
+        /// <value>The other parameters.</value>
         public Dictionary<string, string> Other { get; set; }
 
 
+        /// <summary>
+        /// Parses the specified SDP.
+        /// </summary>
+        /// <param name="sdp">The input SDP text.</param>
         public void Parse(string sdp)
         {
             sdp = sdp.Replace("\r\n", "\n");
@@ -77,16 +120,16 @@ namespace SIPLib.SIP
                         string[] rest = split[1].Split("/".ToCharArray(), 2);
                         string name = rest[0];
                         string rate = null;
-                        string paramaters = null;
+                        string parameters = null;
                         if (rest.Length > 1)
                         {
                             string[] final = rest[1].Split("/".ToCharArray(), 2);
                             rate = final[0];
 
-                            paramaters = null;
+                            parameters = null;
                             if (final.Length > 1)
                             {
-                                paramaters = final[1];
+                                parameters = final[1];
                             }
                         }
 
@@ -99,9 +142,9 @@ namespace SIPLib.SIP
                                 {
                                     f.Rate = rate;
                                 }
-                                if (paramaters != null)
+                                if (parameters != null)
                                 {
-                                    f.Parameters = paramaters;
+                                    f.Parameters = parameters;
                                 }
                             }
                         }
@@ -160,6 +203,10 @@ namespace SIPLib.SIP
             }
         }
 
+        /// <summary>
+        /// Returns a <see cref="System.String" /> that represents this instance.
+        /// </summary>
+        /// <returns>A <see cref="System.String" /> that represents this instance.</returns>
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
@@ -200,6 +247,13 @@ namespace SIPLib.SIP
             return sb.ToString();
         }
 
+        /// <summary>
+        /// Creates a SDP offer.
+        /// </summary>
+        /// <param name="streams">A list of SDP Media objects.</param>
+        /// <param name="parameters">The parameters.</param>
+        /// <param name="previous">Optional previous SDP.</param>
+        /// <returns>SDP.</returns>
         public static SDP CreateOffer(List<SDPMedia> streams, Dictionary<string, string> parameters, SDP previous = null)
         {
             SDP s = new SDP();
@@ -222,6 +276,13 @@ namespace SIPLib.SIP
             return s;
         }
 
+        /// <summary>
+        /// Creates a SDP answer.
+        /// </summary>
+        /// <param name="streams">A list of SDP Media objects..</param>
+        /// <param name="offer">The SDP offer.</param>
+        /// <param name="parameters">Optional parameters.</param>
+        /// <returns>SDP.</returns>
         public static SDP CreateAnswer(List<SDPMedia> streams, SDP offer, Dictionary<string, string> parameters = null)
         {
             SDP s = new SDP();

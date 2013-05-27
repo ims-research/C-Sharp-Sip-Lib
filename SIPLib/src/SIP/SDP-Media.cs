@@ -1,4 +1,17 @@
-﻿#region
+﻿// ***********************************************************************
+// Assembly         : SIPLib
+// Author           : Richard
+// Created          : 10-25-2012
+//
+// Last Modified By : Richard
+// Last Modified On : 01-29-2013
+// ***********************************************************************
+// <copyright file="SDP-Media.cs" company="">
+//     Copyright (c) . All rights reserved.
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+#region
 
 using System;
 using System.Collections.Generic;
@@ -9,8 +22,16 @@ using System.Text;
 
 namespace SIPLib.SIP
 {
+    /// <summary>
+    /// This class is used to represent SDP Media data (m=media port proto fmt ...)
+    /// </summary>
     public class SDPMedia
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:SIPLib.SIP.SDPMedia"/> class.
+        /// </summary>
+        /// <param name="value">The input string representing the m line in the SDP</param>
+        /// <param name="attrDict">An optional dictionary containing the m= parameters</param>
         public SDPMedia(string value = null, Dictionary<string, string> attrDict = null)
         {
             Mediaformats = new List<SDPMediaFormat>();
@@ -46,13 +67,41 @@ namespace SIPLib.SIP
             }
         }
 
+        /// <summary>
+        /// Gets or sets the media type (e.g. "audio","video" etc.)
+        /// </summary>
+        /// <value>The media type ("audio", "video" etc).</value>
         public string Media { get; set; }
+        /// <summary>
+        /// Gets or sets the port.
+        /// </summary>
+        /// <value>The port.</value>
         public string Port { get; set; }
+        /// <summary>
+        /// Gets or sets the transport protocol (e.g. RTP/AVP)
+        /// </summary>
+        /// <value>The transport protocol (e.g. RTP/AVP).</value>
         public string Proto { get; set; }
+        /// <summary>
+        /// Gets or sets the count.
+        /// </summary>
+        /// <value>The count.</value>
         public string Count { get; set; }
+        /// <summary>
+        /// Gets or sets the media format description, <see cref="T:SIPLib.SIP.SDPMediaFormat"/> class.
+        /// </summary>
+        /// <value>A list of media format descriptions.</value>
         public List<SDPMediaFormat> Mediaformats { get; set; }
+        /// <summary>
+        /// Gets or sets the other attributes.
+        /// </summary>
+        /// <value>The other attributes.</value>
         public Dictionary<string, string> OtherAttributes { get; set; }
 
+        /// <summary>
+        /// Returns a <see cref="System.String" /> that represents this instance.
+        /// </summary>
+        /// <returns>A <see cref="System.String" /> that represents this instance.</returns>
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();

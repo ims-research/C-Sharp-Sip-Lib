@@ -1,4 +1,17 @@
-﻿#region
+﻿// ***********************************************************************
+// Assembly         : SIPLib
+// Author           : Richard
+// Created          : 10-25-2012
+//
+// Last Modified By : Richard
+// Last Modified On : 01-29-2013
+// ***********************************************************************
+// <copyright file="SDP-Originator.cs" company="">
+//     Copyright (c) . All rights reserved.
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+#region
 
 using System;
 using System.Net;
@@ -8,8 +21,15 @@ using SIPLib.Utils;
 
 namespace SIPLib.SIP
 {
+    /// <summary>
+    /// This class is used to represent the originator of a session. (o=username sess-id sess-version nettype addrtype unicast-address)
+    /// </summary>
     public class SDPOriginator
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:SIPLib.SIP.SDPOriginator"/> class.
+        /// </summary>
+        /// <param name="value">The input string representing an o line in the SDP.</param>
         public SDPOriginator(string value = null)
         {
             if (value != null)
@@ -36,13 +56,41 @@ namespace SIPLib.SIP
             }
         }
 
+        /// <summary>
+        /// Gets or sets the username.
+        /// </summary>
+        /// <value>The username.</value>
         public string Username { get; set; }
+        /// <summary>
+        /// Gets or sets the sessionid.
+        /// </summary>
+        /// <value>The sessionid.</value>
         public string Sessionid { get; set; }
+        /// <summary>
+        /// Gets or sets the version.
+        /// </summary>
+        /// <value>The version.</value>
         public string Version { get; set; }
+        /// <summary>
+        /// Gets or sets the nettype.
+        /// </summary>
+        /// <value>The nettype.</value>
         public string Nettype { get; set; }
+        /// <summary>
+        /// Gets or sets the addrtype.
+        /// </summary>
+        /// <value>The addrtype.</value>
         public string Addrtype { get; set; }
+        /// <summary>
+        /// Gets or sets the address.
+        /// </summary>
+        /// <value>The address.</value>
         public string Address { get; set; }
 
+        /// <summary>
+        /// Returns a <see cref="System.String" /> that represents this instance.
+        /// </summary>
+        /// <returns>A <see cref="System.String" /> that represents this instance.</returns>
         public override string ToString()
         {
             return Username + " " + Sessionid + " " + Version + " " + Nettype + " " + Addrtype + " " + Address;
