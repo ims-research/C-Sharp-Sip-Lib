@@ -203,7 +203,7 @@ namespace SIPLib.SIP
         /// Creates a SIP request.
         /// </summary>
         /// <param name="method">The SIP method.</param>
-        /// <param name="dest">The dest (either Address of string[]).</param>
+        /// <param name="dest">The dest (either Address or string[]).</param>
         /// <param name="stateless">if set to <c>true</c> [act as a stateless proxy].</param>
         /// <param name="recordRoute">if set to <c>true</c> [record the SIP route].</param>
         /// <param name="headers">The SIP headers to use.</param>

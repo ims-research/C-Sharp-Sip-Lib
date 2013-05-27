@@ -56,7 +56,7 @@ namespace SIPLib.SIP
     }
 
     /// <summary>
-    /// Class StackErrorEventArgs. Used to pass error messages from the SIP stack.
+    /// This class is used to pass error messages from the SIP stack.
     /// </summary>
     public class StackErrorEventArgs : EventArgs
     {
@@ -82,7 +82,7 @@ namespace SIPLib.SIP
     }
 
     /// <summary>
-    /// Class RegistrationChangedEventArgs. Event class used to pass information about SIP registration changes.
+    /// This class is used to pass information about SIP registration changes.
     /// </summary>
     public class RegistrationChangedEventArgs : EventArgs
     {
@@ -108,7 +108,7 @@ namespace SIPLib.SIP
     }
 
     /// <summary>
-    /// Class RawEventArgs. Event class used to pass raw received data to higher levels.
+    /// This class is used to pass raw received data to higher levels.
     /// </summary>
     public class RawEventArgs : EventArgs
     {

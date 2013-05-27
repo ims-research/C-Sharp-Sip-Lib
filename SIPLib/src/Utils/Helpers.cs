@@ -1,4 +1,17 @@
-﻿#region
+﻿// ***********************************************************************
+// Assembly         : SIPLib
+// Author           : Richard
+// Created          : 10-25-2012
+//
+// Last Modified By : Richard
+// Last Modified On : 01-29-2013
+// ***********************************************************************
+// <copyright file="Helpers.cs" company="">
+//     Copyright (c) . All rights reserved.
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+#region
 
 using System;
 using System.Linq;
@@ -13,8 +26,14 @@ using log4net;
 
 namespace SIPLib.Utils
 {
+    /// <summary>
+    /// This class contains static helper functions to provide several utility functions.
+    /// </summary>
     public static class Helpers
     {
+        /// <summary>
+        /// Enum representing the possible SIP methods.
+        /// </summary>
         public enum SipMethods
         {
             REGISTER,
@@ -35,11 +54,20 @@ namespace SIPLib.Utils
 
         private static ILog _log = LogManager.GetLogger(typeof (SIPStack));
 
+        /// <summary>
+        /// Returns a DateTime object for the Unix Epoch.
+        /// </summary>
+        /// <value>The unix time.</value>
         private static DateTime UnixTime
         {
             get { return new DateTime(1970, 1, 1); }
         }
 
+        /// <summary>
+        /// Determines whether an IP address is an IPV4 address.
+        /// </summary>
+        /// <param name="input">The input.</param>
+        /// <returns><c>true</c> if the IP is IPV4; otherwise, <c>false</c>.</returns>
         public static bool IsIPv4(string input)
         {
             IPAddress[] addresses;
@@ -69,18 +97,33 @@ namespace SIPLib.Utils
             return false;
         }
 
+        /// <summary>
+        /// Base64 encodes the string.
+        /// </summary>
+        /// <param name="str">The input string.</param>
+        /// <returns>System.String.</returns>
         public static string Base64Encode(string str)
         {
             byte[] encbuff = Encoding.UTF8.GetBytes(str);
             return Convert.ToBase64String(encbuff);
         }
 
+        /// <summary>
+        /// Base64 decodes the input string.
+        /// </summary>
+        /// <param name="str">The input string.</param>
+        /// <returns>System.String.</returns>
         public static string Base64Decode(string str)
         {
             byte[] decbuff = Convert.FromBase64String(str);
             return Encoding.UTF8.GetString(decbuff);
         }
 
+        /// <summary>
+        /// Removes angel brackets.
+        /// </summary>
+        /// <param name="str">The input string with angle brackets.</param>
+        /// <returns>System.String.</returns>
         public static string RemoveAngelBrackets(string str)
         {
             if (str.StartsWith("<")) str = str.Remove(0, 1);
@@ -88,6 +131,12 @@ namespace SIPLib.Utils
             return str;
         }
 
+        /// <summary>
+        /// Helper function to calculate a MD5 hash of the input string.
+        /// </summary>
+        /// <param name="md5Hash">The MD5 hash object.</param>
+        /// <param name="input">The input string.</param>
+        /// <returns>System.String.</returns>
         public static string GetMd5Hash(MD5 md5Hash, string input)
         {
             // Convert the input string to a byte array and compute the hash.
@@ -108,38 +157,72 @@ namespace SIPLib.Utils
             return sBuilder.ToString();
         }
 
+        /// <summary>
+        /// Helper function used in converting from unix time.
+        /// </summary>
+        /// <param name="unixTime">The unix time.</param>
+        /// <returns>DateTime.</returns>
         public static DateTime FromUnixTime(double unixTime)
         {
             return UnixTime.AddSeconds(unixTime);
         }
 
+        /// <summary>
+        /// Helper function used in converting to unix time.
+        /// </summary>
+        /// <param name="dateTime">The date time.</param>
+        /// <returns>System.Double.</returns>
         public static double ToUnixTime(DateTime dateTime)
         {
             TimeSpan timeSpan = dateTime - UnixTime;
             return timeSpan.TotalSeconds;
         }
 
+        /// <summary>
+        /// Helper function to add quotation marks to a string
+        /// </summary>
+        /// <param name="input">The input string.</param>
+        /// <returns>System.String.</returns>
         public static string Quote(string input)
         {
             return "\"" + input.Trim('"') + "\"";
         }
 
+        /// <summary>
+        /// Helper function to remove quotation marks from a string
+        /// </summary>
+        /// <param name="input">The input.</param>
+        /// <returns>System.String.</returns>
         public static string Unquote(string input)
         {
             return input.Trim('"');
         }
 
+        /// <summary>
+        /// Determines whether the specified message is a request message.
+        /// </summary>
+        /// <param name="message">The message.</param>
+        /// <returns><c>true</c> if the specified message is request; otherwise, <c>false</c>.</returns>
         public static bool IsRequest(Message message)
         {
             if (message.Method == null) return false;
             return IsRequest(message.Method);
         }
 
+        /// <summary>
+        /// Determines whether the specified request line is from a request.
+        /// </summary>
+        /// <param name="requestLine">The request line.</param>
+        /// <returns><c>true</c> if the specified request line is request; otherwise, <c>false</c>.</returns>
         public static bool IsRequest(string requestLine)
         {
             return Enum.GetNames(typeof (SipMethods)).Any(requestLine.Contains);
         }
 
+        /// <summary>
+        /// Helper function to return the the local IP.
+        /// </summary>
+        /// <returns>System.String.</returns>
         public static string GetLocalIP()
         {
             string strHostName = Dns.GetHostName();

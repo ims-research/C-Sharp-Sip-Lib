@@ -839,7 +839,7 @@ namespace SIPLib.SIP
         /// </summary>
         /// <param name="t">The transaction.</param>
         /// <param name="message">The SIP message.</param>
-        /// <param name="sIPStack">The SIP stack.</param>
+        /// <param name="SIPStack">The SIP stack.</param>
         internal virtual void ReceivedRequest(Transaction t, Message message, SIPStack SIPStack)
         {
             ReceivedRequest(t, message);
