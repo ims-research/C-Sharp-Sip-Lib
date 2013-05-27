@@ -1,5 +1,21 @@
-﻿namespace SIPLib.SIP
+﻿// ***********************************************************************
+// Assembly         : SIPLib
+// Author           : Richard
+// Created          : 10-25-2012
+//
+// Last Modified By : Richard
+// Last Modified On : 01-29-2013
+// ***********************************************************************
+// <copyright file="Types.cs" company="">
+//     Copyright (c) . All rights reserved.
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+namespace SIPLib.SIP
 {
+    /// <summary>
+    /// Enum used to represent classes of status codes.
+    /// </summary>
     public enum StatusCodes
     {
         Informational,
@@ -11,6 +27,9 @@
         Unknown
     }
 
+    /// <summary>
+    /// Enum used to represent possible SIP Methods
+    /// </summary>
     public enum SipMethods
     {
         REGISTER,
@@ -29,6 +48,9 @@
         UPDATE
     }
 
+    /// <summary>
+    /// Enum used to represent state of calls.
+    /// </summary>
     public enum CallState
     {
         Starting,
@@ -42,8 +64,16 @@
         Inactive
     }
 
+    /// <summary>
+    /// Helper class used to provide static methods for working with SIP status / response codes.
+    /// </summary>
     public class Types
     {
+        /// <summary>
+        /// Gets the type of response based on response code.
+        /// </summary>
+        /// <param name="statusCode">The status code.</param>
+        /// <returns>StatusCodes.</returns>
         public static StatusCodes GetStatusType(int statusCode)
         {
             if ((statusCode) >= 100 && (statusCode) < 200)
