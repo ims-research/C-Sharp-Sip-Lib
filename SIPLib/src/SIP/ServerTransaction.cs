@@ -1,12 +1,35 @@
-﻿namespace SIPLib.SIP
+﻿// ***********************************************************************
+// Assembly         : SIPLib
+// Author           : Richard
+// Created          : 10-25-2012
+//
+// Last Modified By : Richard
+// Last Modified On : 01-29-2013
+// ***********************************************************************
+// <copyright file="ServerTransaction.cs" company="">
+//     Copyright (c) . All rights reserved.
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+namespace SIPLib.SIP
 {
+    /// <summary>
+    /// This class is used to represent a SIP, non INVITE server transaction.
+    /// </summary>
     public class ServerTransaction : Transaction
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:SIPLib.SIP.ServerTransaction"/> class.
+        /// </summary>
+        /// <param name="app">The useragent</param>
         public ServerTransaction(UserAgent app) : base(app)
         {
             Server = true;
         }
 
+        /// <summary>
+        /// Starts the transaction (set state to trying, pass received request up the stack).
+        /// </summary>
         public void Start()
         {
             State = "trying";
@@ -17,6 +40,10 @@
             else App.ReceivedRequest(this, Request);
         }
 
+        /// <summary>
+        /// Handles retransmitted requests / completed requests
+        /// </summary>
+        /// <param name="receivedRequest">The received request.</param>
         public override void ReceivedRequest(Message receivedRequest)
         {
             if (Request.Method == receivedRequest.Method)
@@ -32,6 +59,11 @@
             }
         }
 
+        /// <summary>
+        /// Handles timeouts
+        /// </summary>
+        /// <param name="name">The name of the timer (J etc).</param>
+        /// <param name="timeout">The timeout.</param>
         public void Timeout(string name, int timeout)
         {
             if (State == "completed")
@@ -43,6 +75,10 @@
             }
         }
 
+        /// <summary>
+        /// Raises an error
+        /// </summary>
+        /// <param name="error">The error.</param>
         public void Error(string error)
         {
             if (State == "completed")
@@ -52,6 +88,10 @@
             }
         }
 
+        /// <summary>
+        /// Sends a SIP response.
+        /// </summary>
+        /// <param name="response">The SIP response.</param>
         public override void SendResponse(Message response)
         {
             LastResponse = response;
