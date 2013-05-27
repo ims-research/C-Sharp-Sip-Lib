@@ -1,13 +1,13 @@
 ﻿// ***********************************************************************
 // Assembly         : SIPLib
-// Author           : Richard
+// Author           : Richard Spiers
 // Created          : 10-25-2012
 //
-// Last Modified By : Richard
-// Last Modified On : 01-29-2013
+// Last Modified By : Richard Spiers
+// Last Modified On : 05-27-2013
 // ***********************************************************************
-// <copyright file="Timer.cs" company="">
-//     Copyright (c) . All rights reserved.
+// <copyright file="Timer.cs">
+//     Copyright (c) Richard Spiers. All rights reserved.
 // </copyright>
 // <summary></summary>
 // ***********************************************************************
@@ -25,7 +25,7 @@ namespace SIPLib.SIP
     public class Timer
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:SIPLib.SIP.Timer"/> class with default time outs.
+        /// Initializes a new instance of the <see cref="T:SIPLib.SIP.Timer" /> class with default time outs.
         /// </summary>
         /// <param name="app">The app.</param>
         /// <param name="T1">The t1.</param>
@@ -60,7 +60,7 @@ namespace SIPLib.SIP
         public int Delay { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether this <see cref="T:SIPLib.SIP.Timer"/> is running.
+        /// Gets or sets a value indicating whether this <see cref="T:SIPLib.SIP.Timer" /> is running.
         /// </summary>
         /// <value><c>true</c> if running; otherwise, <c>false</c>.</value>
         public bool Running { get; set; }

@@ -1,13 +1,13 @@
 ﻿// ***********************************************************************
 // Assembly         : SIPLib
-// Author           : Richard
+// Author           : Richard Spiers
 // Created          : 10-25-2012
 //
-// Last Modified By : Richard
-// Last Modified On : 01-29-2013
+// Last Modified By : Richard Spiers
+// Last Modified On : 05-27-2013
 // ***********************************************************************
-// <copyright file="TransportInfo.cs" company="">
-//     Copyright (c) . All rights reserved.
+// <copyright file="TransportInfo.cs">
+//     Copyright (c) Richard Spiers. All rights reserved.
 // </copyright>
 // <summary></summary>
 // ***********************************************************************
@@ -26,7 +26,7 @@ namespace SIPLib.SIP
     public class TransportInfo
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:SIPLib.SIP.TransportInfo"/> class.
+        /// Initializes a new instance of the <see cref="T:SIPLib.SIP.TransportInfo" /> class.
         /// </summary>
         /// <param name="localAddress">The local IP address.</param>
         /// <param name="listenPort">The port to listen on.</param>
@@ -59,7 +59,7 @@ namespace SIPLib.SIP
         /// <value>The socket.</value>
         public Socket Socket { get; set; }
         /// <summary>
-        /// Gets or sets a value indicating whether this <see cref="T:SIPLib.SIP.TransportInfo"/> is reliable.
+        /// Gets or sets a value indicating whether this <see cref="T:SIPLib.SIP.TransportInfo" /> is reliable.
         /// </summary>
         /// <value><c>true</c> if reliable; otherwise, <c>false</c>.</value>
         public bool Reliable { get; set; }

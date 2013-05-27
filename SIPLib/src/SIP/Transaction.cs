@@ -1,13 +1,13 @@
 ﻿// ***********************************************************************
 // Assembly         : SIPLib
-// Author           : Richard
+// Author           : Richard Spiers
 // Created          : 10-25-2012
 //
-// Last Modified By : Richard
-// Last Modified On : 01-29-2013
+// Last Modified By : Richard Spiers
+// Last Modified On : 05-27-2013
 // ***********************************************************************
-// <copyright file="Transaction.cs" company="">
-//     Copyright (c) . All rights reserved.
+// <copyright file="Transaction.cs">
+//     Copyright (c) Richard Spiers. All rights reserved.
 // </copyright>
 // <summary></summary>
 // ***********************************************************************
@@ -24,7 +24,7 @@ using SIPLib.Utils;
 namespace SIPLib.SIP
 {
     /// <summary>
-    /// This is the base class used to represent SIP transactions. 
+    /// This is the base class used to represent SIP transactions.
     /// </summary>
     public abstract class Transaction
     {
@@ -34,9 +34,9 @@ namespace SIPLib.SIP
         private string _state;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:SIPLib.SIP.Transaction"/> class.
+        /// Initializes a new instance of the <see cref="T:SIPLib.SIP.Transaction" /> class.
         /// </summary>
-        /// <param name="app">The associated useragent / application </param>
+        /// <param name="app">The associated useragent / application</param>
         protected Transaction(UserAgent app)
         {
             Timers = new Dictionary<string, Timer>();
@@ -45,7 +45,7 @@ namespace SIPLib.SIP
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:SIPLib.SIP.Transaction"/> class.
+        /// Initializes a new instance of the <see cref="T:SIPLib.SIP.Transaction" /> class.
         /// </summary>
         /// <param name="server">if set to <c>true</c> [server].</param>
         protected Transaction(bool server)
@@ -91,7 +91,7 @@ namespace SIPLib.SIP
         /// <value>The tag.</value>
         public string Tag { get; set; }
         /// <summary>
-        /// Gets or sets a value indicating whether this <see cref="T:SIPLib.SIP.Transaction"/> is a server transaction.
+        /// Gets or sets a value indicating whether this <see cref="T:SIPLib.SIP.Transaction" /> is a server transaction.
         /// </summary>
         /// <value><c>true</c> if server transaction; otherwise, <c>false</c>.</value>
         public bool Server { get; set; }

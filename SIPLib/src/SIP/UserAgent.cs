@@ -1,13 +1,13 @@
 ﻿// ***********************************************************************
 // Assembly         : SIPLib
-// Author           : Richard
+// Author           : Richard Spiers
 // Created          : 10-25-2012
 //
-// Last Modified By : Richard
-// Last Modified On : 01-29-2013
+// Last Modified By : Richard Spiers
+// Last Modified On : 05-27-2013
 // ***********************************************************************
-// <copyright file="UserAgent.cs" company="">
-//     Copyright (c) . All rights reserved.
+// <copyright file="UserAgent.cs">
+//     Copyright (c) Richard Spiers. All rights reserved.
 // </copyright>
 // <summary></summary>
 // ***********************************************************************
@@ -38,7 +38,7 @@ namespace SIPLib.SIP
         private readonly Random _random = new Random();
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:SIPLib.SIP.UserAgent"/> class.
+        /// Initializes a new instance of the <see cref="T:SIPLib.SIP.UserAgent" /> class.
         /// </summary>
         /// <param name="stack">The SIP stack associated with this UA.</param>
         /// <param name="request">An optional SIP request.</param>
@@ -130,7 +130,7 @@ namespace SIPLib.SIP
         /// <value>The stack.</value>
         public SIPStack Stack { get; set; }
         /// <summary>
-        /// Gets or sets a value indicating whether this <see cref="T:SIPLib.SIP.UserAgent"/> is a user agent server.
+        /// Gets or sets a value indicating whether this <see cref="T:SIPLib.SIP.UserAgent" /> is a user agent server.
         /// </summary>
         /// <value><c>true</c> if server; otherwise, <c>false</c>.</value>
         public bool Server { get; set; }
@@ -217,7 +217,7 @@ namespace SIPLib.SIP
         /// <value>The contact.</value>
         public Address Contact { get; set; }
         /// <summary>
-        /// Gets or sets a value indicating whether this <see cref="T:SIPLib.SIP.UserAgent"/> should automatically ack requests.
+        /// Gets or sets a value indicating whether this <see cref="T:SIPLib.SIP.UserAgent" /> should automatically ack requests.
         /// </summary>
         /// <value><c>true</c> if autoack; otherwise, <c>false</c>.</value>
         public bool Autoack { get; set; }

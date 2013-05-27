@@ -1,13 +1,13 @@
 ﻿// ***********************************************************************
 // Assembly         : SIPLib
-// Author           : Richard
+// Author           : Richard Spiers
 // Created          : 10-25-2012
 //
-// Last Modified By : Richard
-// Last Modified On : 01-29-2013
+// Last Modified By : Richard Spiers
+// Last Modified On : 05-27-2013
 // ***********************************************************************
-// <copyright file="ServerTransaction.cs" company="">
-//     Copyright (c) . All rights reserved.
+// <copyright file="ServerTransaction.cs">
+//     Copyright (c) Richard Spiers. All rights reserved.
 // </copyright>
 // <summary></summary>
 // ***********************************************************************
@@ -19,7 +19,7 @@ namespace SIPLib.SIP
     public class ServerTransaction : Transaction
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:SIPLib.SIP.ServerTransaction"/> class.
+        /// Initializes a new instance of the <see cref="T:SIPLib.SIP.ServerTransaction" /> class.
         /// </summary>
         /// <param name="app">The useragent</param>
         public ServerTransaction(UserAgent app) : base(app)

@@ -1,13 +1,13 @@
 ﻿// ***********************************************************************
 // Assembly         : SIPLib
-// Author           : Richard
+// Author           : Richard Spiers
 // Created          : 10-25-2012
 //
-// Last Modified By : Richard
-// Last Modified On : 01-29-2013
+// Last Modified By : Richard Spiers
+// Last Modified On : 05-27-2013
 // ***********************************************************************
-// <copyright file="SDP-Media.cs" company="">
-//     Copyright (c) . All rights reserved.
+// <copyright file="SDP-Media.cs">
+//     Copyright (c) Richard Spiers. All rights reserved.
 // </copyright>
 // <summary></summary>
 // ***********************************************************************
@@ -28,7 +28,7 @@ namespace SIPLib.SIP
     public class SDPMedia
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:SIPLib.SIP.SDPMedia"/> class.
+        /// Initializes a new instance of the <see cref="T:SIPLib.SIP.SDPMedia" /> class.
         /// </summary>
         /// <param name="value">The input string representing the m line in the SDP</param>
         /// <param name="attrDict">An optional dictionary containing the m= parameters</param>
@@ -88,7 +88,7 @@ namespace SIPLib.SIP
         /// <value>The count.</value>
         public string Count { get; set; }
         /// <summary>
-        /// Gets or sets the media format description, <see cref="T:SIPLib.SIP.SDPMediaFormat"/> class.
+        /// Gets or sets the media format description, <see cref="T:SIPLib.SIP.SDPMediaFormat" /> class.
         /// </summary>
         /// <value>A list of media format descriptions.</value>
         public List<SDPMediaFormat> Mediaformats { get; set; }

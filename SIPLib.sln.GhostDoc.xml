@@ -1,0 +1,23 @@
+<GhostDoc>
+  <SpellChecker>
+    <IncludeExtensions>
+    </IncludeExtensions>
+    <IgnoreExtensions>
+    </IgnoreExtensions>
+    <IgnoreFiles>
+    </IgnoreFiles>
+  </SpellChecker>
+  <HelpFile>
+    <OutputPath>C%3a%5ctemp%5csiplib%5cDocs%5c</OutputPath>
+    <SelectedProjects>SIPLib</SelectedProjects>
+    <HtmlHelp1>True</HtmlHelp1>
+    <MSHelp2>False</MSHelp2>
+    <MSHelpViewer>False</MSHelpViewer>
+    <Website>True</Website>
+    <DocumentInternals>False</DocumentInternals>
+    <DocumentProtected>False</DocumentProtected>
+    <DocumentPrivates>False</DocumentPrivates>
+    <HeaderText>+</HeaderText>
+    <FooterHtml></FooterHtml>
+  </HelpFile>
+</GhostDoc>
