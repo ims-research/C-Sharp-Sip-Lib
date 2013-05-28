@@ -1,0 +1,1411 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SequenceDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" dslVersion="1.0.0.0" Id="37aac2f1-2ef6-4526-9060-3ef31e4675a0" name="Program_Main" mode="DotNet" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner">
+  <packagedElements>
+    <packageHasNamedElement>
+      <interaction Id="ce27c548-e462-4cfe-8dbd-a0ebfbac11b0" name="Program_Main" collapseFragmentsFlag="false" isActiveClass="false" isAbstract="false" isLeaf="false" isReentrant="false">
+        <fragments>
+          <behaviorExecutionSpecification Id="ca933c18-2de6-4bb4-93ed-1810d033de8e" name="BehaviorExecutionSpecification">
+            <coveredLifelines>
+              <lifelineMoniker Id="f2a38069-3220-4d46-a683-d32e9dbd218c" LastKnownName="Program" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker Id="0152d5d4-98dc-4c44-98b5-a3efbcb68d0a" LastKnownName="ExecutionOccurrenceSpecification" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker Id="ff34a0db-8975-4c82-9a29-4c408b04de72" LastKnownName="ExecutionOccurrenceSpecification" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker Id="fb504531-fbc2-4271-a006-438ef77dfdb8" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="3cb564c3-b846-4e70-8b08-de528274bcbd" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="5b7cb176-6bf3-4d13-a003-f57e41ab35fb" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="5b2a0e11-2141-4a71-a81b-191bb24761b3" LastKnownName="MessageOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="f5c7d7d5-086b-4d28-aab9-deec34aa5c01" LastKnownName="ExecutionOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="55548b8a-3c31-497f-ab39-9c7f22534d66" LastKnownName="ExecutionOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="8c37464d-0683-4d6b-bd39-310e011a21e7" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="4c6453e4-76a9-48ae-834b-8864e16504cb" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="39b84d21-ee17-4a27-a541-0c1306d42d87" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="7d2aed91-e46c-4586-8138-c8336589d869" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="4dbae63a-bf50-42fd-ab35-be78e0192af3" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="d1a17040-580e-4055-aa9b-4da53495856a" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="28ae2e7e-8594-46ec-a114-acd964563ea9" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="d4e3ec28-7d35-4f92-8b50-62831997c1a8" LastKnownName="MessageOccurrenceSpecification" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification Id="ff34a0db-8975-4c82-9a29-4c408b04de72" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="e375b029-3d95-4dff-bbf5-4526cde7407d" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="f2a38069-3220-4d46-a683-d32e9dbd218c" LastKnownName="Program" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <lostFoundTarget Id="744ca65b-75a7-4980-baad-1c8c5c63faf8" name="LostFoundTarget" />
+          <messageOccurrenceSpecification Id="fb504531-fbc2-4271-a006-438ef77dfdb8" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="f2a38069-3220-4d46-a683-d32e9dbd218c" LastKnownName="Program" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <behaviorExecutionSpecification Id="95546bee-1fc4-4715-974e-09cbb381a639" name="BehaviorExecutionSpecification">
+            <coveredLifelines>
+              <lifelineMoniker Id="aac5cb6a-27b8-4438-a8aa-c1d11cc59a15" LastKnownName="app : SIPApp" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker Id="05d8921e-50fe-4776-b092-457cf16d3d74" LastKnownName="ExecutionOccurrenceSpecification" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker Id="16b6a260-d6fc-4de3-a844-b5a1eff6bfe9" LastKnownName="ExecutionOccurrenceSpecification" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker Id="90571a62-1cdd-4100-8c0e-8f21e7d9ee54" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="75dfa531-aa89-4ec9-8a9a-b32ed571e04d" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="b6ed287a-374f-43ba-8a02-5451fb068a34" LastKnownName="MessageOccurrenceSpecification" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification Id="16b6a260-d6fc-4de3-a844-b5a1eff6bfe9" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="bd9d37cc-9ce2-4213-8110-c4b4526d5522" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="aac5cb6a-27b8-4438-a8aa-c1d11cc59a15" LastKnownName="app : SIPApp" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="3cb564c3-b846-4e70-8b08-de528274bcbd" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="f2a38069-3220-4d46-a683-d32e9dbd218c" LastKnownName="Program" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="90571a62-1cdd-4100-8c0e-8f21e7d9ee54" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="aac5cb6a-27b8-4438-a8aa-c1d11cc59a15" LastKnownName="app : SIPApp" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <lostFoundTarget Id="3f157880-e62a-4e8a-9543-622fa4a8d223" name="LostFoundTarget" />
+          <messageOccurrenceSpecification Id="75dfa531-aa89-4ec9-8a9a-b32ed571e04d" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="aac5cb6a-27b8-4438-a8aa-c1d11cc59a15" LastKnownName="app : SIPApp" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="b6ed287a-374f-43ba-8a02-5451fb068a34" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="aac5cb6a-27b8-4438-a8aa-c1d11cc59a15" LastKnownName="app : SIPApp" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="5b7cb176-6bf3-4d13-a003-f57e41ab35fb" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="f2a38069-3220-4d46-a683-d32e9dbd218c" LastKnownName="Program" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <executionOccurrenceSpecification Id="05d8921e-50fe-4776-b092-457cf16d3d74" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="c2b3afec-4f67-484d-bfad-196abc435a6e" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="aac5cb6a-27b8-4438-a8aa-c1d11cc59a15" LastKnownName="app : SIPApp" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="5b2a0e11-2141-4a71-a81b-191bb24761b3" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="f2a38069-3220-4d46-a683-d32e9dbd218c" LastKnownName="Program" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <behaviorExecutionSpecification Id="8c98d846-8e8b-4817-a5f2-afbdfde0d1be" name="BehaviorExecutionSpecification">
+            <coveredLifelines>
+              <lifelineMoniker Id="f2a38069-3220-4d46-a683-d32e9dbd218c" LastKnownName="Program" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker Id="55548b8a-3c31-497f-ab39-9c7f22534d66" LastKnownName="ExecutionOccurrenceSpecification" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker Id="f5c7d7d5-086b-4d28-aab9-deec34aa5c01" LastKnownName="ExecutionOccurrenceSpecification" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker Id="c82709b9-f41a-4cf0-a3c4-6dfd8e687f7c" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="1ff78a01-6365-4521-9dda-f12765d2daf4" LastKnownName="MessageOccurrenceSpecification" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification Id="f5c7d7d5-086b-4d28-aab9-deec34aa5c01" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="40010624-6b29-4058-b2c8-b42f1f0c4ee3" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="f2a38069-3220-4d46-a683-d32e9dbd218c" LastKnownName="Program" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="c82709b9-f41a-4cf0-a3c4-6dfd8e687f7c" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="f2a38069-3220-4d46-a683-d32e9dbd218c" LastKnownName="Program" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="1ff78a01-6365-4521-9dda-f12765d2daf4" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="f2a38069-3220-4d46-a683-d32e9dbd218c" LastKnownName="Program" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <lostFoundTarget Id="60cc4d15-309d-4076-97ef-661a6465d382" name="LostFoundTarget" />
+          <executionOccurrenceSpecification Id="55548b8a-3c31-497f-ab39-9c7f22534d66" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="eb12c3e3-df3c-4579-9bcf-ed5a296bd3a0" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="f2a38069-3220-4d46-a683-d32e9dbd218c" LastKnownName="Program" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <behaviorExecutionSpecification Id="0f909689-33fc-430f-92ba-623fb21c14dd" name="BehaviorExecutionSpecification">
+            <coveredLifelines>
+              <lifelineMoniker Id="aac5cb6a-27b8-4438-a8aa-c1d11cc59a15" LastKnownName="app : SIPApp" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker Id="37eae73f-5189-439e-95ba-ff0f2b6b6cd7" LastKnownName="ExecutionOccurrenceSpecification" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker Id="9091c25f-2b5a-4365-9087-57ce1e86e0ab" LastKnownName="ExecutionOccurrenceSpecification" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker Id="4b2c19cc-2a3a-4f43-a4cc-6ce582d442de" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="13fe9a0b-4ec2-4e9f-9e59-acc642644071" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="e62839e0-5eb1-40d5-9bf2-326371718637" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="2ff7aa90-be26-487e-9efa-f4cc12589b82" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="233c6825-70ad-48b0-9cdb-4e8f1089f7d5" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="0dfd07af-193f-4755-9b10-78cf2a1d4160" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="4345c945-88a4-4330-addc-8c235cc3e209" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="a2fd1c07-97c4-49d5-bebf-4edf63873452" LastKnownName="MessageOccurrenceSpecification" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification Id="9091c25f-2b5a-4365-9087-57ce1e86e0ab" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="101bfc37-e4b7-4aee-b4fc-795ea8124207" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="aac5cb6a-27b8-4438-a8aa-c1d11cc59a15" LastKnownName="app : SIPApp" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="4b2c19cc-2a3a-4f43-a4cc-6ce582d442de" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="aac5cb6a-27b8-4438-a8aa-c1d11cc59a15" LastKnownName="app : SIPApp" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="8c37464d-0683-4d6b-bd39-310e011a21e7" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="f2a38069-3220-4d46-a683-d32e9dbd218c" LastKnownName="Program" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="13fe9a0b-4ec2-4e9f-9e59-acc642644071" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="aac5cb6a-27b8-4438-a8aa-c1d11cc59a15" LastKnownName="app : SIPApp" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <lostFoundTarget Id="66c8badb-2466-438a-ba4b-8ee618bb4767" name="LostFoundTarget" />
+          <messageOccurrenceSpecification Id="e62839e0-5eb1-40d5-9bf2-326371718637" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="aac5cb6a-27b8-4438-a8aa-c1d11cc59a15" LastKnownName="app : SIPApp" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <lostFoundTarget Id="254ba025-66d5-4309-bd4b-d0ed09f8100c" name="LostFoundTarget" />
+          <lostFoundTarget Id="f1cd1782-a154-43ec-b042-63fd326d8301" name="LostFoundTarget" />
+          <messageOccurrenceSpecification Id="2ff7aa90-be26-487e-9efa-f4cc12589b82" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="aac5cb6a-27b8-4438-a8aa-c1d11cc59a15" LastKnownName="app : SIPApp" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="233c6825-70ad-48b0-9cdb-4e8f1089f7d5" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="aac5cb6a-27b8-4438-a8aa-c1d11cc59a15" LastKnownName="app : SIPApp" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <lostFoundTarget Id="4167aaf7-62a5-47e3-8ee1-2beb2b42f4a3" name="LostFoundTarget" />
+          <lostFoundTarget Id="06ce8d42-bd39-4f53-9cf6-0c349d8aeb3b" name="LostFoundTarget" />
+          <messageOccurrenceSpecification Id="0dfd07af-193f-4755-9b10-78cf2a1d4160" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="aac5cb6a-27b8-4438-a8aa-c1d11cc59a15" LastKnownName="app : SIPApp" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="4345c945-88a4-4330-addc-8c235cc3e209" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="aac5cb6a-27b8-4438-a8aa-c1d11cc59a15" LastKnownName="app : SIPApp" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <lostFoundTarget Id="27e2243f-59c2-4a1b-a302-877b99d5a088" name="LostFoundTarget" />
+          <messageOccurrenceSpecification Id="a2fd1c07-97c4-49d5-bebf-4edf63873452" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="aac5cb6a-27b8-4438-a8aa-c1d11cc59a15" LastKnownName="app : SIPApp" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="4c6453e4-76a9-48ae-834b-8864e16504cb" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="f2a38069-3220-4d46-a683-d32e9dbd218c" LastKnownName="Program" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <executionOccurrenceSpecification Id="37eae73f-5189-439e-95ba-ff0f2b6b6cd7" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="edd26c43-740b-400f-84db-208668cf6b7d" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="aac5cb6a-27b8-4438-a8aa-c1d11cc59a15" LastKnownName="app : SIPApp" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <behaviorExecutionSpecification Id="776740fd-e7d2-4a71-818e-63595f44879f" name="BehaviorExecutionSpecification">
+            <coveredLifelines>
+              <lifelineMoniker Id="aac5cb6a-27b8-4438-a8aa-c1d11cc59a15" LastKnownName="app : SIPApp" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker Id="a3cae0a4-9fb6-44bd-9ac6-3d879c1fb21f" LastKnownName="ExecutionOccurrenceSpecification" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker Id="514bbf09-3bbf-4935-8e07-81ee63eb5ddf" LastKnownName="ExecutionOccurrenceSpecification" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker Id="9ba81e7b-2245-44b8-9c2f-0f34bac8633f" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="5ba504f0-0bf1-40dd-92db-84c67cec7656" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="fe2e01a7-d89f-4356-9c9e-3c9ec685fbbe" LastKnownName="MessageOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="1b75cea4-2923-4ed0-a49d-ff29d80e0ef7" LastKnownName="OperandOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="a5e47263-8447-4edd-8d94-00c7e55748a7" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="a3d86917-766b-4277-8108-7bce0144ffe9" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="a62d9e56-f0a6-40e8-8778-e58706df9e9c" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="6a51ecba-4d98-4709-9360-54c3591e00fb" LastKnownName="MessageOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="1476557d-d336-443a-97f3-588676e23090" LastKnownName="OperandOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="cef09e24-2c49-4b27-8431-98c5b6329a6e" LastKnownName="OperandOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="aa8c23c4-8802-4112-b667-6e4d265442d9" LastKnownName="OperandOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="98dc6622-5721-45da-8420-5c8b1637f1b4" LastKnownName="MessageOccurrenceSpecification" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification Id="514bbf09-3bbf-4935-8e07-81ee63eb5ddf" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="5f7c2a97-30b8-42f6-8e3c-7f3e779f69fd" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="aac5cb6a-27b8-4438-a8aa-c1d11cc59a15" LastKnownName="app : SIPApp" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="39b84d21-ee17-4a27-a541-0c1306d42d87" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="f2a38069-3220-4d46-a683-d32e9dbd218c" LastKnownName="Program" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="9ba81e7b-2245-44b8-9c2f-0f34bac8633f" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="aac5cb6a-27b8-4438-a8aa-c1d11cc59a15" LastKnownName="app : SIPApp" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <lostFoundTarget Id="10780858-57d9-42c2-8d0e-27fd38b2606d" name="LostFoundTarget" />
+          <messageOccurrenceSpecification Id="5ba504f0-0bf1-40dd-92db-84c67cec7656" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="aac5cb6a-27b8-4438-a8aa-c1d11cc59a15" LastKnownName="app : SIPApp" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="fe2e01a7-d89f-4356-9c9e-3c9ec685fbbe" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="aac5cb6a-27b8-4438-a8aa-c1d11cc59a15" LastKnownName="app : SIPApp" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <lostFoundTarget Id="297cafec-cff8-4abc-9af9-047d4a00b200" name="LostFoundTarget" />
+          <combinedFragment Id="31a1ac51-71eb-41fa-8be8-8755c4ed36db" name="CombinedFragment2" interactionOperator="Alt" customInteractionOperator="If">
+            <coveredLifelines>
+              <lifelineMoniker Id="aac5cb6a-27b8-4438-a8aa-c1d11cc59a15" LastKnownName="app : SIPApp" />
+            </coveredLifelines>
+            <operands>
+              <interactionOperand Id="904430c3-b786-425b-a4fe-5f7321e22f88" name="InteractionOperand1">
+                <coveredLifelines>
+                  <lifelineMoniker Id="aac5cb6a-27b8-4438-a8aa-c1d11cc59a15" LastKnownName="app : SIPApp" />
+                </coveredLifelines>
+                <guard>
+                  <interactionConstraint Id="5472806e-8cbd-4ce3-9165-6f50b776bfb8" guardText="if (IsRegistered())" />
+                </guard>
+                <operandOccurrenceSpecifications>
+                  <operandOccurrenceSpecificationMoniker Id="1b75cea4-2923-4ed0-a49d-ff29d80e0ef7" LastKnownName="OperandOccurrenceSpecification" />
+                  <operandOccurrenceSpecificationMoniker Id="1476557d-d336-443a-97f3-588676e23090" LastKnownName="OperandOccurrenceSpecification" />
+                </operandOccurrenceSpecifications>
+              </interactionOperand>
+              <interactionOperand Id="7989d912-fa44-436e-adbb-3a53d3ebbb9c" name="InteractionOperand2">
+                <coveredLifelines>
+                  <lifelineMoniker Id="aac5cb6a-27b8-4438-a8aa-c1d11cc59a15" LastKnownName="app : SIPApp" />
+                </coveredLifelines>
+                <guard>
+                  <interactionConstraint Id="fa0d0f92-b7d3-4dd2-9209-14ceaa3ed7e5" guardText="else" />
+                </guard>
+                <operandOccurrenceSpecifications>
+                  <operandOccurrenceSpecificationMoniker Id="cef09e24-2c49-4b27-8431-98c5b6329a6e" LastKnownName="OperandOccurrenceSpecification" />
+                  <operandOccurrenceSpecificationMoniker Id="aa8c23c4-8802-4112-b667-6e4d265442d9" LastKnownName="OperandOccurrenceSpecification" />
+                </operandOccurrenceSpecifications>
+              </interactionOperand>
+            </operands>
+          </combinedFragment>
+          <operandOccurrenceSpecification Id="1b75cea4-2923-4ed0-a49d-ff29d80e0ef7" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="aac5cb6a-27b8-4438-a8aa-c1d11cc59a15" LastKnownName="app : SIPApp" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="a5e47263-8447-4edd-8d94-00c7e55748a7" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="aac5cb6a-27b8-4438-a8aa-c1d11cc59a15" LastKnownName="app : SIPApp" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <lostFoundTarget Id="14e973c2-4b3d-4eed-8f1a-c551190957e9" name="LostFoundTarget" />
+          <messageOccurrenceSpecification Id="a3d86917-766b-4277-8108-7bce0144ffe9" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="aac5cb6a-27b8-4438-a8aa-c1d11cc59a15" LastKnownName="app : SIPApp" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <lostFoundTarget Id="4d8f080a-9c93-4f6f-8758-a6a1a7f0f591" name="LostFoundTarget" />
+          <lostFoundTarget Id="c9cfa259-5553-4041-a616-94f58fbbecee" name="LostFoundTarget" />
+          <messageOccurrenceSpecification Id="a62d9e56-f0a6-40e8-8778-e58706df9e9c" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="aac5cb6a-27b8-4438-a8aa-c1d11cc59a15" LastKnownName="app : SIPApp" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <lostFoundTarget Id="b2dc3204-c41c-423c-9a29-1d130cb1632d" name="LostFoundTarget" />
+          <messageOccurrenceSpecification Id="6a51ecba-4d98-4709-9360-54c3591e00fb" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="aac5cb6a-27b8-4438-a8aa-c1d11cc59a15" LastKnownName="app : SIPApp" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="1476557d-d336-443a-97f3-588676e23090" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="aac5cb6a-27b8-4438-a8aa-c1d11cc59a15" LastKnownName="app : SIPApp" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="cef09e24-2c49-4b27-8431-98c5b6329a6e" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="aac5cb6a-27b8-4438-a8aa-c1d11cc59a15" LastKnownName="app : SIPApp" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="aa8c23c4-8802-4112-b667-6e4d265442d9" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="aac5cb6a-27b8-4438-a8aa-c1d11cc59a15" LastKnownName="app : SIPApp" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="98dc6622-5721-45da-8420-5c8b1637f1b4" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="aac5cb6a-27b8-4438-a8aa-c1d11cc59a15" LastKnownName="app : SIPApp" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="7d2aed91-e46c-4586-8138-c8336589d869" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="f2a38069-3220-4d46-a683-d32e9dbd218c" LastKnownName="Program" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <executionOccurrenceSpecification Id="a3cae0a4-9fb6-44bd-9ac6-3d879c1fb21f" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="306b546f-d2f6-4315-b580-ef30a27d9a5c" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="aac5cb6a-27b8-4438-a8aa-c1d11cc59a15" LastKnownName="app : SIPApp" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <behaviorExecutionSpecification Id="38bd7629-e424-4cd2-b58c-be0c0da477f5" name="BehaviorExecutionSpecification">
+            <coveredLifelines>
+              <lifelineMoniker Id="aac5cb6a-27b8-4438-a8aa-c1d11cc59a15" LastKnownName="app : SIPApp" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker Id="afee76a6-026c-4996-9ec2-2fd6dd1591c3" LastKnownName="ExecutionOccurrenceSpecification" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker Id="882dc352-a295-4143-a577-535198cfbd8d" LastKnownName="ExecutionOccurrenceSpecification" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker Id="7d9a559f-7f4a-4861-b03f-1bbd0944679d" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="d90c8f15-7415-463b-9262-084ccb6ca170" LastKnownName="MessageOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="d9985ee7-37c8-4e93-a2d7-4852455e25d1" LastKnownName="OperandOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="e9f4c0e5-8cfa-4efd-96f6-0630f12ed529" LastKnownName="OperandOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="2fd8bee3-a7c0-4f7f-a05b-65265d6413ba" LastKnownName="OperandOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="9ee06f94-e153-4473-bbe7-fc9e42516e5c" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="2da72663-2918-4ecc-ade2-cf82ba32f9d6" LastKnownName="MessageOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="29145778-363a-4b5a-9426-5af978c039a2" LastKnownName="OperandOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="307b5a03-e87c-4c73-a321-4c1d914d430d" LastKnownName="OperandOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="c7f482bf-ea9e-4e29-948a-f6d245cf9089" LastKnownName="OperandOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="a73191f4-ac6c-498e-9443-edb69440d0ce" LastKnownName="OperandOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="a71cd955-d94e-4be5-bb5b-92051f7297ec" LastKnownName="OperandOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="34fe5538-69eb-465a-b746-e22a7c878435" LastKnownName="OperandOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="77c4326d-13bf-4aa3-a634-047ab696b2bd" LastKnownName="OperandOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="d329197e-7547-436b-ac3b-c24de2ca6981" LastKnownName="OperandOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="637cefd2-1863-4790-bc03-41abe82a0700" LastKnownName="OperandOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="bbe3e738-9392-4091-9ee0-3a2e6a17e943" LastKnownName="MessageOccurrenceSpecification" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification Id="882dc352-a295-4143-a577-535198cfbd8d" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="b707d6f7-c599-44c7-80b5-0741e1c47963" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="aac5cb6a-27b8-4438-a8aa-c1d11cc59a15" LastKnownName="app : SIPApp" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="4dbae63a-bf50-42fd-ab35-be78e0192af3" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="f2a38069-3220-4d46-a683-d32e9dbd218c" LastKnownName="Program" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="7d9a559f-7f4a-4861-b03f-1bbd0944679d" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="aac5cb6a-27b8-4438-a8aa-c1d11cc59a15" LastKnownName="app : SIPApp" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="d90c8f15-7415-463b-9262-084ccb6ca170" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="aac5cb6a-27b8-4438-a8aa-c1d11cc59a15" LastKnownName="app : SIPApp" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <lostFoundTarget Id="3ba2eb58-a742-4f6f-9c51-158afbdbee41" name="LostFoundTarget" />
+          <combinedFragment Id="124919d7-895f-493d-bc8b-bfd982acc38e" name="CombinedFragment3" interactionOperator="Alt" customInteractionOperator="If">
+            <coveredLifelines>
+              <lifelineMoniker Id="aac5cb6a-27b8-4438-a8aa-c1d11cc59a15" LastKnownName="app : SIPApp" />
+            </coveredLifelines>
+            <operands>
+              <interactionOperand Id="d165b4f5-8256-4a20-99e7-69d2ab21f634" name="InteractionOperand1">
+                <coveredLifelines>
+                  <lifelineMoniker Id="aac5cb6a-27b8-4438-a8aa-c1d11cc59a15" LastKnownName="app : SIPApp" />
+                </coveredLifelines>
+                <fragments>
+                  <combinedFragment Id="7963e336-225f-49ae-94eb-f5e0cc2d2452" name="CombinedFragment1" interactionOperator="Alt" customInteractionOperator="If">
+                    <coveredLifelines>
+                      <lifelineMoniker Id="aac5cb6a-27b8-4438-a8aa-c1d11cc59a15" LastKnownName="app : SIPApp" />
+                    </coveredLifelines>
+                    <operands>
+                      <interactionOperand Id="43acbe2d-289b-495e-a088-9aae55d66d7e" name="InteractionOperand1">
+                        <coveredLifelines>
+                          <lifelineMoniker Id="aac5cb6a-27b8-4438-a8aa-c1d11cc59a15" LastKnownName="app : SIPApp" />
+                        </coveredLifelines>
+                        <fragments>
+                          <combinedFragment Id="d1c933c2-289e-484d-bc68-2b5e220258cf" name="CombinedFragment1" interactionOperator="Alt" customInteractionOperator="Try">
+                            <coveredLifelines>
+                              <lifelineMoniker Id="aac5cb6a-27b8-4438-a8aa-c1d11cc59a15" LastKnownName="app : SIPApp" />
+                            </coveredLifelines>
+                            <operands>
+                              <interactionOperand Id="6b55fd4f-ee03-4357-a1c3-f87d967fdf8f" name="InteractionOperand1">
+                                <coveredLifelines>
+                                  <lifelineMoniker Id="aac5cb6a-27b8-4438-a8aa-c1d11cc59a15" LastKnownName="app : SIPApp" />
+                                </coveredLifelines>
+                                <guard>
+                                  <interactionConstraint Id="7893525e-09fb-4af9-a687-ba70c76899e0" guardText="try" />
+                                </guard>
+                                <operandOccurrenceSpecifications>
+                                  <operandOccurrenceSpecificationMoniker Id="2fd8bee3-a7c0-4f7f-a05b-65265d6413ba" LastKnownName="OperandOccurrenceSpecification" />
+                                  <operandOccurrenceSpecificationMoniker Id="29145778-363a-4b5a-9426-5af978c039a2" LastKnownName="OperandOccurrenceSpecification" />
+                                </operandOccurrenceSpecifications>
+                              </interactionOperand>
+                              <interactionOperand Id="b023a1b9-99b0-4848-871b-f40eda04a201" name="InteractionOperand2">
+                                <coveredLifelines>
+                                  <lifelineMoniker Id="aac5cb6a-27b8-4438-a8aa-c1d11cc59a15" LastKnownName="app : SIPApp" />
+                                </coveredLifelines>
+                                <guard>
+                                  <interactionConstraint Id="3eb327fb-fdb8-4caf-8d34-fac47c7231d2" guardText="catch (InvalidCastException)" />
+                                </guard>
+                                <operandOccurrenceSpecifications>
+                                  <operandOccurrenceSpecificationMoniker Id="307b5a03-e87c-4c73-a321-4c1d914d430d" LastKnownName="OperandOccurrenceSpecification" />
+                                  <operandOccurrenceSpecificationMoniker Id="c7f482bf-ea9e-4e29-948a-f6d245cf9089" LastKnownName="OperandOccurrenceSpecification" />
+                                </operandOccurrenceSpecifications>
+                              </interactionOperand>
+                            </operands>
+                          </combinedFragment>
+                        </fragments>
+                        <guard>
+                          <interactionConstraint Id="d53e1af4-2d82-4757-affc-12d05e0f0810" guardText="if (this.CallUA != null)" />
+                        </guard>
+                        <operandOccurrenceSpecifications>
+                          <operandOccurrenceSpecificationMoniker Id="e9f4c0e5-8cfa-4efd-96f6-0630f12ed529" LastKnownName="OperandOccurrenceSpecification" />
+                          <operandOccurrenceSpecificationMoniker Id="a73191f4-ac6c-498e-9443-edb69440d0ce" LastKnownName="OperandOccurrenceSpecification" />
+                        </operandOccurrenceSpecifications>
+                      </interactionOperand>
+                      <interactionOperand Id="352df09e-c1ad-45e3-9544-2b992e447f33" name="InteractionOperand2">
+                        <coveredLifelines>
+                          <lifelineMoniker Id="aac5cb6a-27b8-4438-a8aa-c1d11cc59a15" LastKnownName="app : SIPApp" />
+                        </coveredLifelines>
+                        <guard>
+                          <interactionConstraint Id="7c205545-fcdc-4802-94dd-8bddc952b76f" guardText="else" />
+                        </guard>
+                        <operandOccurrenceSpecifications>
+                          <operandOccurrenceSpecificationMoniker Id="a71cd955-d94e-4be5-bb5b-92051f7297ec" LastKnownName="OperandOccurrenceSpecification" />
+                          <operandOccurrenceSpecificationMoniker Id="34fe5538-69eb-465a-b746-e22a7c878435" LastKnownName="OperandOccurrenceSpecification" />
+                        </operandOccurrenceSpecifications>
+                      </interactionOperand>
+                    </operands>
+                  </combinedFragment>
+                </fragments>
+                <guard>
+                  <interactionConstraint Id="24dba386-ad03-4952-b154-6e111fe1a1d3" guardText="if (IsRegistered())" />
+                </guard>
+                <operandOccurrenceSpecifications>
+                  <operandOccurrenceSpecificationMoniker Id="d9985ee7-37c8-4e93-a2d7-4852455e25d1" LastKnownName="OperandOccurrenceSpecification" />
+                  <operandOccurrenceSpecificationMoniker Id="77c4326d-13bf-4aa3-a634-047ab696b2bd" LastKnownName="OperandOccurrenceSpecification" />
+                </operandOccurrenceSpecifications>
+              </interactionOperand>
+              <interactionOperand Id="a5e5f42b-efc1-48b2-afec-6248ec450db3" name="InteractionOperand2">
+                <coveredLifelines>
+                  <lifelineMoniker Id="aac5cb6a-27b8-4438-a8aa-c1d11cc59a15" LastKnownName="app : SIPApp" />
+                </coveredLifelines>
+                <guard>
+                  <interactionConstraint Id="3105930a-fc75-4960-bef9-c34bbcd47d23" guardText="else" />
+                </guard>
+                <operandOccurrenceSpecifications>
+                  <operandOccurrenceSpecificationMoniker Id="d329197e-7547-436b-ac3b-c24de2ca6981" LastKnownName="OperandOccurrenceSpecification" />
+                  <operandOccurrenceSpecificationMoniker Id="637cefd2-1863-4790-bc03-41abe82a0700" LastKnownName="OperandOccurrenceSpecification" />
+                </operandOccurrenceSpecifications>
+              </interactionOperand>
+            </operands>
+          </combinedFragment>
+          <operandOccurrenceSpecification Id="d9985ee7-37c8-4e93-a2d7-4852455e25d1" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="aac5cb6a-27b8-4438-a8aa-c1d11cc59a15" LastKnownName="app : SIPApp" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="e9f4c0e5-8cfa-4efd-96f6-0630f12ed529" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="aac5cb6a-27b8-4438-a8aa-c1d11cc59a15" LastKnownName="app : SIPApp" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="2fd8bee3-a7c0-4f7f-a05b-65265d6413ba" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="aac5cb6a-27b8-4438-a8aa-c1d11cc59a15" LastKnownName="app : SIPApp" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <lostFoundTarget Id="43a742de-c286-45e0-8e02-f33f1120e93a" name="LostFoundTarget" />
+          <messageOccurrenceSpecification Id="9ee06f94-e153-4473-bbe7-fc9e42516e5c" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="aac5cb6a-27b8-4438-a8aa-c1d11cc59a15" LastKnownName="app : SIPApp" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="2da72663-2918-4ecc-ade2-cf82ba32f9d6" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="aac5cb6a-27b8-4438-a8aa-c1d11cc59a15" LastKnownName="app : SIPApp" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <lostFoundTarget Id="172b0b62-4cf4-4b97-a749-b2958170e618" name="LostFoundTarget" />
+          <operandOccurrenceSpecification Id="29145778-363a-4b5a-9426-5af978c039a2" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="aac5cb6a-27b8-4438-a8aa-c1d11cc59a15" LastKnownName="app : SIPApp" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="307b5a03-e87c-4c73-a321-4c1d914d430d" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="aac5cb6a-27b8-4438-a8aa-c1d11cc59a15" LastKnownName="app : SIPApp" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="c7f482bf-ea9e-4e29-948a-f6d245cf9089" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="aac5cb6a-27b8-4438-a8aa-c1d11cc59a15" LastKnownName="app : SIPApp" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="a73191f4-ac6c-498e-9443-edb69440d0ce" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="aac5cb6a-27b8-4438-a8aa-c1d11cc59a15" LastKnownName="app : SIPApp" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="a71cd955-d94e-4be5-bb5b-92051f7297ec" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="aac5cb6a-27b8-4438-a8aa-c1d11cc59a15" LastKnownName="app : SIPApp" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="34fe5538-69eb-465a-b746-e22a7c878435" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="aac5cb6a-27b8-4438-a8aa-c1d11cc59a15" LastKnownName="app : SIPApp" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="77c4326d-13bf-4aa3-a634-047ab696b2bd" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="aac5cb6a-27b8-4438-a8aa-c1d11cc59a15" LastKnownName="app : SIPApp" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="d329197e-7547-436b-ac3b-c24de2ca6981" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="aac5cb6a-27b8-4438-a8aa-c1d11cc59a15" LastKnownName="app : SIPApp" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="637cefd2-1863-4790-bc03-41abe82a0700" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="aac5cb6a-27b8-4438-a8aa-c1d11cc59a15" LastKnownName="app : SIPApp" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="bbe3e738-9392-4091-9ee0-3a2e6a17e943" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="aac5cb6a-27b8-4438-a8aa-c1d11cc59a15" LastKnownName="app : SIPApp" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="d1a17040-580e-4055-aa9b-4da53495856a" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="f2a38069-3220-4d46-a683-d32e9dbd218c" LastKnownName="Program" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <executionOccurrenceSpecification Id="afee76a6-026c-4996-9ec2-2fd6dd1591c3" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="14da3ebf-4c99-44e7-97f5-9fee06af9dc4" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="aac5cb6a-27b8-4438-a8aa-c1d11cc59a15" LastKnownName="app : SIPApp" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <behaviorExecutionSpecification Id="149963fd-424e-4cea-9381-642eca6177dc" name="BehaviorExecutionSpecification">
+            <coveredLifelines>
+              <lifelineMoniker Id="aac5cb6a-27b8-4438-a8aa-c1d11cc59a15" LastKnownName="app : SIPApp" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker Id="fcd19313-3734-470f-bbcd-16c5cd4f889c" LastKnownName="ExecutionOccurrenceSpecification" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker Id="005b985c-7897-4b7f-a37a-308fc365397d" LastKnownName="ExecutionOccurrenceSpecification" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker Id="862e13f3-f99b-46e6-8572-f281637880fc" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="322523c7-a954-4f89-b734-e8bca1d6fb7b" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="ab897cff-067e-4174-8e6f-1b2268ec718b" LastKnownName="MessageOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="7829b551-99c8-4c73-bc6b-85d129898523" LastKnownName="OperandOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="62fdeca8-7c1b-4588-81b4-37d3278492e5" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="b703e9fe-b4ab-4d4c-90b5-384479ae81ce" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="0250a431-e847-423b-81c5-cf9a0018c3de" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="63de565b-15e0-43ae-8c8d-138c7a260930" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="e181b7e8-900e-4fd8-b857-a3c715886631" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="f33d4840-173f-40d6-984d-fe7232695481" LastKnownName="MessageOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="e5396a11-b2c2-4a62-b24e-80d5d9aed5e0" LastKnownName="OperandOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="531756a4-98e2-401f-ba08-2867663e4a09" LastKnownName="MessageOccurrenceSpecification" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification Id="005b985c-7897-4b7f-a37a-308fc365397d" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="ee48b3ac-7a81-465a-b5dc-d5b30a3dbced" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="aac5cb6a-27b8-4438-a8aa-c1d11cc59a15" LastKnownName="app : SIPApp" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="862e13f3-f99b-46e6-8572-f281637880fc" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="aac5cb6a-27b8-4438-a8aa-c1d11cc59a15" LastKnownName="app : SIPApp" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="28ae2e7e-8594-46ec-a114-acd964563ea9" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="f2a38069-3220-4d46-a683-d32e9dbd218c" LastKnownName="Program" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <lostFoundTarget Id="34cc1c1a-ad3b-410a-a8c2-5bd795ea12b2" name="LostFoundTarget" />
+          <messageOccurrenceSpecification Id="322523c7-a954-4f89-b734-e8bca1d6fb7b" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="aac5cb6a-27b8-4438-a8aa-c1d11cc59a15" LastKnownName="app : SIPApp" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="ab897cff-067e-4174-8e6f-1b2268ec718b" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="aac5cb6a-27b8-4438-a8aa-c1d11cc59a15" LastKnownName="app : SIPApp" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <lostFoundTarget Id="e0e3e3fe-0a62-49dc-b83e-81b7752e056f" name="LostFoundTarget" />
+          <combinedFragment Id="dfff47f1-24fd-4585-b808-0dc297c44113" name="CombinedFragment4" interactionOperator="Opt" customInteractionOperator="If">
+            <coveredLifelines>
+              <lifelineMoniker Id="aac5cb6a-27b8-4438-a8aa-c1d11cc59a15" LastKnownName="app : SIPApp" />
+            </coveredLifelines>
+            <operands>
+              <interactionOperand Id="77cf2ff4-6a1f-4ce6-9653-e0fdb6065780" name="InteractionOperand1">
+                <coveredLifelines>
+                  <lifelineMoniker Id="aac5cb6a-27b8-4438-a8aa-c1d11cc59a15" LastKnownName="app : SIPApp" />
+                </coveredLifelines>
+                <guard>
+                  <interactionConstraint Id="ca3273ce-d289-49db-a1f7-aba64343b20b" guardText="if (IsRegistered())" />
+                </guard>
+                <operandOccurrenceSpecifications>
+                  <operandOccurrenceSpecificationMoniker Id="7829b551-99c8-4c73-bc6b-85d129898523" LastKnownName="OperandOccurrenceSpecification" />
+                  <operandOccurrenceSpecificationMoniker Id="e5396a11-b2c2-4a62-b24e-80d5d9aed5e0" LastKnownName="OperandOccurrenceSpecification" />
+                </operandOccurrenceSpecifications>
+              </interactionOperand>
+            </operands>
+          </combinedFragment>
+          <operandOccurrenceSpecification Id="7829b551-99c8-4c73-bc6b-85d129898523" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="aac5cb6a-27b8-4438-a8aa-c1d11cc59a15" LastKnownName="app : SIPApp" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="62fdeca8-7c1b-4588-81b4-37d3278492e5" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="aac5cb6a-27b8-4438-a8aa-c1d11cc59a15" LastKnownName="app : SIPApp" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <lostFoundTarget Id="30ebdb53-aa12-4e7a-8f6d-a5bcbd44e5a5" name="LostFoundTarget" />
+          <messageOccurrenceSpecification Id="b703e9fe-b4ab-4d4c-90b5-384479ae81ce" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="aac5cb6a-27b8-4438-a8aa-c1d11cc59a15" LastKnownName="app : SIPApp" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <lostFoundTarget Id="2cc862c4-b128-455a-96f3-bfe9880856c6" name="LostFoundTarget" />
+          <lostFoundTarget Id="c57a8fc8-1468-4472-9bbc-d2f014c0ca02" name="LostFoundTarget" />
+          <messageOccurrenceSpecification Id="0250a431-e847-423b-81c5-cf9a0018c3de" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="aac5cb6a-27b8-4438-a8aa-c1d11cc59a15" LastKnownName="app : SIPApp" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <lostFoundTarget Id="792c8ab9-c4dd-4bbb-b902-28cb6640fb72" name="LostFoundTarget" />
+          <messageOccurrenceSpecification Id="63de565b-15e0-43ae-8c8d-138c7a260930" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="aac5cb6a-27b8-4438-a8aa-c1d11cc59a15" LastKnownName="app : SIPApp" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <lostFoundTarget Id="01eb1f8e-48a7-4d1e-bafb-64ecedd32777" name="LostFoundTarget" />
+          <messageOccurrenceSpecification Id="e181b7e8-900e-4fd8-b857-a3c715886631" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="aac5cb6a-27b8-4438-a8aa-c1d11cc59a15" LastKnownName="app : SIPApp" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <lostFoundTarget Id="0a330423-5deb-43fd-8c2b-6d0043c53384" name="LostFoundTarget" />
+          <messageOccurrenceSpecification Id="f33d4840-173f-40d6-984d-fe7232695481" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="aac5cb6a-27b8-4438-a8aa-c1d11cc59a15" LastKnownName="app : SIPApp" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="e5396a11-b2c2-4a62-b24e-80d5d9aed5e0" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="aac5cb6a-27b8-4438-a8aa-c1d11cc59a15" LastKnownName="app : SIPApp" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="d4e3ec28-7d35-4f92-8b50-62831997c1a8" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="f2a38069-3220-4d46-a683-d32e9dbd218c" LastKnownName="Program" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="531756a4-98e2-401f-ba08-2867663e4a09" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="aac5cb6a-27b8-4438-a8aa-c1d11cc59a15" LastKnownName="app : SIPApp" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <executionOccurrenceSpecification Id="fcd19313-3734-470f-bbcd-16c5cd4f889c" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="e7e5d9d8-9926-491e-9efc-9eb99c8de4cd" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="aac5cb6a-27b8-4438-a8aa-c1d11cc59a15" LastKnownName="app : SIPApp" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <executionOccurrenceSpecification Id="0152d5d4-98dc-4c44-98b5-a3efbcb68d0a" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="d97a8f33-d689-4252-8fc0-2bdf05c33185" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="f2a38069-3220-4d46-a683-d32e9dbd218c" LastKnownName="Program" />
+            </covered>
+          </executionOccurrenceSpecification>
+        </fragments>
+        <lifelines>
+          <lifeline Id="f2a38069-3220-4d46-a683-d32e9dbd218c" name="Program" isActor="false" lifelineDisplayName="Program" referencedType="SIPLibDriver‎.Program">
+            <referencesInternal>
+              <reference Id="4de55955-649d-4578-b1ba-0cba46197701" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=SIPLibDriver)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(ea718996-0383-4d9c-baeb-51461c113c44.OutputPathUri)&amp;quot; Namespace=SIPLibDriver Type=Program)&quot;)" tag="DGQL" />
+              <reference Id="92605f96-efae-4851-95f5-1df53fd35a4d" handle="(Assembly=&quot;$(ea718996-0383-4d9c-baeb-51461c113c44.OutputPathUri)&quot; Namespace=SIPLibDriver Type=Program)" tag="DGML" />
+            </referencesInternal>
+            <topLevelOccurrences>
+              <executionOccurrenceSpecificationMoniker Id="ff34a0db-8975-4c82-9a29-4c408b04de72" LastKnownName="ExecutionOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="0152d5d4-98dc-4c44-98b5-a3efbcb68d0a" LastKnownName="ExecutionOccurrenceSpecification" />
+            </topLevelOccurrences>
+          </lifeline>
+          <lifeline Id="aac5cb6a-27b8-4438-a8aa-c1d11cc59a15" name="app : SIPApp" isActor="false" lifelineDisplayName="app : SIPApp" referencedInstance="(Assembly=$(ea718996-0383-4d9c-baeb-51461c113c44.OutputPathUri) Namespace=SIPLibDriver Type=SIPApp ObjectInstance=&quot;Object instance 23&quot;)" referencedType="SIPLibDriver‎.SIPApp">
+            <referencesInternal>
+              <reference Id="9faa8f50-6a20-4130-9e61-05055ef921b4" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=SIPLibDriver)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(ea718996-0383-4d9c-baeb-51461c113c44.OutputPathUri)&amp;quot; Namespace=SIPLibDriver Type=SIPApp)&quot;)" tag="DGQL" />
+              <reference Id="767aebbe-569a-4291-b65c-940df7dcd0ac" handle="(Assembly=&quot;$(ea718996-0383-4d9c-baeb-51461c113c44.OutputPathUri)&quot; Namespace=SIPLibDriver Type=SIPApp)" tag="DGML" />
+            </referencesInternal>
+            <topLevelOccurrences>
+              <executionOccurrenceSpecificationMoniker Id="16b6a260-d6fc-4de3-a844-b5a1eff6bfe9" LastKnownName="ExecutionOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="05d8921e-50fe-4776-b092-457cf16d3d74" LastKnownName="ExecutionOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="9091c25f-2b5a-4365-9087-57ce1e86e0ab" LastKnownName="ExecutionOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="37eae73f-5189-439e-95ba-ff0f2b6b6cd7" LastKnownName="ExecutionOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="514bbf09-3bbf-4935-8e07-81ee63eb5ddf" LastKnownName="ExecutionOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="a3cae0a4-9fb6-44bd-9ac6-3d879c1fb21f" LastKnownName="ExecutionOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="882dc352-a295-4143-a577-535198cfbd8d" LastKnownName="ExecutionOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="afee76a6-026c-4996-9ec2-2fd6dd1591c3" LastKnownName="ExecutionOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="005b985c-7897-4b7f-a37a-308fc365397d" LastKnownName="ExecutionOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="fcd19313-3734-470f-bbcd-16c5cd4f889c" LastKnownName="ExecutionOccurrenceSpecification" />
+            </topLevelOccurrences>
+          </lifeline>
+        </lifelines>
+        <messages>
+          <message Id="6bd8ccfa-371c-472e-b888-d8e0031f55b3" name="Main" messageKind="Found" messageSort="AsynchCall" createSelfMessage="false">
+            <referencesInternal>
+              <reference Id="9a2cc71c-1412-49c6-a291-8fc23a2d2475" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=SIPLibDriver)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(ea718996-0383-4d9c-baeb-51461c113c44.OutputPathUri)&amp;quot; Namespace=SIPLibDriver Type=Program)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(ea718996-0383-4d9c-baeb-51461c113c44.OutputPathUri)&amp;quot; Namespace=SIPLibDriver Type=Program Member=(Name=Main OverloadingParameters=[(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&amp;quot; Namespace=System Type=(Name=String ArrayRank=1 ParentType=String))]))&quot;)" tag="DGQL" />
+              <reference Id="6e05b8e8-43ca-4d82-acdf-ee8e2b681b29" handle="(Assembly=&quot;$(ea718996-0383-4d9c-baeb-51461c113c44.OutputPathUri)&quot; Namespace=SIPLibDriver Type=Program Member=(Name=Main OverloadingParameters=[(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&quot; Namespace=System Type=(Name=String ArrayRank=1 ParentType=String))]))" tag="DGML" />
+            </referencesInternal>
+            <sendEvent>
+              <lostFoundTargetMoniker Id="744ca65b-75a7-4980-baad-1c8c5c63faf8" LastKnownName="LostFoundTarget" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="fb504531-fbc2-4271-a006-438ef77dfdb8" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="ecd5927f-c8f2-4d99-a2bf-6b8987422ab4" name="Create SIPApp" messageKind="Complete" messageSort="CreateMessage" createSelfMessage="false" signatureText="new SIPApp(localTransport)">
+            <referencesInternal>
+              <reference Id="396d2b17-67e1-489a-a29f-dc6983473fe8" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=SIPLibDriver)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(ea718996-0383-4d9c-baeb-51461c113c44.OutputPathUri)&amp;quot; Namespace=SIPLibDriver Type=SIPApp)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(ea718996-0383-4d9c-baeb-51461c113c44.OutputPathUri)&amp;quot; Namespace=SIPLibDriver Type=SIPApp Member=(Name=.ctor OverloadingParameters=[(Assembly=&amp;quot;$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri)&amp;quot; Namespace=SIPLib.SIP Type=TransportInfo)]))&quot;)" tag="DGQL" />
+              <reference Id="2a61254b-db27-4467-a8db-7f32d31f63b7" handle="(Assembly=&quot;$(ea718996-0383-4d9c-baeb-51461c113c44.OutputPathUri)&quot; Namespace=SIPLibDriver Type=SIPApp Member=(Name=.ctor OverloadingParameters=[(Assembly=&quot;$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri)&quot; Namespace=SIPLib.SIP Type=TransportInfo)]))" tag="DGML" />
+            </referencesInternal>
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="3cb564c3-b846-4e70-8b08-de528274bcbd" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="90571a62-1cdd-4100-8c0e-8f21e7d9ee54" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="1841237c-f5f9-4dde-ba78-31c22aa38e33" name="Create SIPApp" messageKind="Lost" messageSort="AsynchCall" createSelfMessage="false">
+            <referencesInternal>
+              <reference Id="14aba598-d5dd-4da4-a25f-dedb1b79a3a4" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=SIPLib)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri)&amp;quot; Namespace=SIPLib Type=SIPApp)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri)&amp;quot; Namespace=SIPLib Type=SIPApp Member=.ctor)&quot;)" tag="DGQL" />
+              <reference Id="4c0fa74e-0880-4852-a19c-1940541b4cdf" handle="(Assembly=&quot;$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri)&quot; Namespace=SIPLib Type=SIPApp Member=.ctor)" tag="DGML" />
+            </referencesInternal>
+            <generationState>H4sIAAAAAAAEAO2VW0/CQBCFz08hPOmDNtE3gyakBCEhaCw+m6VUrClIKDXir/fbaQm3aPTRpGnY2Tlzdm7sZFuKlGipVE4Z6yfaRKFpmbpYnGZgN2pppBcYuR70xrdSQ32412rqRG3wHN5MY86tQZ/hZiBXCuwLbfdorCVrgJ9UMT4d+gS9g9dYhcWb499zbuGs1AMdm48z8i1PLGyfmhwgvT0io/tK61hV7xYtQE/x6WMk7AtNf2Cfs37wa2hYVZ8TxZFbQl3fnWrQnzW8LaeNttAp/dnahtQ4Qdad+2vn/J1cIafUugTbdDCsOhpZR3wfnZ5AM6TvrPcxYD/GltmJ3RhNu8U52hw/c/zOkAWIZ3ZtDnzfmzYBfRg5WThkbHXW/2M9Af9/Au6wvWKN8X94xzdRLnRZZeMjLCwHZ3ns+x6BFTYx5WT12Dv4uzH2eX6yNm9KzqnAkOAokxI9fIVK9Lev2BewL6Pa8AYAAA==
+(Assembly=$(ea718996-0383-4d9c-baeb-51461c113c44.OutputPathUri) Namespace=SIPLibDriver Type=SIPApp ObjectInstance="Object instance 23")
+app : SIPApp
+</generationState>
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="75dfa531-aa89-4ec9-8a9a-b32ed571e04d" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <lostFoundTargetMoniker Id="3f157880-e62a-4e8a-9543-622fa4a8d223" LastKnownName="LostFoundTarget" />
+            </receiveEvent>
+          </message>
+          <message Id="052412df-0876-46cd-a7f4-5b58452e9ce3" name="&lt;&lt;return&gt;&gt;" messageKind="Complete" messageSort="Reply" createSelfMessage="false">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="b6ed287a-374f-43ba-8a02-5451fb068a34" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="5b7cb176-6bf3-4d13-a003-f57e41ab35fb" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="2e29ea95-b644-412c-bc6b-f9e8c0a36948" name="CreateStack" messageKind="Complete" messageSort="SynchCall" createSelfMessage="true" signatureText="CreateStack(app,&quot;alice&quot;,&quot;192.168.20.248&quot;, 9000)">
+            <referencesInternal>
+              <reference Id="e6c6cc03-4311-4c02-ba80-69af2d6e03e0" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=SIPLibDriver)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(ea718996-0383-4d9c-baeb-51461c113c44.OutputPathUri)&amp;quot; Namespace=SIPLibDriver Type=Program)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(ea718996-0383-4d9c-baeb-51461c113c44.OutputPathUri)&amp;quot; Namespace=SIPLibDriver Type=Program Member=(Name=CreateStack OverloadingParameters=[(Assembly=&amp;quot;$(ea718996-0383-4d9c-baeb-51461c113c44.OutputPathUri)&amp;quot; Namespace=SIPLibDriver Type=SIPApp),(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&amp;quot; Namespace=System Type=String),(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&amp;quot; Namespace=System Type=String),(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&amp;quot; Namespace=System Type=Int32)]))&quot;)" tag="DGQL" />
+              <reference Id="6f6c4795-db9d-4280-8518-3632f83f3964" handle="(Assembly=&quot;$(ea718996-0383-4d9c-baeb-51461c113c44.OutputPathUri)&quot; Namespace=SIPLibDriver Type=Program Member=(Name=CreateStack OverloadingParameters=[(Assembly=&quot;$(ea718996-0383-4d9c-baeb-51461c113c44.OutputPathUri)&quot; Namespace=SIPLibDriver Type=SIPApp),(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&quot; Namespace=System Type=String),(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&quot; Namespace=System Type=String),(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&quot; Namespace=System Type=Int32)]))" tag="DGML" />
+            </referencesInternal>
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="5b2a0e11-2141-4a71-a81b-191bb24761b3" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="c82709b9-f41a-4cf0-a3c4-6dfd8e687f7c" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="f3b795d6-05e4-44eb-a822-d88950a40872" name="Create SIPStack" messageKind="Lost" messageSort="AsynchCall" createSelfMessage="false">
+            <referencesInternal>
+              <reference Id="5a774564-c788-450f-a10c-b54435296f3b" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=SIPLib.SIP)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri)&amp;quot; Namespace=SIPLib.SIP Type=SIPStack)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri)&amp;quot; Namespace=SIPLib.SIP Type=SIPStack Member=(Name=.ctor OverloadingParameters=[(Assembly=&amp;quot;$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri)&amp;quot; Namespace=SIPLib Type=SIPApp),(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&amp;quot; Namespace=System Type=String)]))&quot;)" tag="DGQL" />
+              <reference Id="eb6078cb-4f7f-4e52-9e28-08a6c6929cdb" handle="(Assembly=&quot;$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri)&quot; Namespace=SIPLib.SIP Type=SIPStack Member=(Name=.ctor OverloadingParameters=[(Assembly=&quot;$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri)&quot; Namespace=SIPLib Type=SIPApp),(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&quot; Namespace=System Type=String)]))" tag="DGML" />
+            </referencesInternal>
+            <generationState>H4sIAAAAAAAEAO1caW/aQBCdn4L4UAWpDQWSNG1DpZwNapqikn6qosqcoeFIOdLQX983szYYA8JciW1GkbG9x+zOm9nZt8uSIypQhTpUJ4sa+PyHtzKdyluDLpBjURNpn+iIbugOJbr0ndr461GMciibpTjt0DHSuyjXpCLqDZBaRdkGUj5QUv5O5emHlOrgMwk5dSpBpoX3Mt7PILVEfWmvBflc5jPK9OgSqUWR8Qb9NTUe5Lku9yvcOb+AHuWHb0XcWyK3guc+1TwldtEqaxmja1vLLqRZ6EMF/R8vad5iwGCAMqP8AnrHNe4pARxG+dfQpYy7IjQLIfaxHu416NRBmoPUqY1cQTRnvCz6hdQG7owgy7jCcxF5DanhbScuntkF4i3IakF2E/c+Urj0hfg2YxwXr86hRFfqtkQv9Wr16qB69Tfk/0aJElK9fuu0dEBv7R5xKw/SD0v6Mi7/Bml9GQVmtFzi2UJ5dxvj5Xi0OLG/i1pJSUlO9MSkemcLd+3Y8OkLyg/Ul2wbx+irrT/rlwUmjtQs6rNF2JrsB49SooF3Cz3gPtYgyRrO1z0boSz9jDyyk4ge4+0BI/P1VN1f0R+0x973cQYOeWjQRo8MmjHMGaYUe/0OPdEhRllCMKpAAiNWGc4e4+3VpVYSdmU0WWoXVxVtJ13s6q/Y9R5pu9D2HPpMy3ukPeTv46kJKSVJb4xh5dZsFm4DGasV0cuNW09YIPtRgm5xxab4U05iGFu/LsgZL7VstOM6d+po1tEcodG8rbxvtg9uhusZzKO8bjkTfzRxbr6l3KV38fkk+s2zmruWPwuGwa+DidwmfN/P6iZNGV+rG/doWW59E8b1SlB8xct8HGudoBdVe44NPl8MH5qLxDXlTZO8yc3QT5Das3XpSD8G0JTj0T1yU0NGZTxtJMOpl9hYxJxmf+UOzz8OdT237Er5RpBoSR3GzMz3VTw7qxWzijYj1GjEWKWwBkwPr1uNehr1fLLGgwCzRvXJSZ8ceZ836l6JbjXUufPBIRXb1bDV2Loa1jmJkxlEoFXiotnP60v0mYyMbqspD1QeuD088BBXBldKuWCI4lWXzDkzv+xt3+eJhtXZ27wzDe6zDEkP6/NTR/cT17UD5o0bupu4bizD9B3JS85Tm1rteluMMrMLiv3U11/C1xuCD/vvdK/3t8OTCvAOz/b6zORsY+oEf74OKmbbtcJxr1OWW91wO7zSZhu05Vxexeb6I1sYFHqS35Y4NA3xxSLeOXBiX5w2txt5UZ7Rg8p2da/mpfZqzD7N9u7VRD2S+WNph75Y2qZ/mxLmPZng8BK3FyqfWwU3jYTrj4SzUV7nb/RGbWySzanNF7f58zE/tY4/6xxDcll0Y40uRGJdMIzub3ue3+9HjE8x3QyTvp045abzdrjnbT9rlwy9C+C30Lp6WZaFX8qo0JXL8php9Fsu+o2ft8l7eNGmYp5jO9111l3nKMQmf7vOe/auc1p3n0MdvayxVvxzNn/7zcrZgjnGvXE0T2E57RdUzLYr6oXzfLRjMWVqytSiEJEWZ2rpLWZq4YxZi57XzND7ADKzZX7TsVydgnjW/P+6/B+pXD7eoFkAAA==
+(Assembly=$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri) Namespace=SIPLib.SIP Type=SIPStack ObjectInstance="Object instance 60")
+myStack : SIPStack
+new SIPStack(app) {Uri = {User = username}}</generationState>
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="1ff78a01-6365-4521-9dda-f12765d2daf4" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <lostFoundTargetMoniker Id="60cc4d15-309d-4076-97ef-661a6465d382" LastKnownName="LostFoundTarget" />
+            </receiveEvent>
+          </message>
+          <message Id="492bb878-0c9f-4bae-adca-a15d9199b8f6" name="Register" messageKind="Complete" messageSort="SynchCall" createSelfMessage="false" signatureText="app.Register(&quot;sip:alice@open-ims.test&quot;)">
+            <referencesInternal>
+              <reference Id="15bb9607-210b-43a5-b5ce-ea9d509e3fae" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=SIPLibDriver)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(ea718996-0383-4d9c-baeb-51461c113c44.OutputPathUri)&amp;quot; Namespace=SIPLibDriver Type=SIPApp)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(ea718996-0383-4d9c-baeb-51461c113c44.OutputPathUri)&amp;quot; Namespace=SIPLibDriver Type=SIPApp Member=(Name=Register OverloadingParameters=[(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&amp;quot; Namespace=System Type=String)]))&quot;)" tag="DGQL" />
+              <reference Id="7a368a55-72fb-45f1-887a-85d03bc47457" handle="(Assembly=&quot;$(ea718996-0383-4d9c-baeb-51461c113c44.OutputPathUri)&quot; Namespace=SIPLibDriver Type=SIPApp Member=(Name=Register OverloadingParameters=[(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&quot; Namespace=System Type=String)]))" tag="DGML" />
+            </referencesInternal>
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="8c37464d-0683-4d6b-bd39-310e011a21e7" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="4b2c19cc-2a3a-4f43-a4cc-6ce582d442de" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="f84757e6-d73c-4758-a4b1-1051f17aa33a" name="Create UserAgent" messageKind="Lost" messageSort="AsynchCall" createSelfMessage="false">
+            <referencesInternal>
+              <reference Id="865a6337-5925-48fc-8283-24f2c8f71fc7" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=SIPLib.SIP)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri)&amp;quot; Namespace=SIPLib.SIP Type=UserAgent)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri)&amp;quot; Namespace=SIPLib.SIP Type=UserAgent Member=(Name=.ctor OverloadingParameters=[(Assembly=&amp;quot;$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri)&amp;quot; Namespace=SIPLib.SIP Type=SIPStack),(Assembly=&amp;quot;$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri)&amp;quot; Namespace=SIPLib.SIP Type=Message),(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&amp;quot; Namespace=System Type=Boolean)]))&quot;)" tag="DGQL" />
+              <reference Id="79672cc4-9700-41e6-b387-0d888a752f99" handle="(Assembly=&quot;$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri)&quot; Namespace=SIPLib.SIP Type=UserAgent Member=(Name=.ctor OverloadingParameters=[(Assembly=&quot;$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri)&quot; Namespace=SIPLib.SIP Type=SIPStack),(Assembly=&quot;$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri)&quot; Namespace=SIPLib.SIP Type=Message),(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&quot; Namespace=System Type=Boolean)]))" tag="DGML" />
+            </referencesInternal>
+            <generationState>H4sIAAAAAAAEAO1bbW/aQAz2T4n4MHXSRka3dW9lEqNri9Z2Vek+TdMUIGVZA6WEdKW/vo99SUh4KYyNKVosFO7O8fnOPvu5OyN2qUkuDckjh3x836HVobq0fNrHG4d6oL2nXTqnH+AI6Iyu8BmRRQ3wVqlEW1QDPQBfj1roNwb1Arw+KG/Jlk9dal+Ea4hvG3I8akOmg3YH7T1IbVMo4/Uhn3kOwDOiQ1BbIuMp5mt6DKTuSXmEkt83MaPTpNVC2Re5Luohdac4yhiVtbToJNIygDQHc3Ax/yynaVmwwRg8/D7WpAa5Zr6PYYkJxwm06aBUGy22EfvZCGUXWg1Bi21Vj2zXFN3ZYg59B9VHyTZkGUeot/DOlx6zI5XEPwNQ+pDWh/QeyhAU5t8XD+c+JfHtBjgC9HJQsm7q2+rb+fbtz+D4iXYb7Wnvjcd6RZVoTjzOQGbiyGyyI5yDFkosmJg5RN0Bf3qMLB/HTLwPBOhlC8WemYmhTu8c6d5WUvsE/rH6U7LKFh1HFmB6FVaJ5VYhgdeE15M94UY4fLQdzIFn2YV0J9m9R5GNqvS1kLY1lKb4ZZsuEalPCmmHY+EPwM8+tsgKj+gaI3NEvltgkVPocgUZxr8s7KaGi5Fgi27pNe1AOlvLhQS2nZvsq9nxPOllY2ZsV5Ya4LnA2Hbq9PlLPP0StDL0/giN5r27oRd4/xK1HqS0he5nrJbWbJEFx4Jfrug1sdwHwShfcLEP3b7hsebEWEOwnT3BE9uZyA1SnlfSs4XinOKc4lwBcE7vCw/F5mZuC5M1+J9vwHuSszL7wfKVS3OX8X0r+i1bxXSv2ZWsoTV4cO86k/X0ojj7OzuYYtYsZnFMDSNbxohl4szwGn9ji1awE/CzHZUV4VakygNSrZLP2IH3rpLPSGPbZjIamsnQE34+YlNP+HrC/3cnfNb/WhAzSDLeRd4rFesU6xTrioN1ek9Y7JebuSVkV0FzGprTKAJyrZfT2NacRs6warWsxhvNauTeg/Skryd9Penndb/8098tuTRRqjkNRTpFOkW6oiDd79wSdD2Wr8f6Nwtz5wsFT+f9WjpZOc2CaBakCLG1Xhbk+dpZEF2D/ODbav9veZbDzAkj1Gr/qbwHd4fwr345AAA=
+(Assembly=$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri) Namespace=SIPLib.SIP Type=UserAgent ObjectInstance="Object instance 71")
+RegisterUA : UserAgent
+new UserAgent(this.Stack, null, false)</generationState>
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="13fe9a0b-4ec2-4e9f-9e59-acc642644071" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <lostFoundTargetMoniker Id="66c8badb-2466-438a-ba4b-8ee618bb4767" LastKnownName="LostFoundTarget" />
+            </receiveEvent>
+          </message>
+          <message Id="12ab6236-d9ef-4144-8f2b-6a98ae5f0c86" name="Create SIPURI" messageKind="Lost" messageSort="AsynchCall" createSelfMessage="false">
+            <referencesInternal>
+              <reference Id="cb5d097d-d195-4347-90a1-d89d0ddfb60d" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=SIPLib.SIP)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri)&amp;quot; Namespace=SIPLib.SIP Type=SIPURI)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri)&amp;quot; Namespace=SIPLib.SIP Type=SIPURI Member=(Name=.ctor OverloadingParameters=[(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&amp;quot; Namespace=System Type=String)]))&quot;)" tag="DGQL" />
+              <reference Id="0d61c95d-a4fd-4b41-a951-a26638503f5a" handle="(Assembly=&quot;$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri)&quot; Namespace=SIPLib.SIP Type=SIPURI Member=(Name=.ctor OverloadingParameters=[(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&quot; Namespace=System Type=String)]))" tag="DGML" />
+            </referencesInternal>
+            <generationState>H4sIAAAAAAAEAO2YbW8SQRDH56NceGFKUrlgtBotJoZaS2xrI+0rY8wBV8QetHLQ9vz0/mb2ji4IAV+QaHMhd7s7O4//mZ27Y1/aEstYBhJJwv0Xq540bZXIITuRDKG9lX05l+9wpPJZrvlNJJAWvA2pyI68g57CN5QOchnUS3gTKK8ltF/TZhfGNeYeomcgXXRGrHusD9DalanZG6FfeT7AM5EjqB3T8RR/ncSNzQc2HjPqfhuPzmarDuPI9MbMp9Jf4KhhVaMM5DSPMkVbhA8x/s9zulUABhk8D/sXRNGSKhg87J0SR4+xRGcZOlpbE8Y+8YyhFSg1c9TaFrViFck3qAmjoqc6jpl32EtMwrdRsWpMQXqEnhF6h4xTKMp5aPWs2FaskltwpHgRMWo8ZSWXlfwvVfIn9n6w20X/Yq0WVl7Ks9wbtXBjPkTmx7zuc2hTq3x3Qo6YR/D7Nub59IQUPT5FKjRK+Icnjrr4VPClg9nsI/xZWUOMgZzksWtsDfAoNDaQ1WxoJrUGbo0jYR1hXf3royWaPZMnOToN+bIU1Sfyk0gU/TcrED5D/hqtTmNAn3RcmvUduZdXskfNK/oxGtRaPOuY8/YGJhUSm+ZJtaZcl9gOvbeIO4vtClqNqN+D0LK9W3nO/gtmQ7R0jZ7MZcGPbFVGMqvV2OLyMzGxtx3FsipfuYIlmLbs/GpdDQw5l6mpSVbzk1R2xLKaH0s1/83zvszDujxs5x3B5esxv+ceWISuT6zvYT53jfu9xbeun/lSfgYXa3Z1Vzthpp6VPW07Z8nH2j9XGs/YfMmIViv6Co76rOO5Clx1Jovu2LbT4Kw6Cc1NXXaJaNfGunGWXfF/64qbfDPt8dW0yTeT30e389Xkfy2FG/8H9xu/Vq9MrhMAAA==
+(Assembly=$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri) Namespace=SIPLib.SIP Type=SIPURI ObjectInstance="Object instance 72")
+aor : SIPURI
+new SIPURI(uri)</generationState>
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="e62839e0-5eb1-40d5-9bf2-326371718637" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <lostFoundTargetMoniker Id="254ba025-66d5-4309-bd4b-d0ed09f8100c" LastKnownName="LostFoundTarget" />
+            </receiveEvent>
+          </message>
+          <message Id="82b8f86b-c735-46ac-8a32-bdc754fa239b" name="CreateRegister" messageKind="Lost" messageSort="AsynchCall" createSelfMessage="false">
+            <referencesInternal>
+              <reference Id="ad98d383-a3a5-4491-966a-3b8ccd2abddd" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=SIPLib.SIP)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri)&amp;quot; Namespace=SIPLib.SIP Type=UserAgent)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri)&amp;quot; Namespace=SIPLib.SIP Type=UserAgent Member=(Name=CreateRegister OverloadingParameters=[(Assembly=&amp;quot;$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri)&amp;quot; Namespace=SIPLib.SIP Type=SIPURI)]))&quot;)" tag="DGQL" />
+              <reference Id="a20a24eb-8f28-47aa-b7c7-d3b0cc470a40" handle="(Assembly=&quot;$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri)&quot; Namespace=SIPLib.SIP Type=UserAgent Member=(Name=CreateRegister OverloadingParameters=[(Assembly=&quot;$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri)&quot; Namespace=SIPLib.SIP Type=SIPURI)]))" tag="DGML" />
+            </referencesInternal>
+            <generationState>H4sIAAAAAAAEAO2YW0sCQRTHz0dZfMqHWuoliAzEqKQrXp4iYrxkxmrhroF9+n7n7KXVEnwpioZF58yZc/3vf5zBQ2nLUGYyFicR32/MBtKwWSQnrDiZoDuSQ+nIIxaxtOSZJ5FAmtjWpCJbUkcfYzeRHn4LtA/YRmgOJLSnYVLXrGZ8h8QZS5+YjvmA+TFR+zK3fFPiq80pNomcoe1ZjG3qTT1eTB7beMGo620quilmPcapxR0iz2W0YrFDVu0ykKusy5hojhqG1L9smc4CMFhgo+t5J3XipvVWQeLD4opuBoweo/UYKc8SxhFdzdDlWDUy7NrWuyLm5B5txKgYaowL5B5rkXm0LIqyM7GMXXJWjKEx0pR4U+JPGOdo1OPEOK71VYzdTSzU2zFqd57dnt2/nd3X2Dyh6aNf5W+ebV92s6o004vV4qye5Rzl/ZDumzNkh0c5i1p28J4X+yY/DWK8QtOEn2pJtavnR9k7KKRz7BeeUwWnArnMEFB9DVTyuDUqn9k7UlasckTZ8WpSBAKOqrTuEflccaonGWo1uf2XaKeaLl002bt3fIIv8GnabtVuxoZI+h6c7aRqtlv8r6Bn7F9irD/H12H6PSd4ir2/kX7HW/Ic/mkOb3bv3Psl987yfTPc+P+Od21WvsEaEQAA
+(Assembly=$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri) Namespace=SIPLib.SIP Type=UserAgent ObjectInstance="Object instance 71")
+RegisterUA : UserAgent
+this.RegisterUA.CreateRegister(new SIPURI(uri))</generationState>
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="2ff7aa90-be26-487e-9efa-f4cc12589b82" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <lostFoundTargetMoniker Id="f1cd1782-a154-43ec-b042-63fd326d8301" LastKnownName="LostFoundTarget" />
+            </receiveEvent>
+          </message>
+          <message Id="3eb44fcb-45fd-45a2-98d1-f0dba887928d" name="Create Header" messageKind="Lost" messageSort="AsynchCall" createSelfMessage="false">
+            <referencesInternal>
+              <reference Id="26793a7a-5e98-4d0f-a803-8c71e5ca985b" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=SIPLib.SIP)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri)&amp;quot; Namespace=SIPLib.SIP Type=Header)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri)&amp;quot; Namespace=SIPLib.SIP Type=Header Member=(Name=.ctor OverloadingParameters=[(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&amp;quot; Namespace=System Type=String),(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&amp;quot; Namespace=System Type=String)]))&quot;)" tag="DGQL" />
+              <reference Id="e2e764f0-e925-42fe-af2d-72da393bd236" handle="(Assembly=&quot;$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri)&quot; Namespace=SIPLib.SIP Type=Header Member=(Name=.ctor OverloadingParameters=[(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&quot; Namespace=System Type=String),(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&quot; Namespace=System Type=String)]))" tag="DGML" />
+            </referencesInternal>
+            <generationState>H4sIAAAAAAAEAO2abW8SQRDH56NceGFKolyqthotJg21lrS2TamvTGMOShE9HuQAi5/e38wdcIdUqEkRdEPudnd2dnbmP3OzOwl7UpG69KQpgYS8fzC6lpKNQjlkJpAWtDeyJ5fyGY5ILqTDry+elOEtSk62ZB96BF9LqqwbQb2BN4TySnz7laz3wbh6vH3kNKWGzIDxNeMDpNZkYPu1ka887+DpyxHUqsl4gr7xiq71m9ae0Op8BY3OJ6Mqbdvk1ukPpDHDUWBXtdKT08TKCGkBOtTRP8sZjzwwGMGj80e8AySoNXkwmM6dYofSHTrz0NHY6tM2sKcHbYxSKUGtYlYrVoF8ghrSKnoq44R+lbnQVqT3yFk0RiDdRk4buS3aARTlPLR4VmxzFsllOCK0CGjVHhfJLpLXKZLPmPvCqIb82Vgd7/KCX6yN7tA1HQLTIyv7EtrAIj/+QuK9upk9snz6hYxzfMQq3yj+L5rE1NlTIb3am/SO4R+5GEIXT94ntuuoCB5jiUXWqjc6xnUmQ+MIGeta1a+B3GByJvcTdIrycS6qj+Qblij6r+9A+Jz1HaTGEj3yZMylXt+SW3kpu8S8ol9Hgu5Wn2TM7H5NW+Vjm/pJpUY8N+ztp24R3822r9AKWP0WhObNDeU58zv0WkipGT3MeCFt2V0eGVms1s2uqScq0HoJlnl57HD7I9yueLw5sVi2GNfvsWnIxRE+tNNXc0s+yULuNHGZYL0i2mWCv5EJ7nPPdL5Y5IuHuZtOffYv11gHhmOcZxefAWnuAu9bs2/ReZBelfWi8uwz6v72TLgwfzaTSHAnwyozXMUiOeaN400R3ebceMaznXmuXHbb0Oy2XN29s1Tdnc6HD1N5u4rb3bM37St29+xV3LPbCY+rt10eWM94dnlg9XnA3UfX/z469pirtV2t/f99U/eptZ+6WnuDc9tylfbuGlba/tL/mPoJ7WVhX1wlAAA=
+(Assembly=$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri) Namespace=SIPLib.SIP Type=Header ObjectInstance="Object instance 77")
+header : Header
+new Header("3600", "Expires")</generationState>
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="233c6825-70ad-48b0-9cdb-4e8f1089f7d5" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <lostFoundTargetMoniker Id="4167aaf7-62a5-47e3-8ee1-2beb2b42f4a3" LastKnownName="LostFoundTarget" />
+            </receiveEvent>
+          </message>
+          <message Id="7f221fd6-16da-4204-9ff8-f0dc824cbba7" name="InsertHeader" messageKind="Lost" messageSort="AsynchCall" createSelfMessage="false">
+            <referencesInternal>
+              <reference Id="1b13f4fc-7d88-4d02-85c2-492b8c88a2ed" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=SIPLib.SIP)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri)&amp;quot; Namespace=SIPLib.SIP Type=Message)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri)&amp;quot; Namespace=SIPLib.SIP Type=Message Member=(Name=InsertHeader OverloadingParameters=[(Assembly=&amp;quot;$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri)&amp;quot; Namespace=SIPLib.SIP Type=Header),(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&amp;quot; Namespace=System Type=String)]))&quot;)" tag="DGQL" />
+              <reference Id="6681ff54-624c-46cc-8c42-433f59928021" handle="(Assembly=&quot;$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri)&quot; Namespace=SIPLib.SIP Type=Message Member=(Name=InsertHeader OverloadingParameters=[(Assembly=&quot;$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri)&quot; Namespace=SIPLib.SIP Type=Header),(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&quot; Namespace=System Type=String)]))" tag="DGML" />
+            </referencesInternal>
+            <generationState>H4sIAAAAAAAEAO2Y227aQBCG51EsLqogNfFFD6nSUCmih6DmpJJcVVVkwBC3hlDbJKVP329mjWtTqLiJEgkLwe7O/juH37PjXQ6lK6EkEkkgMb+/GQ2kbaNYPjITyBjZOzmUS7kBkcoXueWTiScdsC1pyI4cIU/BjaXHujnSIdgYyYH49mlb78pQCb8+eiLpozNgPGD8Hq19mZm9CfoV8wlMJsdIe6ZjF3/diqn1I2tPaHW+i0cXxahHOzG9If2ZjJYQe1jVKD05y6NM0RbgQ4j/VaQbeXAwB6Pzi0iO0Ov89eQ0Z0DlLVhZ6G3heUIbgAqJO2SNMpkZ0pNzubNeDAMBXqnfI+wFBf9ZzlpLvm4l205yRRQdaco3vk3y7i/ijGgGtNuckaeGT8FrRlb5aee5NyKiBNmCp3bOW9fiVrYCuUYa06ou1XFCX3M6thXJUvZesyZF0rB6kML7BJ0TbIxpZ5azDSqJVhRlumG1pANCNQS0Gl1dS+paUteSp8PR49eSc3DfkfaZW64WC4v78iL3TK1NzZ/AfKraKVcfV6WObQdNK1YUecnqWVGlFiedlFW+Sfx/fHHS5bNRebVX9D6Dn9c5ZTn1vwrnOFZ5lj+pQV3dNmS5zFdTnq/k4Jn8xK5m5Ns1fFyw+hbPHKseO8ihdCfsyC95I6/R7tv7Z2i2wuJNXrUX2Sqfp62sqtaU7xDbful+cW979weyPaL+QDyr5u7kJfOv6Gmd6Js8rnBWjmwdf/O83oyX3gqZ3YM0n9xbwVuRVx1jVrMgMuZc7t5UOG9s+Wmm3uf1Pt+WfV6fGddl5MOcGMtPoL5xPsSzqjP5cTJ5s/vO/hO575TvOf7G/yH/AURJ38luFgAA
+(Assembly=$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri) Namespace=SIPLib.SIP Type=UserAgent Member=(Name=CreateRegister OverloadingParameters=[(Assembly=$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri) Namespace=SIPLib.SIP Type=SIPURI)]) ObjectInstance="Object instance 73")
+register_msg : Message
+register_msg.InsertHeader(new Header("3600", "Expires"))</generationState>
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="0dfd07af-193f-4755-9b10-78cf2a1d4160" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <lostFoundTargetMoniker Id="06ce8d42-bd39-4f53-9cf6-0c349d8aeb3b" LastKnownName="LostFoundTarget" />
+            </receiveEvent>
+          </message>
+          <message Id="cbfe04d8-2dbe-47c2-94d4-b596df272d41" name="SendRequest" messageKind="Lost" messageSort="AsynchCall" createSelfMessage="false">
+            <referencesInternal>
+              <reference Id="1aa757db-a116-4372-a059-769a3058c546" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=SIPLib.SIP)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri)&amp;quot; Namespace=SIPLib.SIP Type=UserAgent)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri)&amp;quot; Namespace=SIPLib.SIP Type=UserAgent Member=(Name=SendRequest OverloadingParameters=[(Assembly=&amp;quot;$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri)&amp;quot; Namespace=SIPLib.SIP Type=Message)]))&quot;)" tag="DGQL" />
+              <reference Id="ea518983-d1d7-4c5d-947a-e249658e87e4" handle="(Assembly=&quot;$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri)&quot; Namespace=SIPLib.SIP Type=UserAgent Member=(Name=SendRequest OverloadingParameters=[(Assembly=&quot;$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri)&quot; Namespace=SIPLib.SIP Type=Message)]))" tag="DGML" />
+            </referencesInternal>
+            <generationState>H4sIAAAAAAAEAO2Y20rDQBCG51FCr+yFBvFCECtIRS0esfZKRLYHayWN2qRCfXq/mRxMq6I3nnAJze7O/nP6M7ubdFPaMpCJjMRJxP2JUV+aNopklxknY2RbsinncgMikTO540olkBbYhtRkSbaRJ+DG0kVvhvQabIRkQ0K7mtbrGGrCPcTOSHrYdIz7jHew2pOp+Yuxr5g9MKnsI+2ajWXizTTurT+y9pBW59tEdFqOurSx2R3Qn8pwAbGCV80ykOM8ywRrjhgGxD+PzEYBHMzA6HyRyTZ2s3jrMPGCOCabPq3n6H2OtM5S2iFZTZAVXDVz7tqWuzLm5AppRKscqo1D+l3mItM4Mytanal57OCzZhWa0IuxF2N/TDtFohq7VuMaX82quwVCtR2tZuer21f3b6/uEzC3SHrIF+u38LYuq3lU6uneYnEWz7yP6nrI1s0+fYdG1Ysiz9GeluumOA0StEKThK9iyaSL50dVOyh7B+BnvqbKmgrkKGdA5Q1YKew27OyO8af18WDPJDGNE3k0dETujnmNeIgnV57nac5XQy7+Jc9Hhk/AK891ueQXvMFQy1aq5jMyTrJnMJnju56vGL8T+qr9a1Xrz/P32f2as3z+Kfh31O/adZrGfPYUF9+n/N7zMduZpEMWrXzn8TvIz+0g1eq9QidB8vkvgrVf8kVQ/RIIP/1P1DMfljtxtBIAAA==
+(Assembly=$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri) Namespace=SIPLib.SIP Type=UserAgent ObjectInstance="Object instance 71")
+RegisterUA : UserAgent
+this.RegisterUA.SendRequest(register_msg)</generationState>
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="4345c945-88a4-4330-addc-8c235cc3e209" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <lostFoundTargetMoniker Id="27e2243f-59c2-4a1b-a302-877b99d5a088" LastKnownName="LostFoundTarget" />
+            </receiveEvent>
+          </message>
+          <message Id="c4df1070-5569-4769-b1ec-78c34747a624" name="&lt;&lt;return&gt;&gt;" messageKind="Complete" messageSort="Reply" createSelfMessage="false">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="a2fd1c07-97c4-49d5-bebf-4edf63873452" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="4c6453e4-76a9-48ae-834b-8864e16504cb" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="52933a17-ac37-49bf-aecb-b4f1f6dc6fc6" name="Invite" messageKind="Complete" messageSort="SynchCall" createSelfMessage="false" signatureText="app.Invite(&quot;bob@open-ims.test&quot;)">
+            <referencesInternal>
+              <reference Id="53b45302-d7e0-4cff-9f75-632e6ecc02f8" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=SIPLibDriver)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(ea718996-0383-4d9c-baeb-51461c113c44.OutputPathUri)&amp;quot; Namespace=SIPLibDriver Type=SIPApp)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(ea718996-0383-4d9c-baeb-51461c113c44.OutputPathUri)&amp;quot; Namespace=SIPLibDriver Type=SIPApp Member=(Name=Invite OverloadingParameters=[(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&amp;quot; Namespace=System Type=String)]))&quot;)" tag="DGQL" />
+              <reference Id="bf563ab7-af51-49a4-ac3a-b432d46001d9" handle="(Assembly=&quot;$(ea718996-0383-4d9c-baeb-51461c113c44.OutputPathUri)&quot; Namespace=SIPLibDriver Type=SIPApp Member=(Name=Invite OverloadingParameters=[(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&quot; Namespace=System Type=String)]))" tag="DGML" />
+            </referencesInternal>
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="39b84d21-ee17-4a27-a541-0c1306d42d87" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="9ba81e7b-2245-44b8-9c2f-0f34bac8633f" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="212e987b-1e1b-41ea-889b-0bb32f819674" name="CheckURI" messageKind="Lost" messageSort="AsynchCall" createSelfMessage="false">
+            <referencesInternal>
+              <reference Id="258ca4c1-759c-4eff-aaac-50cf8e84cdbd" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=SIPLibDriver)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(ea718996-0383-4d9c-baeb-51461c113c44.OutputPathUri)&amp;quot; Namespace=SIPLibDriver Type=SIPApp)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(ea718996-0383-4d9c-baeb-51461c113c44.OutputPathUri)&amp;quot; Namespace=SIPLibDriver Type=SIPApp Member=(Name=CheckURI OverloadingParameters=[(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&amp;quot; Namespace=System Type=String)]))&quot;)" tag="DGQL" />
+              <reference Id="df547aa5-7475-4282-8c48-0fbd7f04e2a6" handle="(Assembly=&quot;$(ea718996-0383-4d9c-baeb-51461c113c44.OutputPathUri)&quot; Namespace=SIPLibDriver Type=SIPApp Member=(Name=CheckURI OverloadingParameters=[(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&quot; Namespace=System Type=String)]))" tag="DGML" />
+            </referencesInternal>
+            <generationState>H4sIAAAAAAAEAO1daW/aQBCdn4LyoQpSC03I1TaplOZoUHOgHJ+qqHIISWjI0RjS0l/fN7M22AaKARtsM0LG3vXu7O6b2dm3Y4ds0hnV6IXqZFED33+RuqYdSTVoH3csekDeZ9qkc7pDCZtO6QmfJuWojLJbtECLtI18G+Ue6Ar12si9QdkGcj5SUT47cnUhpV7wXYScOlUh00L6GuldSK1SS9p7hHwu8xVlmnSA3CuR8Q79NTWe5bou50Oc+f4ZelRxUrsyqldprYh0HTK5jRquW3T7n9IFfP/BkaNjZ/Q2WrHQtxrGNahWDvi0Ua5bZhupZ8oDn+69Y4zxGmdFblTk2CabON9irC/IcxHccRA9E0QYR4t+ILeBMyPLMg5xfYV7DalhifQFsV8bbT1CwiMkPuDcQg6X2ZcZwIgviO2XUcJG+xbOVRmhalBtP822f4Lcn8ivQnLQul35y1Ry+sGyn6V1S3rgl+qdLWZWHeCa2/K2wiXPUbvVmVXuSmL7UrnO1TeUbKutDLGVHB05uHCprY62vqAXN/hwbt7RjM686NAcxa+9oV+ozzb9aQDSFch9wjgN48phTplSNq4XMb4NWkO7rIWa04taZy3yt1eXWkWMg/XFUm0cN2i76GF0v2U23yOvgBHsYTT97r3SCu6v4uoBUqqS3xAsCxgtc0TvyAZpoC3epSbj6qK+2Cm9BXTbUoLH8iL9aGOk7I/ucXcJ+RWxImNpXRluvXxsHrOf/pU7TH8eeq2lIOvJk9Q+ceQ0kLaAB/f31rEWU77pILdF3xOJ+HCU3bk2HNmCk/Kiei5IPEodxsys9ze4ztMljhzqNJ354o6IsVqit2AA7nGpXk+9XkjWuJZg1qg22WuTXesLet1DGdst6tyF4JCK7WTYqm+dDOuy+MkSPNAkfpFXQ/Y37H16PaNXa8oDlQfODw/cwFHCsaRcMEX+yibzVCcse1ul91NibzlgyjnFnr6YXLekP2WHrqPxxKgiYEG/odHEqLFM0zOSWa5Tce12gy1mmdklRX9q67Ow9Ybgw/bb3+rDRXiWEhzhmV+b6V1tTJ3kr9dJxWy+djjefcp4uxtuh3farAO2j3tJ2T5dGBSacv9J/FA/xEfzeHvAiW2x39pu5GV5RU8q29VYzaxiNSZOM7+xmqx7snAsbSMUS+tyr/jjOMrlxuUlXitUPjcJbuoJo/eEg1GObufqbSNONqc6H13n02N+qp1w2tmG5GsZG49oXyTWBcM8eKEiG43ddxmfYhoPk77sectN1+10r9th9i4lWk/gU2jdvYzLwg9kVujOZXzM1PuN5/3879tUArwoLp/n6k6jzhp1zoJvChd1XnGizssafU6197J8rYTnbOHizcrZkjnHg360Qml52y+pmM2X10vn+9GuxpSpKVPLgkcanaktzzFTS6fPGvV9zRJ9SCAz07/pmJ3nNd6Bo7LJZ3dpwVDfaw/iNgihKJ8tuC0of5stfzsVfdadNVGf9cfFLwwzMFgO53qTR+NmbftZ8VS2z1OFYW1rGk/LsO8M+ssLlFMuFj2a6uu6CLoj2YZc09+4vF0/fWSZoc1ac2rdSbDuMKv6+tT+djaOWEzwN+CVEcSzm9oRS2S2eAE0yrqbmuJuqhfTsvgHtry6IGf01ZKaytnU3ufP3vUpUZR6iIelGH1lmXXP0rMFbXawbzvCFfdMfVr8v6jsnVej/qqyf04Oj62uzflbjmn3imF2axsJ3a2dib6H/9euf6PHRibgawAA
+(Assembly=$(ea718996-0383-4d9c-baeb-51461c113c44.OutputPathUri) Namespace=SIPLibDriver Type=SIPApp ObjectInstance="Object instance 23")
+app : SIPApp
+CheckURI(uri)</generationState>
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="5ba504f0-0bf1-40dd-92db-84c67cec7656" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <lostFoundTargetMoniker Id="10780858-57d9-42c2-8d0e-27fd38b2606d" LastKnownName="LostFoundTarget" />
+            </receiveEvent>
+          </message>
+          <message Id="61813f7d-2b12-4bf2-ad8e-cfb2ff505bc3" name="IsRegistered" messageKind="Lost" messageSort="AsynchCall" createSelfMessage="false">
+            <referencesInternal>
+              <reference Id="7401d557-7ffa-4540-821b-32cb26bc4154" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=SIPLibDriver)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(ea718996-0383-4d9c-baeb-51461c113c44.OutputPathUri)&amp;quot; Namespace=SIPLibDriver Type=SIPApp)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(ea718996-0383-4d9c-baeb-51461c113c44.OutputPathUri)&amp;quot; Namespace=SIPLibDriver Type=SIPApp Member=IsRegistered)&quot;)" tag="DGQL" />
+              <reference Id="190a87cc-d1b3-492e-ae66-68036cdde56e" handle="(Assembly=&quot;$(ea718996-0383-4d9c-baeb-51461c113c44.OutputPathUri)&quot; Namespace=SIPLibDriver Type=SIPApp Member=IsRegistered)" tag="DGML" />
+            </referencesInternal>
+            <generationState>H4sIAAAAAAAEAO1cbVPaQBDen8L4oSMzLRSpL221M9SX6tQqI/qp43QiAlIBrUFb+uv77F4CIUAJkEACO0xI7rK3d/vs3t6TI7pLJarQE9XJoga+/6J0S/tSatAR7ljURN0n2qVLuoOETRf0gE+bUnQC2T1ao3UqoN6GXJNu0K6D2ipkG6j5QFn57MvVlUg94TsLPXUqQ6eF8i3KB9BapmfprwX9LPMFMm06Ru2N6HiD8ZoWj3Jdl/Mpzny/hBEVndKBWPUivWVRrkMn91HB9TPV/iOdwfcfHCk6c6y30YuFsVVg16hWKeDTgVxPpoDSI6WBT+/eGWy8xVmRmxQ5jsk2zjXY+oQ6F8F9B9GSIMI4WvQDtQ2cGVnWcYrrG9xrSAtLtK9J/NroqwUNLWhs4vyMGpY5khnAiK9J7J9Awkb/Fs5lsVA9qLGf5Ng/R+1P1Jeh2R/drv4NyjvjYN2P0rslI+jX6p0tZlYd45r78vbCkpdo/dydVe5KYveVUt2rr5DsaKyMiZUUfXNwYam9rrc+YxRVfLg27XhGZ154aE6S117RL7TnmP44Auki9D7ATsO4UphTRsrG9Trs26Et9MteqDijqHTXov7+6tIqCzvYX6zVxlFF31kPo/sts/kedRlYcAhrht17oXe4v4mrJrSUpb4hWGZgLXNEr2WjPNCR7FIRu3qor3el94BuRyTYlicZRweWcj66x90c6osSRSbSejrcdunIMuYw/yt3mP889EZLRtaTB2l97uhpoGwBDx5vzYkWI992kNuj77FEfDzK7lwbj2zGKXlRvRQkWtKGMTPrfRXXabrGkUKbtjNfXIsYqxy9BgNwj2vNepr1ArLGrRizRo3JwZjsRZ8/656KbTW0uQvAIRXb2bDV3Dob1ieSJ/PIQLPkRV4NOd9w9hnMjF6vKQ9UHrg6PHAHRx5HTrlggvKVTeZXnaDsbZPezom9pYAp12QHxmJqXcn+kh24je4nhrUD5s8bupsYNpZJ+o1kketUVE+7/h6XmdnFxX8a64uI9Ybgw/E7POqD7fDkYrzDs7oxM7jamDbxX6/jitlqPeF4n1Ome7rhfvhJm33A8XEvJbvPFwaFttx/kDw0DPHJMt4hcOJYHLa2G33LvKLHle3qXs2i9mrMPs3q7tUseyYLxtJ2ArG0HveKfh9Hudy0vMQbhcrnZsFNM2H4mXA0yuE9uXr7iJLNqc8n9/n8mJ96J5h3CtB8K7axRUeisS4YpsELFdlw4r7H+BTTaJj09cBbbrpuJ3vdDvLskqftGP4KrU8v07LwY5kV+uQyPWaa/abLfv3v2xR9vCiqnOf6Tnedddd5GXJTsF3nd86u84buPic6e1l9vQTnbMH2m5WzxXOO+/NokZLytl9cMVutrJfM96NdjylTU6a2DBlpcqa2scJMLZk5a9L3NfP0PobMTP+mY3GZ12QH3pWNP7tLCob6Xrsft1EIhfnbgtuD8rfF8rcL8WfdWRP1t/6o+IVhBgbL8Vxv9t24Rcf+smQquy9TBWFtW7qftsS5058vryCnXCx8NDXX9RB0LSlArxlvVNlumD+WmaEt2nMa3XGI7iCr+vbc/nY2ir0Y//+AN7UlQWH8/5D/B6MgvKJuXgAA
+(Assembly=$(ea718996-0383-4d9c-baeb-51461c113c44.OutputPathUri) Namespace=SIPLibDriver Type=SIPApp ObjectInstance="Object instance 23")
+app : SIPApp
+IsRegistered()</generationState>
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="fe2e01a7-d89f-4356-9c9e-3c9ec685fbbe" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <lostFoundTargetMoniker Id="297cafec-cff8-4abc-9af9-047d4a00b200" LastKnownName="LostFoundTarget" />
+            </receiveEvent>
+          </message>
+          <message Id="08c609d6-fc34-41d2-acaa-5b028dd1fabd" name="Create UserAgent" messageKind="Lost" messageSort="AsynchCall" createSelfMessage="false">
+            <referencesInternal>
+              <reference Id="e2e5b9a4-14a5-451f-a739-c52f55cab9e1" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=SIPLib.SIP)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri)&amp;quot; Namespace=SIPLib.SIP Type=UserAgent)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri)&amp;quot; Namespace=SIPLib.SIP Type=UserAgent Member=(Name=.ctor OverloadingParameters=[(Assembly=&amp;quot;$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri)&amp;quot; Namespace=SIPLib.SIP Type=SIPStack),(Assembly=&amp;quot;$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri)&amp;quot; Namespace=SIPLib.SIP Type=Message),(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&amp;quot; Namespace=System Type=Boolean)]))&quot;)" tag="DGQL" />
+              <reference Id="21d752e1-323b-45d0-87ab-d276fbb6f692" handle="(Assembly=&quot;$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri)&quot; Namespace=SIPLib.SIP Type=UserAgent Member=(Name=.ctor OverloadingParameters=[(Assembly=&quot;$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri)&quot; Namespace=SIPLib.SIP Type=SIPStack),(Assembly=&quot;$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri)&quot; Namespace=SIPLib.SIP Type=Message),(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&quot; Namespace=System Type=Boolean)]))" tag="DGML" />
+            </referencesInternal>
+            <generationState>H4sIAAAAAAAEAO1bbU/bQAz2T4n6YQJpNIIBQhud1JUxqgFDlH2apiltQ5eRhtK0Hd2v32NfkiZ9oR2sW0SsKr07x+c7++zn7lw4pAa51CePHPLx/QutNtWk5dMx3jjUBe0tHdIVfQdHSJd0i8+ALKqDt0Il2qAq6CH4utREvzGo1+D1QXlNtnxqUvssXH1825DjUQsyHbTbaB9BaouGMl4A+czzATwDOgG1KTK2MF/Toyd1T8pTlPy+gRldJK0mykDkuqgPqTPFUcaorKVF55GWIaQ5mIOL+Wc5TcuCDcbg4fexJlXINfPdhCUmHOfQpo1SbbTYRuxnA5QdaNUHLbZVLbJdQ3Rnizn0DVQfJduQZZyi3sQ7X3rMjlQS/wxBCSAtgPQuyiEozH8sHs59SuLbdXCE6OWgZN3Ut9W38+3bn8DxA+0W2tPeG491QPvRnHicnszEkdlkR7gCbSixYGLmBHUH/OkxsnwcM/E+EKKXLRR7ZiaGOr1zpHtbSe0j+MfqT8kqW3QWWYDpFVgllluBBF4TXk/2hJFw+Gg7mAPPsgPpTrJ7DyIbVehLIW1rKA3xyxbdIFJfFtIOZ8Ifgp99bJEVXtAdRuaIfLPAIhfQ5RYyjH9Z2E0NFyPBBt0L7myKtVxIYNu5yb6aHc+TXjZmxnZlqSGea4xtp06fP8XTb0ArQ+/30GjeuxHt4v0eal1IaQndz1gtrdkiC44Fv1zRa2K5d4JRvuBiAN2+4rHmxFhdsJ09wRPbmcgNU55X0rOF4pzinOJcAXBO7wsPxeZ6bguTNXjON+AjyVmZ/WD5yqW5y/i+F/2WrWK61+xKVtHqPbh3Xcp6elGc/Z0dTDFrFrM4pvqRLWPEMnFmeI2/sUW3sRPwsxOV28KtSJUHpFoln7EP710ln5HGtvVkNDSToSf8fMSmnvD1hP/vTvis/50gZphkvIu8VyrWKdYp1hUH6/SesNgv13NLyK6C5jT+b06DLToSDV3NZ+Qin7GTyWek25rbyA9mrfbXGrua3ci9B+mJX0/8euLP69751N8vuTRRqrkNRTpFOkW6oiDdn9wSdD2Wr8fjbxbm/jcUPJ33q+lk5TQbotmQ5x5XT8+GvHp0NkTXIz84t1oGZS+HGRRGqtX+x/I36N6woo45AAA=
+(Assembly=$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri) Namespace=SIPLib.SIP Type=UserAgent ObjectInstance="Object instance 86")
+CallUA : UserAgent
+new UserAgent(this.Stack, null, false)</generationState>
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="a5e47263-8447-4edd-8d94-00c7e55748a7" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <lostFoundTargetMoniker Id="14e973c2-4b3d-4eed-8f1a-c551190957e9" LastKnownName="LostFoundTarget" />
+            </receiveEvent>
+          </message>
+          <message Id="8f008ef0-fb8d-4e4c-b41e-3bdd8e8a9334" name="Create Address" messageKind="Lost" messageSort="AsynchCall" createSelfMessage="false">
+            <referencesInternal>
+              <reference Id="80a5f796-de95-4e61-b39f-b51f1c1ce4eb" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=SIPLib.SIP)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri)&amp;quot; Namespace=SIPLib.SIP Type=Address)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri)&amp;quot; Namespace=SIPLib.SIP Type=Address Member=(Name=.ctor OverloadingParameters=[(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&amp;quot; Namespace=System Type=String)]))&quot;)" tag="DGQL" />
+              <reference Id="9898da2c-7f1c-4eb4-8453-52a13d5a0348" handle="(Assembly=&quot;$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri)&quot; Namespace=SIPLib.SIP Type=Address Member=(Name=.ctor OverloadingParameters=[(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&quot; Namespace=System Type=String)]))" tag="DGML" />
+            </referencesInternal>
+            <generationState>H4sIAAAAAAAEAO2YTW/TQBCG56dYOaD2QCwhQAgapCilNKK0FWlPCKGN4waDk4Y4Lg2/nmfGdmqnLgmHIqgsK97d2fl8ZzxeZ08GEspcInESc//JaiQ9W8VywI6TCbTXsidn8gWORD7IJddCPOnD25GW7EgXegLfRIbILaFewBtDeSm+XT2bnRvXnLuPnkgCdDrWI9b7aA0kNXtT9CvPW3gWcgh1aDoe428mMbN5ZOMRo+4P8Oh0tRoyTk1vyDyV8RpHG6sapSfHeZQJ2hw+hPhf5cxWHhgs4dH9LtIj/Agt8l1QuNk9JpIRY4NPPT5aXwvGMRHNoRU49XLcBha3ouXkM9SYUbWojiPmQ/Zik6haaVlNJlCnaJqiecKYQlHeA6tqxbdl9dyHI8EPx6gxNfXc1PO/V88n7H5lHWBhvWILOy+4Mn/Uxsy8cOZJVfsZtNTqP3tODpk7+Ms2qnz6nBT9PkHKN4p/y5OMuv6GKEt7q9k7+JdNHVnknrzPo9foOiBS6OwgrfnQXGoVXBlHzNohrx6O0exWb+hFjk9HPtbi+ki+E4vi/+oOjE+Rv0RrptGjX2Zc6uWOXFNjz6l7xT9EQ2gxFJ2zai8yKZ/YNFOqNeF3gW2/dKb4YbF9g9Ym6jdgVLd3JU/Zf8ZsgpbA6HElD+XI7srJ0qo1tLhucjGANs+x3JVP/LwaTPv2DGtlRYZclilX0w+a/tjU9UOs6z85BzT52JSP+zk5uFsnh4d6Et43LLO+sbmrlbnb3K8tvk0drixVzaTydFnNftvjepa1gMo6B41+0+n+WqdrOtb/0rFSs7D9N86Trb5xyr3tfr5yyl83/tb/n/0Cnkg7tWoTAAA=
+(Assembly=$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri) Namespace=SIPLib.SIP Type=Address ObjectInstance="Object instance 88")
+RemoteParty : Address
+new Address(uri)</generationState>
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="a3d86917-766b-4277-8108-7bce0144ffe9" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <lostFoundTargetMoniker Id="4d8f080a-9c93-4f6f-8758-a6a1a7f0f591" LastKnownName="LostFoundTarget" />
+            </receiveEvent>
+          </message>
+          <message Id="053ce48a-e7e5-4edc-b1c6-df4848f0c5d9" name="CreateRequest" messageKind="Lost" messageSort="AsynchCall" createSelfMessage="false">
+            <referencesInternal>
+              <reference Id="5b12380e-99c5-4986-9be1-0d0addbbaa6f" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=SIPLib.SIP)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri)&amp;quot; Namespace=SIPLib.SIP Type=UserAgent)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri)&amp;quot; Namespace=SIPLib.SIP Type=UserAgent Member=(Name=CreateRequest OverloadingParameters=[(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&amp;quot; Namespace=System Type=String),(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&amp;quot; Namespace=System Type=String),(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&amp;quot; Namespace=System Type=String)]))&quot;)" tag="DGQL" />
+              <reference Id="199b1280-d82f-4545-aa2c-61ad77d9f431" handle="(Assembly=&quot;$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri)&quot; Namespace=SIPLib.SIP Type=UserAgent Member=(Name=CreateRequest OverloadingParameters=[(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&quot; Namespace=System Type=String),(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&quot; Namespace=System Type=String),(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&quot; Namespace=System Type=String)]))" tag="DGML" />
+            </referencesInternal>
+            <generationState>H4sIAAAAAAAEAO1abW8SQRCen3Lhg4GkcqmpWrWYEGotsVZS2k+mMQdcKXq8lDtQ/PU+M3sHe7wERKGUTJpj32ZmZ56Znd296wlVyac+tcijAL+/0WpQSVoBnWHEozb63tMJXdM9KEK6oi7+InKoDNoCZShLRfSHoGtTDXwj9N6BNkDPW3LlryS1G6Hq49eFnBbVIdNDu4H2KaTWaSDzdSCfaT6CJqJz9NZExnPoazh6Um9JeYGSx6vQqDJu1VB2RK6P+oCaUxR5zMpWOnQZWxlCmgcdfOifpjQtBxiMQMPjiSVFyDX65oDEhOIS1jRQKkaLMeI4i1A2YVUffQlWpRi7qtjOiHn0Db0BSsaQZVygXsNYEHOYiL3BXBmJzBC1DuR0ILeNcoAepjwTStYrI1FdBkUILTyUbJVGtUb1rkb1F4x9x2gd8qfjNpnlmF7F2vAMPdHBEz3Ssu11YNbLOeoeOOxZmPIa3IPxekmyf5hqOePaJ1CONDbGseHQ5xgB7i+Al+1h7CuicQTeXOwDXVPr4Ka5aYJjEdwN6OGL5ZvKS/N8sc+77qmckIcy23IP2tR5/P4S+5Z50+ayPWpoimj1ZtZEdiy1IIgOxUJfdgojKQAOHhBhjZuxtwxHFGNXoK9zMX9GD7CNM/q7BfhXwN+FVCPRgY8NVYh6FlbzTpQT3/iQ4EtUJt5Oz9cSLhfWsRdZaojnDnO71h3kp8TtD/TlYfcHYDRvbEhHGH+JWhtS6tIfpFaWbdkiv4wkOn2xy/ZFJF5iLHN0i8eRPi+mNbHGiB7SAb2In0n9VjPWjmWs1U5Ur7d0onKALPe4M7qY3oRST17rnCCupNWViNKz1/9CTnPZtnPZfG/s8/nrMf2mcf34cb3aLn28g7u0O/W+ZBHP9Lt13eHX2afs+1BJ4tXEJkfWg/gyFC69HW3+dnSguCluW7+Nz67hsuxCnC1agpzJFGb8XvYovQFoZn1Kka4ZQnF7Spn1b25S6o1l3tjM3cv22j6/SdAvObqm/u1LzpH1RedQnnW+6qhPdiPPrfZm6c1Ovlla9T83/wAKTeuE5CkAAA==
+(Assembly=$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri) Namespace=SIPLib.SIP Type=UserAgent ObjectInstance="Object instance 86")
+CallUA : UserAgent
+this.CallUA.CreateRequest("INVITE")</generationState>
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="a62d9e56-f0a6-40e8-8778-e58706df9e9c" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <lostFoundTargetMoniker Id="c9cfa259-5553-4041-a616-94f58fbbecee" LastKnownName="LostFoundTarget" />
+            </receiveEvent>
+          </message>
+          <message Id="a440b432-29f6-4d8c-a07b-e7eae35090e6" name="SendRequest" messageKind="Lost" messageSort="AsynchCall" createSelfMessage="false">
+            <referencesInternal>
+              <reference Id="887affa0-22e4-4e37-acbd-8fdfcc86850b" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=SIPLib.SIP)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri)&amp;quot; Namespace=SIPLib.SIP Type=UserAgent)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri)&amp;quot; Namespace=SIPLib.SIP Type=UserAgent Member=(Name=SendRequest OverloadingParameters=[(Assembly=&amp;quot;$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri)&amp;quot; Namespace=SIPLib.SIP Type=Message)]))&quot;)" tag="DGQL" />
+              <reference Id="3be87d2f-c676-424b-b374-a79c06eca92c" handle="(Assembly=&quot;$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri)&quot; Namespace=SIPLib.SIP Type=UserAgent Member=(Name=SendRequest OverloadingParameters=[(Assembly=&quot;$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri)&quot; Namespace=SIPLib.SIP Type=Message)]))" tag="DGML" />
+            </referencesInternal>
+            <generationState>H4sIAAAAAAAEAO1abW8SQRCen3Lhg4GkcmrUVi0mhFpLbCsp7SfTmAWueHq8lDtQ+ut9ZnbvuOMlEGwByYbc7e7szOzMM7Nv1x5TnTwakE+KArwf0GpRRVoBnaJHUQe0j3RM1/QDHCFdUQ+/iByqgrdEOcpTGfQQfB1qQG4M6h14A1Dekyu/itRuhGuAtws9PjWhU6HdQvsEWps0lPG60M88n8ET0RmoDdHxHPZqib7UfSnPUXJ/HRbVklYDZVf0eqgPqT3FUcSo7KVDl8bLENoUbPBgf5ZTtxxgMAYP98eelKFX21sAEhOOS3jTQmkxWowR51mEsg2vBqDFWFUMdnXxnRFT9B3UACVjyDrOUW+gLzASOmNvMFZOMjNErQs9XejtoByCwpynwsl25SSrq+AIYYVCyV7ZrLZZvatZ/RV9P9HbhP7pvI1HOaK3xhoeoS82KLEjqzs9D/R8OUNdQSI9CnNeQ3qYzJd49Q8zLSepfQHn2OZGkhsOXRgEmF6CLPvD2NfE4giyBRMDO6fWwc2uTRMcy5BuwQ5PPH+qdWleLPZ51z2RE/JIRlsewTR3Ee8/4t+yaKal0hHVPGW0+jNzIp9oLQmiI/HQk51CawqAgwIibHHbREtLRAa7En2bi/kzuodvvKJ/WIB/DfI9aNUaHcRYc4Wo5+E170QFiY0HDZ5kZRzt7Hi+SLnwjqPIWkM8dxjbTd1Bfkve/gKtCL8/AaN5fSN6jf43qHWgpSn0IDOz0p4tistYstMTv9KxiCRKjGWBbvE4QlOGV+caI/qSDuiVeSb1W7ti7diKtdqJ6nBDJyoHyDLFnbFFU2NOe/Ja5wRxJa2eZJQ9ez0WcnYt2/RaNj8a+3z+2mbcbF5vP69X26WPdnCXdqe+lyySmf62bnf4dfap9H2oLjwtyap7iWMoEv9+M9p3nC/MPFeCc3zPmUWoKvOb/fEFEx2DQQZve7qyWfu/Zq09ASxG92lOANko2BPtpladiiCvo/j4K4/9krjsS+KBxc3ituEv13aP284e56f+TrPq3fYdvdjJu+2q/zv2Fw3MallmJgAA
+(Assembly=$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri) Namespace=SIPLib.SIP Type=UserAgent ObjectInstance="Object instance 86")
+CallUA : UserAgent
+this.CallUA.SendRequest(invite)</generationState>
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="6a51ecba-4d98-4709-9360-54c3591e00fb" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <lostFoundTargetMoniker Id="b2dc3204-c41c-423c-9a29-1d130cb1632d" LastKnownName="LostFoundTarget" />
+            </receiveEvent>
+          </message>
+          <message Id="e63dc201-5ac7-4e8e-b118-4f28e30b1ed6" name="&lt;&lt;return&gt;&gt;" messageKind="Complete" messageSort="Reply" createSelfMessage="false">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="98dc6622-5721-45da-8420-5c8b1637f1b4" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="7d2aed91-e46c-4586-8138-c8336589d869" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="b6fa5d70-87dd-4eed-a996-700bc46b21c0" name="EndCurrentCall" messageKind="Complete" messageSort="SynchCall" createSelfMessage="false" signatureText="app.EndCurrentCall()">
+            <referencesInternal>
+              <reference Id="5bf88135-84b8-49ae-b62f-de6174c22fa5" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=SIPLibDriver)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(ea718996-0383-4d9c-baeb-51461c113c44.OutputPathUri)&amp;quot; Namespace=SIPLibDriver Type=SIPApp)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(ea718996-0383-4d9c-baeb-51461c113c44.OutputPathUri)&amp;quot; Namespace=SIPLibDriver Type=SIPApp Member=EndCurrentCall)&quot;)" tag="DGQL" />
+              <reference Id="bed89f0a-c3b3-460c-ae36-0357713ece1d" handle="(Assembly=&quot;$(ea718996-0383-4d9c-baeb-51461c113c44.OutputPathUri)&quot; Namespace=SIPLibDriver Type=SIPApp Member=EndCurrentCall)" tag="DGML" />
+            </referencesInternal>
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="4dbae63a-bf50-42fd-ab35-be78e0192af3" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="7d9a559f-7f4a-4861-b03f-1bbd0944679d" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="12cbae8c-9bea-4533-8996-2eb79941fae9" name="IsRegistered" messageKind="Lost" messageSort="AsynchCall" createSelfMessage="false">
+            <referencesInternal>
+              <reference Id="eeef428d-aaa7-4b17-850a-9155ae7e8030" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=SIPLibDriver)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(ea718996-0383-4d9c-baeb-51461c113c44.OutputPathUri)&amp;quot; Namespace=SIPLibDriver Type=SIPApp)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(ea718996-0383-4d9c-baeb-51461c113c44.OutputPathUri)&amp;quot; Namespace=SIPLibDriver Type=SIPApp Member=IsRegistered)&quot;)" tag="DGQL" />
+              <reference Id="b24f835f-233b-4947-b553-77c31981a730" handle="(Assembly=&quot;$(ea718996-0383-4d9c-baeb-51461c113c44.OutputPathUri)&quot; Namespace=SIPLibDriver Type=SIPApp Member=IsRegistered)" tag="DGML" />
+            </referencesInternal>
+            <generationState>H4sIAAAAAAAEAO1cbVPaQBDen8L4oSMzLRSpL221M9SX6tQqI/qp43QiAlIBrUFb+uv77F4CIUAJkEACO0xI7rK3d/vs3t6TI7pLJarQE9XJoga+/6J0S/tSatAR7ljURN0n2qVLuoOETRf0gE+bUnQC2T1ao3UqoN6GXJNu0K6D2ipkG6j5QFn57MvVlUg94TsLPXUqQ6eF8i3KB9BapmfprwX9LPMFMm06Ru2N6HiD8ZoWj3Jdl/Mpzny/hBEVndKBWPUivWVRrkMn91HB9TPV/iOdwfcfHCk6c6y30YuFsVVg16hWKeDTgVxPpoDSI6WBT+/eGWy8xVmRmxQ5jsk2zjXY+oQ6F8F9B9GSIMI4WvQDtQ2cGVnWcYrrG9xrSAtLtK9J/NroqwUNLWhs4vyMGpY5khnAiK9J7J9Awkb/Fs5lsVA9qLGf5Ng/R+1P1Jeh2R/drv4NyjvjYN2P0rslI+jX6p0tZlYd45r78vbCkpdo/dydVe5KYveVUt2rr5DsaKyMiZUUfXNwYam9rrc+YxRVfLg27XhGZ154aE6S117RL7TnmP44Auki9D7ATsO4UphTRsrG9Trs26Et9MteqDijqHTXov7+6tIqCzvYX6zVxlFF31kPo/sts/kedRlYcAhrht17oXe4v4mrJrSUpb4hWGZgLXNEr2WjPNCR7FIRu3qor3el94BuRyTYlicZRweWcj66x90c6osSRSbSejrcdunIMuYw/yt3mP889EZLRtaTB2l97uhpoGwBDx5vzYkWI992kNuj77FEfDzK7lwbj2zGKXlRvRQkWtKGMTPrfRXXabrGkUKbtjNfXIsYqxy9BgNwj2vNepr1ArLGrRizRo3JwZjsRZ8/656KbTW0uQvAIRXb2bDV3Dob1ieSJ/PIQLPkRV4NOd9w9hnMjF6vKQ9UHrg6PHAHRx5HTrlggvKVTeZXnaDsbZPezom9pYAp12QHxmJqXcn+kh24je4nhrUD5s8bupsYNpZJ+o1kketUVE+7/h6XmdnFxX8a64uI9Ybgw/E7POqD7fDkYrzDs7oxM7jamDbxX6/jitlqPeF4n1Ome7rhfvhJm33A8XEvJbvPFwaFttx/kDw0DPHJMt4hcOJYHLa2G33LvKLHle3qXs2i9mrMPs3q7tUseyYLxtJ2ArG0HveKfh9Hudy0vMQbhcrnZsFNM2H4mXA0yuE9uXr7iJLNqc8n9/n8mJ96J5h3CtB8K7axRUeisS4YpsELFdlw4r7H+BTTaJj09cBbbrpuJ3vdDvLskqftGP4KrU8v07LwY5kV+uQyPWaa/abLfv3v2xR9vCiqnOf6Tnedddd5GXJTsF3nd86u84buPic6e1l9vQTnbMH2m5WzxXOO+/NokZLytl9cMVutrJfM96NdjylTU6a2DBlpcqa2scJMLZk5a9L3NfP0PobMTP+mY3GZ12QH3pWNP7tLCob6Xrsft1EIhfnbgtuD8rfF8rcL8WfdWRP1t/6o+IVhBgbL8Vxv9t24Rcf+smQquy9TBWFtW7qftsS5058vryCnXCx8NDXX9RB0LSlArxlvVNlumD+WmaEt2nMa3XGI7iCr+vbc/nY2ir0Y//+AN7UlQWH8/5D/B6MgvKJuXgAA
+(Assembly=$(ea718996-0383-4d9c-baeb-51461c113c44.OutputPathUri) Namespace=SIPLibDriver Type=SIPApp ObjectInstance="Object instance 23")
+app : SIPApp
+IsRegistered()</generationState>
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="d90c8f15-7415-463b-9262-084ccb6ca170" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <lostFoundTargetMoniker Id="3ba2eb58-a742-4f6f-9c51-158afbdbee41" LastKnownName="LostFoundTarget" />
+            </receiveEvent>
+          </message>
+          <message Id="567d456b-e342-4b0f-bc53-a841cc6fb198" name="CreateRequest" messageKind="Lost" messageSort="AsynchCall" createSelfMessage="false">
+            <referencesInternal>
+              <reference Id="6979ba09-47a1-4e3f-a0df-1c0ec075fe1b" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=SIPLib.SIP)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri)&amp;quot; Namespace=SIPLib.SIP Type=Dialog)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri)&amp;quot; Namespace=SIPLib.SIP Type=Dialog Member=(Name=CreateRequest OverloadingParameters=[(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&amp;quot; Namespace=System Type=String),(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&amp;quot; Namespace=System Type=String),(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&amp;quot; Namespace=System Type=String)]))&quot;)" tag="DGQL" />
+              <reference Id="1ab8a67e-8693-40cb-bae6-7f87797ab909" handle="(Assembly=&quot;$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri)&quot; Namespace=SIPLib.SIP Type=Dialog Member=(Name=CreateRequest OverloadingParameters=[(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&quot; Namespace=System Type=String),(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&quot; Namespace=System Type=String),(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&quot; Namespace=System Type=String)]))" tag="DGML" />
+            </referencesInternal>
+            <generationState>H4sIAAAAAAAEAO2Z+28SQRDH50+59AdDk8rZRo2PYkKgtcS+UupPxpgrr54eD7mjSv96PzO3wEFBaoyGpheyd7uz8/zOzi4s+1KXlgwllEAinreMmlKxUSSHzATShfZO9uVSruGI5UL6fBLxpAZvSbakIGXoMXxduUJuDLUNbwTljfj2qVjvo3ENefroCaWBzoBxk3EVrQ0Zmb0e+pXnPTyJHEG9Mh1P8TeVGFg/tPcxb52v49G5G1Utqhuz5jMO0ak2WvRH0vkNd5HnT5onpy76GCsBvrWIa5WUBz5j+GY8ZUYD6CcOF+UqyQF+KMIjRkMX6QRvD8mEfmIS6VxJPsmu7Fjbc+9Z+yzb4D+zfQqGTd6bnJn12ShiNcVjXQaKbpRFv+pWcx+98+hUHLYd5obQJihVHGp1i1qxCuQL1Ii3oqc6julrDiOTaBqtxlyZSPq0MVJ9Yolt/tA8UES3rHZqcMSW255FkddOXjuPu3bOoHyF1kDrYnVMdL/mk/qgegdmOTDr8xqz1ZZW5RH9AImsFeW8RHo0rcrJSRYj5RvFv+NLSl08+7LS3rT3Af5xvnbQu1i5hanGEj4PLTu6mi5o3y0jsSF55nYE1RLgjfrbwU4w/SaSOLS0tpeh/MT0aTberkD8HHn1MdXosXpSLl0FBXavV/KSte+bb22z1pru2vP2QpPyiVXzplpjWhvbfua70w9bt9+gFUHhAMSWzd3Ic+Zf0OuipWH0aC4r2chWZWhsOLYsruyemthu27Oq3slxy3H7j7jpOestqeGanRu6r4WGXLpTpPPXdqpsu/388Z7Hk0jK6E39zXfWzV3p+Q6R4/aQdtY/+eWTZ2NdNv7Nr6Vs1vI7h4d753D3/mFG2/urO4m8MjejMu9zo7Erz8j2ZtxpZO8y/Hv/D/ALWY+BIzIYAAA=
+(Assembly=$(ea718996-0383-4d9c-baeb-51461c113c44.OutputPathUri) Namespace=SIPLibDriver Type=SIPApp Member=EndCurrentCall Statement=[1,1,2,1,1,1,1] ObjectInstance="Object instance 99")
+d : Dialog
+d.CreateRequest("BYE")</generationState>
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="9ee06f94-e153-4473-bbe7-fc9e42516e5c" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <lostFoundTargetMoniker Id="43a742de-c286-45e0-8e02-f33f1120e93a" LastKnownName="LostFoundTarget" />
+            </receiveEvent>
+          </message>
+          <message Id="5e106a1e-366a-4fdd-abec-bb306a9cf0b2" name="SendRequest" messageKind="Lost" messageSort="AsynchCall" createSelfMessage="false">
+            <referencesInternal>
+              <reference Id="c4bed2e4-4a68-4205-afac-3322793f1dd9" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=SIPLib.SIP)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri)&amp;quot; Namespace=SIPLib.SIP Type=UserAgent)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri)&amp;quot; Namespace=SIPLib.SIP Type=UserAgent Member=(Name=SendRequest OverloadingParameters=[(Assembly=&amp;quot;$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri)&amp;quot; Namespace=SIPLib.SIP Type=Message)]))&quot;)" tag="DGQL" />
+              <reference Id="61263d51-9ce0-4918-8409-eee4fbaf3307" handle="(Assembly=&quot;$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri)&quot; Namespace=SIPLib.SIP Type=UserAgent Member=(Name=SendRequest OverloadingParameters=[(Assembly=&quot;$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri)&quot; Namespace=SIPLib.SIP Type=Message)]))" tag="DGML" />
+            </referencesInternal>
+            <generationState>H4sIAAAAAAAEAO2YWW/TQBDH56NYfUCJVGLKJY4GKUpaGvVUU54QQk7iBINzEDuF8On5zdhJ7NC0fYBSiGXZuzs75392vGvvSkt8mUggnoQ8fzDqSt1Goewz48kA2hvZlQv5BEck5zLiisWRJrxV2ZKS1KBH8A2kjdwMag/eEMorce2qW++dcU14uugJpINOj3GXcQOtHZmavSH6lectPLEcQG2bjof4m0iMrR9Ye0Sr8y08OktHDYvq0qy5jAN0qg2f/lT613BXeH7nduQkjT7CiodvPnGtk3LAZwbfkqfGaAz9OMVFuaqyhx+K8JTRJI10jreDZEw/NolkrirvZUe27X6ctsv7g5TBf2n7BAy7tPc5Mzdno4LVBI+bMlBJR1n0G+lqHqE3j049xbbP3ATaHKV6ilrLolasPPkINaRV9FTHEX3NYWgSXaM1masRyYh7htSIWCKb3zcPFNEtq50mHJHldmhRFLVT1M5m184plM/QOmhdrY657pdciQ+qd2yWPbOe15ittqQqD+h7SGStKOcF0tNFVc53sggp1yjuL74k1NW9LyvtLHqH8M82du3MI6mhN/F3tX5LC71VO3doNZ/TfrWcRCZxmr4TdA16zKvHfSx5i7NInOKl1b2JOB8bfwS/4ly295hzBUJNq0uNJzBMkhxMcniX04rZ3DdesWr/1VVb7Nvr0f0zO3c+C//zCfguz1nXvW/qhnmSv9//znlg+vTk8noN4mfIq4+JRoesJlx6Yipx0n8hz1ltrvnWM2v+Ir95e4FJucSqeVOtEXcP227mP8M3W6NfoFVAYQ/Erpq7lKfMP6M3QEvH6GEuK9nI1mVoZjj6Flf2+yO2L5OhnYC3C9wK3O4QN90Vi93t7+xubaT9W3+b7sgjeXJPvk6zX6Xurf/o/gQ1RuuW/BUAAA==
+(Assembly=$(ea718996-0383-4d9c-baeb-51461c113c44.OutputPathUri) Namespace=SIPLibDriver Type=SIPApp Member=EndCurrentCall Statement=[1,1,2,1,1,1,1] ObjectInstance="Object instance 99")
+d : Dialog
+d.SendRequest(bye)</generationState>
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="2da72663-2918-4ecc-ade2-cf82ba32f9d6" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <lostFoundTargetMoniker Id="172b0b62-4cf4-4b97-a749-b2958170e618" LastKnownName="LostFoundTarget" />
+            </receiveEvent>
+          </message>
+          <message Id="df8e6e66-317e-450a-8c93-8e60aefd78b4" name="&lt;&lt;return&gt;&gt;" messageKind="Complete" messageSort="Reply" createSelfMessage="false">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="bbe3e738-9392-4091-9ee0-3a2e6a17e943" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="d1a17040-580e-4055-aa9b-4da53495856a" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="7561cabb-d750-4eec-ae19-4d724cfbe9cb" name="Message" messageKind="Complete" messageSort="SynchCall" createSelfMessage="false" signatureText="app.Message(&quot;bob@open-ims.test&quot;, &quot;Hello, this is alice testing the SIP library&quot;)">
+            <referencesInternal>
+              <reference Id="47cb79a3-d5df-4cb0-9c58-d0e53406eea4" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=SIPLibDriver)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(ea718996-0383-4d9c-baeb-51461c113c44.OutputPathUri)&amp;quot; Namespace=SIPLibDriver Type=SIPApp)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(ea718996-0383-4d9c-baeb-51461c113c44.OutputPathUri)&amp;quot; Namespace=SIPLibDriver Type=SIPApp Member=(Name=Message OverloadingParameters=[(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&amp;quot; Namespace=System Type=String),(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&amp;quot; Namespace=System Type=String)]))&quot;)" tag="DGQL" />
+              <reference Id="f2eab587-ae67-4046-a55e-ce5229a56dde" handle="(Assembly=&quot;$(ea718996-0383-4d9c-baeb-51461c113c44.OutputPathUri)&quot; Namespace=SIPLibDriver Type=SIPApp Member=(Name=Message OverloadingParameters=[(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&quot; Namespace=System Type=String),(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&quot; Namespace=System Type=String)]))" tag="DGML" />
+            </referencesInternal>
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="28ae2e7e-8594-46ec-a114-acd964563ea9" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="862e13f3-f99b-46e6-8572-f281637880fc" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="11f02f84-c3de-4492-b7de-d761323648b1" name="CheckURI" messageKind="Lost" messageSort="AsynchCall" createSelfMessage="false">
+            <referencesInternal>
+              <reference Id="c9ccd577-10c0-437c-a559-7f4da40fe261" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=SIPLibDriver)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(ea718996-0383-4d9c-baeb-51461c113c44.OutputPathUri)&amp;quot; Namespace=SIPLibDriver Type=SIPApp)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(ea718996-0383-4d9c-baeb-51461c113c44.OutputPathUri)&amp;quot; Namespace=SIPLibDriver Type=SIPApp Member=(Name=CheckURI OverloadingParameters=[(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&amp;quot; Namespace=System Type=String)]))&quot;)" tag="DGQL" />
+              <reference Id="81038106-dc99-4fda-af4a-263834791fe1" handle="(Assembly=&quot;$(ea718996-0383-4d9c-baeb-51461c113c44.OutputPathUri)&quot; Namespace=SIPLibDriver Type=SIPApp Member=(Name=CheckURI OverloadingParameters=[(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&quot; Namespace=System Type=String)]))" tag="DGML" />
+            </referencesInternal>
+            <generationState>H4sIAAAAAAAEAO1dbVPaQBDen8L4oSMzLRSp1r7YGWtrZWqVqfqp43QiL5aKLyVgS399n91LIAlQAiSQhB0mJHfZ27t7dm/vuUvEt3RGDepQiyxq4/svUnU6kFSbDnHHolvkvaO3dE4/IGHTV7rHp0s5qkB2jzZok/aRb0Pulq5Qro/cJmTbyHlNRfkcyNWFSHXwXYSeFtWg00K6jvQHaK1RT+q7g36W+QSZLh0h90p0PEN7TYkHuW7J+Rhnvn+GFlWd1Afp1aPUVkS6BZ1cRwPXPbr+j3QB339w5OjE6b2NWiy0rYF+TSqVAz59yA1l9pF6oDzwGd47QR/rOCtysyLHPtnF+Rp97SDPRfDAQfRMEGEcLfqO3DbOjCzrOMb1Fe61pYQl2jfEf23UdQcNd9B4i3MPOSxzKCOAEd8Q369Awkb9Fs416aFaUH0/zb5/ityfyK9Bc9C7Xf1bVHbawbofpHZLWuDX6h0tZlQd4Zrr8tbCkuco3RuMKncmsX2p3ODqMyT76itTfCVHXxxcWGpvYK33aEUTH87NO5bRkRcdmrPEtSf0C+XZp99MQLoKvffop2FcOYwpI2XjehP926Ud1MtWaDitaAzmIn99LSlVRD/YXqzVxtFE3UUPo/sto/kGeQX04CN6M+7eI73A/W1c3UJLTfLbgmUBvWWO6O3ZJAv0Jbo0pF9D1DcH0ntAty8S3JeOtKOPnnI8usHdEvKr4kXG04Y63HL52CLmOPsrd1j+OPR6S0Hmk3spferoaSNtAQ9u77XjLUa+6yC3R98Sifh0lN2xNh3ZgpPyonouSNxJGcbMzPdNXOfpEkcOZbrOeHF7xFiV6CkYgHtcatTTqBeSNe4kmDWqT4765ND7glH3WPp2jTI/QnBIxXYxbDW2LoZ1ReJkGRFokbjIsyHHG44+o5HRazXlgcoD14cH7uIo4ygpF0xRvLLJPNUJy9626fmS2FsOmHJOcaQtJteV9Kfs0GV0PzGqHbBg3NDdxKixTNMzklXOU3GtdoM1ZpnZJcV+6uur8PW24MP+O97rw+3wlBK8w7O+PjM625gyyZ+vk4rZeq1wvOuU+VY3XA+vtNkG7B83krJ9tjAodOX+vcShcYjPFvE+Aif2xXFzu9GX5Rk9qWxX92pWtVdj9mnWd68m65EsHEvbDcXShtwr/n0c5XLz8hKvFyqfWwQ3jYTRR8LJKEe3cvXWESebU5vPbvPlMT+1Tjjr7ENzXfrGPToUjS3BMA9eqMhG4/dDxqeYxsOkL0fectN5O93zdpi1S5leJvAptK5e5mXhRzIqdOUyP2Ya/eaLfv73baoBXhRXzHNtp7vOuuuchdgUbtf5hbPrvKW7z6mOXpavlvCcLdx+s3K2ZI7xYBytUlre9ksqZusV9dL5frRrMWVqytSyEJFmZ2pba8zU0hmzZn1fs0yvEsjM9G86Vhd5TXTgXdnks7u0YKjvtQdxm4RQlM8W3BqUv62Wv30Ve7acOVGf9cfFLwwzMFhO53qL78at2vezEqlsX6QKw9p2dD8tw7EzGC8vIKdcLHo0NdYNEXR7sg+9pr1xRbtx9sgyQ1u15dS7k+DdYWb1l0v729k49mKCvwGvjCCe1dSBeCKzxQugUdHV1BJXU6OYViQ+sOe1BDljr56UVM6m/r5+/q5PiaK0Qzwsxdgry6x7lZEt6LOTY9sXXHHLNKbF/4vK3nE1668q+8fk9L3VV2v+lmPao2KY1VoJn2X9D5TZ1mtnYvHp/7frH9II8STiawAA
+(Assembly=$(ea718996-0383-4d9c-baeb-51461c113c44.OutputPathUri) Namespace=SIPLibDriver Type=SIPApp ObjectInstance="Object instance 23")
+app : SIPApp
+CheckURI(uri)</generationState>
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="322523c7-a954-4f89-b734-e8bca1d6fb7b" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <lostFoundTargetMoniker Id="34cc1c1a-ad3b-410a-a8c2-5bd795ea12b2" LastKnownName="LostFoundTarget" />
+            </receiveEvent>
+          </message>
+          <message Id="ae586fe5-21f6-4cc9-96a0-2cb4a659d053" name="IsRegistered" messageKind="Lost" messageSort="AsynchCall" createSelfMessage="false">
+            <referencesInternal>
+              <reference Id="5c568e9b-af29-4dba-aade-65fcbf3ae76d" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=SIPLibDriver)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(ea718996-0383-4d9c-baeb-51461c113c44.OutputPathUri)&amp;quot; Namespace=SIPLibDriver Type=SIPApp)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(ea718996-0383-4d9c-baeb-51461c113c44.OutputPathUri)&amp;quot; Namespace=SIPLibDriver Type=SIPApp Member=IsRegistered)&quot;)" tag="DGQL" />
+              <reference Id="7a71f895-e58f-4310-a33f-479d94ad7216" handle="(Assembly=&quot;$(ea718996-0383-4d9c-baeb-51461c113c44.OutputPathUri)&quot; Namespace=SIPLibDriver Type=SIPApp Member=IsRegistered)" tag="DGML" />
+            </referencesInternal>
+            <generationState>H4sIAAAAAAAEAO1cbVPaQBDen8L4oSMzLRSpL221M9SX6tQqI/qp43QiAlIBrUFb+uv77F4CIUAJkEACO0xI7rK3d/vs3t6TI7pLJarQE9XJoga+/6J0S/tSatAR7ljURN0n2qVLuoOETRf0gE+bUnQC2T1ao3UqoN6GXJNu0K6D2ipkG6j5QFn57MvVlUg94TsLPXUqQ6eF8i3KB9BapmfprwX9LPMFMm06Ru2N6HiD8ZoWj3Jdl/Mpzny/hBEVndKBWPUivWVRrkMn91HB9TPV/iOdwfcfHCk6c6y30YuFsVVg16hWKeDTgVxPpoDSI6WBT+/eGWy8xVmRmxQ5jsk2zjXY+oQ6F8F9B9GSIMI4WvQDtQ2cGVnWcYrrG9xrSAtLtK9J/NroqwUNLWhs4vyMGpY5khnAiK9J7J9Awkb/Fs5lsVA9qLGf5Ng/R+1P1Jeh2R/drv4NyjvjYN2P0rslI+jX6p0tZlYd45r78vbCkpdo/dydVe5KYveVUt2rr5DsaKyMiZUUfXNwYam9rrc+YxRVfLg27XhGZ154aE6S117RL7TnmP44Auki9D7ATsO4UphTRsrG9Trs26Et9MteqDijqHTXov7+6tIqCzvYX6zVxlFF31kPo/sts/kedRlYcAhrht17oXe4v4mrJrSUpb4hWGZgLXNEr2WjPNCR7FIRu3qor3el94BuRyTYlicZRweWcj66x90c6osSRSbSejrcdunIMuYw/yt3mP889EZLRtaTB2l97uhpoGwBDx5vzYkWI992kNuj77FEfDzK7lwbj2zGKXlRvRQkWtKGMTPrfRXXabrGkUKbtjNfXIsYqxy9BgNwj2vNepr1ArLGrRizRo3JwZjsRZ8/656KbTW0uQvAIRXb2bDV3Dob1ieSJ/PIQLPkRV4NOd9w9hnMjF6vKQ9UHrg6PHAHRx5HTrlggvKVTeZXnaDsbZPezom9pYAp12QHxmJqXcn+kh24je4nhrUD5s8bupsYNpZJ+o1kketUVE+7/h6XmdnFxX8a64uI9Ybgw/E7POqD7fDkYrzDs7oxM7jamDbxX6/jitlqPeF4n1Ome7rhfvhJm33A8XEvJbvPFwaFttx/kDw0DPHJMt4hcOJYHLa2G33LvKLHle3qXs2i9mrMPs3q7tUseyYLxtJ2ArG0HveKfh9Hudy0vMQbhcrnZsFNM2H4mXA0yuE9uXr7iJLNqc8n9/n8mJ96J5h3CtB8K7axRUeisS4YpsELFdlw4r7H+BTTaJj09cBbbrpuJ3vdDvLskqftGP4KrU8v07LwY5kV+uQyPWaa/abLfv3v2xR9vCiqnOf6Tnedddd5GXJTsF3nd86u84buPic6e1l9vQTnbMH2m5WzxXOO+/NokZLytl9cMVutrJfM96NdjylTU6a2DBlpcqa2scJMLZk5a9L3NfP0PobMTP+mY3GZ12QH3pWNP7tLCob6Xrsft1EIhfnbgtuD8rfF8rcL8WfdWRP1t/6o+IVhBgbL8Vxv9t24Rcf+smQquy9TBWFtW7qftsS5058vryCnXCx8NDXX9RB0LSlArxlvVNlumD+WmaEt2nMa3XGI7iCr+vbc/nY2ir0Y//+AN7UlQWH8/5D/B6MgvKJuXgAA
+(Assembly=$(ea718996-0383-4d9c-baeb-51461c113c44.OutputPathUri) Namespace=SIPLibDriver Type=SIPApp ObjectInstance="Object instance 23")
+app : SIPApp
+IsRegistered()</generationState>
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="ab897cff-067e-4174-8e6f-1b2268ec718b" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <lostFoundTargetMoniker Id="e0e3e3fe-0a62-49dc-b83e-81b7752e056f" LastKnownName="LostFoundTarget" />
+            </receiveEvent>
+          </message>
+          <message Id="f37f83b3-9779-4c0b-8c68-fbb2a9b6bdae" name="Create UserAgent" messageKind="Lost" messageSort="AsynchCall" createSelfMessage="false">
+            <referencesInternal>
+              <reference Id="0d17552d-cd2c-440b-bfac-2dcfa58a346a" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=SIPLib.SIP)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri)&amp;quot; Namespace=SIPLib.SIP Type=UserAgent)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri)&amp;quot; Namespace=SIPLib.SIP Type=UserAgent Member=(Name=.ctor OverloadingParameters=[(Assembly=&amp;quot;$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri)&amp;quot; Namespace=SIPLib.SIP Type=SIPStack),(Assembly=&amp;quot;$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri)&amp;quot; Namespace=SIPLib.SIP Type=Message),(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&amp;quot; Namespace=System Type=Boolean)]))&quot;)" tag="DGQL" />
+              <reference Id="f413434f-6fdd-41f0-bde5-3599994f89c3" handle="(Assembly=&quot;$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri)&quot; Namespace=SIPLib.SIP Type=UserAgent Member=(Name=.ctor OverloadingParameters=[(Assembly=&quot;$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri)&quot; Namespace=SIPLib.SIP Type=SIPStack),(Assembly=&quot;$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri)&quot; Namespace=SIPLib.SIP Type=Message),(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&quot; Namespace=System Type=Boolean)]))" tag="DGML" />
+            </referencesInternal>
+            <generationState>H4sIAAAAAAAEAO2Yb28SQRDG56NceGFqYrlgtDZaTJBaS/rHptRXxpgDrnj2oMhBLX56fzN7BweUlhc2aeRyOXZ39tnZmWdnZ7ndk6aEMpRIAon5/UOrI3VrxXJATyA9ZO9lTy7kB4hEzuWaZySeNMBWpSRbUkOegOtJi3ETpJdgYyRvxbenbrUvhhry66MnkjY6A9od2vtobcvY5uujXzGfwIzkEGnLdGxjrxsxsHpk5TGl9jex6GzaalH2TW9IfSzdBUSZWdVLT05TLxO0BdgQYv880rU8OJiA0f7Mkxp6nb3PYWKGOMWbDmXB0WqONM5GlF28GiLLuKqn3DXNd2UskO9IY0rlUHUcU2/RF9uI5ZlKFp8Jkj7a+mjvUY6RKP7AIlzHlCy2GyASRgWU6lsR20VsP+3Y/gziJ+027cXozeaq8LxJrdKZBmZLYPbMz3GBbGy7we2aQ+oB+Pws8zjdNdlJkDDKN4m/ZIuTLp4d+dHetHYEflJE1HSdPTlJGVB5FVYyvVU06Jroemos3Bgiph1gg1rZRXswPb9HKUdV+bqR3DpJ0+KyLVfs1RcbycOJ4RPwGmOrWHgmv5hZd+S7FYyc4cs1Olx8eZynDqWZYEtuZVd20K5shWhQ7sLpyTo/X2SjfCxTXlVrwnvJ3H7u/+dvi/QrZGX8/ohHd/XdyCv6X1ProaVt8niOtbxnqxicWP4Kza8Zcx8sR8WWF/v49o3Xu2OPNSy7ayRExp3buUku8krFv4sizxV5rshzG5Dnii+G+/bm43wvzNbgf/4G3rdbK3cePLxyeXSZ31vz76FVzI9aXskarcG9Z9e5rWeU7rN/c4IVOWs5Z+meGqZcZhnL7TOHdfGmjFY4CfR9mZYVQxeZ6ilkqnVuNHaI3nXuM/K57XFuNPI3Gf7at+h/ASFPLEtwFwAA
+(Assembly=$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri) Namespace=SIPLib.SIP Type=UserAgent ObjectInstance="Object instance 117")
+MessageUA : UserAgent
+new UserAgent(this.Stack)</generationState>
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="62fdeca8-7c1b-4588-81b4-37d3278492e5" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <lostFoundTargetMoniker Id="30ebdb53-aa12-4e7a-8f6d-a5bcbd44e5a5" LastKnownName="LostFoundTarget" />
+            </receiveEvent>
+          </message>
+          <message Id="e4024ec5-b730-4caa-9b25-cd8825e8cd69" name="Create Address" messageKind="Lost" messageSort="AsynchCall" createSelfMessage="false">
+            <referencesInternal>
+              <reference Id="f8a7b0d8-121e-48c6-abb3-c10c58bacb7d" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=SIPLib.SIP)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri)&amp;quot; Namespace=SIPLib.SIP Type=Address)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri)&amp;quot; Namespace=SIPLib.SIP Type=Address Member=(Name=.ctor OverloadingParameters=[(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&amp;quot; Namespace=System Type=String)]))&quot;)" tag="DGQL" />
+              <reference Id="592353ba-ca84-4005-aeb7-0deef5881ab5" handle="(Assembly=&quot;$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri)&quot; Namespace=SIPLib.SIP Type=Address Member=(Name=.ctor OverloadingParameters=[(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&quot; Namespace=System Type=String)]))" tag="DGML" />
+            </referencesInternal>
+            <generationState>H4sIAAAAAAAEAO2Y227TQBCG51GsXKD2glhIFHFokKKU0ohSKtJeIYQ2jhsMThriuDQ8Pd+M7dROXdJeFEFlWfHuzs7xn/F4nV0ZSChzicRJzP0Xq5H0bBXLPjtOJtBey66cyFc4Evko51wL8aQPb0dasiVd6Al8Exkit4R6Bm8M5aX4dvVsdmpcc+4+eiIJ0OlYj1jvoTWQ1OxN0a88b+FZyAHUoel4jL+ZxMzmkY2HjLo/wKPj1WrIODW9IfNUxmscbaxqlJ4c5VEmaHP4EOJ/lTNbeWCwhEf3u0iP8CO0yLdB4Wr3iEhGjA0+9fhofS0Yx0Q0h1bg1MtxG1jcipaTL1BjRtWiOg6ZD9mLTaJqpWU1mUCdommK5gljCkV5962qFd+W1XMfjgQ/HKPG1NRzU8//Xj1/YPcb6wAL6xVb2HnC9SL3SK3MzA9nvlT1n0BL7QnInpQD5g7+spUqnz4pRcdPkPKN4l/zJaOuvyPK0t5q9g7+ZVNJFrkn7/PoNboOiBQ6O0hrPjSXWgcXxhGzdsirh2M0u9U7epHj05FPtbg+kh/Eovi/ugHjY+TP0Zpp9OiYGZd6uSWX8lyeUfmKf4iG0GIoemfVXmRSPrFpplRrwu8M237pVPHTYvsOrU3Ub8Cobu9CnrK/w2yClsDocSUP5chuysnSqjW0uK5yMYA2z7Hcls/8vBpM+/YUa2VFhlyWKVfTEZoO2dT1Q6zru5wEmnxsysf9nB3ctbPDQz0L7xmWWd/Y3NXK3G3ulxbfpg5XlqpmUnm6rGZ/7HE9y1pAZZ2CRr/pdH+t0zUd63/pWKlZuMtXzs6tvnLK3e1+vnPK3zf+rf9D+w1jNF6qbhMAAA==
+(Assembly=$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri) Namespace=SIPLib.SIP Type=Address ObjectInstance="Object instance 119")
+RemoteParty : Address
+new Address(uri)</generationState>
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="b703e9fe-b4ab-4d4c-90b5-384479ae81ce" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <lostFoundTargetMoniker Id="2cc862c4-b128-455a-96f3-bfe9880856c6" LastKnownName="LostFoundTarget" />
+            </receiveEvent>
+          </message>
+          <message Id="e2dc1bec-16c3-4b1b-a517-ecb81204e969" name="CreateRequest" messageKind="Lost" messageSort="AsynchCall" createSelfMessage="false">
+            <referencesInternal>
+              <reference Id="8a81d108-5bfe-4cb8-94cc-bbdab77b6ad2" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=SIPLib.SIP)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri)&amp;quot; Namespace=SIPLib.SIP Type=UserAgent)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri)&amp;quot; Namespace=SIPLib.SIP Type=UserAgent Member=(Name=CreateRequest OverloadingParameters=[(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&amp;quot; Namespace=System Type=String),(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&amp;quot; Namespace=System Type=String),(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&amp;quot; Namespace=System Type=String)]))&quot;)" tag="DGQL" />
+              <reference Id="ca9252f9-e600-4c41-a253-f50dce3fa272" handle="(Assembly=&quot;$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri)&quot; Namespace=SIPLib.SIP Type=UserAgent Member=(Name=CreateRequest OverloadingParameters=[(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&quot; Namespace=System Type=String),(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&quot; Namespace=System Type=String),(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&quot; Namespace=System Type=String)]))" tag="DGML" />
+            </referencesInternal>
+            <generationState>H4sIAAAAAAAEAO1b608aQRCfP+Xih0aTliuGttpqE4K1klJLRD81pjkeKvV4yB229K/vb2bvjuVVkBQ5yIQc+5qdnfnN7Ozj4Igq1KAeNckjH99/UKpTQUo+naLFoxbqPtIRXdIdKAK6oA4+ITlUBO0x7dAu5VEfgK5FVfQboPYGtD5q3pMrn4LkroSqh28XfJpUA08P5TrKJ+Bao76M1wZ/pvkMmpDOUFsVHq8gr+nRlXxT0hJSbq9AonJSqiJtC98G8n26HaPIYFTW0qHzSMsA3DzI0ID8o5Sm5ACDAWi4PdYkD75G3j0gMaQ4hzZ1pIrRbIzYz0Kkt9Cqh7oYq0KEXUV0Z8Q8+oFaHyljyDxKyFfR5kuPryJZgDoe6Qoj7oh/Bsi1wa0N7i2kfdQw/al4OEu3I75dBEUAWTykrJv6tvp2un37Gyh+olzDKOPeG4+VxeddJBWP1BVZPJFndAx7Pph5c4a8hx72OEx5id79ZN7Ea0EwUnKS3BdQDtRHEh9xxJotQb4HipLow9iXReIQffciG+jcWgY3jVFDHPPoXYccJn6sKj5Ns8U2r74nsl9+lNHmW9CmzuD7t+g3z5p2L9uihiaPUndiTuwmXI/H1gxeLQwvH0h4wIRlvo3sZfqEEXrH9H0q6i/oAdpxTP8wwwJl9O+Aq+HowMqGKkB+F3of0Fv4IFunAQ4N8cvY3qPjNaWXCy3Yjsw1wHODsV3rTPJLPPcedRlo/gkoTWt7pBza3yDXApea1Psjc8vWbJZlBuKfDdHLtkYodmIs9+il4rYUbtd4HKnzIlozS9kTs0B1P3qG+WuN9SmL9YvuRg+eaTfqAFuucSekMbUxpe5al9l9XUipIz6l+9b/hZxGs+eOZtOtsc1713XaTf16/X696Dp9mMJ12h27bZrVZ/w9ha7xy6xU9mmyIB5rvJN960FsGUgvPVnqyVJx2y7czIl8cg4XZR3iaNEU5EykMO13skrpGUAj6yZ5ukYIxW2TIutTzlJqjXnWWM3py7baNt8l6HswnVW6NqznPVjOeh+WlWeZd2Jqk3SsEIvdyu3T6xTeyunNmp7/Nnd+61qluKX3/FeTM0NI9u+L03wi0Niqvq4xQnHb1NiqZ6f0n51G7ab3a6u5Xxv33X/dsHkima6pq5lTNtb2/GJ9eiLLANqyR9+DIptEQOOBs+bm/Numw+R2SW+WNic6Glni++6n/OIrl8K7JY5wi/07/S+TnNJjyD4AAA==
+(Assembly=$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri) Namespace=SIPLib.SIP Type=UserAgent ObjectInstance="Object instance 117")
+MessageUA : UserAgent
+this.MessageUA.CreateRequest("MESSAGE", message)</generationState>
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="0250a431-e847-423b-81c5-cf9a0018c3de" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <lostFoundTargetMoniker Id="c57a8fc8-1468-4472-9bbc-d2f014c0ca02" LastKnownName="LostFoundTarget" />
+            </receiveEvent>
+          </message>
+          <message Id="b37aee0f-fd19-4fa6-bb78-99cd619f31ca" name="Create Header" messageKind="Lost" messageSort="AsynchCall" createSelfMessage="false">
+            <referencesInternal>
+              <reference Id="51f2edee-c694-40d5-9ef5-30d143c7392e" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=SIPLib.SIP)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri)&amp;quot; Namespace=SIPLib.SIP Type=Header)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri)&amp;quot; Namespace=SIPLib.SIP Type=Header Member=(Name=.ctor OverloadingParameters=[(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&amp;quot; Namespace=System Type=String),(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&amp;quot; Namespace=System Type=String)]))&quot;)" tag="DGQL" />
+              <reference Id="253f819b-fbe7-4e99-8d49-7a61dcbd1089" handle="(Assembly=&quot;$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri)&quot; Namespace=SIPLib.SIP Type=Header Member=(Name=.ctor OverloadingParameters=[(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&quot; Namespace=System Type=String),(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&quot; Namespace=System Type=String)]))" tag="DGML" />
+            </referencesInternal>
+            <generationState>H4sIAAAAAAAEAO1abW/aMBC+nxLxYSrSSlRWpmorkyq6rmh909J+mqop0JRlC4ERYKW/vs+dHUgoHWxSWdhOKLF9Pp99z53vHIt98iigAYXkU4T3PVo31JBWREfo8akL2jvap0v6Co6EPlEPvyE51ARvnUq0RQegJ+DrUgvjJqDegjcC5Q258mtI7Uq4Bni7kBNSGzJ9tG/QPoTUNo1kvhjymecDeIZ0DGpLZGxjvWZEX+qhlCcoud/Dii6mrRbKWOQGqI+oM8dRwayspUNnVssE0nysIcD685ym5QCDCXi4/xhvHxJYmzIwmPWdQQ+mKzqL0GHfGqLsQJ8BaClKDYuaJ1ozVj59ATVCyeixjBPUW+iLZER2jpJ4YwKkY8iJIbeLcgQKcx6JPzO2JfHkJjgSrMJHyfqoJ6snF8mTz9H3Da025M/7ajrLDlWpZtfDc/RlFb6sJC/9ErSR+L7ZI2a2fm6WPB/vkTTKJxjlCsV9tBZDnc8L2dHOtPYR/BP1IqzFoVOrO7fqwCOVWMdYtkZPuM5pLBwR2jyW19eBXH+alYcWnTp9XojqC/oBTRj9t08gfIHxPUg1Eh1ESsPFVt+iO9qj1/B6Rj+ABJ4tmMbM/HyhjHKhG9uJpSZ4bjG3mzlH/BTdvoNWgdbvgdCivjHtor+GWhdS2kKPclbIavaURSbiq4HoNbOEB9rAYlmml4rbH+F2jcdZ4ItN8XHej6EgZzx8LPmXY0vZRiHNJxoJiuXRGgn+RiT4nZOm2mKZLZ7ndDqz2b/8lXUoOJo4uzwHZLkreN+JfsvyQXZU3orMc4BW/5c54VRkJ2h3ZD7NC5oXioqbyQue7H/Da3Ype+IOUK3ah+s1W86ea80PG5ofVr27eLXS3UU2pzzP7YXeWui3yqbtY81J6/hWiS2P3lloHCimP2scWH8c0BNp8U+kqcX0vkLvK/63HaU5Yb33FVW9r9jg7LDqbcVuAW8r3JX/u/cAMRQZnOYnAAA=
+(Assembly=$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri) Namespace=SIPLib.SIP Type=Header ObjectInstance="Object instance 125")
+header : Header
+new Header("text/plain", "Content-Type")</generationState>
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="63de565b-15e0-43ae-8c8d-138c7a260930" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <lostFoundTargetMoniker Id="792c8ab9-c4dd-4bbb-b902-28cb6640fb72" LastKnownName="LostFoundTarget" />
+            </receiveEvent>
+          </message>
+          <message Id="d67b3e76-99ba-419d-b911-73e96705cc0a" name="InsertHeader" messageKind="Lost" messageSort="AsynchCall" createSelfMessage="false">
+            <referencesInternal>
+              <reference Id="cb1b3e57-cf35-4341-b90c-d449c32a3cf0" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=SIPLib.SIP)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri)&amp;quot; Namespace=SIPLib.SIP Type=Message)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri)&amp;quot; Namespace=SIPLib.SIP Type=Message Member=(Name=InsertHeader OverloadingParameters=[(Assembly=&amp;quot;$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri)&amp;quot; Namespace=SIPLib.SIP Type=Header),(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&amp;quot; Namespace=System Type=String)]))&quot;)" tag="DGQL" />
+              <reference Id="ee2468b3-779f-4eea-97c1-ad667918d95b" handle="(Assembly=&quot;$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri)&quot; Namespace=SIPLib.SIP Type=Message Member=(Name=InsertHeader OverloadingParameters=[(Assembly=&quot;$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri)&quot; Namespace=SIPLib.SIP Type=Header),(Assembly=&quot;$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll&quot; Namespace=System Type=String)]))" tag="DGML" />
+            </referencesInternal>
+            <generationState>H4sIAAAAAAAEAO2ZbW/TQAzH/VGivkCrxBaBGEKwIlWFsYo9aR2vEEJpm3WB9IGmHYRPz89OmiWlRZNgG9BTld6dz/c/+2/nnLR70pFQphJJIDHf3xn1pWWjWPaZCWSI7KXsyblcopHImYz5zMSTNroNqcmWNJEn6A2ly7oU6QW6MZLn4tunZb13pjXl2wcnkh6YAeM+41eg9mRu+43AV5036MzkAGnXMLaxN1sxsX5k7SGtznew6LQYdWlHhhvSn8tgSWOHXdVLT45zLxPQAmwIsb+qmY08OEjR0fmFJ01wM3s9OcoZUHkDVha4DSyf0gZohfgdyhfs0f101Ylc2YoY/wNsUqsH7BYU7M9yzhryfiXXDwxPY/JiDe+nrB+DmiF6RDbTSuhvyTd5Jk+lbjEJQQjN2pEx4S3tF9kqH181eoqacF2wt1/Kl6/IpvIZ2Q4svIa3VXNX8oT5XXpDUHomjyuxKXu2Lk6p8RiaX9fx6SCb5lzW5aHjzfF2h7x94KpzMl5rHIPap93kM/PI9BP09cys8tPKT8eBRSUteGrlvHXMb2UrkI9IY1rFUoxD+nrqxrZiaLI2c018GXOlyMZ4k9j8vlU35bRmda2NhkY0KDJwk2Pk6tq/dM6489nx5urafZ+Zd1nXTpB8QtYDdblyLbAfyWOuzApFntjege1fxSzXwqxmHth5Pqnso5rnrJ4XNXPxDqh575vE/8maTLr81lhe7RW9t+inLn8sf35VbzOOVT7LI9W30Z+otv87y2W+XAX4nQrgrcirtjGrWRAZc1nuXlY4r234s7W7z919vin3uXs+XJeRt/N0WI6A+/3jNmLlMvl+Mvmmbzy7f8kbT/lNx7/x/2s/AK+D1gaKGwAA
+(Assembly=$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri) Namespace=SIPLib.SIP Type=UserAgent Member=(Name=CreateRequest OverloadingParameters=[(Assembly="$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll" Namespace=System Type=String),(Assembly="$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll" Namespace=System Type=String),(Assembly="$(FxReferenceAssembliesUri)/.NETFramework/v4.5/mscorlib.dll" Namespace=System Type=String)]) ObjectInstance="Object instance 121")
+m : Message
+m.InsertHeader(new Header("text/plain", "Content-Type"))</generationState>
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="e181b7e8-900e-4fd8-b857-a3c715886631" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <lostFoundTargetMoniker Id="01eb1f8e-48a7-4d1e-bafb-64ecedd32777" LastKnownName="LostFoundTarget" />
+            </receiveEvent>
+          </message>
+          <message Id="373881e7-de14-4d25-8607-5c08d30eb176" name="SendRequest" messageKind="Lost" messageSort="AsynchCall" createSelfMessage="false">
+            <referencesInternal>
+              <reference Id="ad203d1e-da6d-4b3f-8319-773e54cf48c1" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=SIPLib.SIP)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri)&amp;quot; Namespace=SIPLib.SIP Type=UserAgent)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri)&amp;quot; Namespace=SIPLib.SIP Type=UserAgent Member=(Name=SendRequest OverloadingParameters=[(Assembly=&amp;quot;$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri)&amp;quot; Namespace=SIPLib.SIP Type=Message)]))&quot;)" tag="DGQL" />
+              <reference Id="56ec6cfc-e08a-45d7-9413-5ca1f5ccdf2f" handle="(Assembly=&quot;$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri)&quot; Namespace=SIPLib.SIP Type=UserAgent Member=(Name=SendRequest OverloadingParameters=[(Assembly=&quot;$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri)&quot; Namespace=SIPLib.SIP Type=Message)]))" tag="DGML" />
+            </referencesInternal>
+            <generationState>H4sIAAAAAAAEAO1abW/aQAz2T4n4MIG0EbXaS7eVSYiuKxrrUGk/TdUUIGVsCVASurFfv8e+BBIgKmMtZMhCyd35bJ/92PeW9pha5NKY+uSQh/dvtLpUk5ZHp+hxyAftHR3TJX0DR0AXNMQvJIvq4K1QgYpUBT0An09tyE1BvQGvB8obsuVXk9qVcI3xtqGnTx3odNDuon0CrR2ayHgD6GeeD+AJ6QzUtuh4BnuNxEjqfSkbKLm/BYuas1Yb5UD0uqhPqLfAUcao7KVF55GXAbQ5sMGF/WlO07KAwRQ83B97UoVeY28JSMw5zuFNF6VilI0R51mIsgevxqDFWNUi7FriOyPm0FdQPZSMIetooN5GnycSn8SyADQe6QojFiQ/A9QG0DaAdh/lBBTmP5UMZ+sKktt1cASwxUHJvmlua27nO7c/g+M72h2Mspi98VgH+L2KrOKRRmKLI/akx0jOBzNvzlB3IJEchzkvIT2ZzZt4LwhSLWtW+wjOqebILEcsiaYvyI/B0RB/GPumWBxCthTFQOfWJrjpGjXHsQrpLuww68djrU+rYrHPu++JnJfvZLT7I5jkLuP9S/y7L5pJqWREDU8VrdHSnCjOtFYW9gzeLYwuD0g4wIRt7kXxMjJhhF6FvqxE/Qndwjte099mRKAJ+SG0Go0Womy4AtSL8PuIXiIHOTouNLiSl3G80+P1RcqGFxxH1hrgucHYduJO8lMy9wdoZXj+Hiit6ruj5+h/gZoPLR2he6m5lfQsKzJTyU9X/EpGI5Q4MZYleqq4bYTbNR5LaE7Ea2YpZ+IBUD2Mnnn9Wtf6nK31655Gj7Z0GrWALVPsJWsMNebUU+smp68LaQ0lp/Tc+lDI6Wq27dVsdTT2+ey6y7hpXu8+r9fdp1/ncJ+2F742Zcks/p1C9/hNdqrkbbIlPF3Jq1uJYyAS/36r3Hec0/fw+K6zjFBdZjj70xdMTAzGKbz1fKVZ+79mrZ4BstF9nDNAOgp6pt3WqlMT5E0UH37l0a+J+hVWccsTbrw36h63mz3O/4s77SGePN5p1/3/uz8ClrX9qicAAA==
+(Assembly=$(bcb5cea8-22e7-470c-b566-cfea2d051c9b.OutputPathUri) Namespace=SIPLib.SIP Type=UserAgent ObjectInstance="Object instance 117")
+MessageUA : UserAgent
+this.MessageUA.SendRequest(m)</generationState>
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="f33d4840-173f-40d6-984d-fe7232695481" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <lostFoundTargetMoniker Id="0a330423-5deb-43fd-8c2b-6d0043c53384" LastKnownName="LostFoundTarget" />
+            </receiveEvent>
+          </message>
+          <message Id="f8fd665a-9672-4623-9d55-92a3065c7da2" name="&lt;&lt;return&gt;&gt;" messageKind="Complete" messageSort="Reply" createSelfMessage="false">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="531756a4-98e2-401f-ba08-2867663e4a09" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="d4e3ec28-7d35-4f92-8b50-62831997c1a8" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+        </messages>
+      </interaction>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="e375b029-3d95-4dff-bbf5-4526cde7407d" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="d97a8f33-d689-4252-8fc0-2bdf05c33185" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="bd9d37cc-9ce2-4213-8110-c4b4526d5522" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="c2b3afec-4f67-484d-bfad-196abc435a6e" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="40010624-6b29-4058-b2c8-b42f1f0c4ee3" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="eb12c3e3-df3c-4579-9bcf-ed5a296bd3a0" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="101bfc37-e4b7-4aee-b4fc-795ea8124207" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="edd26c43-740b-400f-84db-208668cf6b7d" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="5f7c2a97-30b8-42f6-8e3c-7f3e779f69fd" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="306b546f-d2f6-4315-b580-ef30a27d9a5c" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="b707d6f7-c599-44c7-80b5-0741e1c47963" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="14da3ebf-4c99-44e7-97f5-9fee06af9dc4" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="ee48b3ac-7a81-465a-b5dc-d5b30a3dbced" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="e7e5d9d8-9926-491e-9efc-9eb99c8de4cd" name="ExecutionEvent" />
+    </packageHasNamedElement>
+  </packagedElements>
+</SequenceDesignerModel>
