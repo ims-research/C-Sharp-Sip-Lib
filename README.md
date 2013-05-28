@@ -4,6 +4,6 @@ This library was written following the "Implementer's Guide to Scalable and Robu
 
 See the SIPLibDriver project for a very simple example.
 
-There is no documentation at the moment. Please leave some feedback if you are interested in the project.
+Documentation can be found at my [github page](http://richardspiers.github.io/sip_library.html). Please leave some feedback if you are interested in the project.
 
 Have a bug or a feature request? [Please open a new issue](https://github.com/richardspiers/C-Sharp-Sip-Lib/issues)
