@@ -1,0 +1,1084 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<HelpKI>
+
+  <HelpKINode Title=". constructor" Url="html/1247185741.htm" />
+  <HelpKINode Title=". constructor" Url="html/551596920.htm" />
+  <HelpKINode Title=".CancelRequest field" Url="html/1776055363.htm" />
+  <HelpKINode Title=".CreateStack method" Url="html/560672238.htm" />
+  <HelpKINode Title=".CreateTransport method" Url="html/1104245881.htm" />
+  <HelpKINode Title=".Error method" Url="html/454796985.htm" />
+  <HelpKINode Title=".ReceivedResponse method" Url="html/675950989.htm" />
+  <HelpKINode Title=".RemoteCandidates field" Url="html/2056828028.htm" />
+  <HelpKINode Title=".Request field" Url="html/1007734713.htm" />
+  <HelpKINode Title=".Response field" Url="html/1981009820.htm" />
+  <HelpKINode Title=".Start method" Url="html/935604015.htm" />
+  <HelpKINode Title=".Timeout method" Url="html/1013372499.htm" />
+  <HelpKINode Title=".Transaction field" Url="html/439676084.htm" />
+  <HelpKINode Title="A method" Url="html/1537015774.htm" />
+  <HelpKINode Title="ACK enumeration member" Url="html/127453814.htm" />
+  <HelpKINode Title="ACK enumeration member" Url="html/1839431660.htm" />
+  <HelpKINode Title="ACK field" Url="html/1427435833.htm" />
+  <HelpKINode Title="ACK field" Url="html/194324339.htm" />
+  <HelpKINode Title="Active enumeration member" Url="html/2124894643.htm" />
+  <HelpKINode Title="Active field" Url="html/1202857509.htm" />
+  <HelpKINode Title="Address class" Url="html/2084954866.htm" />
+  <HelpKINode Title="Address class" Url="html/632853871.htm" />
+  <HelpKINode Title="Address class">
+    <HelpKINode Title="about Address class" Url="html/2084954866.htm" />
+    <HelpKINode Title="all members" Url="html/632853871.htm" />
+    <HelpKINode Title="constructor" Url="html/726703480.htm" />
+    <HelpKINode Title="methods" Url="html/80489245.htm" />
+    <HelpKINode Title="properties" Url="html/1118458705.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Address property" Url="html/1505842362.htm" />
+  <HelpKINode Title="Address property" Url="html/41895670.htm" />
+  <HelpKINode Title="Address.Address constructor" Url="html/726703480.htm" />
+  <HelpKINode Title="Address.Displayable method" Url="html/1763712.htm" />
+  <HelpKINode Title="Address.DisplayName property" Url="html/675790079.htm" />
+  <HelpKINode Title="Address.Dup method" Url="html/1973303658.htm" />
+  <HelpKINode Title="Address.MustQuote property" Url="html/1696337227.htm" />
+  <HelpKINode Title="Address.Parse method" Url="html/1949822627.htm" />
+  <HelpKINode Title="Address.ToString method" Url="html/470015983.htm" />
+  <HelpKINode Title="Address.Uri property" Url="html/1006447909.htm" />
+  <HelpKINode Title="Address.Wildcard property" Url="html/1491514181.htm" />
+  <HelpKINode Title="Addrtype property" Url="html/1402039459.htm" />
+  <HelpKINode Title="Addrtype property" Url="html/1562794815.htm" />
+  <HelpKINode Title="App property" Url="html/1270151122.htm" />
+  <HelpKINode Title="App property" Url="html/25863320.htm" />
+  <HelpKINode Title="App property" Url="html/64545148.htm" />
+  <HelpKINode Title="Attributes property" Url="html/437903500.htm" />
+  <HelpKINode Title="Auth property" Url="html/1944197280.htm" />
+  <HelpKINode Title="Authenticate class" Url="html/176081507.htm" />
+  <HelpKINode Title="Authenticate class" Url="html/844298373.htm" />
+  <HelpKINode Title="Authenticate class">
+    <HelpKINode Title="about Authenticate class" Url="html/844298373.htm" />
+    <HelpKINode Title="all members" Url="html/176081507.htm" />
+    <HelpKINode Title="methods" Url="html/1965939884.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Authenticate method" Url="html/1625005299.htm" />
+  <HelpKINode Title="Authenticate method" Url="html/2031547621.htm" />
+  <HelpKINode Title="Authenticate method" Url="html/9619077.htm" />
+  <HelpKINode Title="Authenticate method" Url="html/997577231.htm" />
+  <HelpKINode Title="Authenticate.Basic method" Url="html/680505925.htm" />
+  <HelpKINode Title="Authenticate.CreateAuthenticate method" Url="html/1128338030.htm" />
+  <HelpKINode Title="Authenticate.CreateAuthorization method" Url="html/337452764.htm" />
+  <HelpKINode Title="Authenticate.Digest method" Url="html/838128101.htm" />
+  <HelpKINode Title="AuthMethod property" Url="html/165130043.htm" />
+  <HelpKINode Title="Autoack property" Url="html/629858128.htm" />
+  <HelpKINode Title="B method" Url="html/801636386.htm" />
+  <HelpKINode Title="Base64Decode method" Url="html/1663791201.htm" />
+  <HelpKINode Title="Base64Encode method" Url="html/1177093660.htm" />
+  <HelpKINode Title="Basic method" Url="html/680505925.htm" />
+  <HelpKINode Title="Body property" Url="html/92032733.htm" />
+  <HelpKINode Title="Branch property" Url="html/1142146063.htm" />
+  <HelpKINode Title="BYE enumeration member" Url="html/127453814.htm" />
+  <HelpKINode Title="BYE enumeration member" Url="html/1839431660.htm" />
+  <HelpKINode Title="BYE field" Url="html/2050333230.htm" />
+  <HelpKINode Title="BYE field" Url="html/611851502.htm" />
+  <HelpKINode Title="CallID property" Url="html/342851402.htm" />
+  <HelpKINode Title="Calling enumeration member" Url="html/2124894643.htm" />
+  <HelpKINode Title="Calling field" Url="html/460100127.htm" />
+  <HelpKINode Title="CallState enumeration" Url="html/2124894643.htm" />
+  <HelpKINode Title="CallState.Active field" Url="html/1202857509.htm" />
+  <HelpKINode Title="CallState.Calling field" Url="html/460100127.htm" />
+  <HelpKINode Title="CallState.Ended field" Url="html/1586467777.htm" />
+  <HelpKINode Title="CallState.Ending field" Url="html/467543480.htm" />
+  <HelpKINode Title="CallState.Inactive field" Url="html/1317739070.htm" />
+  <HelpKINode Title="CallState.Queued field" Url="html/1952508464.htm" />
+  <HelpKINode Title="CallState.Ringing field" Url="html/2104773648.htm" />
+  <HelpKINode Title="CallState.Starting field" Url="html/1337974542.htm" />
+  <HelpKINode Title="CallState.WaitingForAccept field" Url="html/40156162.htm" />
+  <HelpKINode Title="CANCEL enumeration member" Url="html/127453814.htm" />
+  <HelpKINode Title="CANCEL enumeration member" Url="html/1839431660.htm" />
+  <HelpKINode Title="CANCEL field" Url="html/633088346.htm" />
+  <HelpKINode Title="CANCEL field" Url="html/769343490.htm" />
+  <HelpKINode Title="Cancelled method" Url="html/299540673.htm" />
+  <HelpKINode Title="Cancelled method" Url="html/632630578.htm" />
+  <HelpKINode Title="Cancelled method" Url="html/717505436.htm" />
+  <HelpKINode Title="CancelRequest field" Url="html/1776055363.htm" />
+  <HelpKINode Title="CancelRequest property" Url="html/1980319372.htm" />
+  <HelpKINode Title="CanCreateDialog method" Url="html/380505129.htm" />
+  <HelpKINode Title="Canon method" Url="html/855771050.htm" />
+  <HelpKINode Title="ClientFailure enumeration member" Url="html/345095516.htm" />
+  <HelpKINode Title="ClientFailure field" Url="html/559689315.htm" />
+  <HelpKINode Title="Clients property" Url="html/642758672.htm" />
+  <HelpKINode Title="Close method" Url="html/1645286095.htm" />
+  <HelpKINode Title="Close method" Url="html/201688328.htm" />
+  <HelpKINode Title="Closing field" Url="html/409135991.htm" />
+  <HelpKINode Title="Compare method" Url="html/1497335821.htm" />
+  <HelpKINode Title="Connection property" Url="html/2135383859.htm" />
+  <HelpKINode Title="Contact property" Url="html/944645019.htm" />
+  <HelpKINode Title="Count property" Url="html/1739786377.htm" />
+  <HelpKINode Title="Count property" Url="html/20857094.htm" />
+  <HelpKINode Title="Count property" Url="html/493123064.htm" />
+  <HelpKINode Title="CreateAck method" Url="html/1358416344.htm" />
+  <HelpKINode Title="CreateAck method" Url="html/38576785.htm" />
+  <HelpKINode Title="CreateAnswer method" Url="html/534579370.htm" />
+  <HelpKINode Title="CreateAuthenticate method" Url="html/1128338030.htm" />
+  <HelpKINode Title="CreateAuthorization method" Url="html/337452764.htm" />
+  <HelpKINode Title="CreateBranch method" Url="html/1948486192.htm" />
+  <HelpKINode Title="CreateCancel method" Url="html/1387987829.htm" />
+  <HelpKINode Title="CreateClient method" Url="html/1258356586.htm" />
+  <HelpKINode Title="CreateClient method" Url="html/1295414043.htm" />
+  <HelpKINode Title="CreateHeaders method" Url="html/1586726767.htm" />
+  <HelpKINode Title="CreateId method" Url="html/236193806.htm" />
+  <HelpKINode Title="CreateOffer method" Url="html/784194379.htm" />
+  <HelpKINode Title="CreateRegister method" Url="html/556333429.htm" />
+  <HelpKINode Title="CreateRequest method" Url="html/1947834330.htm" />
+  <HelpKINode Title="CreateRequest method" Url="html/581848952.htm" />
+  <HelpKINode Title="CreateRequest method" Url="html/582790195.htm" />
+  <HelpKINode Title="CreateRequest method" Url="html/797184937.htm" />
+  <HelpKINode Title="CreateResponse method" Url="html/1814851428.htm" />
+  <HelpKINode Title="CreateResponse method" Url="html/2019972929.htm" />
+  <HelpKINode Title="CreateResponse method" Url="html/221982128.htm" />
+  <HelpKINode Title="CreateResponse method" Url="html/563843048.htm" />
+  <HelpKINode Title="CreateServer method" Url="html/1097087686.htm" />
+  <HelpKINode Title="CreateServer method" Url="html/1196494681.htm" />
+  <HelpKINode Title="CreateServer method" Url="html/1448138853.htm" />
+  <HelpKINode Title="CreateServer method" Url="html/198951113.htm" />
+  <HelpKINode Title="CreateServer method" Url="html/538625884.htm" />
+  <HelpKINode Title="CreateStack method" Url="html/560672238.htm" />
+  <HelpKINode Title="CreateTimer method" Url="html/1633540545.htm" />
+  <HelpKINode Title="CreateTimer method" Url="html/338114023.htm" />
+  <HelpKINode Title="CreateTransaction method" Url="html/682547823.htm" />
+  <HelpKINode Title="CreateTransport method" Url="html/1104245881.htm" />
+  <HelpKINode Title="CreateVia method" Url="html/947285284.htm" />
+  <HelpKINode Title="D method" Url="html/1183973410.htm" />
+  <HelpKINode Title="Data field" Url="html/134006814.htm" />
+  <HelpKINode Title="Delay property" Url="html/1028071547.htm" />
+  <HelpKINode Title="Dialog class" Url="html/1395721213.htm" />
+  <HelpKINode Title="Dialog class" Url="html/229870035.htm" />
+  <HelpKINode Title="Dialog class">
+    <HelpKINode Title="about Dialog class" Url="html/1395721213.htm" />
+    <HelpKINode Title="all members" Url="html/229870035.htm" />
+    <HelpKINode Title="constructor" Url="html/657374797.htm" />
+    <HelpKINode Title="methods" Url="html/148094222.htm" />
+    <HelpKINode Title="properties" Url="html/686349424.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Dialog.Clients property" Url="html/642758672.htm" />
+  <HelpKINode Title="Dialog.Close method" Url="html/1645286095.htm" />
+  <HelpKINode Title="Dialog.CreateClient method" Url="html/1258356586.htm" />
+  <HelpKINode Title="Dialog.CreateRequest method" Url="html/1947834330.htm" />
+  <HelpKINode Title="Dialog.CreateResponse method" Url="html/1814851428.htm" />
+  <HelpKINode Title="Dialog.CreateServer method" Url="html/538625884.htm" />
+  <HelpKINode Title="Dialog.Dialog constructor" Url="html/657374797.htm" />
+  <HelpKINode Title="Dialog.ExtractID method" Url="html/1905919416.htm" />
+  <HelpKINode Title="Dialog.ID property" Url="html/40094608.htm" />
+  <HelpKINode Title="Dialog.ReceivedRequest method" Url="html/1652780212.htm" />
+  <HelpKINode Title="Dialog.ReceivedResponse method" Url="html/1323807001.htm" />
+  <HelpKINode Title="Dialog.SendCancel method" Url="html/1535190467.htm" />
+  <HelpKINode Title="Dialog.SendResponse method" Url="html/189680338.htm" />
+  <HelpKINode Title="Dialog.Servers property" Url="html/442774854.htm" />
+  <HelpKINode Title="DialogCreated method" Url="html/1452843423.htm" />
+  <HelpKINode Title="DialogCreated method" Url="html/2114875404.htm" />
+  <HelpKINode Title="DialogCreated method" Url="html/449075579.htm" />
+  <HelpKINode Title="Dialogs property" Url="html/83855435.htm" />
+  <HelpKINode Title="Digest method" Url="html/838128101.htm" />
+  <HelpKINode Title="Displayable method" Url="html/1763712.htm" />
+  <HelpKINode Title="DisplayName property" Url="html/675790079.htm" />
+  <HelpKINode Title="Dup method" Url="html/1691567141.htm" />
+  <HelpKINode Title="Dup method" Url="html/1973303658.htm" />
+  <HelpKINode Title="Dup method" Url="html/276166637.htm" />
+  <HelpKINode Title="Dup method" Url="html/596159016.htm" />
+  <HelpKINode Title="E method" Url="html/772341726.htm" />
+  <HelpKINode Title="EndCurrentCall method" Url="html/2141909940.htm" />
+  <HelpKINode Title="Ended enumeration member" Url="html/2124894643.htm" />
+  <HelpKINode Title="Ended field" Url="html/1586467777.htm" />
+  <HelpKINode Title="Ending enumeration member" Url="html/2124894643.htm" />
+  <HelpKINode Title="Ending field" Url="html/467543480.htm" />
+  <HelpKINode Title="Error method" Url="html/1170198799.htm" />
+  <HelpKINode Title="Error method" Url="html/144316593.htm" />
+  <HelpKINode Title="Error method" Url="html/158958751.htm" />
+  <HelpKINode Title="Error method" Url="html/1928166379.htm" />
+  <HelpKINode Title="Error method" Url="html/2119501290.htm" />
+  <HelpKINode Title="Error method" Url="html/411665561.htm" />
+  <HelpKINode Title="Error method" Url="html/454796985.htm" />
+  <HelpKINode Title="Exception field" Url="html/1679994728.htm" />
+  <HelpKINode Title="ExtractID method" Url="html/1905919416.htm" />
+  <HelpKINode Title="F method" Url="html/1566310434.htm" />
+  <HelpKINode Title="FindOtherTransactions method" Url="html/938429157.htm" />
+  <HelpKINode Title="FindTransaction method" Url="html/1600437547.htm" />
+  <HelpKINode Title="First method" Url="html/449919256.htm" />
+  <HelpKINode Title="FromUnixTime method" Url="html/126079363.htm" />
+  <HelpKINode Title="Function field" Url="html/1060557517.htm" />
+  <HelpKINode Title="G method" Url="html/390004702.htm" />
+  <HelpKINode Title="GetLocalIP method" Url="html/673650395.htm" />
+  <HelpKINode Title="GetMd5Hash method" Url="html/1827409635.htm" />
+  <HelpKINode Title="GetStatusType method" Url="html/1785118174.htm" />
+  <HelpKINode Title="GlobalFailure enumeration member" Url="html/345095516.htm" />
+  <HelpKINode Title="GlobalFailure field" Url="html/286272996.htm" />
+  <HelpKINode Title="H method" Url="html/1110048734.htm" />
+  <HelpKINode Title="had_lr field" Url="html/2058666510.htm" />
+  <HelpKINode Title="Hash method" Url="html/641092683.htm" />
+  <HelpKINode Title="Header class" Url="html/1751288389.htm" />
+  <HelpKINode Title="Header class" Url="html/844386216.htm" />
+  <HelpKINode Title="Header class">
+    <HelpKINode Title="about Header class" Url="html/844386216.htm" />
+    <HelpKINode Title="all members" Url="html/1751288389.htm" />
+    <HelpKINode Title="constructor" Url="html/1192846538.htm" />
+    <HelpKINode Title="methods" Url="html/1581793681.htm" />
+    <HelpKINode Title="properties" Url="html/817766966.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Header.Attributes property" Url="html/437903500.htm" />
+  <HelpKINode Title="Header.AuthMethod property" Url="html/165130043.htm" />
+  <HelpKINode Title="Header.Canon method" Url="html/855771050.htm" />
+  <HelpKINode Title="Header.CreateHeaders method" Url="html/1586726767.htm" />
+  <HelpKINode Title="Header.Dup method" Url="html/1691567141.htm" />
+  <HelpKINode Title="Header.Header constructor" Url="html/1192846538.htm" />
+  <HelpKINode Title="Header.HeaderType property" Url="html/2099933047.htm" />
+  <HelpKINode Title="Header.Method property" Url="html/1025799260.htm" />
+  <HelpKINode Title="Header.Name property" Url="html/1390769754.htm" />
+  <HelpKINode Title="Header.Number property" Url="html/826142380.htm" />
+  <HelpKINode Title="Header.Parse method" Url="html/1740892098.htm" />
+  <HelpKINode Title="Header.Quote method" Url="html/410239374.htm" />
+  <HelpKINode Title="Header.Repr method" Url="html/333626309.htm" />
+  <HelpKINode Title="Header.ToString method" Url="html/801600270.htm" />
+  <HelpKINode Title="Header.Unquote method" Url="html/1050897880.htm" />
+  <HelpKINode Title="Header.Value property" Url="html/938835433.htm" />
+  <HelpKINode Title="Header.ViaUri property" Url="html/469884913.htm" />
+  <HelpKINode Title="Headers property" Url="html/1154206534.htm" />
+  <HelpKINode Title="Headers property" Url="html/1292581308.htm" />
+  <HelpKINode Title="Headers property" Url="html/2020034269.htm" />
+  <HelpKINode Title="HeaderType property" Url="html/2099933047.htm" />
+  <HelpKINode Title="Helpers class" Url="html/2018521193.htm" />
+  <HelpKINode Title="Helpers class" Url="html/2026931254.htm" />
+  <HelpKINode Title="Helpers class">
+    <HelpKINode Title="about Helpers class" Url="html/2018521193.htm" />
+    <HelpKINode Title="all members" Url="html/2026931254.htm" />
+    <HelpKINode Title="methods" Url="html/340931058.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Helpers.Base64Decode method" Url="html/1663791201.htm" />
+  <HelpKINode Title="Helpers.Base64Encode method" Url="html/1177093660.htm" />
+  <HelpKINode Title="Helpers.FromUnixTime method" Url="html/126079363.htm" />
+  <HelpKINode Title="Helpers.GetLocalIP method" Url="html/673650395.htm" />
+  <HelpKINode Title="Helpers.GetMd5Hash method" Url="html/1827409635.htm" />
+  <HelpKINode Title="Helpers.IsIPv4 method" Url="html/1639568891.htm" />
+  <HelpKINode Title="Helpers.IsRequest method" Url="html/995069224.htm" />
+  <HelpKINode Title="Helpers.Quote method" Url="html/2127983753.htm" />
+  <HelpKINode Title="Helpers.RemoveAngelBrackets method" Url="html/1217650761.htm" />
+  <HelpKINode Title="Helpers.SipMethods enumeration" Url="html/1839431660.htm" />
+  <HelpKINode Title="Helpers.ToUnixTime method" Url="html/52510341.htm" />
+  <HelpKINode Title="Helpers.Unquote method" Url="html/492208993.htm" />
+  <HelpKINode Title="Host property" Url="html/805980695.htm" />
+  <HelpKINode Title="Host property" Url="html/985625019.htm" />
+  <HelpKINode Title="HostPort method" Url="html/2094374903.htm" />
+  <HelpKINode Title="I method" Url="html/1228603426.htm" />
+  <HelpKINode Title="ID property" Url="html/298589148.htm" />
+  <HelpKINode Title="ID property" Url="html/40094608.htm" />
+  <HelpKINode Title="Inactive enumeration member" Url="html/2124894643.htm" />
+  <HelpKINode Title="Inactive field" Url="html/1317739070.htm" />
+  <HelpKINode Title="INFO enumeration member" Url="html/127453814.htm" />
+  <HelpKINode Title="INFO enumeration member" Url="html/1839431660.htm" />
+  <HelpKINode Title="INFO field" Url="html/507818916.htm" />
+  <HelpKINode Title="INFO field" Url="html/778667324.htm" />
+  <HelpKINode Title="Informational enumeration member" Url="html/345095516.htm" />
+  <HelpKINode Title="Informational field" Url="html/1291367791.htm" />
+  <HelpKINode Title="InsertHeader method" Url="html/1174641920.htm" />
+  <HelpKINode Title="INVITE enumeration member" Url="html/127453814.htm" />
+  <HelpKINode Title="INVITE enumeration member" Url="html/1839431660.htm" />
+  <HelpKINode Title="INVITE field" Url="html/1447749749.htm" />
+  <HelpKINode Title="INVITE field" Url="html/194543441.htm" />
+  <HelpKINode Title="Invite method" Url="html/1676073373.htm" />
+  <HelpKINode Title="InviteClientTransaction class" Url="html/1643926302.htm" />
+  <HelpKINode Title="InviteClientTransaction class" Url="html/878413125.htm" />
+  <HelpKINode Title="InviteClientTransaction class">
+    <HelpKINode Title="about InviteClientTransaction class" Url="html/878413125.htm" />
+    <HelpKINode Title="all members" Url="html/1643926302.htm" />
+    <HelpKINode Title="constructor" Url="html/1047580483.htm" />
+    <HelpKINode Title="methods" Url="html/2039563242.htm" />
+  </HelpKINode>
+  <HelpKINode Title="InviteClientTransaction.CreateAck method" Url="html/38576785.htm" />
+  <HelpKINode Title="InviteClientTransaction.Error method" Url="html/411665561.htm" />
+  <HelpKINode Title="InviteClientTransaction.InviteClientTransaction constructor" Url="html/1047580483.htm" />
+  <HelpKINode Title="InviteClientTransaction.ReceivedResponse method" Url="html/645438729.htm" />
+  <HelpKINode Title="InviteClientTransaction.Start method" Url="html/368991088.htm" />
+  <HelpKINode Title="InviteClientTransaction.Timeout method" Url="html/1975282875.htm" />
+  <HelpKINode Title="InviteServerTransaction class" Url="html/1268779597.htm" />
+  <HelpKINode Title="InviteServerTransaction class" Url="html/19375576.htm" />
+  <HelpKINode Title="InviteServerTransaction class">
+    <HelpKINode Title="about InviteServerTransaction class" Url="html/1268779597.htm" />
+    <HelpKINode Title="all members" Url="html/19375576.htm" />
+    <HelpKINode Title="constructor" Url="html/1209387552.htm" />
+    <HelpKINode Title="methods" Url="html/42632991.htm" />
+  </HelpKINode>
+  <HelpKINode Title="InviteServerTransaction.Error method" Url="html/1170198799.htm" />
+  <HelpKINode Title="InviteServerTransaction.InviteServerTransaction constructor" Url="html/1209387552.htm" />
+  <HelpKINode Title="InviteServerTransaction.ReceivedRequest method" Url="html/1039264608.htm" />
+  <HelpKINode Title="InviteServerTransaction.SendResponse method" Url="html/464920012.htm" />
+  <HelpKINode Title="InviteServerTransaction.Start method" Url="html/947648015.htm" />
+  <HelpKINode Title="InviteServerTransaction.Timeout method" Url="html/410559317.htm" />
+  <HelpKINode Title="IP property" Url="html/551086694.htm" />
+  <HelpKINode Title="Is1XX method" Url="html/888297822.htm" />
+  <HelpKINode Title="Is2XX method" Url="html/1450354338.htm" />
+  <HelpKINode Title="Is3XX method" Url="html/505960798.htm" />
+  <HelpKINode Title="Is4XX method" Url="html/1832691362.htm" />
+  <HelpKINode Title="Is5XX method" Url="html/123623774.htm" />
+  <HelpKINode Title="Is6XX method" Url="html/2079938910.htm" />
+  <HelpKINode Title="Is7XX method" Url="html/258713250.htm" />
+  <HelpKINode Title="IsFinal method" Url="html/1521463754.htm" />
+  <HelpKINode Title="IsIPv4 method" Url="html/1639568891.htm" />
+  <HelpKINode Title="IsLocal method" Url="html/2064527148.htm" />
+  <HelpKINode Title="IsRequest method" Url="html/995069224.htm" />
+  <HelpKINode Title="J method" Url="html/727711710.htm" />
+  <HelpKINode Title="K method" Url="html/1610940450.htm" />
+  <HelpKINode Title="LastResponse property" Url="html/1628512107.htm" />
+  <HelpKINode Title="LocalParty property" Url="html/1098691775.htm" />
+  <HelpKINode Title="LocalSeq property" Url="html/452347822.htm" />
+  <HelpKINode Title="LocalTag property" Url="html/1746989.htm" />
+  <HelpKINode Title="LocalTarget property" Url="html/2086816713.htm" />
+  <HelpKINode Title="MaxForwards property" Url="html/1459602518.htm" />
+  <HelpKINode Title="Media property" Url="html/1589906264.htm" />
+  <HelpKINode Title="Media property" Url="html/954513020.htm" />
+  <HelpKINode Title="Mediaformats property" Url="html/175493003.htm" />
+  <HelpKINode Title="Message class" Url="html/1648213724.htm" />
+  <HelpKINode Title="Message class" Url="html/268309906.htm" />
+  <HelpKINode Title="Message class">
+    <HelpKINode Title="about Message class" Url="html/1648213724.htm" />
+    <HelpKINode Title="all members" Url="html/268309906.htm" />
+    <HelpKINode Title="constructor" Url="html/1189072664.htm" />
+    <HelpKINode Title="fields" Url="html/1798953554.htm" />
+    <HelpKINode Title="methods" Url="html/405423147.htm" />
+    <HelpKINode Title="properties" Url="html/937117854.htm" />
+  </HelpKINode>
+  <HelpKINode Title="MESSAGE enumeration member" Url="html/127453814.htm" />
+  <HelpKINode Title="MESSAGE enumeration member" Url="html/1839431660.htm" />
+  <HelpKINode Title="MESSAGE field" Url="html/1205349384.htm" />
+  <HelpKINode Title="Message field" Url="html/2108777135.htm" />
+  <HelpKINode Title="Message field" Url="html/2040658297.htm" />
+  <HelpKINode Title="MESSAGE field" Url="html/1264669633.htm" />
+  <HelpKINode Title="Message method" Url="html/2141428936.htm" />
+  <HelpKINode Title="Message.Body property" Url="html/92032733.htm" />
+  <HelpKINode Title="Message.CreateRequest method" Url="html/797184937.htm" />
+  <HelpKINode Title="Message.CreateResponse method" Url="html/563843048.htm" />
+  <HelpKINode Title="Message.Dup method" Url="html/276166637.htm" />
+  <HelpKINode Title="Message.First method" Url="html/449919256.htm" />
+  <HelpKINode Title="Message.had_lr field" Url="html/2058666510.htm" />
+  <HelpKINode Title="Message.Headers property" Url="html/1292581308.htm" />
+  <HelpKINode Title="Message.InsertHeader method" Url="html/1174641920.htm" />
+  <HelpKINode Title="Message.Is1XX method" Url="html/888297822.htm" />
+  <HelpKINode Title="Message.Is2XX method" Url="html/1450354338.htm" />
+  <HelpKINode Title="Message.Is3XX method" Url="html/505960798.htm" />
+  <HelpKINode Title="Message.Is4XX method" Url="html/1832691362.htm" />
+  <HelpKINode Title="Message.Is5XX method" Url="html/123623774.htm" />
+  <HelpKINode Title="Message.Is6XX method" Url="html/2079938910.htm" />
+  <HelpKINode Title="Message.Is7XX method" Url="html/258713250.htm" />
+  <HelpKINode Title="Message.IsFinal method" Url="html/1521463754.htm" />
+  <HelpKINode Title="Message.Message constructor" Url="html/1189072664.htm" />
+  <HelpKINode Title="Message.Method property" Url="html/1009631486.htm" />
+  <HelpKINode Title="Message.Parse method" Url="html/1773432915.htm" />
+  <HelpKINode Title="Message.PopulateMessage method" Url="html/1944863989.htm" />
+  <HelpKINode Title="Message.Protocol property" Url="html/154991505.htm" />
+  <HelpKINode Title="Message.ResponseCode property" Url="html/232580690.htm" />
+  <HelpKINode Title="Message.ResponseText property" Url="html/520528355.htm" />
+  <HelpKINode Title="Message.StatusCodeType field" Url="html/691772476.htm" />
+  <HelpKINode Title="Message.ToString method" Url="html/161825903.htm" />
+  <HelpKINode Title="Message.Uri property" Url="html/110964746.htm" />
+  <HelpKINode Title="MessageUA property" Url="html/163855804.htm" />
+  <HelpKINode Title="Method property" Url="html/1009631486.htm" />
+  <HelpKINode Title="Method property" Url="html/1025799260.htm" />
+  <HelpKINode Title="Multiple field" Url="html/1949269919.htm" />
+  <HelpKINode Title="MustQuote property" Url="html/1696337227.htm" />
+  <HelpKINode Title="Name property" Url="html/1390769754.htm" />
+  <HelpKINode Title="Name property" Url="html/2053234401.htm" />
+  <HelpKINode Title="Nettype property" Url="html/495649398.htm" />
+  <HelpKINode Title="Nettype property" Url="html/947231196.htm" />
+  <HelpKINode Title="NewCallId method" Url="html/433772093.htm" />
+  <HelpKINode Title="NOTIFY enumeration member" Url="html/127453814.htm" />
+  <HelpKINode Title="NOTIFY enumeration member" Url="html/1839431660.htm" />
+  <HelpKINode Title="NOTIFY field" Url="html/12998672.htm" />
+  <HelpKINode Title="NOTIFY field" Url="html/296943504.htm" />
+  <HelpKINode Title="Number property" Url="html/826142380.htm" />
+  <HelpKINode Title="OPTIONS enumeration member" Url="html/127453814.htm" />
+  <HelpKINode Title="OPTIONS enumeration member" Url="html/1839431660.htm" />
+  <HelpKINode Title="OPTIONS field" Url="html/1611483530.htm" />
+  <HelpKINode Title="OPTIONS field" Url="html/43452617.htm" />
+  <HelpKINode Title="Originator property" Url="html/1592964605.htm" />
+  <HelpKINode Title="Other property" Url="html/349626481.htm" />
+  <HelpKINode Title="OtherAttributes property" Url="html/1905057482.htm" />
+  <HelpKINode Title="Parameters property" Url="html/1334327557.htm" />
+  <HelpKINode Title="Parameters property" Url="html/1549329361.htm" />
+  <HelpKINode Title="Parse method" Url="html/1740892098.htm" />
+  <HelpKINode Title="Parse method" Url="html/1773432915.htm" />
+  <HelpKINode Title="Parse method" Url="html/1949822627.htm" />
+  <HelpKINode Title="Parse method" Url="html/301101649.htm" />
+  <HelpKINode Title="Password property" Url="html/1830498926.htm" />
+  <HelpKINode Title="PopulateMessage method" Url="html/1944863989.htm" />
+  <HelpKINode Title="Port property" Url="html/123662325.htm" />
+  <HelpKINode Title="Port property" Url="html/265205225.htm" />
+  <HelpKINode Title="Port property" Url="html/580458930.htm" />
+  <HelpKINode Title="PRACK enumeration member" Url="html/127453814.htm" />
+  <HelpKINode Title="PRACK enumeration member" Url="html/1839431660.htm" />
+  <HelpKINode Title="PRACK field" Url="html/1345650404.htm" />
+  <HelpKINode Title="PRACK field" Url="html/996472120.htm" />
+  <HelpKINode Title="Proto property" Url="html/404221248.htm" />
+  <HelpKINode Title="Protocol property" Url="html/154991505.htm" />
+  <HelpKINode Title="Proxy class" Url="html/1370989349.htm" />
+  <HelpKINode Title="Proxy class" Url="html/1378837181.htm" />
+  <HelpKINode Title="Proxy class">
+    <HelpKINode Title="about Proxy class" Url="html/1370989349.htm" />
+    <HelpKINode Title="all members" Url="html/1378837181.htm" />
+    <HelpKINode Title="constructor" Url="html/808379870.htm" />
+    <HelpKINode Title="methods" Url="html/483430198.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Proxy.CreateRequest method" Url="html/582790195.htm" />
+  <HelpKINode Title="Proxy.CreateTransaction method" Url="html/682547823.htm" />
+  <HelpKINode Title="Proxy.Error method" Url="html/1928166379.htm" />
+  <HelpKINode Title="Proxy.IsLocal method" Url="html/2064527148.htm" />
+  <HelpKINode Title="Proxy.Proxy constructor" Url="html/808379870.htm" />
+  <HelpKINode Title="Proxy.ReceivedRequest method" Url="html/579841557.htm" />
+  <HelpKINode Title="Proxy.ReceivedResponse method" Url="html/1725840291.htm" />
+  <HelpKINode Title="Proxy.SendCancel method" Url="html/1919099817.htm" />
+  <HelpKINode Title="Proxy.SendRequest method" Url="html/433782541.htm" />
+  <HelpKINode Title="Proxy.SendResponse method" Url="html/1888252857.htm" />
+  <HelpKINode Title="ProxyHost property" Url="html/2052382318.htm" />
+  <HelpKINode Title="ProxyPort property" Url="html/1161044370.htm" />
+  <HelpKINode Title="Pt property" Url="html/126764504.htm" />
+  <HelpKINode Title="PUBLISH enumeration member" Url="html/127453814.htm" />
+  <HelpKINode Title="PUBLISH enumeration member" Url="html/1839431660.htm" />
+  <HelpKINode Title="PUBLISH field" Url="html/502392918.htm" />
+  <HelpKINode Title="PUBLISH field" Url="html/632315827.htm" />
+  <HelpKINode Title="Queued enumeration member" Url="html/2124894643.htm" />
+  <HelpKINode Title="Queued field" Url="html/1952508464.htm" />
+  <HelpKINode Title="Quote method" Url="html/2127983753.htm" />
+  <HelpKINode Title="Quote method" Url="html/410239374.htm" />
+  <HelpKINode Title="Rate property" Url="html/393042154.htm" />
+  <HelpKINode Title="RawEventArgs class" Url="html/1874122289.htm" />
+  <HelpKINode Title="RawEventArgs class" Url="html/701426173.htm" />
+  <HelpKINode Title="RawEventArgs class">
+    <HelpKINode Title="about RawEventArgs class" Url="html/701426173.htm" />
+    <HelpKINode Title="all members" Url="html/1874122289.htm" />
+    <HelpKINode Title="constructor" Url="html/27998871.htm" />
+    <HelpKINode Title="fields" Url="html/326745632.htm" />
+  </HelpKINode>
+  <HelpKINode Title="RawEventArgs.Data field" Url="html/134006814.htm" />
+  <HelpKINode Title="RawEventArgs.RawEventArgs constructor" Url="html/27998871.htm" />
+  <HelpKINode Title="RawEventArgs.Sent field" Url="html/1030377003.htm" />
+  <HelpKINode Title="RawEventArgs.Src field" Url="html/1454460456.htm" />
+  <HelpKINode Title="Received method" Url="html/1774408035.htm" />
+  <HelpKINode Title="ReceiveDataCB method" Url="html/178246088.htm" />
+  <HelpKINode Title="ReceivedDataEvent event" Url="html/2019466717.htm" />
+  <HelpKINode Title="ReceivedDataEvent event" Url="html/2069971778.htm" />
+  <HelpKINode Title="ReceivedRequest method" Url="html/1039264608.htm" />
+  <HelpKINode Title="ReceivedRequest method" Url="html/1652780212.htm" />
+  <HelpKINode Title="ReceivedRequest method" Url="html/2034611604.htm" />
+  <HelpKINode Title="ReceivedRequest method" Url="html/27668604.htm" />
+  <HelpKINode Title="ReceivedRequest method" Url="html/579841557.htm" />
+  <HelpKINode Title="ReceivedRequest method" Url="html/702526645.htm" />
+  <HelpKINode Title="ReceivedRequest method" Url="html/765032074.htm" />
+  <HelpKINode Title="ReceivedResponse method" Url="html/1184511762.htm" />
+  <HelpKINode Title="ReceivedResponse method" Url="html/1247328224.htm" />
+  <HelpKINode Title="ReceivedResponse method" Url="html/1255948504.htm" />
+  <HelpKINode Title="ReceivedResponse method" Url="html/1323807001.htm" />
+  <HelpKINode Title="ReceivedResponse method" Url="html/1725840291.htm" />
+  <HelpKINode Title="ReceivedResponse method" Url="html/645438729.htm" />
+  <HelpKINode Title="ReceivedResponse method" Url="html/675950989.htm" />
+  <HelpKINode Title="ReceivedResponse method" Url="html/679375657.htm" />
+  <HelpKINode Title="Redirection enumeration member" Url="html/345095516.htm" />
+  <HelpKINode Title="Redirection field" Url="html/529191428.htm" />
+  <HelpKINode Title="REFER enumeration member" Url="html/127453814.htm" />
+  <HelpKINode Title="REFER enumeration member" Url="html/1839431660.htm" />
+  <HelpKINode Title="REFER field" Url="html/1047747698.htm" />
+  <HelpKINode Title="REFER field" Url="html/1376899122.htm" />
+  <HelpKINode Title="REGISTER enumeration member" Url="html/127453814.htm" />
+  <HelpKINode Title="REGISTER enumeration member" Url="html/1839431660.htm" />
+  <HelpKINode Title="REGISTER field" Url="html/1823095292.htm" />
+  <HelpKINode Title="REGISTER field" Url="html/251205295.htm" />
+  <HelpKINode Title="Register method" Url="html/788166936.htm" />
+  <HelpKINode Title="RegistrationChangedEventArgs class" Url="html/593644789.htm" />
+  <HelpKINode Title="RegistrationChangedEventArgs class" Url="html/979576093.htm" />
+  <HelpKINode Title="RegistrationChangedEventArgs class">
+    <HelpKINode Title="about RegistrationChangedEventArgs class" Url="html/979576093.htm" />
+    <HelpKINode Title="all members" Url="html/593644789.htm" />
+    <HelpKINode Title="constructor" Url="html/1458858877.htm" />
+    <HelpKINode Title="fields" Url="html/1536390736.htm" />
+  </HelpKINode>
+  <HelpKINode Title="RegistrationChangedEventArgs.Message field" Url="html/2040658297.htm" />
+  <HelpKINode Title="RegistrationChangedEventArgs.RegistrationChangedEventArgs constructor" Url="html/1458858877.htm" />
+  <HelpKINode Title="RegistrationChangedEventArgs.State field" Url="html/60692526.htm" />
+  <HelpKINode Title="Reliable property" Url="html/1359838422.htm" />
+  <HelpKINode Title="Remote property" Url="html/6836560.htm" />
+  <HelpKINode Title="RemoteCandidates field" Url="html/2056828028.htm" />
+  <HelpKINode Title="RemoteCandidates property" Url="html/1786230283.htm" />
+  <HelpKINode Title="RemoteParty property" Url="html/340383416.htm" />
+  <HelpKINode Title="RemoteSeq property" Url="html/1415611104.htm" />
+  <HelpKINode Title="RemoteTag property" Url="html/2122667340.htm" />
+  <HelpKINode Title="RemoteTarget property" Url="html/1794855730.htm" />
+  <HelpKINode Title="RemoveAngelBrackets method" Url="html/1217650761.htm" />
+  <HelpKINode Title="Repr method" Url="html/1035246867.htm" />
+  <HelpKINode Title="Repr method" Url="html/333626309.htm" />
+  <HelpKINode Title="Request field" Url="html/1007734713.htm" />
+  <HelpKINode Title="Request property" Url="html/1281576802.htm" />
+  <HelpKINode Title="Request property" Url="html/470067556.htm" />
+  <HelpKINode Title="Response field" Url="html/1981009820.htm" />
+  <HelpKINode Title="ResponseCode property" Url="html/232580690.htm" />
+  <HelpKINode Title="ResponseText property" Url="html/520528355.htm" />
+  <HelpKINode Title="Ringing enumeration member" Url="html/2124894643.htm" />
+  <HelpKINode Title="Ringing field" Url="html/2104773648.htm" />
+  <HelpKINode Title="RouteSet property" Url="html/1250770004.htm" />
+  <HelpKINode Title="Running property" Url="html/1530081218.htm" />
+  <HelpKINode Title="Scheme property" Url="html/1440427908.htm" />
+  <HelpKINode Title="SDP class" Url="html/1357188340.htm" />
+  <HelpKINode Title="SDP class" Url="html/571391833.htm" />
+  <HelpKINode Title="SDP class">
+    <HelpKINode Title="about SDP class" Url="html/1357188340.htm" />
+    <HelpKINode Title="all members" Url="html/571391833.htm" />
+    <HelpKINode Title="constructor" Url="html/1461939407.htm" />
+    <HelpKINode Title="fields" Url="html/662263645.htm" />
+    <HelpKINode Title="methods" Url="html/1841603025.htm" />
+    <HelpKINode Title="properties" Url="html/1784169839.htm" />
+  </HelpKINode>
+  <HelpKINode Title="SDP.Connection property" Url="html/2135383859.htm" />
+  <HelpKINode Title="SDP.CreateAnswer method" Url="html/534579370.htm" />
+  <HelpKINode Title="SDP.CreateOffer method" Url="html/784194379.htm" />
+  <HelpKINode Title="SDP.Media property" Url="html/1589906264.htm" />
+  <HelpKINode Title="SDP.Multiple field" Url="html/1949269919.htm" />
+  <HelpKINode Title="SDP.Originator property" Url="html/1592964605.htm" />
+  <HelpKINode Title="SDP.Other property" Url="html/349626481.htm" />
+  <HelpKINode Title="SDP.Parse method" Url="html/301101649.htm" />
+  <HelpKINode Title="SDP.SDP constructor" Url="html/1461939407.htm" />
+  <HelpKINode Title="SDP.ToString method" Url="html/1178069172.htm" />
+  <HelpKINode Title="SDPConnection class" Url="html/113657095.htm" />
+  <HelpKINode Title="SDPConnection class" Url="html/573027095.htm" />
+  <HelpKINode Title="SDPConnection class">
+    <HelpKINode Title="about SDPConnection class" Url="html/573027095.htm" />
+    <HelpKINode Title="all members" Url="html/113657095.htm" />
+    <HelpKINode Title="constructor" Url="html/1374755194.htm" />
+    <HelpKINode Title="methods" Url="html/1902796722.htm" />
+    <HelpKINode Title="properties" Url="html/1479511225.htm" />
+  </HelpKINode>
+  <HelpKINode Title="SDPConnection.Address property" Url="html/1505842362.htm" />
+  <HelpKINode Title="SDPConnection.Addrtype property" Url="html/1562794815.htm" />
+  <HelpKINode Title="SDPConnection.Count property" Url="html/1739786377.htm" />
+  <HelpKINode Title="SDPConnection.Nettype property" Url="html/947231196.htm" />
+  <HelpKINode Title="SDPConnection.SDPConnection constructor" Url="html/1374755194.htm" />
+  <HelpKINode Title="SDPConnection.ToString method" Url="html/2145140831.htm" />
+  <HelpKINode Title="SDPConnection.TTL property" Url="html/1765120942.htm" />
+  <HelpKINode Title="SDPMedia class" Url="html/1833031118.htm" />
+  <HelpKINode Title="SDPMedia class" Url="html/26723723.htm" />
+  <HelpKINode Title="SDPMedia class">
+    <HelpKINode Title="about SDPMedia class" Url="html/1833031118.htm" />
+    <HelpKINode Title="all members" Url="html/26723723.htm" />
+    <HelpKINode Title="constructor" Url="html/639484927.htm" />
+    <HelpKINode Title="methods" Url="html/894550376.htm" />
+    <HelpKINode Title="properties" Url="html/281535535.htm" />
+  </HelpKINode>
+  <HelpKINode Title="SDPMedia.Count property" Url="html/493123064.htm" />
+  <HelpKINode Title="SDPMedia.Media property" Url="html/954513020.htm" />
+  <HelpKINode Title="SDPMedia.Mediaformats property" Url="html/175493003.htm" />
+  <HelpKINode Title="SDPMedia.OtherAttributes property" Url="html/1905057482.htm" />
+  <HelpKINode Title="SDPMedia.Port property" Url="html/123662325.htm" />
+  <HelpKINode Title="SDPMedia.Proto property" Url="html/404221248.htm" />
+  <HelpKINode Title="SDPMedia.SDPMedia constructor" Url="html/639484927.htm" />
+  <HelpKINode Title="SDPMedia.ToString method" Url="html/166502841.htm" />
+  <HelpKINode Title="SDPMediaFormat class" Url="html/1515932781.htm" />
+  <HelpKINode Title="SDPMediaFormat class" Url="html/454399960.htm" />
+  <HelpKINode Title="SDPMediaFormat class">
+    <HelpKINode Title="about SDPMediaFormat class" Url="html/1515932781.htm" />
+    <HelpKINode Title="all members" Url="html/454399960.htm" />
+    <HelpKINode Title="constructor" Url="html/382106799.htm" />
+    <HelpKINode Title="properties" Url="html/906227979.htm" />
+  </HelpKINode>
+  <HelpKINode Title="SDPMediaFormat.Count property" Url="html/20857094.htm" />
+  <HelpKINode Title="SDPMediaFormat.Name property" Url="html/2053234401.htm" />
+  <HelpKINode Title="SDPMediaFormat.Parameters property" Url="html/1334327557.htm" />
+  <HelpKINode Title="SDPMediaFormat.Pt property" Url="html/126764504.htm" />
+  <HelpKINode Title="SDPMediaFormat.Rate property" Url="html/393042154.htm" />
+  <HelpKINode Title="SDPMediaFormat.SDPMediaFormat constructor" Url="html/382106799.htm" />
+  <HelpKINode Title="SDPOriginator class" Url="html/2090601730.htm" />
+  <HelpKINode Title="SDPOriginator class" Url="html/7561253.htm" />
+  <HelpKINode Title="SDPOriginator class">
+    <HelpKINode Title="about SDPOriginator class" Url="html/7561253.htm" />
+    <HelpKINode Title="all members" Url="html/2090601730.htm" />
+    <HelpKINode Title="constructor" Url="html/943100374.htm" />
+    <HelpKINode Title="methods" Url="html/1892081139.htm" />
+    <HelpKINode Title="properties" Url="html/595211543.htm" />
+  </HelpKINode>
+  <HelpKINode Title="SDPOriginator.Address property" Url="html/41895670.htm" />
+  <HelpKINode Title="SDPOriginator.Addrtype property" Url="html/1402039459.htm" />
+  <HelpKINode Title="SDPOriginator.Nettype property" Url="html/495649398.htm" />
+  <HelpKINode Title="SDPOriginator.SDPOriginator constructor" Url="html/943100374.htm" />
+  <HelpKINode Title="SDPOriginator.Sessionid property" Url="html/1378266133.htm" />
+  <HelpKINode Title="SDPOriginator.ToString method" Url="html/629235552.htm" />
+  <HelpKINode Title="SDPOriginator.Username property" Url="html/1973458066.htm" />
+  <HelpKINode Title="SDPOriginator.Version property" Url="html/1660896372.htm" />
+  <HelpKINode Title="Send method" Url="html/114394757.htm" />
+  <HelpKINode Title="Send method" Url="html/553937505.htm" />
+  <HelpKINode Title="Send method" Url="html/591294444.htm" />
+  <HelpKINode Title="SendCancel method" Url="html/1335147882.htm" />
+  <HelpKINode Title="SendCancel method" Url="html/1535190467.htm" />
+  <HelpKINode Title="SendCancel method" Url="html/1919099817.htm" />
+  <HelpKINode Title="Sending method" Url="html/221168702.htm" />
+  <HelpKINode Title="Sending method" Url="html/280576558.htm" />
+  <HelpKINode Title="Sending method" Url="html/530845456.htm" />
+  <HelpKINode Title="SendRequest method" Url="html/1492504183.htm" />
+  <HelpKINode Title="SendRequest method" Url="html/433782541.htm" />
+  <HelpKINode Title="SendResponse method" Url="html/1324462336.htm" />
+  <HelpKINode Title="SendResponse method" Url="html/1327749667.htm" />
+  <HelpKINode Title="SendResponse method" Url="html/1888252857.htm" />
+  <HelpKINode Title="SendResponse method" Url="html/189680338.htm" />
+  <HelpKINode Title="SendResponse method" Url="html/464920012.htm" />
+  <HelpKINode Title="SendResponse method" Url="html/632388749.htm" />
+  <HelpKINode Title="Sent field" Url="html/1030377003.htm" />
+  <HelpKINode Title="Sent_Data_Event event" Url="html/2135512080.htm" />
+  <HelpKINode Title="Server property" Url="html/1544864766.htm" />
+  <HelpKINode Title="Server property" Url="html/183710924.htm" />
+  <HelpKINode Title="ServerFailure enumeration member" Url="html/345095516.htm" />
+  <HelpKINode Title="ServerFailure field" Url="html/1812848392.htm" />
+  <HelpKINode Title="ServerMethods field" Url="html/866776023.htm" />
+  <HelpKINode Title="Servers property" Url="html/442774854.htm" />
+  <HelpKINode Title="ServerTransaction class" Url="html/1151119341.htm" />
+  <HelpKINode Title="ServerTransaction class" Url="html/1510512766.htm" />
+  <HelpKINode Title="ServerTransaction class">
+    <HelpKINode Title="about ServerTransaction class" Url="html/1510512766.htm" />
+    <HelpKINode Title="all members" Url="html/1151119341.htm" />
+    <HelpKINode Title="constructor" Url="html/1344377744.htm" />
+    <HelpKINode Title="methods" Url="html/1021307030.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ServerTransaction.Error method" Url="html/2119501290.htm" />
+  <HelpKINode Title="ServerTransaction.ReceivedRequest method" Url="html/27668604.htm" />
+  <HelpKINode Title="ServerTransaction.SendResponse method" Url="html/1324462336.htm" />
+  <HelpKINode Title="ServerTransaction.ServerTransaction constructor" Url="html/1344377744.htm" />
+  <HelpKINode Title="ServerTransaction.Start method" Url="html/1166118147.htm" />
+  <HelpKINode Title="ServerTransaction.Timeout method" Url="html/604838077.htm" />
+  <HelpKINode Title="Sessionid property" Url="html/1378266133.htm" />
+  <HelpKINode Title="SIPApp class" Url="html/1325500495.htm" />
+  <HelpKINode Title="SIPApp class" Url="html/227879393.htm" />
+  <HelpKINode Title="SIPApp class" Url="html/338689361.htm" />
+  <HelpKINode Title="SIPApp class" Url="html/931335782.htm" />
+  <HelpKINode Title="SIPApp class">
+    <HelpKINode Title="about SIPApp class" Url="html/227879393.htm" />
+    <HelpKINode Title="about SIPApp class" Url="html/338689361.htm" />
+    <HelpKINode Title="all members" Url="html/1325500495.htm" />
+    <HelpKINode Title="all members" Url="html/931335782.htm" />
+    <HelpKINode Title="constructor" Url="html/255563558.htm" />
+    <HelpKINode Title="events" Url="html/104512505.htm" />
+    <HelpKINode Title="events" Url="html/863152118.htm" />
+    <HelpKINode Title="methods" Url="html/1441765276.htm" />
+    <HelpKINode Title="methods" Url="html/2130680042.htm" />
+    <HelpKINode Title="properties" Url="html/1381302289.htm" />
+    <HelpKINode Title="properties" Url="html/685567707.htm" />
+  </HelpKINode>
+  <HelpKINode Title="SIPApp.Authenticate method" Url="html/9619077.htm" />
+  <HelpKINode Title="SIPApp.Authenticate method" Url="html/997577231.htm" />
+  <HelpKINode Title="SIPApp.Cancelled method" Url="html/299540673.htm" />
+  <HelpKINode Title="SIPApp.Cancelled method" Url="html/632630578.htm" />
+  <HelpKINode Title="SIPApp.CreateServer method" Url="html/1448138853.htm" />
+  <HelpKINode Title="SIPApp.CreateServer method" Url="html/198951113.htm" />
+  <HelpKINode Title="SIPApp.CreateTimer method" Url="html/1633540545.htm" />
+  <HelpKINode Title="SIPApp.CreateTimer method" Url="html/338114023.htm" />
+  <HelpKINode Title="SIPApp.DialogCreated method" Url="html/1452843423.htm" />
+  <HelpKINode Title="SIPApp.DialogCreated method" Url="html/449075579.htm" />
+  <HelpKINode Title="SIPApp.EndCurrentCall method" Url="html/2141909940.htm" />
+  <HelpKINode Title="SIPApp.Error method" Url="html/158958751.htm" />
+  <HelpKINode Title="SIPApp.Invite method" Url="html/1676073373.htm" />
+  <HelpKINode Title="SIPApp.Message method" Url="html/2141428936.htm" />
+  <HelpKINode Title="SIPApp.MessageUA property" Url="html/163855804.htm" />
+  <HelpKINode Title="SIPApp.ReceiveDataCB method" Url="html/178246088.htm" />
+  <HelpKINode Title="SIPApp.ReceivedDataEvent event" Url="html/2019466717.htm" />
+  <HelpKINode Title="SIPApp.ReceivedDataEvent event" Url="html/2069971778.htm" />
+  <HelpKINode Title="SIPApp.ReceivedRequest method" Url="html/2034611604.htm" />
+  <HelpKINode Title="SIPApp.ReceivedRequest method" Url="html/702526645.htm" />
+  <HelpKINode Title="SIPApp.ReceivedResponse method" Url="html/1247328224.htm" />
+  <HelpKINode Title="SIPApp.ReceivedResponse method" Url="html/1255948504.htm" />
+  <HelpKINode Title="SIPApp.Register method" Url="html/788166936.htm" />
+  <HelpKINode Title="SIPApp.Send method" Url="html/114394757.htm" />
+  <HelpKINode Title="SIPApp.Send method" Url="html/591294444.htm" />
+  <HelpKINode Title="SIPApp.Sending method" Url="html/221168702.htm" />
+  <HelpKINode Title="SIPApp.Sending method" Url="html/530845456.htm" />
+  <HelpKINode Title="SIPApp.Sent_Data_Event event" Url="html/2135512080.htm" />
+  <HelpKINode Title="SIPApp.SIPApp constructor" Url="html/255563558.htm" />
+  <HelpKINode Title="SIPApp.Stack property" Url="html/1012691656.htm" />
+  <HelpKINode Title="SIPApp.Stack property" Url="html/1546846514.htm" />
+  <HelpKINode Title="SIPApp.Timeout method" Url="html/1425776635.htm" />
+  <HelpKINode Title="SIPApp.Transport property" Url="html/1287122130.htm" />
+  <HelpKINode Title="SIPApp.Transport property" Url="html/1362537282.htm" />
+  <HelpKINode Title="SIPLib namespace" Url="html/298919714.htm" />
+  <HelpKINode Title="SIPLib.SIP namespace" Url="html/694782666.htm" />
+  <HelpKINode Title="SIPLib.SIP.Address class" Url="html/2084954866.htm" />
+  <HelpKINode Title="SIPLib.SIP.Address class" Url="html/632853871.htm" />
+  <HelpKINode Title="SIPLib.SIP.Authenticate class" Url="html/176081507.htm" />
+  <HelpKINode Title="SIPLib.SIP.Authenticate class" Url="html/844298373.htm" />
+  <HelpKINode Title="SIPLib.SIP.CallState enumeration" Url="html/2124894643.htm" />
+  <HelpKINode Title="SIPLib.SIP.Dialog class" Url="html/1395721213.htm" />
+  <HelpKINode Title="SIPLib.SIP.Dialog class" Url="html/229870035.htm" />
+  <HelpKINode Title="SIPLib.SIP.Header class" Url="html/1751288389.htm" />
+  <HelpKINode Title="SIPLib.SIP.Header class" Url="html/844386216.htm" />
+  <HelpKINode Title="SIPLib.SIP.InviteClientTransaction class" Url="html/1643926302.htm" />
+  <HelpKINode Title="SIPLib.SIP.InviteClientTransaction class" Url="html/878413125.htm" />
+  <HelpKINode Title="SIPLib.SIP.InviteServerTransaction class" Url="html/1268779597.htm" />
+  <HelpKINode Title="SIPLib.SIP.InviteServerTransaction class" Url="html/19375576.htm" />
+  <HelpKINode Title="SIPLib.SIP.Message class" Url="html/1648213724.htm" />
+  <HelpKINode Title="SIPLib.SIP.Message class" Url="html/268309906.htm" />
+  <HelpKINode Title="SIPLib.SIP.Proxy class" Url="html/1370989349.htm" />
+  <HelpKINode Title="SIPLib.SIP.Proxy class" Url="html/1378837181.htm" />
+  <HelpKINode Title="SIPLib.SIP.RawEventArgs class" Url="html/1874122289.htm" />
+  <HelpKINode Title="SIPLib.SIP.RawEventArgs class" Url="html/701426173.htm" />
+  <HelpKINode Title="SIPLib.SIP.RegistrationChangedEventArgs class" Url="html/593644789.htm" />
+  <HelpKINode Title="SIPLib.SIP.RegistrationChangedEventArgs class" Url="html/979576093.htm" />
+  <HelpKINode Title="SIPLib.SIP.SDP class" Url="html/1357188340.htm" />
+  <HelpKINode Title="SIPLib.SIP.SDP class" Url="html/571391833.htm" />
+  <HelpKINode Title="SIPLib.SIP.SDPConnection class" Url="html/113657095.htm" />
+  <HelpKINode Title="SIPLib.SIP.SDPConnection class" Url="html/573027095.htm" />
+  <HelpKINode Title="SIPLib.SIP.SDPMedia class" Url="html/1833031118.htm" />
+  <HelpKINode Title="SIPLib.SIP.SDPMedia class" Url="html/26723723.htm" />
+  <HelpKINode Title="SIPLib.SIP.SDPMediaFormat class" Url="html/1515932781.htm" />
+  <HelpKINode Title="SIPLib.SIP.SDPMediaFormat class" Url="html/454399960.htm" />
+  <HelpKINode Title="SIPLib.SIP.SDPOriginator class" Url="html/2090601730.htm" />
+  <HelpKINode Title="SIPLib.SIP.SDPOriginator class" Url="html/7561253.htm" />
+  <HelpKINode Title="SIPLib.SIP.ServerTransaction class" Url="html/1151119341.htm" />
+  <HelpKINode Title="SIPLib.SIP.ServerTransaction class" Url="html/1510512766.htm" />
+  <HelpKINode Title="SIPLib.SIP.SipMessageEventArgs class" Url="html/1657101446.htm" />
+  <HelpKINode Title="SIPLib.SIP.SipMessageEventArgs class" Url="html/253153672.htm" />
+  <HelpKINode Title="SIPLib.SIP.SipMethods enumeration" Url="html/127453814.htm" />
+  <HelpKINode Title="SIPLib.SIP.SIPStack class" Url="html/1691788130.htm" />
+  <HelpKINode Title="SIPLib.SIP.SIPStack class" Url="html/209223964.htm" />
+  <HelpKINode Title="SIPLib.SIP.SIPURI class" Url="html/1292084268.htm" />
+  <HelpKINode Title="SIPLib.SIP.SIPURI class" Url="html/189420408.htm" />
+  <HelpKINode Title="SIPLib.SIP.StackErrorEventArgs class" Url="html/1354392477.htm" />
+  <HelpKINode Title="SIPLib.SIP.StackErrorEventArgs class" Url="html/352518613.htm" />
+  <HelpKINode Title="SIPLib.SIP.StatusCodes enumeration" Url="html/345095516.htm" />
+  <HelpKINode Title="SIPLib.SIP.Timer class" Url="html/1391834234.htm" />
+  <HelpKINode Title="SIPLib.SIP.Timer class" Url="html/506981749.htm" />
+  <HelpKINode Title="SIPLib.SIP.Transaction class" Url="html/329554376.htm" />
+  <HelpKINode Title="SIPLib.SIP.Transaction class" Url="html/599209850.htm" />
+  <HelpKINode Title="SIPLib.SIP.TransportInfo class" Url="html/385002424.htm" />
+  <HelpKINode Title="SIPLib.SIP.TransportInfo class" Url="html/640377735.htm" />
+  <HelpKINode Title="SIPLib.SIP.Types class" Url="html/160783419.htm" />
+  <HelpKINode Title="SIPLib.SIP.Types class" Url="html/310691996.htm" />
+  <HelpKINode Title="SIPLib.SIP.UserAgent class" Url="html/1375664770.htm" />
+  <HelpKINode Title="SIPLib.SIP.UserAgent class" Url="html/376070725.htm" />
+  <HelpKINode Title="SIPLib.SIPApp class" Url="html/338689361.htm" />
+  <HelpKINode Title="SIPLib.SIPApp class" Url="html/931335782.htm" />
+  <HelpKINode Title="SIPLib.Utils namespace" Url="html/295885704.htm" />
+  <HelpKINode Title="SIPLib.Utils.Helpers class" Url="html/2018521193.htm" />
+  <HelpKINode Title="SIPLib.Utils.Helpers class" Url="html/2026931254.htm" />
+  <HelpKINode Title="SIPLib.Utils.Helpers.SipMethods enumeration" Url="html/1839431660.htm" />
+  <HelpKINode Title="SIPLibDriver namespace" Url="html/1582840100.htm" />
+  <HelpKINode Title="SIPLibDriver.SIPApp class" Url="html/1325500495.htm" />
+  <HelpKINode Title="SIPLibDriver.SIPApp class" Url="html/227879393.htm" />
+  <HelpKINode Title="SipMessageEventArgs class" Url="html/1657101446.htm" />
+  <HelpKINode Title="SipMessageEventArgs class" Url="html/253153672.htm" />
+  <HelpKINode Title="SipMessageEventArgs class">
+    <HelpKINode Title="about SipMessageEventArgs class" Url="html/1657101446.htm" />
+    <HelpKINode Title="all members" Url="html/253153672.htm" />
+    <HelpKINode Title="constructor" Url="html/934933713.htm" />
+    <HelpKINode Title="fields" Url="html/80743052.htm" />
+  </HelpKINode>
+  <HelpKINode Title="SipMessageEventArgs.Message field" Url="html/2108777135.htm" />
+  <HelpKINode Title="SipMessageEventArgs.SipMessageEventArgs constructor" Url="html/934933713.htm" />
+  <HelpKINode Title="SipMessageEventArgs.UA field" Url="html/2127655581.htm" />
+  <HelpKINode Title="SipMethods enumeration" Url="html/127453814.htm" />
+  <HelpKINode Title="SipMethods.ACK field" Url="html/1427435833.htm" />
+  <HelpKINode Title="SipMethods.ACK field" Url="html/194324339.htm" />
+  <HelpKINode Title="SipMethods.BYE field" Url="html/2050333230.htm" />
+  <HelpKINode Title="SipMethods.BYE field" Url="html/611851502.htm" />
+  <HelpKINode Title="SipMethods.CANCEL field" Url="html/633088346.htm" />
+  <HelpKINode Title="SipMethods.CANCEL field" Url="html/769343490.htm" />
+  <HelpKINode Title="SipMethods.INFO field" Url="html/507818916.htm" />
+  <HelpKINode Title="SipMethods.INFO field" Url="html/778667324.htm" />
+  <HelpKINode Title="SipMethods.INVITE field" Url="html/1447749749.htm" />
+  <HelpKINode Title="SipMethods.INVITE field" Url="html/194543441.htm" />
+  <HelpKINode Title="SipMethods.MESSAGE field" Url="html/1205349384.htm" />
+  <HelpKINode Title="SipMethods.MESSAGE field" Url="html/1264669633.htm" />
+  <HelpKINode Title="SipMethods.NOTIFY field" Url="html/12998672.htm" />
+  <HelpKINode Title="SipMethods.NOTIFY field" Url="html/296943504.htm" />
+  <HelpKINode Title="SipMethods.OPTIONS field" Url="html/1611483530.htm" />
+  <HelpKINode Title="SipMethods.OPTIONS field" Url="html/43452617.htm" />
+  <HelpKINode Title="SipMethods.PRACK field" Url="html/1345650404.htm" />
+  <HelpKINode Title="SipMethods.PRACK field" Url="html/996472120.htm" />
+  <HelpKINode Title="SipMethods.PUBLISH field" Url="html/502392918.htm" />
+  <HelpKINode Title="SipMethods.PUBLISH field" Url="html/632315827.htm" />
+  <HelpKINode Title="SipMethods.REFER field" Url="html/1047747698.htm" />
+  <HelpKINode Title="SipMethods.REFER field" Url="html/1376899122.htm" />
+  <HelpKINode Title="SipMethods.REGISTER field" Url="html/1823095292.htm" />
+  <HelpKINode Title="SipMethods.REGISTER field" Url="html/251205295.htm" />
+  <HelpKINode Title="SipMethods.SUBSCRIBE field" Url="html/483821049.htm" />
+  <HelpKINode Title="SipMethods.SUBSCRIBE field" Url="html/979775852.htm" />
+  <HelpKINode Title="SipMethods.UPDATE field" Url="html/1798748725.htm" />
+  <HelpKINode Title="SipMethods.UPDATE field" Url="html/247742457.htm" />
+  <HelpKINode Title="SIPStack class" Url="html/1691788130.htm" />
+  <HelpKINode Title="SIPStack class" Url="html/209223964.htm" />
+  <HelpKINode Title="SIPStack class">
+    <HelpKINode Title="about SIPStack class" Url="html/1691788130.htm" />
+    <HelpKINode Title="all members" Url="html/209223964.htm" />
+    <HelpKINode Title="constructor" Url="html/1374686908.htm" />
+    <HelpKINode Title="fields" Url="html/1041474782.htm" />
+    <HelpKINode Title="methods" Url="html/1244648236.htm" />
+    <HelpKINode Title="properties" Url="html/349120638.htm" />
+  </HelpKINode>
+  <HelpKINode Title="SIPStack.App property" Url="html/64545148.htm" />
+  <HelpKINode Title="SIPStack.Authenticate method" Url="html/1625005299.htm" />
+  <HelpKINode Title="SIPStack.Cancelled method" Url="html/717505436.htm" />
+  <HelpKINode Title="SIPStack.Closing field" Url="html/409135991.htm" />
+  <HelpKINode Title="SIPStack.CreateServer method" Url="html/1196494681.htm" />
+  <HelpKINode Title="SIPStack.CreateVia method" Url="html/947285284.htm" />
+  <HelpKINode Title="SIPStack.DialogCreated method" Url="html/2114875404.htm" />
+  <HelpKINode Title="SIPStack.Dialogs property" Url="html/83855435.htm" />
+  <HelpKINode Title="SIPStack.FindOtherTransactions method" Url="html/938429157.htm" />
+  <HelpKINode Title="SIPStack.FindTransaction method" Url="html/1600437547.htm" />
+  <HelpKINode Title="SIPStack.NewCallId method" Url="html/433772093.htm" />
+  <HelpKINode Title="SIPStack.ProxyHost property" Url="html/2052382318.htm" />
+  <HelpKINode Title="SIPStack.ProxyPort property" Url="html/1161044370.htm" />
+  <HelpKINode Title="SIPStack.Received method" Url="html/1774408035.htm" />
+  <HelpKINode Title="SIPStack.Send method" Url="html/553937505.htm" />
+  <HelpKINode Title="SIPStack.Sending method" Url="html/280576558.htm" />
+  <HelpKINode Title="SIPStack.ServerMethods field" Url="html/866776023.htm" />
+  <HelpKINode Title="SIPStack.SIPStack constructor" Url="html/1374686908.htm" />
+  <HelpKINode Title="SIPStack.Tag property" Url="html/1084890092.htm" />
+  <HelpKINode Title="SIPStack.Transactions property" Url="html/1673440104.htm" />
+  <HelpKINode Title="SIPStack.Transport property" Url="html/2026896978.htm" />
+  <HelpKINode Title="SIPStack.Uri property" Url="html/1166255943.htm" />
+  <HelpKINode Title="SIPStack.~SIPStack method" Url="html/8196786.htm" />
+  <HelpKINode Title="SIPURI class" Url="html/1292084268.htm" />
+  <HelpKINode Title="SIPURI class" Url="html/189420408.htm" />
+  <HelpKINode Title="SIPURI class">
+    <HelpKINode Title="about SIPURI class" Url="html/189420408.htm" />
+    <HelpKINode Title="all members" Url="html/1292084268.htm" />
+    <HelpKINode Title="constructor" Url="html/403438681.htm" />
+    <HelpKINode Title="methods" Url="html/1251788907.htm" />
+    <HelpKINode Title="properties" Url="html/1542360535.htm" />
+  </HelpKINode>
+  <HelpKINode Title="SIPURI.Compare method" Url="html/1497335821.htm" />
+  <HelpKINode Title="SIPURI.Dup method" Url="html/596159016.htm" />
+  <HelpKINode Title="SIPURI.Hash method" Url="html/641092683.htm" />
+  <HelpKINode Title="SIPURI.Headers property" Url="html/2020034269.htm" />
+  <HelpKINode Title="SIPURI.Host property" Url="html/985625019.htm" />
+  <HelpKINode Title="SIPURI.HostPort method" Url="html/2094374903.htm" />
+  <HelpKINode Title="SIPURI.IP property" Url="html/551086694.htm" />
+  <HelpKINode Title="SIPURI.Parameters property" Url="html/1549329361.htm" />
+  <HelpKINode Title="SIPURI.Password property" Url="html/1830498926.htm" />
+  <HelpKINode Title="SIPURI.Port property" Url="html/580458930.htm" />
+  <HelpKINode Title="SIPURI.Scheme property" Url="html/1440427908.htm" />
+  <HelpKINode Title="SIPURI.SIPURI constructor" Url="html/403438681.htm" />
+  <HelpKINode Title="SIPURI.ToString method" Url="html/1160294837.htm" />
+  <HelpKINode Title="SIPURI.User property" Url="html/1682250838.htm" />
+  <HelpKINode Title="Socket property" Url="html/1835626433.htm" />
+  <HelpKINode Title="Src field" Url="html/1454460456.htm" />
+  <HelpKINode Title="Stack property" Url="html/1012691656.htm" />
+  <HelpKINode Title="Stack property" Url="html/1230379848.htm" />
+  <HelpKINode Title="Stack property" Url="html/1546846514.htm" />
+  <HelpKINode Title="Stack property" Url="html/1567516210.htm" />
+  <HelpKINode Title="StackErrorEventArgs class" Url="html/1354392477.htm" />
+  <HelpKINode Title="StackErrorEventArgs class" Url="html/352518613.htm" />
+  <HelpKINode Title="StackErrorEventArgs class">
+    <HelpKINode Title="about StackErrorEventArgs class" Url="html/352518613.htm" />
+    <HelpKINode Title="all members" Url="html/1354392477.htm" />
+    <HelpKINode Title="constructor" Url="html/1667647169.htm" />
+    <HelpKINode Title="fields" Url="html/1511330221.htm" />
+  </HelpKINode>
+  <HelpKINode Title="StackErrorEventArgs.Exception field" Url="html/1679994728.htm" />
+  <HelpKINode Title="StackErrorEventArgs.Function field" Url="html/1060557517.htm" />
+  <HelpKINode Title="StackErrorEventArgs.StackErrorEventArgs constructor" Url="html/1667647169.htm" />
+  <HelpKINode Title="Start method" Url="html/1166118147.htm" />
+  <HelpKINode Title="Start method" Url="html/368991088.htm" />
+  <HelpKINode Title="Start method" Url="html/638759522.htm" />
+  <HelpKINode Title="Start method" Url="html/935604015.htm" />
+  <HelpKINode Title="Start method" Url="html/947648015.htm" />
+  <HelpKINode Title="Starting enumeration member" Url="html/2124894643.htm" />
+  <HelpKINode Title="Starting field" Url="html/1337974542.htm" />
+  <HelpKINode Title="StartTimer method" Url="html/1437499437.htm" />
+  <HelpKINode Title="State field" Url="html/60692526.htm" />
+  <HelpKINode Title="State property" Url="html/1568171581.htm" />
+  <HelpKINode Title="StatusCodes enumeration" Url="html/345095516.htm" />
+  <HelpKINode Title="StatusCodes.ClientFailure field" Url="html/559689315.htm" />
+  <HelpKINode Title="StatusCodes.GlobalFailure field" Url="html/286272996.htm" />
+  <HelpKINode Title="StatusCodes.Informational field" Url="html/1291367791.htm" />
+  <HelpKINode Title="StatusCodes.Redirection field" Url="html/529191428.htm" />
+  <HelpKINode Title="StatusCodes.ServerFailure field" Url="html/1812848392.htm" />
+  <HelpKINode Title="StatusCodes.Successful field" Url="html/616613341.htm" />
+  <HelpKINode Title="StatusCodes.Unknown field" Url="html/1202806549.htm" />
+  <HelpKINode Title="StatusCodeType field" Url="html/691772476.htm" />
+  <HelpKINode Title="Stop method" Url="html/1719241094.htm" />
+  <HelpKINode Title="StopTimers method" Url="html/808046668.htm" />
+  <HelpKINode Title="Subject property" Url="html/382822327.htm" />
+  <HelpKINode Title="SUBSCRIBE enumeration member" Url="html/127453814.htm" />
+  <HelpKINode Title="SUBSCRIBE enumeration member" Url="html/1839431660.htm" />
+  <HelpKINode Title="SUBSCRIBE field" Url="html/483821049.htm" />
+  <HelpKINode Title="SUBSCRIBE field" Url="html/979775852.htm" />
+  <HelpKINode Title="Successful enumeration member" Url="html/345095516.htm" />
+  <HelpKINode Title="Successful field" Url="html/616613341.htm" />
+  <HelpKINode Title="T1 property" Url="html/1289010963.htm" />
+  <HelpKINode Title="T2 property" Url="html/1289010964.htm" />
+  <HelpKINode Title="T4 property" Url="html/1289010966.htm" />
+  <HelpKINode Title="Tag property" Url="html/1084890092.htm" />
+  <HelpKINode Title="Tag property" Url="html/453764685.htm" />
+  <HelpKINode Title="TEquals method" Url="html/414756778.htm" />
+  <HelpKINode Title="Timedout method" Url="html/1921105455.htm" />
+  <HelpKINode Title="Timeout method" Url="html/1013372499.htm" />
+  <HelpKINode Title="Timeout method" Url="html/1307958918.htm" />
+  <HelpKINode Title="Timeout method" Url="html/1425776635.htm" />
+  <HelpKINode Title="Timeout method" Url="html/1975282875.htm" />
+  <HelpKINode Title="Timeout method" Url="html/410559317.htm" />
+  <HelpKINode Title="Timeout method" Url="html/604838077.htm" />
+  <HelpKINode Title="Timer class" Url="html/1391834234.htm" />
+  <HelpKINode Title="Timer class" Url="html/506981749.htm" />
+  <HelpKINode Title="Timer class">
+    <HelpKINode Title="about Timer class" Url="html/506981749.htm" />
+    <HelpKINode Title="all members" Url="html/1391834234.htm" />
+    <HelpKINode Title="constructor" Url="html/279583416.htm" />
+    <HelpKINode Title="methods" Url="html/1777199818.htm" />
+    <HelpKINode Title="properties" Url="html/467227417.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Timer property" Url="html/1580670757.htm" />
+  <HelpKINode Title="Timer.A method" Url="html/1537015774.htm" />
+  <HelpKINode Title="Timer.B method" Url="html/801636386.htm" />
+  <HelpKINode Title="Timer.D method" Url="html/1183973410.htm" />
+  <HelpKINode Title="Timer.Delay property" Url="html/1028071547.htm" />
+  <HelpKINode Title="Timer.E method" Url="html/772341726.htm" />
+  <HelpKINode Title="Timer.F method" Url="html/1566310434.htm" />
+  <HelpKINode Title="Timer.G method" Url="html/390004702.htm" />
+  <HelpKINode Title="Timer.H method" Url="html/1110048734.htm" />
+  <HelpKINode Title="Timer.I method" Url="html/1228603426.htm" />
+  <HelpKINode Title="Timer.J method" Url="html/727711710.htm" />
+  <HelpKINode Title="Timer.K method" Url="html/1610940450.htm" />
+  <HelpKINode Title="Timer.Running property" Url="html/1530081218.htm" />
+  <HelpKINode Title="Timer.Start method" Url="html/638759522.htm" />
+  <HelpKINode Title="Timer.Stop method" Url="html/1719241094.htm" />
+  <HelpKINode Title="Timer.T1 property" Url="html/1289010963.htm" />
+  <HelpKINode Title="Timer.T2 property" Url="html/1289010964.htm" />
+  <HelpKINode Title="Timer.T4 property" Url="html/1289010966.htm" />
+  <HelpKINode Title="Timer.Timer constructor" Url="html/279583416.htm" />
+  <HelpKINode Title="Timers property" Url="html/1284339128.htm" />
+  <HelpKINode Title="ToString method" Url="html/1160294837.htm" />
+  <HelpKINode Title="ToString method" Url="html/1178069172.htm" />
+  <HelpKINode Title="ToString method" Url="html/161825903.htm" />
+  <HelpKINode Title="ToString method" Url="html/166502841.htm" />
+  <HelpKINode Title="ToString method" Url="html/2145140831.htm" />
+  <HelpKINode Title="ToString method" Url="html/470015983.htm" />
+  <HelpKINode Title="ToString method" Url="html/629235552.htm" />
+  <HelpKINode Title="ToString method" Url="html/801600270.htm" />
+  <HelpKINode Title="ToUnixTime method" Url="html/52510341.htm" />
+  <HelpKINode Title="Transaction class" Url="html/329554376.htm" />
+  <HelpKINode Title="Transaction class" Url="html/599209850.htm" />
+  <HelpKINode Title="Transaction class">
+    <HelpKINode Title="about Transaction class" Url="html/599209850.htm" />
+    <HelpKINode Title="all members" Url="html/329554376.htm" />
+    <HelpKINode Title="methods" Url="html/745913805.htm" />
+    <HelpKINode Title="properties" Url="html/1144811088.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Transaction field" Url="html/439676084.htm" />
+  <HelpKINode Title="Transaction property" Url="html/987961074.htm" />
+  <HelpKINode Title="Transaction.App property" Url="html/25863320.htm" />
+  <HelpKINode Title="Transaction.Branch property" Url="html/1142146063.htm" />
+  <HelpKINode Title="Transaction.Close method" Url="html/201688328.htm" />
+  <HelpKINode Title="Transaction.CreateAck method" Url="html/1358416344.htm" />
+  <HelpKINode Title="Transaction.CreateBranch method" Url="html/1948486192.htm" />
+  <HelpKINode Title="Transaction.CreateCancel method" Url="html/1387987829.htm" />
+  <HelpKINode Title="Transaction.CreateClient method" Url="html/1295414043.htm" />
+  <HelpKINode Title="Transaction.CreateId method" Url="html/236193806.htm" />
+  <HelpKINode Title="Transaction.CreateResponse method" Url="html/2019972929.htm" />
+  <HelpKINode Title="Transaction.CreateServer method" Url="html/1097087686.htm" />
+  <HelpKINode Title="Transaction.Headers property" Url="html/1154206534.htm" />
+  <HelpKINode Title="Transaction.ID property" Url="html/298589148.htm" />
+  <HelpKINode Title="Transaction.LastResponse property" Url="html/1628512107.htm" />
+  <HelpKINode Title="Transaction.ReceivedRequest method" Url="html/765032074.htm" />
+  <HelpKINode Title="Transaction.ReceivedResponse method" Url="html/679375657.htm" />
+  <HelpKINode Title="Transaction.Remote property" Url="html/6836560.htm" />
+  <HelpKINode Title="Transaction.Request property" Url="html/470067556.htm" />
+  <HelpKINode Title="Transaction.SendResponse method" Url="html/632388749.htm" />
+  <HelpKINode Title="Transaction.Server property" Url="html/183710924.htm" />
+  <HelpKINode Title="Transaction.Stack property" Url="html/1567516210.htm" />
+  <HelpKINode Title="Transaction.StartTimer method" Url="html/1437499437.htm" />
+  <HelpKINode Title="Transaction.State property" Url="html/1568171581.htm" />
+  <HelpKINode Title="Transaction.StopTimers method" Url="html/808046668.htm" />
+  <HelpKINode Title="Transaction.Tag property" Url="html/453764685.htm" />
+  <HelpKINode Title="Transaction.TEquals method" Url="html/414756778.htm" />
+  <HelpKINode Title="Transaction.Timedout method" Url="html/1921105455.htm" />
+  <HelpKINode Title="Transaction.Timer property" Url="html/1580670757.htm" />
+  <HelpKINode Title="Transaction.Timers property" Url="html/1284339128.htm" />
+  <HelpKINode Title="Transaction.Transport property" Url="html/1130501322.htm" />
+  <HelpKINode Title="Transactions property" Url="html/1673440104.htm" />
+  <HelpKINode Title="Transport property" Url="html/1130501322.htm" />
+  <HelpKINode Title="Transport property" Url="html/1287122130.htm" />
+  <HelpKINode Title="Transport property" Url="html/1362537282.htm" />
+  <HelpKINode Title="Transport property" Url="html/2026896978.htm" />
+  <HelpKINode Title="TransportInfo class" Url="html/385002424.htm" />
+  <HelpKINode Title="TransportInfo class" Url="html/640377735.htm" />
+  <HelpKINode Title="TransportInfo class">
+    <HelpKINode Title="about TransportInfo class" Url="html/385002424.htm" />
+    <HelpKINode Title="all members" Url="html/640377735.htm" />
+    <HelpKINode Title="constructor" Url="html/1978027451.htm" />
+    <HelpKINode Title="properties" Url="html/402710607.htm" />
+  </HelpKINode>
+  <HelpKINode Title="TransportInfo.Host property" Url="html/805980695.htm" />
+  <HelpKINode Title="TransportInfo.Port property" Url="html/265205225.htm" />
+  <HelpKINode Title="TransportInfo.Reliable property" Url="html/1359838422.htm" />
+  <HelpKINode Title="TransportInfo.Socket property" Url="html/1835626433.htm" />
+  <HelpKINode Title="TransportInfo.TransportInfo constructor" Url="html/1978027451.htm" />
+  <HelpKINode Title="TransportInfo.Type property" Url="html/1124109278.htm" />
+  <HelpKINode Title="TTL property" Url="html/1765120942.htm" />
+  <HelpKINode Title="Type property" Url="html/1124109278.htm" />
+  <HelpKINode Title="Types class" Url="html/160783419.htm" />
+  <HelpKINode Title="Types class" Url="html/310691996.htm" />
+  <HelpKINode Title="Types class">
+    <HelpKINode Title="about Types class" Url="html/160783419.htm" />
+    <HelpKINode Title="all members" Url="html/310691996.htm" />
+    <HelpKINode Title="methods" Url="html/727097626.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Types.GetStatusType method" Url="html/1785118174.htm" />
+  <HelpKINode Title="UA field" Url="html/2127655581.htm" />
+  <HelpKINode Title="Unknown enumeration member" Url="html/345095516.htm" />
+  <HelpKINode Title="Unknown field" Url="html/1202806549.htm" />
+  <HelpKINode Title="Unquote method" Url="html/1050897880.htm" />
+  <HelpKINode Title="Unquote method" Url="html/492208993.htm" />
+  <HelpKINode Title="UPDATE enumeration member" Url="html/127453814.htm" />
+  <HelpKINode Title="UPDATE enumeration member" Url="html/1839431660.htm" />
+  <HelpKINode Title="UPDATE field" Url="html/1798748725.htm" />
+  <HelpKINode Title="UPDATE field" Url="html/247742457.htm" />
+  <HelpKINode Title="Uri property" Url="html/1006447909.htm" />
+  <HelpKINode Title="Uri property" Url="html/110964746.htm" />
+  <HelpKINode Title="Uri property" Url="html/1166255943.htm" />
+  <HelpKINode Title="User property" Url="html/1682250838.htm" />
+  <HelpKINode Title="UserAgent class" Url="html/1375664770.htm" />
+  <HelpKINode Title="UserAgent class" Url="html/376070725.htm" />
+  <HelpKINode Title="UserAgent class">
+    <HelpKINode Title="about UserAgent class" Url="html/376070725.htm" />
+    <HelpKINode Title="all members" Url="html/1375664770.htm" />
+    <HelpKINode Title="constructor" Url="html/1089206236.htm" />
+    <HelpKINode Title="methods" Url="html/1573327412.htm" />
+    <HelpKINode Title="properties" Url="html/1960285399.htm" />
+  </HelpKINode>
+  <HelpKINode Title="UserAgent.App property" Url="html/1270151122.htm" />
+  <HelpKINode Title="UserAgent.Auth property" Url="html/1944197280.htm" />
+  <HelpKINode Title="UserAgent.Authenticate method" Url="html/2031547621.htm" />
+  <HelpKINode Title="UserAgent.Autoack property" Url="html/629858128.htm" />
+  <HelpKINode Title="UserAgent.CallID property" Url="html/342851402.htm" />
+  <HelpKINode Title="UserAgent.CancelRequest property" Url="html/1980319372.htm" />
+  <HelpKINode Title="UserAgent.CanCreateDialog method" Url="html/380505129.htm" />
+  <HelpKINode Title="UserAgent.Contact property" Url="html/944645019.htm" />
+  <HelpKINode Title="UserAgent.CreateRegister method" Url="html/556333429.htm" />
+  <HelpKINode Title="UserAgent.CreateRequest method" Url="html/581848952.htm" />
+  <HelpKINode Title="UserAgent.CreateResponse method" Url="html/221982128.htm" />
+  <HelpKINode Title="UserAgent.Error method" Url="html/144316593.htm" />
+  <HelpKINode Title="UserAgent.LocalParty property" Url="html/1098691775.htm" />
+  <HelpKINode Title="UserAgent.LocalSeq property" Url="html/452347822.htm" />
+  <HelpKINode Title="UserAgent.LocalTag property" Url="html/1746989.htm" />
+  <HelpKINode Title="UserAgent.LocalTarget property" Url="html/2086816713.htm" />
+  <HelpKINode Title="UserAgent.MaxForwards property" Url="html/1459602518.htm" />
+  <HelpKINode Title="UserAgent.ReceivedResponse method" Url="html/1184511762.htm" />
+  <HelpKINode Title="UserAgent.RemoteCandidates property" Url="html/1786230283.htm" />
+  <HelpKINode Title="UserAgent.RemoteParty property" Url="html/340383416.htm" />
+  <HelpKINode Title="UserAgent.RemoteSeq property" Url="html/1415611104.htm" />
+  <HelpKINode Title="UserAgent.RemoteTag property" Url="html/2122667340.htm" />
+  <HelpKINode Title="UserAgent.RemoteTarget property" Url="html/1794855730.htm" />
+  <HelpKINode Title="UserAgent.Repr method" Url="html/1035246867.htm" />
+  <HelpKINode Title="UserAgent.Request property" Url="html/1281576802.htm" />
+  <HelpKINode Title="UserAgent.RouteSet property" Url="html/1250770004.htm" />
+  <HelpKINode Title="UserAgent.SendCancel method" Url="html/1335147882.htm" />
+  <HelpKINode Title="UserAgent.SendRequest method" Url="html/1492504183.htm" />
+  <HelpKINode Title="UserAgent.SendResponse method" Url="html/1327749667.htm" />
+  <HelpKINode Title="UserAgent.Server property" Url="html/1544864766.htm" />
+  <HelpKINode Title="UserAgent.Stack property" Url="html/1230379848.htm" />
+  <HelpKINode Title="UserAgent.Subject property" Url="html/382822327.htm" />
+  <HelpKINode Title="UserAgent.Timeout method" Url="html/1307958918.htm" />
+  <HelpKINode Title="UserAgent.Transaction property" Url="html/987961074.htm" />
+  <HelpKINode Title="UserAgent.UserAgent constructor" Url="html/1089206236.htm" />
+  <HelpKINode Title="Username property" Url="html/1973458066.htm" />
+  <HelpKINode Title="Value property" Url="html/938835433.htm" />
+  <HelpKINode Title="Version property" Url="html/1660896372.htm" />
+  <HelpKINode Title="ViaUri property" Url="html/469884913.htm" />
+  <HelpKINode Title="WaitingForAccept enumeration member" Url="html/2124894643.htm" />
+  <HelpKINode Title="WaitingForAccept field" Url="html/40156162.htm" />
+  <HelpKINode Title="Wildcard property" Url="html/1491514181.htm" />
+  <HelpKINode Title="~SIPStack method" Url="html/8196786.htm" />
+</HelpKI>

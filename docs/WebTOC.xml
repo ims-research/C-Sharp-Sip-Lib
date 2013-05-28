@@ -1,0 +1,535 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<HelpTOC>
+
+  <HelpTOCNode Id="99f70d84-251c-45e2-9322-1d7af490d6ed" Title="SIPLib Namespace" Url="html/298919714.htm">
+    <HelpTOCNode Id="575b79b0-9dc1-4ed5-89e5-1a87f14508f6" Title="SIPApp Class" Url="html/338689361.htm">
+      <HelpTOCNode Title="SIPApp Members" Url="html/931335782.htm" />
+      <HelpTOCNode Id="a6ef3b07-b9d9-42dc-bb74-2debe50d8e2e" Title="SIPApp Methods" Url="html/1441765276.htm">
+        <HelpTOCNode Title="Authenticate Method " Url="html/9619077.htm" />
+        <HelpTOCNode Title="Cancelled Method " Url="html/299540673.htm" />
+        <HelpTOCNode Title="CreateServer Method " Url="html/1448138853.htm" />
+        <HelpTOCNode Title="CreateTimer Method " Url="html/1633540545.htm" />
+        <HelpTOCNode Title="DialogCreated Method " Url="html/1452843423.htm" />
+        <HelpTOCNode Title="ReceivedRequest Method " Url="html/702526645.htm" />
+        <HelpTOCNode Title="ReceivedResponse Method " Url="html/1255948504.htm" />
+        <HelpTOCNode Title="Send Method " Url="html/591294444.htm" />
+        <HelpTOCNode Title="Sending Method " Url="html/530845456.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="597bffdc-6baf-4d30-a301-ecf8b4d37afc" Title="SIPApp Properties" Url="html/685567707.htm">
+        <HelpTOCNode Title="Stack Property " Url="html/1546846514.htm" />
+        <HelpTOCNode Title="Transport Property " Url="html/1362537282.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="69b42ab4-9815-4fe7-b41e-b981ea953ea7" Title="SIPApp Events" Url="html/863152118.htm">
+        <HelpTOCNode Title="ReceivedDataEvent Event" Url="html/2019466717.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+  </HelpTOCNode>
+  <HelpTOCNode Id="3a37588e-e403-4543-8769-c17f6f484a41" Title="SIPLib.SIP Namespace" Url="html/694782666.htm">
+    <HelpTOCNode Id="323f22f5-df86-4a27-9124-55fc9f2aa884" Title="Address Class" Url="html/2084954866.htm">
+      <HelpTOCNode Title="Address Members" Url="html/632853871.htm" />
+      <HelpTOCNode Id="1f347465-d99e-4613-8bf2-b1c19fb7e6c8" Title="Address Constructor " Url="html/726703480.htm">
+        <HelpTOCNode Title="Address Constructor " Url="html/197788588.htm" />
+        <HelpTOCNode Title="Address Constructor (String)" Url="html/2017610179.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="45d3d192-c3ee-4d61-916d-3af793bd993a" Title="Address Methods" Url="html/80489245.htm">
+        <HelpTOCNode Title="Displayable Method " Url="html/1763712.htm" />
+        <HelpTOCNode Title="Dup Method " Url="html/1973303658.htm" />
+        <HelpTOCNode Title="Parse Method " Url="html/1949822627.htm" />
+        <HelpTOCNode Title="ToString Method " Url="html/470015983.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="10ae8f22-4baa-4ba4-ba02-e87cd234edd0" Title="Address Properties" Url="html/1118458705.htm">
+        <HelpTOCNode Title="DisplayName Property " Url="html/675790079.htm" />
+        <HelpTOCNode Title="MustQuote Property " Url="html/1696337227.htm" />
+        <HelpTOCNode Title="Uri Property " Url="html/1006447909.htm" />
+        <HelpTOCNode Title="Wildcard Property " Url="html/1491514181.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="15d9489b-0c11-46d2-a0e1-85e34580d0c3" Title="Authenticate Class" Url="html/844298373.htm">
+      <HelpTOCNode Title="Authenticate Members" Url="html/176081507.htm" />
+      <HelpTOCNode Id="6d32c128-5af6-483f-b2e1-e65a3d68a2b8" Title="Authenticate Methods" Url="html/1965939884.htm">
+        <HelpTOCNode Title="Basic Method " Url="html/680505925.htm" />
+        <HelpTOCNode Title="CreateAuthenticate Method " Url="html/1128338030.htm" />
+        <HelpTOCNode Title="CreateAuthorization Method " Url="html/337452764.htm" />
+        <HelpTOCNode Title="Digest Method " Url="html/838128101.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Title="CallState Enumeration" Url="html/2124894643.htm" />
+    <HelpTOCNode Id="f475ac00-c521-47bc-b563-a5801e1dce6c" Title="Dialog Class" Url="html/1395721213.htm">
+      <HelpTOCNode Title="Dialog Members" Url="html/229870035.htm" />
+      <HelpTOCNode Title="Dialog Constructor " Url="html/657374797.htm" />
+      <HelpTOCNode Id="ffd4cfc1-df48-4d4f-a2d2-bccbee9f9282" Title="Dialog Methods" Url="html/148094222.htm">
+        <HelpTOCNode Title="Close Method " Url="html/1645286095.htm" />
+        <HelpTOCNode Title="CreateClient Method " Url="html/1258356586.htm" />
+        <HelpTOCNode Title="CreateRequest Method " Url="html/1947834330.htm" />
+        <HelpTOCNode Title="CreateResponse Method " Url="html/1814851428.htm" />
+        <HelpTOCNode Title="CreateServer Method " Url="html/538625884.htm" />
+        <HelpTOCNode Title="ExtractID Method " Url="html/1905919416.htm" />
+        <HelpTOCNode Title="ReceivedRequest Method " Url="html/1652780212.htm" />
+        <HelpTOCNode Title="ReceivedResponse Method " Url="html/1323807001.htm" />
+        <HelpTOCNode Title="SendCancel Method " Url="html/1535190467.htm" />
+        <HelpTOCNode Title="SendResponse Method " Url="html/189680338.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="ead503c4-0a09-4947-b560-1b21129c6359" Title="Dialog Properties" Url="html/686349424.htm">
+        <HelpTOCNode Title="Clients Property " Url="html/642758672.htm" />
+        <HelpTOCNode Title="ID Property " Url="html/40094608.htm" />
+        <HelpTOCNode Title="Servers Property " Url="html/442774854.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="b0852b61-764c-414f-bec6-3810d925aa3b" Title="Header Class" Url="html/844386216.htm">
+      <HelpTOCNode Title="Header Members" Url="html/1751288389.htm" />
+      <HelpTOCNode Title="Header Constructor " Url="html/1192846538.htm" />
+      <HelpTOCNode Id="2346db63-2fd0-423c-a659-094e47d7a707" Title="Header Methods" Url="html/1581793681.htm">
+        <HelpTOCNode Title="Canon Method " Url="html/855771050.htm" />
+        <HelpTOCNode Title="CreateHeaders Method " Url="html/1586726767.htm" />
+        <HelpTOCNode Title="Dup Method " Url="html/1691567141.htm" />
+        <HelpTOCNode Title="Parse Method " Url="html/1740892098.htm" />
+        <HelpTOCNode Title="Quote Method " Url="html/410239374.htm" />
+        <HelpTOCNode Title="Repr Method " Url="html/333626309.htm" />
+        <HelpTOCNode Title="ToString Method " Url="html/801600270.htm" />
+        <HelpTOCNode Title="Unquote Method " Url="html/1050897880.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="c61bc826-6a97-41c5-b0d3-7fff271749ba" Title="Header Properties" Url="html/817766966.htm">
+        <HelpTOCNode Title="Attributes Property " Url="html/437903500.htm" />
+        <HelpTOCNode Title="AuthMethod Property " Url="html/165130043.htm" />
+        <HelpTOCNode Title="HeaderType Property " Url="html/2099933047.htm" />
+        <HelpTOCNode Title="Method Property " Url="html/1025799260.htm" />
+        <HelpTOCNode Title="Name Property " Url="html/1390769754.htm" />
+        <HelpTOCNode Title="Number Property " Url="html/826142380.htm" />
+        <HelpTOCNode Title="Value Property " Url="html/938835433.htm" />
+        <HelpTOCNode Title="ViaUri Property " Url="html/469884913.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="ec05c10f-42db-4524-ba7c-c95ace2b07b9" Title="InviteClientTransaction Class" Url="html/878413125.htm">
+      <HelpTOCNode Title="InviteClientTransaction Members" Url="html/1643926302.htm" />
+      <HelpTOCNode Title="InviteClientTransaction Constructor " Url="html/1047580483.htm" />
+      <HelpTOCNode Id="75dedb20-0e2a-4d67-ac8f-f05b5cebc32b" Title="InviteClientTransaction Methods" Url="html/2039563242.htm">
+        <HelpTOCNode Title="CreateAck Method " Url="html/38576785.htm" />
+        <HelpTOCNode Title="Error Method " Url="html/411665561.htm" />
+        <HelpTOCNode Title="ReceivedResponse Method " Url="html/645438729.htm" />
+        <HelpTOCNode Title="Start Method " Url="html/368991088.htm" />
+        <HelpTOCNode Title="Timeout Method " Url="html/1975282875.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="32b0984d-5943-47d0-9711-b398161cbc67" Title="InviteServerTransaction Class" Url="html/1268779597.htm">
+      <HelpTOCNode Title="InviteServerTransaction Members" Url="html/19375576.htm" />
+      <HelpTOCNode Title="InviteServerTransaction Constructor " Url="html/1209387552.htm" />
+      <HelpTOCNode Id="8e701a2f-c8ed-452b-8731-8dba1cee18d1" Title="InviteServerTransaction Methods" Url="html/42632991.htm">
+        <HelpTOCNode Title="Error Method " Url="html/1170198799.htm" />
+        <HelpTOCNode Title="ReceivedRequest Method " Url="html/1039264608.htm" />
+        <HelpTOCNode Title="SendResponse Method " Url="html/464920012.htm" />
+        <HelpTOCNode Title="Start Method " Url="html/947648015.htm" />
+        <HelpTOCNode Title="Timeout Method " Url="html/410559317.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="93aea137-2f29-47b5-ba48-fae456b62f73" Title="Message Class" Url="html/1648213724.htm">
+      <HelpTOCNode Title="Message Members" Url="html/268309906.htm" />
+      <HelpTOCNode Id="b6141bf4-4e70-4006-adb7-3453c632fb78" Title="Message Constructor " Url="html/1189072664.htm">
+        <HelpTOCNode Title="Message Constructor " Url="html/252271901.htm" />
+        <HelpTOCNode Title="Message Constructor (String)" Url="html/1609348090.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="7aba821d-a190-4e99-adc0-24862c0091f8" Title="Message Fields" Url="html/1798953554.htm">
+        <HelpTOCNode Title="had_lr Field" Url="html/2058666510.htm" />
+        <HelpTOCNode Title="StatusCodeType Field" Url="html/691772476.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="e10750b3-6e6f-48a1-9430-0cc1781ee611" Title="Message Methods" Url="html/405423147.htm">
+        <HelpTOCNode Title="CreateRequest Method " Url="html/797184937.htm" />
+        <HelpTOCNode Title="CreateResponse Method " Url="html/563843048.htm" />
+        <HelpTOCNode Title="Dup Method " Url="html/276166637.htm" />
+        <HelpTOCNode Title="First Method " Url="html/449919256.htm" />
+        <HelpTOCNode Title="InsertHeader Method " Url="html/1174641920.htm" />
+        <HelpTOCNode Title="Is1XX Method " Url="html/888297822.htm" />
+        <HelpTOCNode Title="Is2XX Method " Url="html/1450354338.htm" />
+        <HelpTOCNode Title="Is3XX Method " Url="html/505960798.htm" />
+        <HelpTOCNode Title="Is4XX Method " Url="html/1832691362.htm" />
+        <HelpTOCNode Title="Is5XX Method " Url="html/123623774.htm" />
+        <HelpTOCNode Title="Is6XX Method " Url="html/2079938910.htm" />
+        <HelpTOCNode Title="Is7XX Method " Url="html/258713250.htm" />
+        <HelpTOCNode Title="IsFinal Method " Url="html/1521463754.htm" />
+        <HelpTOCNode Title="Parse Method " Url="html/1773432915.htm" />
+        <HelpTOCNode Title="PopulateMessage Method " Url="html/1944863989.htm" />
+        <HelpTOCNode Title="ToString Method " Url="html/161825903.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="3f473e52-27cb-429c-bc2d-dbc5f8287542" Title="Message Properties" Url="html/937117854.htm">
+        <HelpTOCNode Title="Body Property " Url="html/92032733.htm" />
+        <HelpTOCNode Title="Headers Property " Url="html/1292581308.htm" />
+        <HelpTOCNode Title="Method Property " Url="html/1009631486.htm" />
+        <HelpTOCNode Title="Protocol Property " Url="html/154991505.htm" />
+        <HelpTOCNode Title="ResponseCode Property " Url="html/232580690.htm" />
+        <HelpTOCNode Title="ResponseText Property " Url="html/520528355.htm" />
+        <HelpTOCNode Title="Uri Property " Url="html/110964746.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="7e6af70d-cace-4af8-a336-4e7647f66736" Title="Proxy Class" Url="html/1370989349.htm">
+      <HelpTOCNode Title="Proxy Members" Url="html/1378837181.htm" />
+      <HelpTOCNode Title="Proxy Constructor " Url="html/808379870.htm" />
+      <HelpTOCNode Id="324a3639-55d5-4c97-80ca-3f90231d7fb6" Title="Proxy Methods" Url="html/483430198.htm">
+        <HelpTOCNode Title="CreateRequest Method " Url="html/582790195.htm" />
+        <HelpTOCNode Title="CreateTransaction Method " Url="html/682547823.htm" />
+        <HelpTOCNode Title="Error Method " Url="html/1928166379.htm" />
+        <HelpTOCNode Title="IsLocal Method " Url="html/2064527148.htm" />
+        <HelpTOCNode Title="ReceivedRequest Method " Url="html/579841557.htm" />
+        <HelpTOCNode Title="ReceivedResponse Method " Url="html/1725840291.htm" />
+        <HelpTOCNode Title="SendCancel Method " Url="html/1919099817.htm" />
+        <HelpTOCNode Title="SendRequest Method " Url="html/433782541.htm" />
+        <HelpTOCNode Title="SendResponse Method " Url="html/1888252857.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="9a933c8a-ffc2-4916-babc-a516d46febb5" Title="RawEventArgs Class" Url="html/701426173.htm">
+      <HelpTOCNode Title="RawEventArgs Members" Url="html/1874122289.htm" />
+      <HelpTOCNode Title="RawEventArgs Constructor " Url="html/27998871.htm" />
+      <HelpTOCNode Id="7273afbf-2b31-43af-b80f-b9ad3e87ffdf" Title="RawEventArgs Fields" Url="html/326745632.htm">
+        <HelpTOCNode Title="Data Field" Url="html/134006814.htm" />
+        <HelpTOCNode Title="Sent Field" Url="html/1030377003.htm" />
+        <HelpTOCNode Title="Src Field" Url="html/1454460456.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="6420476d-e43c-476a-818e-587c46547047" Title="RegistrationChangedEventArgs Class" Url="html/979576093.htm">
+      <HelpTOCNode Title="RegistrationChangedEventArgs Members" Url="html/593644789.htm" />
+      <HelpTOCNode Title="RegistrationChangedEventArgs Constructor " Url="html/1458858877.htm" />
+      <HelpTOCNode Id="4ee65fe6-bfcc-4e7d-86ad-7dd1d5f78d95" Title="RegistrationChangedEventArgs Fields" Url="html/1536390736.htm">
+        <HelpTOCNode Title="Message Field" Url="html/2040658297.htm" />
+        <HelpTOCNode Title="State Field" Url="html/60692526.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="30ef5bd2-8de1-4bcf-89a8-8ce421fe1b0d" Title="SDP Class" Url="html/1357188340.htm">
+      <HelpTOCNode Title="SDP Members" Url="html/571391833.htm" />
+      <HelpTOCNode Title="SDP Constructor " Url="html/1461939407.htm" />
+      <HelpTOCNode Id="04904349-82d2-43a5-9b8d-e24d0b423008" Title="SDP Fields" Url="html/662263645.htm">
+        <HelpTOCNode Title="Multiple Field" Url="html/1949269919.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="64c6c0ce-741c-42ef-94b7-67a5d8e1b900" Title="SDP Methods" Url="html/1841603025.htm">
+        <HelpTOCNode Title="CreateAnswer Method " Url="html/534579370.htm" />
+        <HelpTOCNode Title="CreateOffer Method " Url="html/784194379.htm" />
+        <HelpTOCNode Title="Parse Method " Url="html/301101649.htm" />
+        <HelpTOCNode Title="ToString Method " Url="html/1178069172.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="8cf3c664-c85b-4071-84b7-2107b50fbb47" Title="SDP Properties" Url="html/1784169839.htm">
+        <HelpTOCNode Title="Connection Property " Url="html/2135383859.htm" />
+        <HelpTOCNode Title="Media Property " Url="html/1589906264.htm" />
+        <HelpTOCNode Title="Originator Property " Url="html/1592964605.htm" />
+        <HelpTOCNode Title="Other Property " Url="html/349626481.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="a7f3234c-cfb4-4382-ab08-6170494fa409" Title="SDPConnection Class" Url="html/573027095.htm">
+      <HelpTOCNode Title="SDPConnection Members" Url="html/113657095.htm" />
+      <HelpTOCNode Title="SDPConnection Constructor " Url="html/1374755194.htm" />
+      <HelpTOCNode Id="f1c4d917-5312-4346-9dc0-df1ffa8ad7ae" Title="SDPConnection Methods" Url="html/1902796722.htm">
+        <HelpTOCNode Title="ToString Method " Url="html/2145140831.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="3faf14aa-706f-48e4-a23a-309bc86c6401" Title="SDPConnection Properties" Url="html/1479511225.htm">
+        <HelpTOCNode Title="Address Property " Url="html/1505842362.htm" />
+        <HelpTOCNode Title="Addrtype Property " Url="html/1562794815.htm" />
+        <HelpTOCNode Title="Count Property " Url="html/1739786377.htm" />
+        <HelpTOCNode Title="Nettype Property " Url="html/947231196.htm" />
+        <HelpTOCNode Title="TTL Property " Url="html/1765120942.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="19394e1d-e155-4188-996a-da1fe9bb3f27" Title="SDPMedia Class" Url="html/1833031118.htm">
+      <HelpTOCNode Title="SDPMedia Members" Url="html/26723723.htm" />
+      <HelpTOCNode Title="SDPMedia Constructor " Url="html/639484927.htm" />
+      <HelpTOCNode Id="10005518-9460-4a9c-be66-5474cd7d9625" Title="SDPMedia Methods" Url="html/894550376.htm">
+        <HelpTOCNode Title="ToString Method " Url="html/166502841.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="0fa49237-21eb-4538-8bc6-c7331f1f86c3" Title="SDPMedia Properties" Url="html/281535535.htm">
+        <HelpTOCNode Title="Count Property " Url="html/493123064.htm" />
+        <HelpTOCNode Title="Media Property " Url="html/954513020.htm" />
+        <HelpTOCNode Title="Mediaformats Property " Url="html/175493003.htm" />
+        <HelpTOCNode Title="OtherAttributes Property " Url="html/1905057482.htm" />
+        <HelpTOCNode Title="Port Property " Url="html/123662325.htm" />
+        <HelpTOCNode Title="Proto Property " Url="html/404221248.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="783829f7-80f4-4af9-916d-582717d9adab" Title="SDPMediaFormat Class" Url="html/1515932781.htm">
+      <HelpTOCNode Title="SDPMediaFormat Members" Url="html/454399960.htm" />
+      <HelpTOCNode Title="SDPMediaFormat Constructor " Url="html/382106799.htm" />
+      <HelpTOCNode Id="fd9a3880-c2b3-40fb-9b26-53936b9a85bd" Title="SDPMediaFormat Properties" Url="html/906227979.htm">
+        <HelpTOCNode Title="Count Property " Url="html/20857094.htm" />
+        <HelpTOCNode Title="Name Property " Url="html/2053234401.htm" />
+        <HelpTOCNode Title="Parameters Property " Url="html/1334327557.htm" />
+        <HelpTOCNode Title="Pt Property " Url="html/126764504.htm" />
+        <HelpTOCNode Title="Rate Property " Url="html/393042154.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="54ac47ea-8627-49eb-a39b-420838b95048" Title="SDPOriginator Class" Url="html/7561253.htm">
+      <HelpTOCNode Title="SDPOriginator Members" Url="html/2090601730.htm" />
+      <HelpTOCNode Title="SDPOriginator Constructor " Url="html/943100374.htm" />
+      <HelpTOCNode Id="578a97eb-41bb-4f86-8f15-bbcb2aa2cb47" Title="SDPOriginator Methods" Url="html/1892081139.htm">
+        <HelpTOCNode Title="ToString Method " Url="html/629235552.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="8bb57cba-3c66-4f63-8b92-530518a80208" Title="SDPOriginator Properties" Url="html/595211543.htm">
+        <HelpTOCNode Title="Address Property " Url="html/41895670.htm" />
+        <HelpTOCNode Title="Addrtype Property " Url="html/1402039459.htm" />
+        <HelpTOCNode Title="Nettype Property " Url="html/495649398.htm" />
+        <HelpTOCNode Title="Sessionid Property " Url="html/1378266133.htm" />
+        <HelpTOCNode Title="Username Property " Url="html/1973458066.htm" />
+        <HelpTOCNode Title="Version Property " Url="html/1660896372.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="311f4bcc-8e61-4a5b-832c-0658c6336515" Title="ServerTransaction Class" Url="html/1510512766.htm">
+      <HelpTOCNode Title="ServerTransaction Members" Url="html/1151119341.htm" />
+      <HelpTOCNode Title="ServerTransaction Constructor " Url="html/1344377744.htm" />
+      <HelpTOCNode Id="dfd823a3-803f-4ef5-a66b-1448e636056c" Title="ServerTransaction Methods" Url="html/1021307030.htm">
+        <HelpTOCNode Title="Error Method " Url="html/2119501290.htm" />
+        <HelpTOCNode Title="ReceivedRequest Method " Url="html/27668604.htm" />
+        <HelpTOCNode Title="SendResponse Method " Url="html/1324462336.htm" />
+        <HelpTOCNode Title="Start Method " Url="html/1166118147.htm" />
+        <HelpTOCNode Title="Timeout Method " Url="html/604838077.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="6a8ad78d-26c9-40ab-9cb2-233e492c1e34" Title="SipMessageEventArgs Class" Url="html/1657101446.htm">
+      <HelpTOCNode Title="SipMessageEventArgs Members" Url="html/253153672.htm" />
+      <HelpTOCNode Id="ed59bc92-fc8e-4bc6-96ef-ad6a3afdefee" Title="SipMessageEventArgs Constructor " Url="html/934933713.htm">
+        <HelpTOCNode Title="SipMessageEventArgs Constructor (Message)" Url="html/868816141.htm" />
+        <HelpTOCNode Title="SipMessageEventArgs Constructor (Message, UserAgent)" Url="html/1291167883.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="2621c46b-b3b9-4709-96bd-87cb25618939" Title="SipMessageEventArgs Fields" Url="html/80743052.htm">
+        <HelpTOCNode Title="Message Field" Url="html/2108777135.htm" />
+        <HelpTOCNode Title="UA Field" Url="html/2127655581.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Title="SipMethods Enumeration" Url="html/127453814.htm" />
+    <HelpTOCNode Id="aa58a5de-fd1e-40c8-9bb9-b1a4a41579b3" Title="SIPStack Class" Url="html/1691788130.htm">
+      <HelpTOCNode Title="SIPStack Members" Url="html/209223964.htm" />
+      <HelpTOCNode Title="SIPStack Constructor " Url="html/1374686908.htm" />
+      <HelpTOCNode Id="86ccb04e-4e10-495e-8ffb-2b7f50ae06ee" Title="SIPStack Fields" Url="html/1041474782.htm">
+        <HelpTOCNode Title="Closing Field" Url="html/409135991.htm" />
+        <HelpTOCNode Title="ServerMethods Field" Url="html/866776023.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="1eb2032b-4f10-4cbf-9626-e5fcc3cd49e1" Title="SIPStack Methods" Url="html/1244648236.htm">
+        <HelpTOCNode Title="Authenticate Method " Url="html/1625005299.htm" />
+        <HelpTOCNode Title="Cancelled Method " Url="html/717505436.htm" />
+        <HelpTOCNode Title="CreateServer Method " Url="html/1196494681.htm" />
+        <HelpTOCNode Title="CreateTimer Method (UserAgent)" Url="html/1179020264.htm" />
+        <HelpTOCNode Title="CreateVia Method " Url="html/947285284.htm" />
+        <HelpTOCNode Title="DialogCreated Method " Url="html/2114875404.htm" />
+        <HelpTOCNode Title="FindOtherTransactions Method " Url="html/938429157.htm" />
+        <HelpTOCNode Title="FindTransaction Method " Url="html/1600437547.htm" />
+        <HelpTOCNode Title="NewCallId Method " Url="html/433772093.htm" />
+        <HelpTOCNode Title="Received Method " Url="html/1774408035.htm" />
+        <HelpTOCNode Title="ReceivedRequest Method (UserAgent, Message)" Url="html/1868726820.htm" />
+        <HelpTOCNode Title="ReceivedResponse Method (UserAgent, Message)" Url="html/1727514746.htm" />
+        <HelpTOCNode Title="Send Method " Url="html/553937505.htm" />
+        <HelpTOCNode Title="Sending Method " Url="html/280576558.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="13e4e501-0b0c-4218-942d-80cc98a86e3e" Title="SIPStack Properties" Url="html/349120638.htm">
+        <HelpTOCNode Title="App Property " Url="html/64545148.htm" />
+        <HelpTOCNode Title="Dialogs Property " Url="html/83855435.htm" />
+        <HelpTOCNode Title="ProxyHost Property " Url="html/2052382318.htm" />
+        <HelpTOCNode Title="ProxyPort Property " Url="html/1161044370.htm" />
+        <HelpTOCNode Title="Tag Property " Url="html/1084890092.htm" />
+        <HelpTOCNode Title="Transactions Property " Url="html/1673440104.htm" />
+        <HelpTOCNode Title="Transport Property " Url="html/2026896978.htm" />
+        <HelpTOCNode Title="Uri Property " Url="html/1166255943.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="c5b255be-544a-46aa-bea1-e5857638d86c" Title="SIPURI Class" Url="html/189420408.htm">
+      <HelpTOCNode Title="SIPURI Members" Url="html/1292084268.htm" />
+      <HelpTOCNode Id="7a1989ca-7c6f-40ba-b0e1-6f07e541c237" Title="SIPURI Constructor " Url="html/403438681.htm">
+        <HelpTOCNode Title="SIPURI Constructor (String)" Url="html/647858767.htm" />
+        <HelpTOCNode Title="SIPURI Constructor " Url="html/1418948945.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="25cca2ae-4220-4f0e-a97b-80dce7229749" Title="SIPURI Methods" Url="html/1251788907.htm">
+        <HelpTOCNode Title="Compare Method " Url="html/1497335821.htm" />
+        <HelpTOCNode Title="Dup Method " Url="html/596159016.htm" />
+        <HelpTOCNode Title="Hash Method " Url="html/641092683.htm" />
+        <HelpTOCNode Title="HostPort Method " Url="html/2094374903.htm" />
+        <HelpTOCNode Title="ToString Method " Url="html/1160294837.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="91ad46c4-9b5a-49aa-a5a5-fbb78dc29be1" Title="SIPURI Properties" Url="html/1542360535.htm">
+        <HelpTOCNode Title="Headers Property " Url="html/2020034269.htm" />
+        <HelpTOCNode Title="Host Property " Url="html/985625019.htm" />
+        <HelpTOCNode Title="IP Property " Url="html/551086694.htm" />
+        <HelpTOCNode Title="Parameters Property " Url="html/1549329361.htm" />
+        <HelpTOCNode Title="Password Property " Url="html/1830498926.htm" />
+        <HelpTOCNode Title="Port Property " Url="html/580458930.htm" />
+        <HelpTOCNode Title="Scheme Property " Url="html/1440427908.htm" />
+        <HelpTOCNode Title="User Property " Url="html/1682250838.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="646e8005-12cc-480e-83ed-63a582469cb2" Title="StackErrorEventArgs Class" Url="html/352518613.htm">
+      <HelpTOCNode Title="StackErrorEventArgs Members" Url="html/1354392477.htm" />
+      <HelpTOCNode Title="StackErrorEventArgs Constructor " Url="html/1667647169.htm" />
+      <HelpTOCNode Id="444b9420-aabe-42c9-baa5-d5d985d2efd4" Title="StackErrorEventArgs Fields" Url="html/1511330221.htm">
+        <HelpTOCNode Title="Exception Field" Url="html/1679994728.htm" />
+        <HelpTOCNode Title="Function Field" Url="html/1060557517.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Title="StatusCodes Enumeration" Url="html/345095516.htm" />
+    <HelpTOCNode Id="efb6a981-b8b8-49b2-8ff1-699adbbe5c01" Title="Timer Class" Url="html/506981749.htm">
+      <HelpTOCNode Title="Timer Members" Url="html/1391834234.htm" />
+      <HelpTOCNode Title="Timer Constructor " Url="html/279583416.htm" />
+      <HelpTOCNode Id="a589b6a8-778a-4a18-91d0-1537ae9942f2" Title="Timer Methods" Url="html/1777199818.htm">
+        <HelpTOCNode Title="A Method " Url="html/1537015774.htm" />
+        <HelpTOCNode Title="B Method " Url="html/801636386.htm" />
+        <HelpTOCNode Title="D Method " Url="html/1183973410.htm" />
+        <HelpTOCNode Title="E Method " Url="html/772341726.htm" />
+        <HelpTOCNode Title="F Method " Url="html/1566310434.htm" />
+        <HelpTOCNode Title="G Method " Url="html/390004702.htm" />
+        <HelpTOCNode Title="H Method " Url="html/1110048734.htm" />
+        <HelpTOCNode Title="I Method " Url="html/1228603426.htm" />
+        <HelpTOCNode Title="J Method " Url="html/727711710.htm" />
+        <HelpTOCNode Title="K Method " Url="html/1610940450.htm" />
+        <HelpTOCNode Title="Start Method " Url="html/638759522.htm" />
+        <HelpTOCNode Title="Stop Method " Url="html/1719241094.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="ea5ef436-7309-4614-bf4b-9dcdf97eb668" Title="Timer Properties" Url="html/467227417.htm">
+        <HelpTOCNode Title="Delay Property " Url="html/1028071547.htm" />
+        <HelpTOCNode Title="Running Property " Url="html/1530081218.htm" />
+        <HelpTOCNode Title="T1 Property " Url="html/1289010963.htm" />
+        <HelpTOCNode Title="T2 Property " Url="html/1289010964.htm" />
+        <HelpTOCNode Title="T4 Property " Url="html/1289010966.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="f58ff975-c90a-4ead-8fde-b7cc5a216bf0" Title="Transaction Class" Url="html/599209850.htm">
+      <HelpTOCNode Title="Transaction Members" Url="html/329554376.htm" />
+      <HelpTOCNode Id="918c4f51-aed1-4375-9290-6530860f364a" Title="Transaction Methods" Url="html/745913805.htm">
+        <HelpTOCNode Title="Close Method " Url="html/201688328.htm" />
+        <HelpTOCNode Title="CreateAck Method " Url="html/1358416344.htm" />
+        <HelpTOCNode Title="CreateBranch Method " Url="html/1948486192.htm" />
+        <HelpTOCNode Title="CreateCancel Method " Url="html/1387987829.htm" />
+        <HelpTOCNode Title="CreateClient Method " Url="html/1295414043.htm" />
+        <HelpTOCNode Title="CreateId Method " Url="html/236193806.htm" />
+        <HelpTOCNode Title="CreateResponse Method " Url="html/2019972929.htm" />
+        <HelpTOCNode Title="CreateServer Method " Url="html/1097087686.htm" />
+        <HelpTOCNode Title="ReceivedRequest Method " Url="html/765032074.htm" />
+        <HelpTOCNode Title="ReceivedResponse Method " Url="html/679375657.htm" />
+        <HelpTOCNode Title="SendResponse Method " Url="html/632388749.htm" />
+        <HelpTOCNode Title="StartTimer Method " Url="html/1437499437.htm" />
+        <HelpTOCNode Title="StopTimers Method " Url="html/808046668.htm" />
+        <HelpTOCNode Title="TEquals Method " Url="html/414756778.htm" />
+        <HelpTOCNode Title="Timedout Method " Url="html/1921105455.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="6e6e4c78-ccb8-4fbe-a5e3-07d3c8e196b9" Title="Transaction Properties" Url="html/1144811088.htm">
+        <HelpTOCNode Title="App Property " Url="html/25863320.htm" />
+        <HelpTOCNode Title="Branch Property " Url="html/1142146063.htm" />
+        <HelpTOCNode Title="Headers Property " Url="html/1154206534.htm" />
+        <HelpTOCNode Title="ID Property " Url="html/298589148.htm" />
+        <HelpTOCNode Title="LastResponse Property " Url="html/1628512107.htm" />
+        <HelpTOCNode Title="Remote Property " Url="html/6836560.htm" />
+        <HelpTOCNode Title="Request Property " Url="html/470067556.htm" />
+        <HelpTOCNode Title="Server Property " Url="html/183710924.htm" />
+        <HelpTOCNode Title="Stack Property " Url="html/1567516210.htm" />
+        <HelpTOCNode Title="State Property " Url="html/1568171581.htm" />
+        <HelpTOCNode Title="Tag Property " Url="html/453764685.htm" />
+        <HelpTOCNode Title="Timer Property " Url="html/1580670757.htm" />
+        <HelpTOCNode Title="Timers Property " Url="html/1284339128.htm" />
+        <HelpTOCNode Title="Transport Property " Url="html/1130501322.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="b370d494-5336-4279-88d6-cffd0311be03" Title="TransportInfo Class" Url="html/385002424.htm">
+      <HelpTOCNode Title="TransportInfo Members" Url="html/640377735.htm" />
+      <HelpTOCNode Title="TransportInfo Constructor " Url="html/1978027451.htm" />
+      <HelpTOCNode Id="8fa74567-6c79-42cc-a9ba-4ca837201f42" Title="TransportInfo Properties" Url="html/402710607.htm">
+        <HelpTOCNode Title="Host Property " Url="html/805980695.htm" />
+        <HelpTOCNode Title="Port Property " Url="html/265205225.htm" />
+        <HelpTOCNode Title="Reliable Property " Url="html/1359838422.htm" />
+        <HelpTOCNode Title="Socket Property " Url="html/1835626433.htm" />
+        <HelpTOCNode Title="Type Property " Url="html/1124109278.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="af8be297-b87c-4a47-aac6-4ef3485a8e82" Title="Types Class" Url="html/160783419.htm">
+      <HelpTOCNode Title="Types Members" Url="html/310691996.htm" />
+      <HelpTOCNode Id="7833e077-c38b-470f-8c69-d5fc6315ca44" Title="Types Methods" Url="html/727097626.htm">
+        <HelpTOCNode Title="GetStatusType Method " Url="html/1785118174.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="d558c2d1-f26b-4710-a112-d71f9eaff329" Title="UserAgent Class" Url="html/376070725.htm">
+      <HelpTOCNode Title="UserAgent Members" Url="html/1375664770.htm" />
+      <HelpTOCNode Title="UserAgent Constructor " Url="html/1089206236.htm" />
+      <HelpTOCNode Id="30811d4c-b676-4f9b-9278-2fc734029cc5" Title="UserAgent Methods" Url="html/1573327412.htm">
+        <HelpTOCNode Title="Authenticate Method " Url="html/2031547621.htm" />
+        <HelpTOCNode Title="CanCreateDialog Method " Url="html/380505129.htm" />
+        <HelpTOCNode Title="CreateRegister Method " Url="html/556333429.htm" />
+        <HelpTOCNode Title="CreateRequest Method " Url="html/581848952.htm" />
+        <HelpTOCNode Title="CreateResponse Method " Url="html/221982128.htm" />
+        <HelpTOCNode Title="Error Method " Url="html/144316593.htm" />
+        <HelpTOCNode Title="ReceivedRequest Method (Transaction, Message)" Url="html/1965481884.htm" />
+        <HelpTOCNode Title="ReceivedResponse Method " Url="html/1184511762.htm" />
+        <HelpTOCNode Title="Repr Method " Url="html/1035246867.htm" />
+        <HelpTOCNode Title="SendCancel Method " Url="html/1335147882.htm" />
+        <HelpTOCNode Title="SendRequest Method " Url="html/1492504183.htm" />
+        <HelpTOCNode Title="SendResponse Method " Url="html/1327749667.htm" />
+        <HelpTOCNode Title="Timeout Method " Url="html/1307958918.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="feb8a446-473a-444c-b485-4c0bbcdc2f0c" Title="UserAgent Properties" Url="html/1960285399.htm">
+        <HelpTOCNode Title="App Property " Url="html/1270151122.htm" />
+        <HelpTOCNode Title="Auth Property " Url="html/1944197280.htm" />
+        <HelpTOCNode Title="Autoack Property " Url="html/629858128.htm" />
+        <HelpTOCNode Title="CallID Property " Url="html/342851402.htm" />
+        <HelpTOCNode Title="CancelRequest Property " Url="html/1980319372.htm" />
+        <HelpTOCNode Title="Contact Property " Url="html/944645019.htm" />
+        <HelpTOCNode Title="LocalParty Property " Url="html/1098691775.htm" />
+        <HelpTOCNode Title="LocalSeq Property " Url="html/452347822.htm" />
+        <HelpTOCNode Title="LocalTag Property " Url="html/1746989.htm" />
+        <HelpTOCNode Title="LocalTarget Property " Url="html/2086816713.htm" />
+        <HelpTOCNode Title="MaxForwards Property " Url="html/1459602518.htm" />
+        <HelpTOCNode Title="RemoteCandidates Property " Url="html/1786230283.htm" />
+        <HelpTOCNode Title="RemoteParty Property " Url="html/340383416.htm" />
+        <HelpTOCNode Title="RemoteSeq Property " Url="html/1415611104.htm" />
+        <HelpTOCNode Title="RemoteTag Property " Url="html/2122667340.htm" />
+        <HelpTOCNode Title="RemoteTarget Property " Url="html/1794855730.htm" />
+        <HelpTOCNode Title="Request Property " Url="html/1281576802.htm" />
+        <HelpTOCNode Title="RouteSet Property " Url="html/1250770004.htm" />
+        <HelpTOCNode Title="Server Property " Url="html/1544864766.htm" />
+        <HelpTOCNode Title="Stack Property " Url="html/1230379848.htm" />
+        <HelpTOCNode Title="Subject Property " Url="html/382822327.htm" />
+        <HelpTOCNode Title="Transaction Property " Url="html/987961074.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+  </HelpTOCNode>
+  <HelpTOCNode Id="ddfdcb1d-1a6c-4ca8-b27f-8c870446a632" Title="SIPLib.Utils Namespace" Url="html/295885704.htm">
+    <HelpTOCNode Id="ce3a54d3-2b79-45c5-b35a-8adc52c332e5" Title="Helpers Class" Url="html/2018521193.htm">
+      <HelpTOCNode Title="Helpers Members" Url="html/2026931254.htm" />
+      <HelpTOCNode Id="298a24bb-84d1-49f2-afe7-bb4620d3e32c" Title="Helpers Methods" Url="html/340931058.htm">
+        <HelpTOCNode Title="Base64Decode Method " Url="html/1663791201.htm" />
+        <HelpTOCNode Title="Base64Encode Method " Url="html/1177093660.htm" />
+        <HelpTOCNode Title="FromUnixTime Method " Url="html/126079363.htm" />
+        <HelpTOCNode Title="GetLocalIP Method " Url="html/673650395.htm" />
+        <HelpTOCNode Title="GetMd5Hash Method " Url="html/1827409635.htm" />
+        <HelpTOCNode Title="IsIPv4 Method " Url="html/1639568891.htm" />
+        <HelpTOCNode Id="65312e40-fde5-4d50-9d39-01e74ed2c532" Title="IsRequest Method " Url="html/995069224.htm">
+          <HelpTOCNode Title="IsRequest Method (Message)" Url="html/1743814334.htm" />
+          <HelpTOCNode Title="IsRequest Method (String)" Url="html/562766233.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Title="Quote Method " Url="html/2127983753.htm" />
+        <HelpTOCNode Title="RemoveAngelBrackets Method " Url="html/1217650761.htm" />
+        <HelpTOCNode Title="ToUnixTime Method " Url="html/52510341.htm" />
+        <HelpTOCNode Title="Unquote Method " Url="html/492208993.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Title="Helpers.SipMethods Enumeration" Url="html/1839431660.htm" />
+  </HelpTOCNode>
+  <HelpTOCNode Id="914a9f49-b2b5-49ec-bea6-d6d2bd937d90" Title="SIPLibDriver Namespace" Url="html/1582840100.htm">
+    <HelpTOCNode Id="233f8d23-c840-4931-ad78-16ac24f026e2" Title="SIPApp Class" Url="html/227879393.htm">
+      <HelpTOCNode Title="SIPApp Members" Url="html/1325500495.htm" />
+      <HelpTOCNode Title="SIPApp Constructor " Url="html/255563558.htm" />
+      <HelpTOCNode Id="a15a10eb-1908-4d03-831e-1ce0572c9006" Title="SIPApp Methods" Url="html/2130680042.htm">
+        <HelpTOCNode Title="Authenticate Method " Url="html/997577231.htm" />
+        <HelpTOCNode Title="Cancelled Method " Url="html/632630578.htm" />
+        <HelpTOCNode Title="CreateServer Method " Url="html/198951113.htm" />
+        <HelpTOCNode Title="CreateTimer Method " Url="html/338114023.htm" />
+        <HelpTOCNode Title="DialogCreated Method " Url="html/449075579.htm" />
+        <HelpTOCNode Title="EndCurrentCall Method " Url="html/2141909940.htm" />
+        <HelpTOCNode Title="Error Method " Url="html/158958751.htm" />
+        <HelpTOCNode Title="Invite Method " Url="html/1676073373.htm" />
+        <HelpTOCNode Title="Message Method " Url="html/2141428936.htm" />
+        <HelpTOCNode Title="ReceiveDataCB Method " Url="html/178246088.htm" />
+        <HelpTOCNode Title="ReceivedRequest Method " Url="html/2034611604.htm" />
+        <HelpTOCNode Title="ReceivedResponse Method " Url="html/1247328224.htm" />
+        <HelpTOCNode Title="Register Method " Url="html/788166936.htm" />
+        <HelpTOCNode Title="Send Method " Url="html/114394757.htm" />
+        <HelpTOCNode Title="Sending Method " Url="html/221168702.htm" />
+        <HelpTOCNode Title="Timeout Method " Url="html/1425776635.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="09833927-f6ea-495c-8b77-92e3e208b6e0" Title="SIPApp Properties" Url="html/1381302289.htm">
+        <HelpTOCNode Title="MessageUA Property " Url="html/163855804.htm" />
+        <HelpTOCNode Title="Stack Property " Url="html/1012691656.htm" />
+        <HelpTOCNode Title="Transport Property " Url="html/1287122130.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="f5c2c22e-7b4d-47a1-9003-df18a866b4a4" Title="SIPApp Events" Url="html/104512505.htm">
+        <HelpTOCNode Title="ReceivedDataEvent Event" Url="html/2069971778.htm" />
+        <HelpTOCNode Title="Sent_Data_Event Event" Url="html/2135512080.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+  </HelpTOCNode>
+</HelpTOC>

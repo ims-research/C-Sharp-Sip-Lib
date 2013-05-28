@@ -8,8 +8,8 @@
     </IgnoreFiles>
   </SpellChecker>
   <HelpFile>
-    <OutputPath>C%3a%5ctemp%5csiplib%5cDocs%5c</OutputPath>
-    <SelectedProjects>SIPLib</SelectedProjects>
+    <OutputPath>C%3a%5cUsers%5cRichard%5cDocuments%5cGitHub%5cC-Sharp-Sip-Lib%5cdocs</OutputPath>
+    <SelectedProjects>SIPLib%3bSIPLibDriver</SelectedProjects>
     <HtmlHelp1>True</HtmlHelp1>
     <MSHelp2>False</MSHelp2>
     <MSHelpViewer>False</MSHelpViewer>
