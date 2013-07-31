@@ -402,7 +402,8 @@ namespace SIPLib.SIP
                 if (response.IsFinal())
                 {
                     branch.Response = response;
-                    SendResponseIfPossible();
+                    Stack.ReceivedResponse(this, response);
+                    //SendResponseIfPossible();
                 }
                 else
                 {
@@ -412,6 +413,7 @@ namespace SIPLib.SIP
                         response.Headers.Remove("Via");
                     }
                     SendResponse(response);
+                    Stack.ReceivedResponse(this, response);
                 }
             }
         }
