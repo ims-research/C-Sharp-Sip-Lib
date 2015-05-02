@@ -37,9 +37,8 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="log4net, Version=1.2.11.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Libs\log4net.dll</HintPath>
+    <Reference Include="log4net">
+      <HintPath>..\SIPLib\lib\log4net.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -60,13 +59,15 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Libs\log4net.dll" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\SIPLib\SIPLib.csproj">
       <Project>{bcb5cea8-22e7-470c-b566-cfea2d051c9b}</Project>
       <Name>SIPLib</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Libs\log4net.dll" />
+    <Content Include="Libs\log4net.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
