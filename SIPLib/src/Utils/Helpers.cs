@@ -228,12 +228,17 @@ namespace SIPLib.Utils
             string strHostName = Dns.GetHostName();
             IPHostEntry ipEntry = Dns.GetHostEntry(strHostName);
             IPAddress[] addr = ipEntry.AddressList;
-            foreach (
-                IPAddress t in
-                    addr.Where(t => t.AddressFamily.ToString() == "InterNetwork")
-                        .TakeWhile(t => t.ToString() != "127.0.0.1"))
+            foreach (IPAddress t in addr)
             {
-                return t.ToString();
+                if (t.AddressFamily.ToString() == "InterNetwork")
+                {
+                    // Can disable unwanted interfaces here
+                    // e.g. && t.ToString() != "192.168.0.5"
+                    if (t.ToString() != "127.0.0.1")
+                    {
+                            return t.ToString();
+                    }
+                }
             }
             return "127.0.0.1";
         }
