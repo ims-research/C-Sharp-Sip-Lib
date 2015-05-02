@@ -135,14 +135,14 @@ namespace SIPLib.SIP
         /// <param name="e">The <see cref="T:SIPLib.SIP.RawEventArgs" /> instance containing the event data.</param>
         private void TransportReceivedDataEvent(object sender, RawEventArgs e)
         {
-            try
-            {
+            //try
+            //{
                 Received(e.Data, e.Src);
-            }
-            catch (Exception ex)
-            {
-                Debug.Assert(false, String.Format("Error receiving data with exception {0}", ex));
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    Debug.Assert(false, String.Format("Error receiving data with exception {0}", ex));
+            //}
         }
 
         /// <summary>
@@ -352,8 +352,8 @@ namespace SIPLib.SIP
                     //Hook to log particular types of messages
                     _log.Debug(new Message(data));
                 }
-                try
-                {
+                //try
+                //{
                     Message m = new Message(data);
                     SIPURI uri = new SIPURI("sip" + ":" + src[0] + ":" + src[1]);
                     if (m.Method != null)
@@ -383,13 +383,13 @@ namespace SIPLib.SIP
                     {
                         Debug.Assert(false, String.Format("Received invalid message \n{0}\n", m));
                     }
-                }
-                catch (Exception ex)
-                {
-                    Debug.Assert(false,
-                                 String.Format("Error in received message \n{0}\n with error message {1}", data,
-                                               ex.Message));
-                }
+                //}
+                //catch (Exception ex)
+                //{
+                //    Debug.Assert(false,
+                //                 String.Format("Error in received message \n{0}\n with error message {1}", data,
+                //                               ex.Message));
+                //}
             }
         }
 
@@ -528,6 +528,7 @@ namespace SIPLib.SIP
                     {
                         UserAgent ua = new UserAgent(this) {Request = m};
                         App.ReceivedRequest(ua, m, this);
+                        return;
                     }
                     else if (m.Method != "ACK")
                     {
@@ -547,6 +548,7 @@ namespace SIPLib.SIP
                     }
                     app = o.App;
                 }
+
                 if (app != null)
                 {
                     //t = Transaction.CreateServer(app.Stack, app, app.Request, app.Stack.Transport, app.Stack.Tag);
