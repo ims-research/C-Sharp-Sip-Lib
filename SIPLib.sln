@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SIPLib", "SIPLib\SIPLib.csproj", "{BCB5CEA8-22E7-470C-B566-CFEA2D051C9B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SIPLibDriver", "SIPLibDriver\SIPLibDriver.csproj", "{EA718996-0383-4D9C-BAEB-51461C113C44}"
