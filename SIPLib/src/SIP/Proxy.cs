@@ -65,8 +65,8 @@ namespace SIPLib.SIP
         /// <param name="request">The request.</param>
         public override void ReceivedRequest(Transaction transaction, Message request)
         {
-            try
-            {
+            //try
+            //{
                 if ((transaction != null) && Transaction != null && Transaction != transaction &&
                     request.Method.ToUpper() != "CANCEL")
                 {
@@ -144,19 +144,19 @@ namespace SIPLib.SIP
                 {
                     Header lastRoute = request.Headers["Route"].Last();
                     request.Headers["Route"].RemoveAt(request.Headers["Route"].Count - 1);
-                    request.Uri = ((Address) (lastRoute.Value)).Uri;
+                    request.Uri = ((Address)(lastRoute.Value)).Uri;
                 }
-                if (request.First("Route") != null && IsLocal(((Address) (request.First("Route").Value)).Uri))
+                if (request.First("Route") != null && IsLocal(((Address)(request.First("Route").Value)).Uri))
                 {
                     request.Headers["Route"].RemoveAt(0);
                     request.had_lr = true;
                 }
                 Stack.ReceivedRequest(this, request);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            //}
+            //catch (Exception)
+            //{
+            //    throw;
+            //}
         }
 
         /// <summary>
@@ -223,17 +223,16 @@ namespace SIPLib.SIP
                                                        false);
             }
 
-            if (dest.GetType() == typeof (Address))
+            if (dest.GetType() == typeof(Address))
             {
-                request.Uri = ((Address) dest).Uri.Dup();
+                request.Uri = ((Address)dest).Uri.Dup();
             }
             else if (dest is string[])
             {
-                string[] destArray = (string[]) dest;
+                string[] destArray = (string[])dest;
                 string scheme = request.Uri.Scheme;
                 string user = request.Uri.User;
-                request.Uri = new SIPURI
-                    {Scheme = scheme, User = user, Host = destArray[0], Port = int.Parse(destArray[1])};
+                request.Uri = new SIPURI { Scheme = scheme, User = user, Host = destArray[0], Port = int.Parse(destArray[1]) };
             }
             else
             {
@@ -289,7 +288,7 @@ namespace SIPLib.SIP
                 {
                     try
                     {
-                        target = ((Address) routes[0].Value).Uri;
+                        target = ((Address)routes[0].Value).Uri;
                         string test = target.Parameters["lr"];
                     }
                     catch (Exception)
@@ -330,7 +329,7 @@ namespace SIPLib.SIP
             }
             if (Helpers.IsIPv4(dest.Host))
             {
-                branch.RemoteCandidates = new List<SIPURI> {dest};
+                branch.RemoteCandidates = new List<SIPURI> { dest };
             }
             if (branch.RemoteCandidates == null || branch.RemoteCandidates.Count == 0)
             {
