@@ -39,7 +39,8 @@ namespace SIPLib.SIP
         public void Start()
         {
             State = "proceeding";
-            SendResponse(CreateResponse(100, "Trying"));
+            // TODO - Enable 100 trying again
+            //SendResponse(CreateResponse(100, "Trying"));
             App.ReceivedRequest(this, Request, Stack);
         }
 
@@ -53,7 +54,11 @@ namespace SIPLib.SIP
             {
                 if (State == "proceeding" || State == "completed")
                 {
-                    Stack.Send(LastResponse, Remote, Transport);
+                    if (LastResponse != null)
+                    {
+                        Stack.Send(LastResponse, Remote, Transport);
+                    }
+                    
                 }
             }
             else if (receivedRequest.Method == "ACK")
