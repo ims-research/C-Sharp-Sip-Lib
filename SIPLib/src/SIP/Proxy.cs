@@ -20,6 +20,7 @@ using System.Linq;
 using System.Net;
 using SIPLib.SIP;
 using SIPLib.Utils;
+using System.Runtime.CompilerServices;
 
 #endregion
 
@@ -63,6 +64,7 @@ namespace SIPLib.SIP
         /// </summary>
         /// <param name="transaction">The transaction.</param>
         /// <param name="request">The request.</param>
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public override void ReceivedRequest(Transaction transaction, Message request)
         {
             //try
