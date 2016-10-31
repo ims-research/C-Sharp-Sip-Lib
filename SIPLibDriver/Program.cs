@@ -61,7 +61,9 @@ namespace SIPLibDriver
         static void Main(string[] args)
         {
             // Create transport object that will listen on the following port on the best guessed local address
-            TransportInfo localTransport = CreateTransport(Helpers.GetLocalIP(), 3420);
+            Random rnd = new Random();
+            int port = rnd.Next(5090,6090);
+            TransportInfo localTransport = CreateTransport("172.27.0.130", port);
             // Can also specify an IP if you know the IP to be used.
             //TransportInfo localTransport = CreateTransport("192.168.20.28", 8989);
             
@@ -69,10 +71,15 @@ namespace SIPLibDriver
             SIPApp app = new SIPApp(localTransport);
 
             // Create a SIP stack with the proxy address if needed
-            SIPStack stack = CreateStack(app,"alice","192.168.20.248", 9000);
+            SIPStack stack = CreateStack(app,"alice","172.30.0.161", 5060);
             
             // Register with the specified user URI
             app.Register("sip:alice@open-ims.test");
+
+            while(true)
+            { 
+            app.Invite("sip:alice@open-ims.test");
+            }
 
             // Simple pause so you can test each function / watch the SIP signalling
             Console.ReadKey();

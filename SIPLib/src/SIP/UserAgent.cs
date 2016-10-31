@@ -14,10 +14,12 @@
 #region
 
 using System;
+using System.Threading;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using SIPLib.Utils;
+using System.Runtime.CompilerServices;
 
 #endregion
 
@@ -30,6 +32,7 @@ namespace SIPLib.SIP
     /// a response. A UAS is capable of receiving a request and generating a response based on user input, external
     /// stimulus, the result of a program execution, or some other mechanism.
     /// </summary>
+    //[MyThreadSafetyCheck]
     public class UserAgent
     {
         /// <summary>
@@ -138,7 +141,18 @@ namespace SIPLib.SIP
         /// Gets or sets the transaction.
         /// </summary>
         /// <value>The transaction.</value>
-        public Transaction Transaction { get; set; }
+		private Transaction _transaction;
+		public Transaction Transaction
+		{
+			get { 
+				return this._transaction; 
+			}
+			set { 
+				this._transaction = value; 
+			}
+		}
+
+
         /// <summary>
         /// Gets or sets the cancel request.
         /// </summary>

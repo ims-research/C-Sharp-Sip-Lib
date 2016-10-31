@@ -158,7 +158,7 @@ namespace SIPLib.SIP
             string to = "", from = "", callId = "", cSeq = "";
             if (request is Message)
             {
-                Message requestMessage = (Message) (request);
+                Message requestMessage = (Message)(request);
                 to = requestMessage.First("To").Value.ToString();
                 from = requestMessage.First("From").Value.ToString();
                 callId = requestMessage.First("Call-ID").Value.ToString();
@@ -166,7 +166,7 @@ namespace SIPLib.SIP
             }
             else if (request is Dictionary<string, object>)
             {
-                Dictionary<string, object> dict = (Dictionary<string, object>) request;
+                Dictionary<string, object> dict = (Dictionary<string, object>)request;
                 object[] headers = dict.Values.ToArray();
                 to = headers[0].ToString();
                 from = headers[1].ToString();
@@ -213,37 +213,40 @@ namespace SIPLib.SIP
                                                string tag, Boolean start = true)
         {
             Transaction t;
-            if (request.Method == "INVITE")
+            lock (stack.TransactionLock)
             {
-                t = new InviteServerTransaction(app);
-            }
-            else
-            {
-                t = new ServerTransaction(app);
-            }
-            t.Stack = stack;
-            t.App = app;
-            t.Request = request;
-            t.Transport = transport;
-            t.Tag = tag;
-            t.Remote = request.First("Via").ViaUri.HostPort();
-            if (request.Headers.ContainsKey("Via") && request.First("Via").Attributes.ContainsKey("branch"))
-            {
-                t.Branch = request.First("Via").Attributes["branch"];
-            }
-            else
-            {
-                t.Branch = CreateBranch(request, true);
-            }
-            t.ID = CreateId(t.Branch, request.Method);
-            stack.Transactions[t.ID] = t;
-            if (request.Method == "INVITE")
-            {
-                ((InviteServerTransaction) t).Start();
-            }
-            else
-            {
-                ((ServerTransaction) t).Start();
+                if (request.Method == "INVITE")
+                {
+                    t = new InviteServerTransaction(app);
+                }
+                else
+                {
+                    t = new ServerTransaction(app);
+                }
+                t.Stack = stack;
+                t.App = app;
+                t.Request = request;
+                t.Transport = transport;
+                t.Tag = tag;
+                t.Remote = request.First("Via").ViaUri.HostPort();
+                if (request.Headers.ContainsKey("Via") && request.First("Via").Attributes.ContainsKey("branch"))
+                {
+                    t.Branch = request.First("Via").Attributes["branch"];
+                }
+                else
+                {
+                    t.Branch = CreateBranch(request, true);
+                }
+                t.ID = CreateId(t.Branch, request.Method);
+                stack.Transactions[t.ID] = t;
+                if (request.Method == "INVITE")
+                {
+                    ((InviteServerTransaction)t).Start();
+                }
+                else
+                {
+                    ((ServerTransaction)t).Start();
+                }
             }
             return t;
         }
@@ -261,37 +264,40 @@ namespace SIPLib.SIP
                                                string remote)
         {
             Transaction t;
-            if (request.Method == "INVITE")
+            lock (stack.TransactionLock)
             {
-                t = new InviteClientTransaction(app);
-            }
-            else
-            {
-                t = new ClientTransaction(app);
-            }
-            t.Stack = stack;
-            t.App = app;
-            t.Request = request;
-            t.Transport = transport;
-            t.Remote = remote;
+                if (request.Method == "INVITE")
+                {
+                    t = new InviteClientTransaction(app);
+                }
+                else
+                {
+                    t = new ClientTransaction(app);
+                }
+                t.Stack = stack;
+                t.App = app;
+                t.Request = request;
+                t.Transport = transport;
+                t.Remote = remote;
 
-            if (request.Headers.ContainsKey("Via") && request.First("Via").Attributes.ContainsKey("branch"))
-            {
-                t.Branch = request.First("Via").Attributes["branch"];
-            }
-            else
-            {
-                t.Branch = CreateBranch(request, false);
-            }
-            t.ID = CreateId(t.Branch, request.Method);
-            stack.Transactions[t.ID] = t;
-            if (request.Method == "INVITE")
-            {
-                ((InviteClientTransaction) t).Start();
-            }
-            else
-            {
-                ((ClientTransaction) t).Start();
+                if (request.Headers.ContainsKey("Via") && request.First("Via").Attributes.ContainsKey("branch"))
+                {
+                    t.Branch = request.First("Via").Attributes["branch"];
+                }
+                else
+                {
+                    t.Branch = CreateBranch(request, false);
+                }
+                t.ID = CreateId(t.Branch, request.Method);
+                stack.Transactions[t.ID] = t;
+                if (request.Method == "INVITE")
+                {
+                    ((InviteClientTransaction)t).Start();
+                }
+                else
+                {
+                    ((ClientTransaction)t).Start();
+                }
             }
             return t;
         }
@@ -312,11 +318,11 @@ namespace SIPLib.SIP
         public static bool TEquals(Transaction t1, Message r, Transaction t2)
         {
             Message t = t1.Request;
-            Address requestTo = (Address) (r.First("To").Value);
-            Address t1To = (Address) (t.First("To").Value);
+            Address requestTo = (Address)(r.First("To").Value);
+            Address t1To = (Address)(t.First("To").Value);
 
-            Address requestFrom = (Address) (r.First("To").Value);
-            Address t1From = (Address) (t.First("To").Value);
+            Address requestFrom = (Address)(r.First("To").Value);
+            Address t1From = (Address)(t.First("To").Value);
 
             bool a = (String.Compare(requestTo.Uri.ToString(), t1To.Uri.ToString()) == 0);
             a = a && (String.Compare(requestFrom.Uri.ToString(), t1From.Uri.ToString()) == 0);
@@ -373,7 +379,7 @@ namespace SIPLib.SIP
                 }
                 if (m != null && Request.Headers.ContainsKey("Via"))
                 {
-                    m.Headers["Via"] = new List<Header> {Request.First("Route")};
+                    m.Headers["Via"] = new List<Header> { Request.First("Route") };
                 }
             }
             return m;

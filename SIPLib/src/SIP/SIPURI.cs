@@ -35,7 +35,35 @@ namespace SIPLib.SIP
         /// <param name="uri">A string representing a SIP URI.</param>
         public SIPURI(string uri)
         {
+            Console.WriteLine("Creating URI with: "+ uri);
             Init();
+            nonRegExpInit(uri);
+        }
+
+        public SIPURI(string uri, bool useRegex)
+        {
+            Console.WriteLine("Creating URI with: " + uri);
+            Init();
+            if (useRegex)
+            {
+                regExInit(uri);
+            }
+            else
+            {
+                nonRegExpInit(uri);
+            }
+        }
+
+        /// <summary>
+        /// Initializes an empty instance of the <see cref="T:SIPLib.SIP.SIPURI" /> class.
+        /// </summary>
+        public SIPURI()
+        {
+            Init();
+        }
+
+        private void regExInit(string uri)
+        {
             const string regEx =
                 @"^(?<scheme>[a-zA-Z][a-zA-Z0-9\+\-\.]*):(((?<user>[a-zA-Z0-9\-_\.\!\~\*\'\(\)&=\+\$,;\?\/\%]+)(:(?<password>[^:@;\?]+))?)@)?(((?<host>[^;\?:]*)(:(?<port>[\d]+))?))(;(?<params>[^\?]*))?(\?(?<headers>.*))?$";
             Regex exp = new Regex(regEx, RegexOptions.IgnoreCase);
@@ -89,12 +117,70 @@ namespace SIPLib.SIP
             }
         }
 
-        /// <summary>
-        /// Initializes an empty instance of the <see cref="T:SIPLib.SIP.SIPURI" /> class.
-        /// </summary>
-        public SIPURI()
+        private void nonRegExpInit(string uri)
         {
+            Console.WriteLine("Creating URI in new method with: " + uri);
             Init();
+            string[] strings = uri.Split(':');
+            Scheme = strings[0];
+            string[] userHost = strings[1].Split('@');
+            if (userHost.Length > 1)
+            {
+                User = userHost[0];
+                Host = userHost[1];
+            }
+            else
+            {
+                Host = userHost[0];
+                User = "";
+            }
+            int tempPort = 0;
+            if (strings.Length > 2)
+            {
+                string port = strings[2].Split(';')[0];
+                int.TryParse(port, out tempPort);
+            }
+            Port = tempPort;
+            string param = "";
+            string head = "";
+            Password = "";
+            string[] paramSection = uri.Split(';');
+            if (paramSection.Length > 1)
+            {
+                param = String.Join(";", paramSection.Skip(1));
+            }
+            if ((Scheme == "tel") && (User == ""))
+            {
+                User = Host;
+                Host = null;
+            }
+            foreach (string parameter in param.Split(';'))
+            {
+                if (parameter.Contains('='))
+                {
+                    int index = parameter.IndexOf('=');
+                    string paramName = parameter.Substring(0, index);
+                    string paramValue = parameter.Substring(index + 1);
+                    Parameters.Add(paramName, paramValue);
+                }
+                else if (parameter.ToLower() == "lr")
+                {
+                    Parameters.Add(parameter, "");
+                }
+                else break;
+            }
+            foreach (string header in head.Split('&'))
+            {
+                if (header.Contains('='))
+                {
+                    int index = header.IndexOf('=');
+                    string headerName = header.Substring(0, index);
+                    string headerValue = header.Substring(index + 1);
+                    Headers.Add(headerName, headerValue);
+                }
+                else
+                    break;
+            }
         }
 
         /// <summary>

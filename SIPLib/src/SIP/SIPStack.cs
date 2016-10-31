@@ -19,6 +19,7 @@ using System.Diagnostics;
 using System.Linq;
 using SIPLib.Utils;
 using log4net;
+using System.Runtime.CompilerServices;
 
 #endregion
 
@@ -27,6 +28,7 @@ namespace SIPLib.SIP
     /// <summary>
     /// This is the main SIP stack class. It is used to process all SIP messages.
     /// </summary>
+
     public class SIPStack
     {
         /// <summary>
@@ -100,6 +102,8 @@ namespace SIPLib.SIP
         /// </summary>
         /// <value>A dictionary representing current transactions.</value>
         public Dictionary<string, Transaction> Transactions { get; set; }
+
+        public object TransactionLock = new object();
         /// <summary>
         /// Gets or sets the proxy host.
         /// </summary>
@@ -344,6 +348,7 @@ namespace SIPLib.SIP
         /// <param name="src">The data source.</param>
         public void Received(string data, string[] src)
         {
+			Debug.Assert(src.Length == 2, String.Format("Received called with src.len !=2, len {0}, src {1}", src.Length, src));
             // Ignore empty messages sent by the openIMS core.
             if (data.Length > 2)
             {
@@ -611,11 +616,14 @@ namespace SIPLib.SIP
         /// <returns>Another matching transaction.</returns>
         public Transaction FindOtherTransactions(Message r, Transaction orig)
         {
-            foreach (Transaction t in Transactions.Values)
+            lock (TransactionLock)
             {
-                if ((t != orig) && (Transaction.TEquals(t, r, orig))) return t;
+                foreach (Transaction t in Transactions.Values)
+                {
+                    if ((t != orig) && (Transaction.TEquals(t, r, orig))) return t;
+                }
+                return null;
             }
-            return null;
         }
 
         /// <summary>
@@ -644,6 +652,7 @@ namespace SIPLib.SIP
         /// </summary>
         /// <param name="ua">The ua.</param>
         /// <param name="request">The request.</param>
+   
         public void ReceivedRequest(UserAgent ua, Message request)
         {
             App.ReceivedRequest(ua, request, this);
@@ -733,38 +742,41 @@ namespace SIPLib.SIP
             }
             string branch = r.Headers["Via"][0].Attributes["branch"];
             string method = r.Headers["CSeq"][0].Method;
-            Transaction t = FindTransaction(Transaction.CreateId(branch, method));
-            if (t == null)
+            lock (TransactionLock)
             {
-                if ((method == "INVITE") && (r.Is2XX()))
+                Transaction t = FindTransaction(Transaction.CreateId(branch, method));
+                if (t == null)
                 {
-                    _log.Debug("Looking for dialog with ID " + Dialog.ExtractID(r));
-                    foreach (KeyValuePair<string, Dialog> keyValuePair in Dialogs)
+                    if ((method == "INVITE") && (r.Is2XX()))
                     {
-                        _log.Debug("Current Dialogs " + keyValuePair.Key);
-                    }
-                    Dialog d = FindDialog(r);
-                    if (d == null)
-                    {
-                        Debug.Assert(false, String.Format("No transaction or dialog for 2xx of INVITE \n{0}\n", r));
-                        return;
+                        _log.Debug("Looking for dialog with ID " + Dialog.ExtractID(r));
+                        foreach (KeyValuePair<string, Dialog> keyValuePair in Dialogs)
+                        {
+                            _log.Debug("Current Dialogs " + keyValuePair.Key);
+                        }
+                        Dialog d = FindDialog(r);
+                        if (d == null)
+                        {
+                            Debug.Assert(false, String.Format("No transaction or dialog for 2xx of INVITE \n{0}\n", r));
+                            return;
+                        }
+                        else
+                        {
+                            d.ReceivedResponse(null, r);
+                        }
                     }
                     else
                     {
-                        d.ReceivedResponse(null, r);
+                        Console.WriteLine("No Transaction for response...ignoring....");
+                        //Debug.Assert(false, String.Format("No Transaction for response \n{0}\n", r.ToString()));
+                        return;
                     }
                 }
                 else
                 {
-                    Console.WriteLine("No Transaction for response...ignoring....");
-                    //Debug.Assert(false, String.Format("No Transaction for response \n{0}\n", r.ToString()));
+                    t.ReceivedResponse(r);
                     return;
                 }
-            }
-            else
-            {
-                t.ReceivedResponse(r);
-                return;
             }
         }
 

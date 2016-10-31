@@ -258,15 +258,15 @@ namespace SIPLib.SIP
         /// <returns>A <see cref="System.String" /> that represents this instance.</returns>
         public override string ToString()
         {
-            foreach (KeyValuePair<string, List<Header>> keyValuePair in Headers.ToList())
-            {
-                if (keyValuePair.Value.Count <= 0)
-                {
-                    Headers.Remove(keyValuePair.Key);
-                }
-            }
             try
             {
+				foreach (KeyValuePair<string, List<Header>> keyValuePair in Headers.ToList())
+				{
+					if (keyValuePair.Value.Count <= 0)
+					{
+						Headers.Remove(keyValuePair.Key);
+					}
+				}
                 string m = "";
                 if (Method != null)
                 {
@@ -306,7 +306,13 @@ namespace SIPLib.SIP
                     }
                     catch (Exception ex)
                     {
-                        Debug.Assert(false, String.Format("Error converting message to string {0}", ex.Message));
+						// Get stack trace for the exception with source file information
+						var st = new StackTrace(ex, true);
+						// Get the top stack frame
+						var frame = st.GetFrame(0);
+						// Get the line number from the stack frame
+						var line = frame.GetFileLineNumber();
+						Debug.Assert(false, String.Format("1 Error converting message to string {0} \n {1} \n {2}", ex, line, Headers));
                     }
                 }
                 m = m + contentLength;
@@ -319,7 +325,7 @@ namespace SIPLib.SIP
             }
             catch (Exception ex)
             {
-                Debug.Assert(false, String.Format("Error converting message to string {0}", ex.Message));
+				Debug.Assert(false, String.Format("2 Error converting message to string {0} \n {1} \n {2}", ex, Headers.ToList(), Headers.Values.ToList() ));
             }
             return "Error converting Message";
         }
